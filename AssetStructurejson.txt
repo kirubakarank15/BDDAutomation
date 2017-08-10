@@ -1,0 +1,1 @@
+{"make":"CAT","serialNumber":"DSM10179","attachedDevices":[{"commercialType":"PL161","type":"A5:N2","deviceId":"virtDSM10179","attachedEcms":[{"serialNumber":"DSM10179ecm"}],"attachedRadios":[{"serialNumber":"DSM10179YC"}]}],"components":[{"serialNumber":"DSM10179comp","make":"CAT"}]}
