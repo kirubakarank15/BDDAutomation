@@ -185,7 +185,7 @@ public class Common_methods {
 
 		input.setContentType("application/asset-structures-v1+json");
 		request.addHeader("accept", "application/asset-structures-verbose-v1+json");
-		System.out.println("request body " + input);
+		System.out.println("Asset Structure RequestBody " + input);
 		request.setEntity(input);
 		return request;
 	}
@@ -200,8 +200,8 @@ public class Common_methods {
 		String response = EntityUtils.toString(httpResponse.getEntity());
 		String message = httpResponse.getStatusLine().getReasonPhrase();
 		Integer statusCode = httpResponse.getStatusLine().getStatusCode();
-		System.out.println("Response of the API :" + "\n" + response + "\n"
-				+ "status:" + "\n" + statusCode + "\n" + "Status:" + message);
+		System.out.println("Response of the API :" + "\t" + response + "\t"
+				+ "status:" + "\t" + statusCode + "\t" + "Status:" + message);
 		return httpResponse;
 	}
 
@@ -216,7 +216,7 @@ public class Common_methods {
 		String decrypPwd = properties.getProperty("Password");
 		String ldapUserName = properties.getProperty("UserName");
 		String ucidSearchURL = properties.getProperty("SearchURL");
-		System.out.println("ucidurl:" + ucidSearchURL);
+		//System.out.println("ucidurl:" + ucidSearchURL);
 
 		HttpResponse httpResponse = null;
 		URI uri = null;
@@ -246,7 +246,7 @@ public class Common_methods {
 			System.out.println("Request:" + request);
 			httpResponse = client.execute(request);
 			result = EntityUtils.toString(httpResponse.getEntity());
-			System.out.println("Http Status :" + "\n" + httpResponse);
+			//System.out.println("Http Status :" + "\n" + httpResponse);
 			// System.out.println("OAuth Token:" +"\n" +result );
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
@@ -353,6 +353,10 @@ public class Common_methods {
 		TreeMap<String, List<String>> map = this.getassetDetails(Query);
 
 		value = map.get(columName).get(0);
+		if(value==null)
+		{
+			System.out.println("No Value is Present in DB");
+		}
 		return value;
 
 	}

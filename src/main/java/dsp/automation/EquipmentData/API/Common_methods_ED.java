@@ -2,24 +2,33 @@ package dsp.automation.EquipmentData.API;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Properties;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
+import org.jsoup.parser.Parser;
 
 import com.cat.manager.tufcrypto.DecryptPropertiesParameters;
 import com.google.gson.Gson;
+import com.google.gson.JsonParser;
 
 import dsp.automation.AssetStructures.API.Common_methods;
 
 public class Common_methods_ED 
 {
-	String assetSno;
-public void AssetTemplate(String manufacturerCode, String productWorkCode, String Model, String ManufacturingYear, String OnwerType, String DealerCustomerNumber, String EquipmentID, String VinNumber, String DealerCode)
+	public String assetSno;
+public String AssetTemplate(String manufacturerCode, String productWorkCode, String Model, String ManufacturingYear, String OnwerType, String DealerCustomerNumber, String EquipmentID, String VinNumber, String DealerCode)
 {
 	assetSno = Common_methods.SerialNumber;
 	System.out.println("AssetSNO:" +assetSno);
@@ -37,6 +46,15 @@ public void AssetTemplate(String manufacturerCode, String productWorkCode, Strin
 	Gson gson = new Gson();
 	String JsonInString = gson.toJson(assetregister);
 	System.out.println("RequestBodyED:" +JsonInString);
+	//JSONObject requestBody = new JSONObject(JsonInString);
+	try {
+		PrintWriter writer = new PrintWriter("EDRequestBody.txt","UTF-8");
+		writer.println(JsonInString);
+		writer.close();
+	} catch (IOException e) {
+
+	}
+	return JsonInString;
 	
 	}
 public URI buildingurl() throws FileNotFoundException, IOException {
@@ -55,23 +73,48 @@ public URI buildingurl() throws FileNotFoundException, IOException {
 	}
 	return uri; // It will return the formed uri (URL of edUpdateEquipment)
 }
-public void addingHeaderstourl() throws FileNotFoundException, IOException
+public HttpPost addingHeaderstourl() throws Exception
 {
+StringEntity input = null;
+String authorization= getAuthorizationToken();
+
 URI uri = buildingurl();
 HttpPost request = new HttpPost(uri);
-//request.addHeader(name, value);
-}
+request.addHeader("Authorization", authorization);
+JsonParser parser = new JsonParser();
+Object obj = parser.parse(new FileReader("EDRequestBody.txt"));
+System.out.println();
+input = new StringEntity(obj.toString(), "UTF-8");
+input.setContentType("application/json");
+request.addHeader("Accept", "application/json");
+//System.out.println("Request Body:" +input);
+request.setEntity(input);
+return request;
 
-public void getAuthorizationToken() throws Exception
+}
+public HttpResponse apiExecution(HttpPost request) throws ClientProtocolException, IOException
 {
-	String decrypPwd=null;
+	DefaultHttpClient client = new DefaultHttpClient();
+	HttpResponse httpResponse = client.execute(request);
+	String response = EntityUtils.toString(httpResponse.getEntity());
+	String message = httpResponse.getStatusLine().getReasonPhrase();
+	int statusCode = httpResponse.getStatusLine().getStatusCode();
+	System.out.println("Response of the API :" +response +" \t" + "status:" +statusCode + "\t" +"Status:" + message);
+	return httpResponse;
+	}
+
+public String getAuthorizationToken() throws Exception
+{
+	String eddecrypPwd=null;
 	Properties properties = new Properties();
 	properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
 	String encrypPwd = properties.getProperty("ed.Password");
-	decrypPwd=DecryptPropertiesParameters.decryptProperties(encrypPwd);
-	System.out.println(decrypPwd);
-	
-	
+	eddecrypPwd=DecryptPropertiesParameters.decryptProperties(encrypPwd);
+    String edUsername = properties.getProperty("ed.UserName");
+	//System.out.println(decrypPwd);
+	byte[] encodedAuth = org.apache.commons.codec.binary.Base64.encodeBase64((edUsername + ":" + eddecrypPwd).getBytes());
+	String authorization = "Basic " + new String(encodedAuth);
+	return authorization;
 }
 
 }
