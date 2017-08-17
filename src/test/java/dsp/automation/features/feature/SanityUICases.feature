@@ -8,7 +8,7 @@ Feature: To Validate Subscription UI functionalities for different assets.
     When search Asset details as "<S/N>" in My Worklist Page
     Then Asset details should be displayed as "<S/N>" in My Worklist page
     When enter Subscription details as "<Services>,<Customer>,<Dealer>,<Cat>"
-    And click "Save/Sync" button or link
+    And click "cancel" button or link
     Then verify the message "New Subscription Applied Successfully" is displayed
     When close browser
   

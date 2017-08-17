@@ -14,7 +14,8 @@ public class MineStar {
 		
 		fieldValue = "MineStar Page";
 		try { 
-			TestFunctionsFactory.webWait(120, btnCreateNewSite);
+			TestFunctionsFactory.waitForPageLoaded(TestFunctionsFactory.driver);
+			TestFunctionsFactory.webWait(60, btnCreateNewSite);
 			
 
 		} catch (Exception e) {

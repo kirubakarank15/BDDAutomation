@@ -14,7 +14,8 @@ public class CatLevelServices {
 		
 		fieldValue = "Cat Level Services Page";
 		try {
-			TestFunctionsFactory.webWait(60, lblCatLevelServices);
+			TestFunctionsFactory.waitForPageLoaded(TestFunctionsFactory.driver);
+			TestFunctionsFactory.webWait(60, lblCatLevelServices); 
 
 		} catch (Exception e) { 
 			if(!CustomisedException.getFieldValue().equals(null)){

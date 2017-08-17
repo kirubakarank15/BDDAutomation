@@ -15,6 +15,7 @@ public class MyWorklist {
 		
 		fieldValue = "My Worklist Page";
 		try {
+			TestFunctionsFactory.waitForPageLoaded(TestFunctionsFactory.driver);
 			TestFunctionsFactory.webWait(60, lblUCID);
 
 		} catch (Exception e) {
