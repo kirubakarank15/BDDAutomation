@@ -57,7 +57,7 @@ public class CommonSteps {
 			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
 
-	}
+	} 
 
 	@When("The page \"([^\"]*)\" should be displayed")
 	public void isPageDisplayed(String pageName) {

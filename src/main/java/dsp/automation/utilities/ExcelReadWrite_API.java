@@ -28,13 +28,13 @@ public class ExcelReadWrite_API {
 				for (int j = 0; j < s.getRow(i).getLastCellNum(); j++) {
 					if (j == 0) {
 						key = s.getRow(i).getCell(j).toString();
-						System.out.println("key:" + key);
+						//System.out.println("key:" + key);
 
 					}
 					if (j == 1) {
 
 						String Value = s.getRow(i).getCell(j).toString();
-						System.out.println(Value);
+						//System.out.println(Value);
 						String[] var = Value
 								.split("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)");
 
