@@ -1,1 +1,1 @@
-{"make":"CAT","serialNumber":"DSM10188","attachedDevices":[{"commercialType":"PL671","type":"A5:N2","deviceId":"virtDSM10188","attachedEcms":[{"serialNumber":"DSM10188ecm"}],"attachedRadios":[{"serialNumber":"DSM10188YC"}]}],"components":[{"serialNumber":"DSM10188comp","make":"CAT"}]}
+{"make":"CAT","serialNumber":"DSM10191","attachedDevices":[{"commercialType":"PL671","type":"A5:N2","deviceId":"virtDSM10191","attachedEcms":[{"serialNumber":"DSM10191ecm"}],"attachedRadios":[{"serialNumber":"DSM10191YC"}]}],"components":[{"serialNumber":"DSM10191comp","make":"CAT"}]}

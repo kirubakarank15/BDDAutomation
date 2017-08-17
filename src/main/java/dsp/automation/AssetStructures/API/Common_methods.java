@@ -305,8 +305,7 @@ public class Common_methods {
 		// String sNumber=(String) htable.get("serialNumber");
 		// String makeNum=(String) htable.get("make");
 		DBconnection_API dbConnection = new DBconnection_API();
-		Statement st = dbConnection.checkConnection().createStatement(
-				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		Statement st = dbConnection.checkConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 		String sql = (query);
 		ResultSet rs = st.executeQuery(sql);
