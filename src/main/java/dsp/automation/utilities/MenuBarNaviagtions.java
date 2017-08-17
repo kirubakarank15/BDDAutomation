@@ -60,7 +60,7 @@ public class MenuBarNaviagtions {
 			TestFunctionsFactory.webWait(30, suggDealerCode);
 			TestFunctionsFactory.mouseHover(suggDealerCode);
 			TestFunctionsFactory.javaScriptClick(suggDealerCode);
-			TestFunctionsFactory.webWaitPages(60, dealerCodeIcon);
+			TestFunctionsFactory.webWait(60, dealerCodeIcon);
 		} catch (Exception e) {
 			CustomisedException obj = new CustomisedException(
 					"Navigation to the " + fieldValue + "is facing the following exception", e.getMessage().toString());
@@ -72,6 +72,8 @@ public class MenuBarNaviagtions {
 	public void delaerCodeVerification(String dealerCode) throws CustomisedException {
 		fieldValue = dealerCode;
 		try {
+			TestFunctionsFactory.webWait(60, dealerCodeIcon); 
+			TestFunctionsFactory.waitForPageLoaded(TestFunctionsFactory.driver);
 			WebElement changedDealerIcon = TestFunctionsFactory.driver
 					.findElement(By.xpath("//a[contains(text(),'" + dealerCode + "')]"));
 			TestFunctionsFactory.verifyElementdisplayed(changedDealerIcon);

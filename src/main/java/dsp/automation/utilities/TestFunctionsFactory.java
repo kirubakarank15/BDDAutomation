@@ -8,9 +8,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TestFunctionsFactory {
 
@@ -93,7 +95,7 @@ public class TestFunctionsFactory {
 	}
 	public static void verifyElementdisplayed(WebElement element) throws CustomisedException {
 		try {
-			webWaitPages(60,element);
+
 			element.isDisplayed();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -109,11 +111,14 @@ public class TestFunctionsFactory {
 			Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(waitTime, TimeUnit.SECONDS)
 					.pollingEvery(5, TimeUnit.SECONDS).ignoring(NullPointerException.class);
 			if (TestFunctionsFactory.driver.findElement(By.xpath("//div[contains(@class,'loading')]")).isDisplayed()) {
-				wait.until(ExpectedConditions.stalenessOf(
-						TestFunctionsFactory.driver.findElement(By.xpath("//div[contains(@class,'loading')]"))));
+				if(!wait.until(ExpectedConditions.stalenessOf(
+						TestFunctionsFactory.driver.findElement(By.xpath("//div[contains(@class,'loading')]")))));
+
 				
 			} 
-			wait.until(ExpectedConditions.visibilityOf(element));
+			if(wait.until(ExpectedConditions.visibilityOf(element))== null){
+
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
@@ -136,12 +141,36 @@ public class TestFunctionsFactory {
 			throw obj;
 		}
 	}
+	
+	public static void waitForPageLoaded(WebDriver driver) {
+		ExpectedCondition expectation = new ExpectedCondition(){
+		public Boolean apply(WebDriver driver) {
+		return ((JavascriptExecutor) driver).executeScript(
+		"return document.readyState").equals("complete");
+		}
 
+		@Override
+		public Object apply(Object arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		};
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(10, TimeUnit.SECONDS)
+				.pollingEvery(2, TimeUnit.SECONDS).ignoring(NullPointerException.class);
+		try { 
+		wait.until(expectation);
+		wait.until(ExpectedConditions.stalenessOf(
+				TestFunctionsFactory.driver.findElement(By.xpath("//div[contains(@class,'loading')]"))));
+		} catch (Throwable error) {
+		//logger.error("Timeout waiting for Page Load Request to complete.");
+		}
+
+	}
 	public static void launchUrl(String browser, String url) throws Exception {
 		DriverSupplier objDriver = new DriverSupplier();
 
 		switch (browser.toUpperCase()) {
-
+ 
 		case "CHROME":
 			driver = objDriver.driverChrome();
 			break;

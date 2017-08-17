@@ -17,10 +17,11 @@ public class DriverSupplier {
         //String userProfile= "C:\\Users\\krishk10.AP.000\\AppData\\Roaming\\Microsoft\\Internet Explorer\\UserData";
         ChromeOptions options = new ChromeOptions();
         //options.addArguments("user-data-dir="+userProfile);
-        options.addArguments("--start-maximized");
+        options.addArguments("--start-maximized"); 
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--disable-popup-blocking");
-        options.addArguments("disable-infobars");
+        options.addArguments("disable-infobars"); 
+        
         //options.addArguments("--incognito");
        // options.addArguments("--disable-extensions");
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();

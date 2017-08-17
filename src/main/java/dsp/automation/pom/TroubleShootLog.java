@@ -14,6 +14,7 @@ public class TroubleShootLog {
 		
 		fieldValue = "Trouble ShootPage";
 		try {
+			TestFunctionsFactory.waitForPageLoaded(TestFunctionsFactory.driver);
 			TestFunctionsFactory.webWait(60, lblTimeRemaining);
 
 		} catch (Exception e) {
