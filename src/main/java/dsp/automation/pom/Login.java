@@ -22,7 +22,8 @@ public class Login {
 		fieldValue = "Login";
 		try {
 
-			TestFunctionsFactory.webWait(120, txtCWSId);
+
+			TestFunctionsFactory.webWait(60, txtCWSId);
 
 		} catch (Exception e) { 
 			if (!CustomisedException.getFieldValue().equals(null)) {

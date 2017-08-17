@@ -109,7 +109,7 @@ public class CommonSteps {
 			}
 
 		} catch (Exception e) {
-
+			e.printStackTrace();
 			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
 
