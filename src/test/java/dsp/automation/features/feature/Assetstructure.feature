@@ -2,7 +2,7 @@
 Feature: Asset Onboarding through CCDS
   This feature is to Validate Assetstructure API response and Verify Onboarded asset values in DB
 
-  @Sanity1@Regression @Positive
+  @Sanity1 @Regression @Positive
   Scenario Outline: Comapare and Validate AssetStructureVerbose from AssetStructureMessage Table
     Given Construct OAuth key and Random generated Attributes for PostAssetStructure Template
     When Construct Post AssetStructure request API with "<CommercialType>"
