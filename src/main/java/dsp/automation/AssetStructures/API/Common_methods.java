@@ -75,9 +75,9 @@ public class Common_methods {
 				if (attributes.get("RadioNumber").contains(",")) {
 					String[] radioNumbers = attributes.get("RadioNumber").split(",");
 					
-					for(int k=0;k<radioNumbers.length;k++){
+					for(int g=0;g<radioNumbers.length;g++){
 						
-						String eachSerialNumber=radioNumbers[k];
+						String eachSerialNumber=radioNumbers[g];
 						AttachedRadios attachedRadios = new AttachedRadios();
 						attachedRadios.setSerialNumber(eachSerialNumber);
 						attachedRadioslst.add(attachedRadios);
