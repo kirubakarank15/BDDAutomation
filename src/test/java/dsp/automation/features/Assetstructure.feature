@@ -8,9 +8,9 @@ Feature: Asset Onboarding through CCDS
     When Construct Post AssetStructure request API with "<CommercialType>"
     Then Validate Successful API Response and "<HttpStatus>" of the Post AssetStructure request API
 
-    Examples: 
+    Examples:  
       | CommercialType | HttpStatus |
-      | PLE641         |        201 |
+      | PL671          |        201 |
 
   @Sanity @Regression @Positive
   Scenario: Retrieve AssetStructureVerbose from AssetStructureMessage Table

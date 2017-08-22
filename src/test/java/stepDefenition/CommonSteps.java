@@ -4,6 +4,7 @@ import java.util.Properties;
 
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 
 import cucumber.api.java.Before;
 import cucumber.api.java.en.When;
@@ -18,30 +19,35 @@ import dsp.automation.pom.TroubleShootLog;
 import dsp.automation.pom.UserAdministration;
 import dsp.automation.runners.TestRunner;
 import dsp.automation.utilities.CustomisedException;
+import dsp.automation.utilities.EcncryptorDecryptor;
 import dsp.automation.utilities.FileHandling;
 import dsp.automation.utilities.MenuBarNaviagtions;
 import dsp.automation.utilities.TestFunctionsFactory;
 
-public class CommonSteps {
+public class CommonSteps { 
+	 
+	@When("Login into DSP Portal$")
 
-	@When("Login as \"([^\"]*)\" and \"([^\"]*)\" in \"([^\"]*)\"$")
-	public void login(String userName, String pswd, String environment) {
+	public void login()  {
 		try {
-
-			TestFunctionsFactory.launchUrl(FileHandling.getProperty("Browser"), FileHandling.getProperty(environment));
+			System.out.println("Passowrd"+EcncryptorDecryptor.decryptor(FileHandling.getProperty("Password")));
+			System.out.println("Passowrd"+FileHandling.getProperty("Password"));
+			TestFunctionsFactory.launchUrl(FileHandling.getProperty("Browser"), FileHandling.getProperty(TestRunner.RUNTIME_ENV));
 			Login obj = PageFactory.initElements(TestFunctionsFactory.driver, Login.class);
+			
 			obj.isPageDisplayed();
 
-			obj.enterDetails(FileHandling.getProperty(userName), FileHandling.getProperty(pswd));
+			obj.enterDetails(FileHandling.getProperty("User_Name"),EcncryptorDecryptor.decryptor(FileHandling.getProperty("Password")) ); 
 
 		} catch (Exception e) {
 
 			if (CustomisedException.getErrorMessage() != null) {
-
+				TestFunctionsFactory.takeSnapShot( "Login_page");
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
 				e.printStackTrace();
-				Assert.fail(e.getMessage().toString());
+				TestFunctionsFactory.takeSnapShot( "Login_page"); 
+				Assert.fail(e.getMessage().toString()); 
 			}
 		}
 
@@ -52,8 +58,11 @@ public class CommonSteps {
 		try {
 			MenuBarNaviagtions obj1 = PageFactory.initElements(TestFunctionsFactory.driver, MenuBarNaviagtions.class);
 			obj1.menuNavigation(menu);
+	
 		} catch (Exception e) {
 
+				TestFunctionsFactory.takeSnapShot( "MenuNavigation");
+		
 			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
 
@@ -109,6 +118,7 @@ public class CommonSteps {
 			}
 
 		} catch (Exception e) {
+			TestFunctionsFactory.takeSnapShot( pageName+"IsPageDisplayed");
 			e.printStackTrace();
 			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
@@ -126,7 +136,7 @@ public class CommonSteps {
 		MenuBarNaviagtions menuObj=PageFactory.initElements(TestFunctionsFactory.driver, MenuBarNaviagtions.class);
 		menuObj.dealerSearch(dealerCode);}
 		catch (Exception e) {
-
+			TestFunctionsFactory.takeSnapShot("DelaerCodeChange");
 			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
 	}
@@ -136,7 +146,7 @@ public class CommonSteps {
 		MenuBarNaviagtions menuObj=PageFactory.initElements(TestFunctionsFactory.driver, MenuBarNaviagtions.class);
 		menuObj.delaerCodeVerification(dealerCode);;}
 		catch (Exception e) {
-
+			TestFunctionsFactory.takeSnapShot("DelaerCodeChange_Verification");
 			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
 	}
