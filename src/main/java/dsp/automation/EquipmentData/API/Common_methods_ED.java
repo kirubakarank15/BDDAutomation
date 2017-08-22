@@ -31,7 +31,7 @@ public class Common_methods_ED
 	public String assetSno;
 public String AssetTemplate(String manufacturerCode, String productWorkCode, String Model, String ManufacturingYear, String OnwerType, String DealerCustomerNumber, String EquipmentID, String VinNumber, String DealerCode)
 {
-	List<a,a> l1 = new List();
+	
 	assetSno = Common_methods.SerialNumber;
 	System.out.println("AssetSNO:" +assetSno);
 	AssetRegisterED assetregister = new AssetRegisterED();

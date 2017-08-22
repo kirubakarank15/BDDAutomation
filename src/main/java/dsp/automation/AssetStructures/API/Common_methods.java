@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -38,6 +39,7 @@ import org.json.simple.parser.ParseException;
 import com.google.gson.Gson;
 import com.google.gson.JsonParser;
 import dsp.automation.utilities.ExcelReadWrite_API;
+import dsp.automation.utilities.PropertyHelperClass;
 import dsp.automation.utilities.DBconnection_API;
 
 
@@ -46,19 +48,31 @@ public class Common_methods {
 	// We are creating List for the instances
 	public static String SerialNumber = null;
 	public static String value = null;
+	
 
 	public void AssetTemplate(String commercialType) throws Exception {
+	
 		StringEntity input = null;
 		Properties properties = new Properties();
 		//Common_methods reusemethods = new Common_methods();
 		//HashMap<String, String> attributes = reusemethods.excelReadWrite();
 		ExcelReadWrite_API ExcelReadWrite = new ExcelReadWrite_API();
 		HashMap<String, String> attributes = ExcelReadWrite.excelReadWrite();
-
-		SampleModel samp = new SampleModel();
-		properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
+		
+	    /*String propFileName = "application.properties";
+	  InputStream inputStream = getClass().getClassLoader().getResourceAsStream("./src/main/java/application.properties");
+	    properties.load(inputStream);*/
+	    /*String filePath = new File("application.properties").getAbsolutePath();
+		System.out.println("filename:" +filePath);
+        */		
+	    SampleModel samp = new SampleModel();
+	    //properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
+		properties.load(new FileInputStream("Resources\\application.properties"));
+				
 		String make = properties.getProperty("Asset.make");
+		
 		samp.setMake(make);
+		
 		SerialNumber = attributes.get("SerialNumber");
 		samp.setSerialNumber(SerialNumber);
 
@@ -148,7 +162,10 @@ public class Common_methods {
 	// Following function will build a URL
 	public URI buildingurl() throws FileNotFoundException, IOException {
 		Properties properties = new Properties();
-		properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
+		/*try (InputStream is = getClass().getResourceAsStream("application.properties")) {
+			  properties.load(is);
+			}*/
+		properties.load(new FileInputStream("Resources\\application.properties"));
 		DefaultHttpClient client = new DefaultHttpClient();
 		String Requesturl = properties.getProperty("assetstrcuturecreate.int");
 		URI uri = null;
@@ -212,7 +229,10 @@ public class Common_methods {
 		DefaultHttpClient client = new DefaultHttpClient();
 
 		Properties properties = new Properties();
-		properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
+		/*try (InputStream is = getClass().getResourceAsStream("application.properties")) {
+			  properties.load(is);
+			}*/
+		properties.load(new FileInputStream("Resources\\application.properties"));
 		String decrypPwd = properties.getProperty("Password");
 		String ldapUserName = properties.getProperty("UserName");
 		String ucidSearchURL = properties.getProperty("SearchURL");
