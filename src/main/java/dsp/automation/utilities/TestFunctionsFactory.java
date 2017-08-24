@@ -142,7 +142,7 @@ public class TestFunctionsFactory {
 		try {
 
 			Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(waitTime, TimeUnit.SECONDS)
-					.pollingEvery(5, TimeUnit.SECONDS).ignoring(NullPointerException.class);
+					.pollingEvery(2, TimeUnit.SECONDS).ignoring(NullPointerException.class);
 
 			wait.until(ExpectedConditions.visibilityOf(element));
 		} catch (Exception e) {
@@ -165,7 +165,7 @@ public class TestFunctionsFactory {
 				return null;
 			}
 		};
-		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(30, TimeUnit.SECONDS)
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(30,TimeUnit.SECONDS)
 				.pollingEvery(2, TimeUnit.SECONDS).ignoring(NullPointerException.class);
 		try {
 			wait.until(expectation);
