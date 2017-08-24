@@ -165,7 +165,7 @@ public class TestFunctionsFactory {
 				return null;
 			}
 		};
-		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(80,TimeUnit.SECONDS)
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(250,TimeUnit.SECONDS)
 				.pollingEvery(2, TimeUnit.SECONDS).ignoring(NullPointerException.class);
 		try {
 			wait.until(expectation);
