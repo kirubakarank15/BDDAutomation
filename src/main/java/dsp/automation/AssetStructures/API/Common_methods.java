@@ -77,7 +77,7 @@ public class Common_methods {
 					
 					for(int k=1;k<radioNumbers.length;k++){
 						
-						String eachSerialNumber=radioNumbers[k];
+						String eachSerialNumber=radioNumbers[g];
 						AttachedRadios attachedRadios = new AttachedRadios();
 						attachedRadios.setSerialNumber(eachSerialNumber);
 						attachedRadioslst.add(attachedRadios);

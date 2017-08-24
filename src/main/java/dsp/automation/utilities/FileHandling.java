@@ -36,8 +36,7 @@ public class FileHandling {
 			         if (objProperty== null)
 					{	                
 			        	 objProperty = new Properties();
-			        		File fileObj = new File(
-			    					"C:\\Users\\krishk10.AP.000\\Desktop\\Automation\\Workpaces\\Automation\\Resources\\config.properties");
+			        		File fileObj = new File("Resources\\config.properties"); 
 			    			
 				InputStream inputStream = new FileInputStream(fileObj) ;             
 					objProperty.load(inputStream);	

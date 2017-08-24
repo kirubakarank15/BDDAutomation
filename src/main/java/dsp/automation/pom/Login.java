@@ -1,9 +1,13 @@
 package dsp.automation.pom;
 
+import java.util.logging.Logger;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import dsp.automation.utilities.CustomisedException;
+import dsp.automation.utilities.EcncryptorDecryptor;
+import dsp.automation.utilities.FileHandling;
 import dsp.automation.utilities.TestFunctionsFactory;
 
 public class Login {
@@ -16,14 +20,16 @@ public class Login {
 	@FindBy(xpath = "//span[text()='Quick Links']")
 	private WebElement linkHomePageQuickLink;
 	String fieldValue;
-
+	private final static Logger LOGGER = Logger.getLogger(Login.class.getName());
 	public Login isPageDisplayed() throws Exception {
 
 		fieldValue = "Login";
 		try {
-
-
+			LOGGER.info(EcncryptorDecryptor.decryptor(FileHandling.getProperty("Password")));
+			TestFunctionsFactory.waitForPageLoaded();
 			TestFunctionsFactory.webWait(60, txtCWSId);
+			LOGGER.info("Login Page is displayed");
+		
 
 		} catch (Exception e) { 
 			if (!CustomisedException.getFieldValue().equals(null)) {
@@ -40,7 +46,7 @@ public class Login {
 	public void enterDetails(String userName, String pswd) throws CustomisedException {
 		fieldValue = "Login Enter Details Text boxes";
 		try {	
-			System.out.println("User Name:"+userName+pswd);
+
 			TestFunctionsFactory.webEditText(txtCWSId, userName);
 			TestFunctionsFactory.webEditText(txtCWPswd, pswd);
 

@@ -15,7 +15,7 @@ public class UserAdministration {
 
 		fieldValue = "User Administration Page";
 		try {
-			TestFunctionsFactory.waitForPageLoaded(TestFunctionsFactory.driver);
+			TestFunctionsFactory.waitForPageLoaded();
 			TestFunctionsFactory.webWait(60, textCWSId);
 
 		} catch (Exception e) {   
