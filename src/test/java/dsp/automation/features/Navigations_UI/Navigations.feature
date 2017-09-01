@@ -47,5 +47,5 @@ Feature: To validate the navigation across the DSP portal as a deployment smoke/
 
   @Navigation_DealerProfileChange
   Scenario: changing Dealer Profile
-    When change dealer code to "TD6gg"
+    When change dealer code to "TD6"
     Then DealerCode should be changed to "TD6"

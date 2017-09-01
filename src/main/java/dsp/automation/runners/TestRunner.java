@@ -16,11 +16,11 @@ import dsp.automation.utilities.TestFunctionsFactory;
 @RunWith(Cucumber.class)
 
 @CucumberOptions( strict = false,format = { "pretty",
-"json:target/cucumber.json" ,"html:target/site/cucumber-pretty"},features = "src\\test\\java\\dsp\\automation\\features",glue = "stepDefenition",tags ={"@Sanity_Navigation"} ) 
+"json:target/cucumber.json" ,"html:target/site/cucumber-pretty"},features = "src\\test\\java\\dsp\\automation\\features",glue = "stepDefenition",tags ={"@Subscription_Sanity "} ) 
 
 
 public class TestRunner extends AbstractTestNGCucumberTests {
-	 public static String RUNTIME_ENV=null;
+	 public static String RUNTIME_ENV=null; 
 
 
 	@Parameters("Environment")
@@ -32,7 +32,7 @@ public class TestRunner extends AbstractTestNGCucumberTests {
 	public void after() throws Exception{
 
 
-		TestFunctionsFactory.closeBrowser(); 
+		//TestFunctionsFactory.closeBrowser(); 
 
 	} 
 	

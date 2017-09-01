@@ -3,6 +3,7 @@ package dsp.automation.utilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -13,7 +14,7 @@ public class DriverSupplier {
 	public WebDriver driverChrome() {
 
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\krishk10.AP.000\\Downloads\\Selenium Downloads\\chromedriver_win32\\chromedriver.exe");
+				"Resources\\Drivers\\chromedriver.exe");
         //String userProfile= "C:\\Users\\krishk10.AP.000\\AppData\\Roaming\\Microsoft\\Internet Explorer\\UserData";
         ChromeOptions options = new ChromeOptions();
         //options.addArguments("user-data-dir="+userProfile);
@@ -44,6 +45,13 @@ public class DriverSupplier {
 		return driver;
 
 	} 
+	public WebDriver htmlUnit(){
+		WebDriver driver=new HtmlUnitDriver();
+		((HtmlUnitDriver) driver).setJavascriptEnabled(true);
+		
+		return driver;
+		
+	}
 
 
 

@@ -27,7 +27,7 @@ public class Login {
 		try {
 			LOGGER.info(EcncryptorDecryptor.decryptor(FileHandling.getProperty("Password")));
 			TestFunctionsFactory.waitForPageLoaded();
-			TestFunctionsFactory.webWait(60, txtCWSId);
+			TestFunctionsFactory.webWait(30, txtCWSId);
 			LOGGER.info("Login Page is displayed");
 		
 
@@ -68,8 +68,8 @@ public class Login {
 		try {
 			
 			//TestFunctionsFactory.driver.get(TestFunctionsFactory.driver.getCurrentUrl());
-
-			TestFunctionsFactory.webWaitPages(120, linkHomePageQuickLink);
+			TestFunctionsFactory.waitForPageLoaded();
+			//TestFunctionsFactory.webWaitPages(30, linkHomePageQuickLink);
 		} catch (Exception e) {
 			if (!CustomisedException.getFieldValue().equals(null)) {
 				throw new CustomisedException("Login page is facing problem with" + CustomisedException.getFieldValue(),

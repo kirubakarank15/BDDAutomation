@@ -34,7 +34,7 @@ public class MenuBarNaviagtions {
 							.startsWith(menuBar.replaceAll(" ", "").trim().toUpperCase())) {
 					
 
-						TestFunctionsFactory.webWait(60, element);
+						TestFunctionsFactory.webWait(30, element);
 						TestFunctionsFactory.mouseHover(element);
 						TestFunctionsFactory.webClick(element);
 						LOGGER.info(element.getText()+" got clicked");
@@ -65,7 +65,7 @@ public class MenuBarNaviagtions {
 			TestFunctionsFactory.webWait(30, suggDealerCode);
 			TestFunctionsFactory.mouseHover(suggDealerCode);
 			TestFunctionsFactory.javaScriptClick(suggDealerCode);
-			TestFunctionsFactory.webWait(60, dealerCodeIcon);
+			//TestFunctionsFactory.webWait(60, dealerCodeIcon);
 			
 		} catch (Exception e) {
 			CustomisedException obj = new CustomisedException(
@@ -78,8 +78,9 @@ public class MenuBarNaviagtions {
 	public void delaerCodeVerification(String dealerCode) throws CustomisedException {
 		fieldValue = dealerCode;
 		try {
-			TestFunctionsFactory.webWait(60, dealerCodeIcon); 
+			
 			TestFunctionsFactory.waitForPageLoaded();
+			TestFunctionsFactory.webWait(30, dealerCodeIcon); 
 			WebElement changedDealerIcon = TestFunctionsFactory.driver
 					.findElement(By.xpath("//a[contains(text(),'" + dealerCode + "')]"));
 			TestFunctionsFactory.verifyElementdisplayed(changedDealerIcon);

@@ -1,9 +1,12 @@
 package stepDefenition;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.AssertJUnit;
 import java.util.Properties;
 
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Parameters;
 
 import cucumber.api.java.Before;
@@ -26,12 +29,11 @@ import dsp.automation.utilities.TestFunctionsFactory;
 
 public class CommonSteps { 
 	 
-	@When("Login into DSP Portal$")
 
+	@When("Login into DSP Portal$")
+	
 	public void login()  {
 		try {
-			System.out.println("Passowrd"+EcncryptorDecryptor.decryptor(FileHandling.getProperty("Password")));
-			System.out.println("Passowrd"+FileHandling.getProperty("Password"));
 			TestFunctionsFactory.launchUrl(FileHandling.getProperty("Browser"), FileHandling.getProperty(TestRunner.RUNTIME_ENV));
 			Login obj = PageFactory.initElements(TestFunctionsFactory.driver, Login.class);
 			
@@ -43,11 +45,11 @@ public class CommonSteps {
 
 			if (CustomisedException.getErrorMessage() != null) {
 				TestFunctionsFactory.takeSnapShot( "Login_page");
-				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+				AssertJUnit.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
 				e.printStackTrace();
 				TestFunctionsFactory.takeSnapShot( "Login_page"); 
-				Assert.fail(e.getMessage().toString()); 
+				AssertJUnit.fail(e.getMessage().toString()); 
 			}
 		}
 
@@ -63,7 +65,7 @@ public class CommonSteps {
 
 				TestFunctionsFactory.takeSnapShot( "MenuNavigation");
 		
-			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			AssertJUnit.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
 
 	} 
@@ -120,7 +122,7 @@ public class CommonSteps {
 		} catch (Exception e) {
 			TestFunctionsFactory.takeSnapShot( pageName+"IsPageDisplayed");
 			e.printStackTrace();
-			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			AssertJUnit.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
 
 	}
@@ -137,7 +139,7 @@ public class CommonSteps {
 		menuObj.dealerSearch(dealerCode);}
 		catch (Exception e) {
 			TestFunctionsFactory.takeSnapShot("DelaerCodeChange");
-			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			AssertJUnit.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
 	}
 	@When("^DealerCode should be changed to \"([^\"]*)\"$")
@@ -147,7 +149,7 @@ public class CommonSteps {
 		menuObj.delaerCodeVerification(dealerCode);;}
 		catch (Exception e) {
 			TestFunctionsFactory.takeSnapShot("DelaerCodeChange_Verification");
-			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			AssertJUnit.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
 	}
 }

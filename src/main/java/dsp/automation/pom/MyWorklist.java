@@ -34,7 +34,7 @@ public class MyWorklist {
 		fieldValue = "My Worklist Page";
 		try {
 			TestFunctionsFactory.waitForPageLoaded();
-			TestFunctionsFactory.webWait(60, txtucIdNumber);
+			TestFunctionsFactory.webWait(30, txtucIdNumber);
 
 		} catch (Exception e) {
 			if (!CustomisedException.getFieldValue().equals(null)) {
@@ -53,7 +53,7 @@ public class MyWorklist {
 
 		fieldValue = "My Worklist-Search Asset Details";
 		try {
-			HashMap<String, String> testDataMap = TestFunctionsFactory.getTestData(testData);
+			HashMap<String, String> testDataMap = TestFunctionsFactory.getTestData(testData); 
 			Set<String> testDataKey = testDataMap.keySet();
 			for (String key : testDataKey) {
 				switch (key.toUpperCase().trim().replaceAll(" ", "")) {
@@ -94,17 +94,22 @@ public class MyWorklist {
 
 		fieldValue = "My Worklist Page-Actions";
 		try {
+			
+			
+			
+			
+			
 
 			switch (action.toUpperCase()) {
 			case "SUBMIT":
 				TestFunctionsFactory.webClick(btnSearch);
 				TestFunctionsFactory.waitForPageLoaded();
 				TestFunctionsFactory.webWait(60, lblSearchResults);
-
+				break;
 			default:
 				throw new CustomisedException(fieldValue,
 						"The Given Action is not a valid one for this page, please correct it");
-
+	
 			}
 
 		} catch (Exception e) {
@@ -117,6 +122,7 @@ public class MyWorklist {
 			}
 
 		}
+		return null;
 	}
 
 }

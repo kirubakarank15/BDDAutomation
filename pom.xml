@@ -33,9 +33,10 @@
 						<suiteXmlFile>testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
+				
 			</plugin>	
 			
-	<plugin>
+<!-- 	<plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <descriptorRefs>
@@ -82,7 +83,7 @@
                     </execution>
                 </executions>
             </plugin>			
-	
+	 -->
 			
 		</plugins>
 	</build>
@@ -185,16 +186,15 @@
     <groupId>junit</groupId>
     <artifactId>junit</artifactId>
     <version>4.12</version>
-    <scope>test</scope>
 </dependency>
-
+<!-- 
     <dependency>
       <groupId>junit</groupId> 
       <artifactId>junit</artifactId>
       <version>4.8.2</version>
 
     </dependency>
-
+ -->
 
 <!-- API DEPENDENCIES -->
 <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
@@ -229,7 +229,11 @@
     <artifactId>json</artifactId>
     <version>20170516</version>
 </dependency>
-
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>htmlunit-driver</artifactId>
+    <version>2.27</version>
+</dependency>
 <dependency>
 			<groupId>PwdManager</groupId>
 			<artifactId>PwdManager</artifactId>
