@@ -26,7 +26,7 @@ public class DriverSupplier {
         //options.addArguments("--incognito");
        // options.addArguments("--disable-extensions");
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-		      capabilities.setCapability("chrome.binary", "Resources\\chromedriver.exe");
+		      capabilities.setCapability("chrome.binary", "");
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 		
 		driver = new ChromeDriver(capabilities);
