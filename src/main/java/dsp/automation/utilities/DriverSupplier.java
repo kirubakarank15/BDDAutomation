@@ -22,7 +22,7 @@ public class DriverSupplier {
         options.addArguments("--disable-popup-blocking");
         options.addArguments("disable-infobars"); 
 		
-      options.setBinary("Resources\\chromedriver.exe");
+     // options.setBinary("Resources\\chromedriver.exe");
         //options.addArguments("--incognito");
        // options.addArguments("--disable-extensions");
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
