@@ -40,7 +40,7 @@ public class DriverSupplier {
 		capabilities.setCapability(CapabilityType.BROWSER_NAME, "IE");
 		capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
 		System.setProperty("webdriver.ie.driver",
-				"C:\\Users\\krishk10.AP.000\\Downloads\\Selenium Downloads\\IEDriverServer_x64_3.4.0\\IEDriverServer.exe");
+				"Resources\\IEDriverServer.exe");
 		driver = new InternetExplorerDriver(capabilities);
 		return driver;
 
