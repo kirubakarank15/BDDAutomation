@@ -17,6 +17,7 @@ public class DriverSupplier {
         //String userProfile= "C:\\Users\\krishk10.AP.000\\AppData\\Roaming\\Microsoft\\Internet Explorer\\UserData";
         ChromeOptions options = new ChromeOptions();
         //options.addArguments("user-data-dir="+userProfile);
+		options.addArguments("--headless");
         options.addArguments("--start-maximized"); 
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--disable-popup-blocking");
