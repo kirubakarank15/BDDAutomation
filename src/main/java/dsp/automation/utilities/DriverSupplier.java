@@ -8,8 +8,8 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class DriverSupplier {   
-	public  WebDriver driver;
+public class DriverSupplier {  
+	public  RemoteWebDriver driver;
 
 	public WebDriver driverChrome() {
 
@@ -54,7 +54,7 @@ public class DriverSupplier {
 				"Resources//geckodriver.exe");
 		DesiredCapabilities firefoxCapabilities = DesiredCapabilities.firefox();
 		firefoxCapabilities.setCapability("marionette", true);
-	   driver=new FirefoxDriver(); 
+	   driver=new FirefoxDriver(firefoxCapabilities); 
 	   
 		return driver;
 
@@ -66,6 +66,9 @@ public class DriverSupplier {
 		return driver;
 		
 	}
+
+
+
 
 
 
