@@ -1,4 +1,4 @@
-@CAT
+@API
 Feature: Creating CATLevel Subscription for the OnboardedAsset
   This feature is to Validate creation of CATLevelsubscriptions for the OnboardedAsset
 

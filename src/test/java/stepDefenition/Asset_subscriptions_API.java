@@ -202,7 +202,7 @@ public class Asset_subscriptions_API
 		String SubscritpionTableQuery = properties.getProperty("db.AssetSubscription").replace("DUMMYXYZ", SubAssetID);
 		System.out.println("SubscriptionHistoryTableQuery:" +SubscritpionTableQuery);
 		//DSPSqlconnection dbcheck = new DSPSqlconnection();
-		CommonInstance.getassetDetails(SubscritpionTableQuery);
+	//	CommonInstance.getassetDetails(SubscritpionTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
 
 	}
@@ -216,7 +216,7 @@ public class Asset_subscriptions_API
 		String HistoryTableQuery = properties.getProperty("db.AssetSubscriptionHistory").replace("DUMMYXYZ", SubAssetID);
 		System.out.println("SubscriptionHistoryTableQuery:" +HistoryTableQuery);
 		//DSPSqlconnection dbcheck = new DSPSqlconnection();
-		CommonInstance.getassetDetails(HistoryTableQuery);
+		//CommonInstance.getassetDetails(HistoryTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 	}
 	
@@ -259,7 +259,7 @@ public class Asset_subscriptions_API
 		String SubscritpionTableQuery = properties.getProperty("db.AssetSubscription").replace("DUMMYXYZ", SubAssetID);
 		System.out.println("SubscriptionHistoryTableQuery:" +SubscritpionTableQuery);
 		//DSPSqlconnection dbcheck = new DSPSqlconnection();
-		CommonInstance.getassetDetails(SubscritpionTableQuery);
+		//CommonInstance.getassetDetails(SubscritpionTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
 
 	}
@@ -273,7 +273,7 @@ public class Asset_subscriptions_API
 		String HistoryTableQuery = properties.getProperty("db.AssetSubscriptionHistory").replace("DUMMYXYZ", SubAssetID);
 		System.out.println("SubscriptionHistoryTableQuery:" +HistoryTableQuery);
 		//DSPSqlconnection dbcheck = new DSPSqlconnection();
-		CommonInstance.getassetDetails(HistoryTableQuery);
+		//CommonInstance.getassetDetails(HistoryTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 
 	}
@@ -305,7 +305,7 @@ public class Asset_subscriptions_API
 		String SubscritpionTableQuery = properties.getProperty("db.AssetSubscription").replace("DUMMYXYZ", SubAssetID);
 		System.out.println("SubscriptionHistoryTableQuery:" +SubscritpionTableQuery);
 		//DSPSqlconnection dbcheck = new DSPSqlconnection();
-		CommonInstance.getassetDetails(SubscritpionTableQuery);
+	//	CommonInstance.getassetDetails(SubscritpionTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
 		
 
@@ -322,7 +322,7 @@ public class Asset_subscriptions_API
 		String HistoryTableQuery = properties.getProperty("db.AssetSubscriptionHistory").replace("DUMMYXYZ", SubAssetID);
 		System.out.println("SubscriptionHistoryTableQuery:" +HistoryTableQuery);
 		//DSPSqlconnection dbcheck = new DSPSqlconnection();
-		CommonInstance.getassetDetails(HistoryTableQuery);
+	//	CommonInstance.getassetDetails(HistoryTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 		
 	   
@@ -352,7 +352,7 @@ public class Asset_subscriptions_API
 		String SubscritpionTableQuery = properties.getProperty("db.AssetSubscription").replace("DUMMYXYZ", SubAssetID);
 		System.out.println("SubscriptionHistoryTableQuery:" +SubscritpionTableQuery);
 	//	DSPSqlconnection dbcheck = new DSPSqlconnection();
-		CommonInstance.getassetDetails(SubscritpionTableQuery);
+		//CommonInstance.getassetDetails(SubscritpionTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
 		
 
@@ -368,7 +368,7 @@ public class Asset_subscriptions_API
 		String HistoryTableQuery = properties.getProperty("db.AssetSubscriptionHistory").replace("DUMMYXYZ", SubAssetID);
 		System.out.println("SubscriptionHistoryTableQuery:" +HistoryTableQuery);
 		//DSPSqlconnection dbcheck = new DSPSqlconnection();
-		CommonInstance.getassetDetails(HistoryTableQuery);
+	//	CommonInstance.getassetDetails(HistoryTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 			    
 	}
@@ -390,7 +390,7 @@ public class Asset_subscriptions_API
 		String SubscritpionTableQuery = properties.getProperty("db.AssetSubscription").replace("DUMMYXYZ", SubAssetID);
 		System.out.println("SubscriptionHistoryTableQuery:" +SubscritpionTableQuery);
 		//DSPSqlconnection dbcheck = new DSPSqlconnection();
-		CommonInstance.getassetDetails(SubscritpionTableQuery);
+		//CommonInstance.getassetDetails(SubscritpionTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
 		
 	}
@@ -405,7 +405,7 @@ public class Asset_subscriptions_API
 		String HistoryTableQuery = properties.getProperty("db.AssetSubscriptionHistory").replace("DUMMYXYZ", SubAssetID);
 		System.out.println("SubscriptionHistoryTableQuery:" +HistoryTableQuery);
 	//	DSPSqlconnection dbcheck = new DSPSqlconnection();
-		CommonInstance.getassetDetails(HistoryTableQuery);
+	//	CommonInstance.getassetDetails(HistoryTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 		
 	}
@@ -427,7 +427,7 @@ public class Asset_subscriptions_API
 		String SubscritpionTableQuery = properties.getProperty("db.AssetSubscription").replace("DUMMYXYZ", SubAssetID);
 		System.out.println("SubscriptionHistoryTableQuery:" +SubscritpionTableQuery);
 	//	DSPSqlconnection dbcheck = new DSPSqlconnection();
-		CommonInstance.getassetDetails(SubscritpionTableQuery);
+	// CommonInstance.getassetDetails(SubscritpionTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
 		
 	}
@@ -442,7 +442,7 @@ public class Asset_subscriptions_API
 		String HistoryTableQuery = properties.getProperty("db.AssetSubscriptionHistory").replace("DUMMYXYZ", SubAssetID);
 		System.out.println("SubscriptionHistoryTableQuery:" +HistoryTableQuery);
 		//DSPSqlconnection dbcheck = new DSPSqlconnection();
-		CommonInstance.getassetDetails(HistoryTableQuery);
+	 //	CommonInstance.getassetDetails(HistoryTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 			    
 	}

@@ -193,6 +193,7 @@ public class Common_methods {
 		HttpPost request = new HttpPost(uri);
 		request.addHeader("Authorization", Oauthkey);
 		request.addHeader("Ocp-Apim-Subscription-Key","ec53923cc0e5447bb0110812925f9ce2");
+		request.addHeader("cwsId" , "ramaia1");
 		// String jsonInString = reusemethods.AssetTemplate(commercialType);
 		JsonParser parser = new JsonParser();
 
@@ -233,9 +234,11 @@ public class Common_methods {
 			  properties.load(is);
 			}*/
 		properties.load(new FileInputStream("Resources\\application.properties"));
-		String decrypPwd = properties.getProperty("Password");
-		String ldapUserName = properties.getProperty("UserName");
+		String decrypPwd = properties.getProperty("ClientSecret");
+		String ldapUserName = properties.getProperty("ClientId");
 		String ucidSearchURL = properties.getProperty("SearchURL");
+		String UserName = properties.getProperty("UserName");
+		String Password = properties.getProperty("Password");
 		//System.out.println("ucidurl:" + ucidSearchURL);
 
 		HttpResponse httpResponse = null;
@@ -245,7 +248,7 @@ public class Common_methods {
 		byte[] encodedAuth = org.apache.commons.codec.binary.Base64
 				.encodeBase64((ldapUserName + ":" + decrypPwd).getBytes());
 		String authorization = "Basic " + new String(encodedAuth);
-		//System.out.println("Authorization:" + authorization);
+		System.out.println("Authorization:" + authorization);
 		URIBuilder builder = new URIBuilder();
 		builder = builder.setScheme("https").setHost(ucidSearchURL);
 		//System.out.println("builder:" + builder);
@@ -260,7 +263,8 @@ public class Common_methods {
 		String result = null;
 
 		try {
-			input = new StringEntity("grant_type=client_credentials");
+			input = new StringEntity("grant_type=client_credentials&username="+UserName+"&password="+Password);
+					
 			input.setContentType("application/x-www-form-urlencoded");
 			request.setEntity(input);
 			System.out.println("Request:" + request);

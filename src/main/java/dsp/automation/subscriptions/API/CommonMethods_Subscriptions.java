@@ -35,7 +35,7 @@ public class CommonMethods_Subscriptions
 		public URI buildingurl() throws FileNotFoundException, IOException {
 			Properties properties = new Properties();
 			properties.load(new FileInputStream(
-					"C:\\Users\\ramaia1\\Documents\\DSP-Automation\\Resources\\application.properties"));
+					"Resources\\application.properties"));
 			DefaultHttpClient client = new DefaultHttpClient();
 			String Requesturl = properties.getProperty("dspsubscriptionspost.int");
 			URI uri = null;
@@ -62,14 +62,14 @@ public class CommonMethods_Subscriptions
 			HttpPost request = new HttpPost(uri);
 			request.addHeader("Authorization", Oauthkey);
 			request.addHeader("Ocp-Apim-Subscription-Key", "ec53923cc0e5447bb0110812925f9ce2");
-			// String jsonInString = reusemethods.AssetTemplate(commercialType);
+			request.addHeader("cwsId" , "ramaia1");
+				// String jsonInString = reusemethods.AssetTemplate(commercialType);
 			JsonParser parser = new JsonParser();
 			Object obj = parser.parse(new FileReader(
-					"C:\\Users\\ramaia1\\Desktop\\Anandhi_Desktop\\Automation\\Keplar_Space\\CAT\\Utils\\custlevel.properties"));
+					"Resources\\custlevel.properties"));
 			
 			input = new StringEntity(obj.toString(), "UTF-8");
 			String custlevelsub = obj.toString();
-		
 			input.setContentType("application/subscriptions-v1+json");
 			request.addHeader("accept", "application/subscriptions-v1+json");
 			
@@ -90,11 +90,16 @@ public class CommonMethods_Subscriptions
 
 			Properties properties = new Properties();
 			properties.load(new FileInputStream(
-					"C:\\Users\\ramaia1\\Documents\\DSP-Automation\\Resources\\application.properties"));
-			String decrypPwd = properties.getProperty("Password");
+					"Resources\\application.properties"));
+			/*String decrypPwd = properties.getProperty("Password");
 			String ldapUserName = properties.getProperty("UserName");
+			String ucidSearchURL = properties.getProperty("SearchURL");*/
+			String decrypPwd = properties.getProperty("ClientSecret");
+			String ldapUserName = properties.getProperty("ClientId");
 			String ucidSearchURL = properties.getProperty("SearchURL");
-			System.out.println("ucidurl:" + ucidSearchURL);
+			String UserName = properties.getProperty("UserName");
+			String Password = properties.getProperty("Password");
+			//System.out.println("ucidurl:" + ucidSearchURL);
 
 			HttpResponse httpResponse = null;
 			URI uri = null;
@@ -118,7 +123,7 @@ public class CommonMethods_Subscriptions
 			String result = null;
 
 			try {
-				input = new StringEntity("grant_type=client_credentials");
+				input = new StringEntity("grant_type=client_credentials&username="+UserName+"&password="+Password);
 				input.setContentType("application/x-www-form-urlencoded");
 				request.setEntity(input);
 				System.out.println("Request:" + request);
@@ -147,6 +152,7 @@ public class CommonMethods_Subscriptions
 														// common_methods class
 			URI uri = reusemethods.buildingurl();
 			Oauthkey = "Bearer " + FetchOath;
+			System.out.println("Oauth:" +Oauthkey);
 			
 			HttpUriRequest request =null;
 			
@@ -165,6 +171,7 @@ public class CommonMethods_Subscriptions
 			}
 			request.addHeader("Authorization", Oauthkey);
 			request.addHeader("Ocp-Apim-Subscription-Key", "ec53923cc0e5447bb0110812925f9ce2");
+			request.addHeader("cwsId" , "ramaia1");
 					
 			request.addHeader("accept", acceptType);
 			System.out.println("request body " + input);
