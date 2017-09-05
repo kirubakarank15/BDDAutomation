@@ -9,7 +9,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class DriverSupplier {   
-	public  RemoteWebDriver driver;
+	public  WebDriver driver;
 
 	public WebDriver driverChrome() {
 
