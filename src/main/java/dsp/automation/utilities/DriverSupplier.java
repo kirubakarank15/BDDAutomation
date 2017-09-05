@@ -9,9 +9,9 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class DriverSupplier { 
-	public  RemoteWebDriver driver;
+	public  WebDriver driver;
 
-	public RemoteWebDriver driverChrome() {
+	public WebDriver driverChrome() {
 
 		System.setProperty("webdriver.chrome.driver","Resources\\chromedriver.exe");
         //String userProfile= "C:\\Users\\krishk10.AP.000\\AppData\\Roaming\\Microsoft\\Internet Explorer\\UserData";
