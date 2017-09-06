@@ -15,8 +15,8 @@ public class AdministratorConfiguration {
 
 		fieldValue = "My Worklist Page";
 		try {
-			TestFunctionsFactory.waitForPageLoaded(TestFunctionsFactory.driver);
-			TestFunctionsFactory.webWait(60, lblUserNotiifcation);
+			TestFunctionsFactory.waitForPageLoaded();
+			TestFunctionsFactory.webWait(30, lblUserNotiifcation);
 
 
 		} catch (Exception e) {

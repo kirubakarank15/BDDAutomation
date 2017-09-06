@@ -70,11 +70,11 @@ public class Asset_structure_API {
 	@Then("^Retrieve assetStructureVerbose with SerialNumber for the newly Onboarded Asset$")
 	public void retrieve_assetStructureVerbose_with_SerialNumber_for_the_newly_Onboarded_Asset() throws Throwable {
         
-		properties.load(new FileInputStream("Resources\\application.properties"));
+		properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
 		//AssetSno=reusemethods.SerialNumber;
 		String query = properties.getProperty("db.assetstructuremessage").replace("DUMMYXYZ", AssetSno);
 		System.out.println("AssetStructure query:" +query);
-		Thread.sleep(90000);
+		Thread.sleep(60000);
 		
 		//reusemethods.getassetDetails(query);
        //assertEquals(reusemethods.dbValue("STATUS", query).toUpperCase(), "SKIPPED");
@@ -93,8 +93,8 @@ public class Asset_structure_API {
 	@Then("^Retrieve the values of EngineSerialNumber ,Device_Type,IS_Telematic_Registered,Serial_Number, device_Id, Asset_ID in Asset Table for the newly Onboarded Asset$")
 	public void retrieve_the_values_of_EngineSerialNumber_Device_Type_IS_Telematic_Registered_Serial_Number_device_Id_Asset_ID_in_Asset_Table_for_the_newly_Onboarded_Asset() throws Throwable {
 		
+		properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
 		
-		properties.load(new FileInputStream("Resources\\application.properties"));
 		String query = properties.getProperty("db.AssetTable").replace("DUMMYXYZ", AssetSno);
 		System.out.println("Asset Table Query:" +query);
 		Asset_id = reusemethods.dbValue("ASSET_ID", query);
@@ -111,8 +111,7 @@ public class Asset_structure_API {
 	@Then("^Retrieve the values of Radio details in Radio Table for onboarded asset$")
 	public void retrieve_the_values_of_Radio_details_in_Radio_Table_for_onboarded_asset() throws Throwable {
 		
-		
-		properties.load(new FileInputStream("Resources\\application.properties"));
+		properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
 		String query = properties.getProperty("db.Radio").replace("DUMMYXYZ", Asset_id);
 		System.out.println("Asset Table Query:" +query);
 		
@@ -121,8 +120,7 @@ public class Asset_structure_API {
 
 	@Then("^Retrieve the values of Device_Id ,Commercial_type in Device Table for onboarded asset$")
 	public void retrieve_the_values_of_Device_Id_Commercial_type_in_Device_Table_for_onboarded_asset() throws Throwable {
-		
-		properties.load(new FileInputStream("Resources\\application.properties"));
+		properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
 	   String query = properties.getProperty("db.Device").replace("DUMMYXYZ", Asset_id);
 	   System.out.println("Device Table Query:" +query);
 	   reusemethods.getassetDetails(query);
@@ -130,8 +128,7 @@ public class Asset_structure_API {
 
 	@Then("^Retrieve the values of Subscription_id in AssetSubscriptionHistory Table for onboarded asset$")
 	public void retrieve_the_values_of_Subscription_id_in_AssetSubscriptionHistory_Table_for_onboarded_asset() throws Throwable {
-		
-		properties.load(new FileInputStream("Resources\\application.properties"));
+		properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
 		String query = properties.getProperty("db.AssetSubscriptionHistory").replace("DUMMYXYZ", Asset_id);
 	    System.out.println("AssetSubscriptionHistory Query:" +query);
 	    reusemethods.getassetDetails(query);
@@ -139,8 +136,7 @@ public class Asset_structure_API {
 
 	@Then("^Retrieve the values of Subscription_id in AssetSubscription Table for onboarded asset$")
 	public void retrieve_the_values_of_Subscription_id_in_AssetSubscription_Table_for_onboarded_asset() throws Throwable {
-	
-		properties.load(new FileInputStream("Resources\\application.properties"));
+		properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
 		String query = properties.getProperty("db.AssetSubscription").replace("DUMMYXYZ", Asset_id);
 	    System.out.println("AssetSubscription Query:" +query);
 	    //reusemethods.getassetDetails(query);

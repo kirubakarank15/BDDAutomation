@@ -7,15 +7,15 @@ import dsp.automation.utilities.CustomisedException;
 import dsp.automation.utilities.TestFunctionsFactory;
 
 public class TroubleShootLog {
-	@FindBy(xpath="//div//span[text()='Time Remaining ']")
-	private WebElement lblTimeRemaining; 
+	@FindBy(xpath = "//div[contains(text(),'S/N (Minimum three')]//following-sibling::input")
+	private WebElement txtSerialNumber;
 	String fieldValue;
 	public Login isPageDisplayed() throws CustomisedException {
 		
 		fieldValue = "Trouble ShootPage";
 		try {
-			TestFunctionsFactory.waitForPageLoaded(TestFunctionsFactory.driver);
-			TestFunctionsFactory.webWait(60, lblTimeRemaining);
+			TestFunctionsFactory.waitForPageLoaded();
+			TestFunctionsFactory.webWait(30, txtSerialNumber);
 
 		} catch (Exception e) {
 			if (!CustomisedException.getFieldValue().equals(null)) {

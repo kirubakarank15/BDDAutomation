@@ -14,8 +14,8 @@ public class SoftwareUpdateLog {
 		
 		fieldValue = "Software Update Page";
 		try {
-			TestFunctionsFactory.waitForPageLoaded(TestFunctionsFactory.driver);
-			TestFunctionsFactory.webWait(60, lblExport);
+			TestFunctionsFactory.waitForPageLoaded();
+			TestFunctionsFactory.webWait(30, lblExport);
 
 		} catch (Exception e) {
 			if (!CustomisedException.getFieldValue().equals(null)) {

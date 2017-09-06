@@ -48,6 +48,7 @@ public class Common_methods {
 	// We are creating List for the instances
 	public static String SerialNumber = null;
 	public static String value = null;
+
 	
 
 	public void AssetTemplate(String commercialType) throws Exception {
@@ -89,9 +90,9 @@ public class Common_methods {
 				if (attributes.get("RadioNumber").contains(",")) {
 					String[] radioNumbers = attributes.get("RadioNumber").split(",");
 					
-					for(int g=0;g<radioNumbers.length;g++){
+					for(int k=1;k<radioNumbers.length;k++){
 						
-						String eachSerialNumber=radioNumbers[g];
+						String eachSerialNumber=radioNumbers[k];
 						AttachedRadios attachedRadios = new AttachedRadios();
 						attachedRadios.setSerialNumber(eachSerialNumber);
 						attachedRadioslst.add(attachedRadios);
@@ -162,6 +163,7 @@ public class Common_methods {
 	// Following function will build a URL
 	public URI buildingurl() throws FileNotFoundException, IOException {
 		Properties properties = new Properties();
+		properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
 		/*try (InputStream is = getClass().getResourceAsStream("application.properties")) {
 			  properties.load(is);
 			}*/
@@ -230,6 +232,7 @@ public class Common_methods {
 		DefaultHttpClient client = new DefaultHttpClient();
 
 		Properties properties = new Properties();
+		properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
 		/*try (InputStream is = getClass().getResourceAsStream("application.properties")) {
 			  properties.load(is);
 			}*/

@@ -12,7 +12,7 @@ public class ExcelReadWrite_API {
 	public HashMap<String, String> excelReadWrite() throws Exception {
 		HashMap<String, String> requestMap = new HashMap<>();
 		try {
-			File fileObj = new File("C:\\Users\\ramaia1\\Documents\\DSP-Automation\\KeyAsset.xls");
+			File fileObj = new File("C:\\Users\\dariss\\Documents\\Book1.xls");
 			FileInputStream fsIP = new FileInputStream(fileObj);
 			HSSFWorkbook wb = new HSSFWorkbook(fsIP);
 			Sheet s = wb.getSheet("Sheet1");

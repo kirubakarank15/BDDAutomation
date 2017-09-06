@@ -39,9 +39,9 @@ public class CommonMethods_DeleteSubscriptions
 		public URI buildingurl(String id) throws FileNotFoundException, IOException {
 			Properties properties = new Properties();
 			properties.load(new FileInputStream(
-					"Resources\\application.properties"));
+					"C:\\Users\\ramaia1\\Desktop\\Anandhi_Desktop\\Automation\\Keplar_Space\\CAT\\Utils\\application.properties"));
 			DefaultHttpClient client = new DefaultHttpClient();
-			String Requesturl = properties.getProperty("dspsubscriptionspost.int");
+			String Requesturl = properties.getProperty("dspsubscriptionsdelete.int");
 			Requesturl =Requesturl+id;
 			URI uri = null;
 			URIBuilder builder = new URIBuilder();
@@ -64,15 +64,10 @@ public class CommonMethods_DeleteSubscriptions
 
 			Properties properties = new Properties();
 			properties.load(new FileInputStream(
-					"Resources\\application.properties"));
-			/*String decrypPwd = properties.getProperty("Password");
+					"C:\\Users\\ramaia1\\Desktop\\Anandhi_Desktop\\Automation\\Keplar_Space\\CAT\\Utils\\application.properties"));
+			String decrypPwd = properties.getProperty("Password");
 			String ldapUserName = properties.getProperty("UserName");
-			String ucidSearchURL = properties.getProperty("SearchURL");*/
-			String decrypPwd = properties.getProperty("ClientSecret");
-			String ldapUserName = properties.getProperty("ClientId");
 			String ucidSearchURL = properties.getProperty("SearchURL");
-			String UserName = properties.getProperty("UserName");
-			String Password = properties.getProperty("Password");
 			System.out.println("ucidurl:" + ucidSearchURL);
 
 			HttpResponse httpResponse = null;
@@ -97,7 +92,7 @@ public class CommonMethods_DeleteSubscriptions
 			String result = null;
 
 			try {
-				input = new StringEntity("grant_type=client_credentials&username="+UserName+"&password="+Password);
+				input = new StringEntity("grant_type=client_credentials");
 				input.setContentType("application/x-www-form-urlencoded");
 				request.setEntity(input);
 				System.out.println("Request:" + request);
@@ -145,7 +140,6 @@ public class CommonMethods_DeleteSubscriptions
 			}
 			request.addHeader("Authorization", Oauthkey);
 			request.addHeader("Ocp-Apim-Subscription-Key", "ec53923cc0e5447bb0110812925f9ce2");
-			request.addHeader("cwsId" , "ramaia1");
 					
 			request.addHeader("accept", acceptType);
 			System.out.println("request body " + input);

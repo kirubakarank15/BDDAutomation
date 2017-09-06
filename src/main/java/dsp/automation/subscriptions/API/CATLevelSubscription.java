@@ -38,8 +38,7 @@ public class CATLevelSubscription
 		createcatSub.setDcn(dcn);
 		createcatSub.setEndTime(CommonMethods.getCurrenttime());
 		createcatSub.setStartTime(CommonMethods.getCurrenttime());
-		//createcatSub.setSerialNumber(CommonMethods.AssetSno);
-		createcatSub.setSerialNumber(Common_methods.SerialNumber);
+		createcatSub.setSerialNumber(CommonMethods.AssetSno);
 		createcatSub.setParentId(parentId);
 		
 		Gson gson = new Gson();

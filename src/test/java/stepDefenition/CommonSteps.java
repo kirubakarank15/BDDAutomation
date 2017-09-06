@@ -1,9 +1,13 @@
 package stepDefenition;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.AssertJUnit;
 import java.util.Properties;
 
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Parameters;
 
 import cucumber.api.java.Before;
 import cucumber.api.java.en.When;
@@ -18,30 +22,34 @@ import dsp.automation.pom.TroubleShootLog;
 import dsp.automation.pom.UserAdministration;
 import dsp.automation.runners.TestRunner;
 import dsp.automation.utilities.CustomisedException;
+import dsp.automation.utilities.EcncryptorDecryptor;
 import dsp.automation.utilities.FileHandling;
 import dsp.automation.utilities.MenuBarNaviagtions;
 import dsp.automation.utilities.TestFunctionsFactory;
 
-public class CommonSteps {
+public class CommonSteps { 
+	 
 
-	@When("Login as \"([^\"]*)\" and \"([^\"]*)\" in \"([^\"]*)\"$")
-	public void login(String userName, String pswd, String environment) {
+	@When("Login into DSP Portal$")
+	
+	public void login()  {
 		try {
-
-			TestFunctionsFactory.launchUrl(FileHandling.getProperty("Browser"), FileHandling.getProperty(environment));
+			TestFunctionsFactory.launchUrl(FileHandling.getProperty("Browser"), FileHandling.getProperty(TestRunner.RUNTIME_ENV));
 			Login obj = PageFactory.initElements(TestFunctionsFactory.driver, Login.class);
+			
 			obj.isPageDisplayed();
 
-			obj.enterDetails(FileHandling.getProperty(userName), FileHandling.getProperty(pswd));
+			obj.enterDetails(FileHandling.getProperty("User_Name"),EcncryptorDecryptor.decryptor(FileHandling.getProperty("Password")) ); 
 
 		} catch (Exception e) {
 
 			if (CustomisedException.getErrorMessage() != null) {
-
-				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+				TestFunctionsFactory.takeSnapShot( "Login_page");
+				AssertJUnit.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
 				e.printStackTrace();
-				Assert.fail(e.getMessage().toString());
+				TestFunctionsFactory.takeSnapShot( "Login_page"); 
+				AssertJUnit.fail(e.getMessage().toString()); 
 			}
 		}
 
@@ -52,9 +60,12 @@ public class CommonSteps {
 		try {
 			MenuBarNaviagtions obj1 = PageFactory.initElements(TestFunctionsFactory.driver, MenuBarNaviagtions.class);
 			obj1.menuNavigation(menu);
+	
 		} catch (Exception e) {
 
-			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+				TestFunctionsFactory.takeSnapShot( "MenuNavigation");
+		
+			AssertJUnit.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
 
 	} 
@@ -109,8 +120,9 @@ public class CommonSteps {
 			}
 
 		} catch (Exception e) {
+			TestFunctionsFactory.takeSnapShot( pageName+"IsPageDisplayed");
 			e.printStackTrace();
-			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			AssertJUnit.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
 
 	}
@@ -126,8 +138,8 @@ public class CommonSteps {
 		MenuBarNaviagtions menuObj=PageFactory.initElements(TestFunctionsFactory.driver, MenuBarNaviagtions.class);
 		menuObj.dealerSearch(dealerCode);}
 		catch (Exception e) {
-
-			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			TestFunctionsFactory.takeSnapShot("DelaerCodeChange");
+			AssertJUnit.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
 	}
 	@When("^DealerCode should be changed to \"([^\"]*)\"$")
@@ -136,8 +148,8 @@ public class CommonSteps {
 		MenuBarNaviagtions menuObj=PageFactory.initElements(TestFunctionsFactory.driver, MenuBarNaviagtions.class);
 		menuObj.delaerCodeVerification(dealerCode);;}
 		catch (Exception e) {
-
-			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			TestFunctionsFactory.takeSnapShot("DelaerCodeChange_Verification");
+			AssertJUnit.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
 	}
 }

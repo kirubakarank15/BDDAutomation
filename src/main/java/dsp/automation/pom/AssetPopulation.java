@@ -14,8 +14,8 @@ public class AssetPopulation {
 		
 		fieldValue = "Asset Population Page";
 		try {
-			TestFunctionsFactory.waitForPageLoaded(TestFunctionsFactory.driver);
-			TestFunctionsFactory.webWait(60, txtSrchInput);
+			TestFunctionsFactory.waitForPageLoaded();
+			TestFunctionsFactory.webWait(30, txtSrchInput);
 		
 
 		} catch (Exception e) { 
