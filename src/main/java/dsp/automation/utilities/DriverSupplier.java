@@ -54,9 +54,9 @@ public class DriverSupplier {
 				"Resources//geckodriver.exe");
 		DesiredCapabilities firefoxCapabilities = DesiredCapabilities.firefox();
 		//firefoxCapabilities.setCapability("marionette", true);
-	   driver=new FirefoxDriver(firefoxCapabilities); 
+	  // driver=new FirefoxDriver(firefoxCapabilities); 
 	   
-		return driver;
+		//return driver;
 
 	} 
 	public WebDriver htmlUnit(){
