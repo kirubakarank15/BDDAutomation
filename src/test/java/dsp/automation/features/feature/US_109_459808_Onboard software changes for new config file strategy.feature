@@ -1,8 +1,9 @@
 @US_54_459808 @UIAutomation
 Feature: Verify Device Info Popup in DSP for software changes of new config file
+  
 
   @Positive1
-  Scenario Outline: Validate the Base Config and Base Config Date Field  in Device Info Popup for various DeviceTypes
+  Scenario Outline: Verify the Base Config and Base Config Date Field  in Device Info Popup for various DeviceTypes
     Given Asset Onboarded Successfully and "<ConfigFile>" Stubbed thru CCDS
     And I login as "<Username>" and "<Password>" in "<Browser>"
     When I click Device Info Popup with "<CommercialType>"
@@ -22,7 +23,7 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
       | DealerLoginUserName | DealerLoginPassword | Engineeering | Chrome  | PLE742         |
 
   @Positive2
-  Scenario Outline: Validate the Base Config and Base Config Date Field in Device Info Popup for New Single Config
+  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Single Config
     Given Asset Onboarded Successfully and  "<ConfigFile>"  Stubbed thru CCDS for New Single Config
     And I login as  "<Username>" and "<Password>" in "<Browser>" for New Single Config
     When I click Device Info Popup for New Single Config file with "<CommercialType>"
@@ -39,7 +40,7 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
       | DealerLoginUserName | DealerLoginPassword | Single     | IE      | PL241          |
 
   @Positive3
-  Scenario Outline: Validate the Base Config and Base Config Date Field in Device Info Popup for New Customer Config
+  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Customer Config
     Given Asset Onboarded Successfully and  "<ConfigFile>" Stubbed thru CCDS for New Customer Config
     And I login as "<Username>" and "<Password>" in "<Browser>"  for New Customer Config
     When I click Device Info Popup for New Customer Config file with "<CommercialType>"
@@ -56,7 +57,7 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
       | DealerLoginUserName | DealerLoginPassword | Customer   | IE      | PLE742         |
 
   @Positive4
-  Scenario Outline: Validate the Base Config and Base Config Date Field in Device Info Popup for New Engineering Config
+  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Engineering Config
     Given Asset Onboarded Successfully and  "<ConfigFile>"  Stubbed thru CCDS for New Engineering Config
     And I login as "<Username>" and "<Password>" in "<Browser>" for New Engineering Config
     When I click Device Info Popup for New Engineering Config file with "<CommercialType>"
@@ -73,7 +74,7 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
       | DealerLoginUserName | DealerLoginPassword | Engineering | IE      | PL161          |
 
   @Positive5
-  Scenario Outline: Validate the Base Config and Base Config Date Field in Device Info Popup for Mulitple other Config Dataset
+  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for Mulitple other Config Dataset
     Given Asset Onboarded Successfully and "<ConfigFile>" Stubbed thru CCDS for Multiple Config data set
     And I login as "<Username>" and "<Password>" in "<Browser>" for Multiple Config Data set
     When I click Device Info Popup for Mulitple Config Dataset with "<CommercialType>"
@@ -82,7 +83,6 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
     And Customer config Date and Customer Config Desc field in DSP should be displayed/binded with the Customer data as in CCDS API Response
     And Engineering config Date and Engineering Config Desc in DSP field should be displayed/binded with the Customer data as in CCDS API Response
     But Partnumber of Customer or Engineering config file should not be displayed in DSP
-   
 
     Examples: 
       | Username            | Password            | ConfigFile                                 | Browser | CommercialType |
@@ -92,7 +92,7 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
       | DealerLoginUserName | DealerLoginPassword | Single & Standard & Customer & Engineering | IE      | PL641          |
 
   @Positive6
-  Scenario Outline: Validate the Base Config and Base Config Date Field in Device Info Popup with Single and Standard config data
+  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup with Single and Standard config data
     Given Asset Onboarded Successfully and "<ConfigFile>" Stubbed thru CCDS with Single and Standard config data
     And I login as  "<Username>" and "<Password>" in "<Browser>" with Single and Standard config data
     When I click Device Info Popup with Single and Standard config data with "<CommercialType>"
@@ -106,6 +106,16 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
       | CATLoginUserName    | CATLoginPassword    | Single & Standard | IE      | PLE641+PL631   |
       | DealerLoginUserName | DealerLoginPassword | Single & Standard | Chrome  | PL241          |
       | DealerLoginUserName | DealerLoginPassword | Single & Standard | IE      | PLE742         |
-      
- @Negative1
- Scenario Outline: Validate the Base Config and Base Config Date Field in Device Info Popup no Single and Standard config data     
+
+  @Negative1
+  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup with no Single and Standard config data
+    Given I login as  "<Username>" and "<Password>" in "<Browser>" in DSP
+    When I click Device Info Popup with "<CommercialType>"
+    Then Base Config and Base Config Date field should be blank
+
+    Examples: 
+      | Username            | Password            | Browser | CommercialType |
+      | CATLoginUserName    | CATLoginPassword    | Chrome  | PLE631         |
+      | CATLoginUserName    | CATLoginPassword    | IE      | PLE641+PL631   |
+      | DealerLoginUserName | DealerLoginPassword | Chrome  | PL241          |
+      | DealerLoginUserName | DealerLoginPassword | IE      | PLE742         |
