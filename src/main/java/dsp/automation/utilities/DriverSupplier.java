@@ -53,7 +53,7 @@ public class DriverSupplier {
 		System.setProperty("webdriver.gecko.driver",
 				"Resources//geckodriver.exe");
 		DesiredCapabilities firefoxCapabilities = DesiredCapabilities.firefox();
-		firefoxCapabilities.setCapability("marionette", true);
+		//firefoxCapabilities.setCapability("marionette", true);
 	   driver=new FirefoxDriver(firefoxCapabilities); 
 	   
 		return driver;
