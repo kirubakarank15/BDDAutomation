@@ -3,13 +3,15 @@ package dsp.automation.utilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class DriverSupplier {  
-	public  WebDriver driver;
+	public  RemoteWebDriver driver;
 
 	public WebDriver driverChrome() {
 
@@ -22,7 +24,7 @@ public class DriverSupplier {
         options.addArguments("--start-maximized"); 
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--disable-popup-blocking");
-        options.addArguments("--headless");
+       // options.addArguments("--headless");
         options.addArguments("disable-infobars"); 
         //options.setBinary("Resources\\Drivers\\chromedriver.exe");
         //options.addArguments("--incognito");
@@ -37,7 +39,7 @@ public class DriverSupplier {
 
 
 	public WebDriver driverIE() { 
-	      String userProfile= "	C:\\Users\\krishk10.AP.000\\AppData\\Roaming\\Microsoft\\Internet Explorer\\UserData";
+	    String userProfile= "	C:\\Users\\krishk10.AP.000\\AppData\\Roaming\\Microsoft\\Internet Explorer\\UserData";
 	
 		DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
 
@@ -53,10 +55,10 @@ public class DriverSupplier {
 		System.setProperty("webdriver.gecko.driver",
 				"Resources//geckodriver.exe");
 		DesiredCapabilities firefoxCapabilities = DesiredCapabilities.firefox();
-		//firefoxCapabilities.setCapability("marionette", true);
-	  // driver=new FirefoxDriver(firefoxCapabilities); 
+		firefoxCapabilities.setCapability("marionette", true);
+	   driver=new FirefoxDriver(); 
 	   
-		//return driver;
+		return driver;
 
 	} 
 	public WebDriver htmlUnit(){
@@ -66,11 +68,6 @@ public class DriverSupplier {
 		return driver;
 		
 	}
-
-
-
-
-
 
 
 
