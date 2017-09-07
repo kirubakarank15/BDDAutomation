@@ -16,7 +16,7 @@ public class DriverSupplier {
 	public WebDriver driverChrome() {
 
 		System.setProperty("webdriver.chrome.driver",
-				"Resources\\Drivers\\chromedriver.exe");
+				"Resources\\chromedriver.exe");
         //String userProfile= "C:\\Users\\krishk10.AP.000\\AppData\\Roaming\\Microsoft\\Internet Explorer\\UserData";
         ChromeOptions options = new ChromeOptions();
     
