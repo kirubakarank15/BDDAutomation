@@ -24,6 +24,9 @@ public class DriverSupplier {
         options.addArguments("--start-maximized"); 
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--disable-popup-blocking");
+		options.addArguments("test-type");
+options.addArguments("--disable-extensions");
+options.addArguments("no-sandbox");
        // options.addArguments("--headless");
         options.addArguments("disable-infobars"); 
         //options.setBinary("Resources\\Drivers\\chromedriver.exe");
