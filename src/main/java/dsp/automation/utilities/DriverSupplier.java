@@ -29,7 +29,7 @@ options.addArguments("--disable-extensions");
 options.addArguments("no-sandbox");
        // options.addArguments("--headless");
         options.addArguments("disable-infobars"); 
-        //options.setBinary("Resources\\Drivers\\chromedriver.exe");
+        //options.setBinary("Resources\\chromedriver.exe");
         //options.addArguments("--incognito");
        // options.addArguments("--disable-extensions");
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
