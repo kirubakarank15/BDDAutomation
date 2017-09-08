@@ -8,15 +8,14 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class DriverSupplier {  
-	public  RemoteWebDriver driver;
+	public  WebDriver driver;
 
 	public WebDriver driverChrome() {
 
 		System.setProperty("webdriver.chrome.driver",
-				"Resources\\chromedriver.exe");
+				"Resources\\Drivers\\chromedriver.exe");
         //String userProfile= "C:\\Users\\krishk10.AP.000\\AppData\\Roaming\\Microsoft\\Internet Explorer\\UserData";
         ChromeOptions options = new ChromeOptions();
     
@@ -24,12 +23,9 @@ public class DriverSupplier {
         options.addArguments("--start-maximized"); 
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--disable-popup-blocking");
-		options.addArguments("test-type");
-options.addArguments("--disable-extensions");
-options.addArguments("no-sandbox");
-       // options.addArguments("--headless");
+        options.addArguments("--headless");
         options.addArguments("disable-infobars"); 
-        //options.setBinary("Resources\\chromedriver.exe");
+        //options.setBinary("Resources\\Drivers\\chromedriver.exe");
         //options.addArguments("--incognito");
        // options.addArguments("--disable-extensions");
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
@@ -49,7 +45,7 @@ options.addArguments("no-sandbox");
 		capabilities.setCapability(CapabilityType.BROWSER_NAME, "IE");
 		capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
 		System.setProperty("webdriver.ie.driver",
-				"Resources//IEDriverServer.exe");
+				"C:\\Users\\krishk10.AP.000\\Downloads\\Selenium Downloads\\IEDriverServer_x64_3.4.0\\IEDriverServer.exe");
 		driver = new InternetExplorerDriver(capabilities);
 		return driver;
 
@@ -59,7 +55,7 @@ options.addArguments("no-sandbox");
 				"Resources//geckodriver.exe");
 		DesiredCapabilities firefoxCapabilities = DesiredCapabilities.firefox();
 		firefoxCapabilities.setCapability("marionette", true);
-	   driver=new FirefoxDriver(); 
+	   driver=new FirefoxDriver(firefoxCapabilities); 
 	   
 		return driver;
 
@@ -71,6 +67,11 @@ options.addArguments("no-sandbox");
 		return driver;
 		
 	}
+
+
+
+
+
 
 
 

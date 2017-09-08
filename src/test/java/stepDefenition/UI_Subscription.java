@@ -70,7 +70,7 @@ public class UI_Subscription {
 
 	@When("^enter or modify Subscription details as \"([^\"]*)\"$")
 	public void enter_Subscription_details_as(String data) throws Throwable {
-
+	
 		try {
 
 			Subscriptions obj = PageFactory.initElements(TestFunctionsFactory.driver, Subscriptions.class);

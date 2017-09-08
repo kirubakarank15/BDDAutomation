@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 import org.testng.annotations.Parameters;
 
+import dsp.automation.AssetStructures.API.Common_methods;
 import dsp.automation.utilities.EcncryptorDecryptor;
 import dsp.automation.utilities.FileHandling;
 import dsp.automation.utilities.TestFunctionsFactory;
@@ -27,7 +28,7 @@ public class App
 			return null;
 			
 		}
-    public static void main( String[] args ) throws IOException
+    public static void main( String[] args ) throws Exception
     
     
     {   	/*	Date dNow = new Date();
@@ -57,9 +58,10 @@ objProperty.load(inputStream);
 System.out.println(objProperty.keySet().toString());
 
 */
-    System.out.println(EcncryptorDecryptor.encryptor("Myvision@18"));
-    System.out.println(EcncryptorDecryptor.decryptor("!:_/=/(^9ry"));
-    
+  /*  System.out.println(EcncryptorDecryptor.encryptor("Myvision@18"));
+    System.out.println(EcncryptorDecryptor.decryptor("!:_/=/(^9ry"));*/
+    Common_methods comm = new Common_methods();
+    comm.AssetTemplate("PLE641+PL631");
     }
     
 }

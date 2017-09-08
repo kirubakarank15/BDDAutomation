@@ -117,8 +117,9 @@ public class TestFunctionsFactory {
 		/*	((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+element.getLocation().x+")");
 			
 			webClick(element);*/
+			Thread.sleep(36000);
 			mouseHover(element);
-			javaScriptClick(element);
+			webClick(element);
 			Select selectObj = new Select(element);
 		
 			 	

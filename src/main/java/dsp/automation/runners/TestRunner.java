@@ -1,7 +1,5 @@
 package dsp.automation.runners;
 
-import java.util.Properties;
-
 import org.junit.runner.RunWith;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -16,7 +14,7 @@ import dsp.automation.utilities.TestFunctionsFactory;
 @RunWith(Cucumber.class)
 
 @CucumberOptions( strict = false,format = { "pretty",
-"json:target/cucumber.json" ,"html:target/site/cucumber-pretty"},features = "src\\test\\java\\dsp\\automation\\features",glue = "stepDefenition",tags ={"@Navigation_Login"} ) 
+"json:target/cucumber.json" ,"html:target/site/cucumber-pretty"},features = "src\\test\\java\\dsp\\automation\\features",glue = "stepDefenition",tags ={"@API1"} ) 
 
 
 public class TestRunner extends AbstractTestNGCucumberTests {
