@@ -1,4 +1,4 @@
-@API
+@API1
 Feature: Asset Onboarding through CCDS
   This feature is to Validate Assetstructure API response and Verify Onboarded asset values in DB
 
