@@ -474,9 +474,6 @@ public class Common_methods {
 	public String getSerialNumber() throws FileNotFoundException, IOException,
 			ParseException {
 		String Serialnumber = null;
-		// Properties properties = new Properties();
-		// properties.load(new
-		// FileInputStream("C:\\Users\\dariss\\workspace1\\apitest_cucumber\\application.properties"));
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(new FileReader("AssetStructurejson.txt"));
 		JSONObject json_obj = (JSONObject) obj;
