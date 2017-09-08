@@ -61,7 +61,7 @@ public String AssetTemplate(String manufacturerCode, String productWorkCode, Str
 	}
 public URI buildingurl() throws FileNotFoundException, IOException {
 	Properties properties = new Properties();
-	properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
+	properties.load(new FileInputStream("Resources\\application.properties"));
 	DefaultHttpClient client = new DefaultHttpClient();
 	String Requesturl = properties.getProperty("edUpdateEquipment");
 	URI uri = null;
@@ -109,7 +109,7 @@ public String getAuthorizationToken() throws Exception
 {
 	String eddecrypPwd=null;
 	Properties properties = new Properties();
-	properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
+	properties.load(new FileInputStream("Resources\\application.properties"));
 	String encrypPwd = properties.getProperty("ed.Password");
 	eddecrypPwd=DecryptPropertiesParameters.decryptProperties(encrypPwd);
     String edUsername = properties.getProperty("ed.UserName");

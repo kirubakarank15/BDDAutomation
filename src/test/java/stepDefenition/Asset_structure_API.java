@@ -70,7 +70,7 @@ public class Asset_structure_API {
 	@Then("^Retrieve assetStructureVerbose with SerialNumber for the newly Onboarded Asset$")
 	public void retrieve_assetStructureVerbose_with_SerialNumber_for_the_newly_Onboarded_Asset() throws Throwable {
         
-		properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
+		properties.load(new FileInputStream("Resources\\application.properties"));
 		//AssetSno=reusemethods.SerialNumber;
 		String query = properties.getProperty("db.assetstructuremessage").replace("DUMMYXYZ", AssetSno);
 		System.out.println("AssetStructure query:" +query);
@@ -93,7 +93,7 @@ public class Asset_structure_API {
 	@Then("^Retrieve the values of EngineSerialNumber ,Device_Type,IS_Telematic_Registered,Serial_Number, device_Id, Asset_ID in Asset Table for the newly Onboarded Asset$")
 	public void retrieve_the_values_of_EngineSerialNumber_Device_Type_IS_Telematic_Registered_Serial_Number_device_Id_Asset_ID_in_Asset_Table_for_the_newly_Onboarded_Asset() throws Throwable {
 		
-		properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
+		properties.load(new FileInputStream("Resources\\application.properties"));
 		
 		String query = properties.getProperty("db.AssetTable").replace("DUMMYXYZ", AssetSno);
 		System.out.println("Asset Table Query:" +query);
@@ -111,7 +111,7 @@ public class Asset_structure_API {
 	@Then("^Retrieve the values of Radio details in Radio Table for onboarded asset$")
 	public void retrieve_the_values_of_Radio_details_in_Radio_Table_for_onboarded_asset() throws Throwable {
 		
-		properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
+		properties.load(new FileInputStream("Resources\\application.properties"));
 		String query = properties.getProperty("db.Radio").replace("DUMMYXYZ", Asset_id);
 		System.out.println("Asset Table Query:" +query);
 		
@@ -120,7 +120,7 @@ public class Asset_structure_API {
 
 	@Then("^Retrieve the values of Device_Id ,Commercial_type in Device Table for onboarded asset$")
 	public void retrieve_the_values_of_Device_Id_Commercial_type_in_Device_Table_for_onboarded_asset() throws Throwable {
-		properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
+		properties.load(new FileInputStream("application.properties"));
 	   String query = properties.getProperty("db.Device").replace("DUMMYXYZ", Asset_id);
 	   System.out.println("Device Table Query:" +query);
 	   reusemethods.getassetDetails(query);
