@@ -1,1 +1,1 @@
-{"serialNumber":"DSM10188","manufacturerCode":"CAT","prodWorkCode":"","model":"2016A","manufacturingYear":"2017","ownerType":"O","dealerCustomerNumber":"059956","equipmentId":"Testequip","vin":"12345","dealerCode":"TD00"}
+{"serialNumber":"MMM00033","manufacturerCode":"CAT","prodWorkCode":"","model":"2016A","manufacturingYear":"2015","ownerType":"O","dealerCustomerNumber":"000114","equipmentId":"Testasset","vin":"","dealerCode":"TD00"}

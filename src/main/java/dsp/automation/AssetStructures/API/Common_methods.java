@@ -1,17 +1,12 @@
 package dsp.automation.AssetStructures.API;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -30,24 +25,24 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Sheet;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonParser;
-import dsp.automation.utilities.ExcelReadWrite_API;
 
 import dsp.automation.utilities.DBconnection_API;
+import dsp.automation.utilities.ExcelReadWrite_API;
+
+
 public class Common_methods {
 	// Following function will create instance all the dependent classes.
 	// We are creating List for the instances
 	public static String SerialNumber = null;
 	public static String value = null;
-
-	
+	public static List<String> SerialNumbers = new ArrayList<String>();
 
 	public void AssetTemplate(String commercialType) throws Exception {
 	
@@ -57,22 +52,17 @@ public class Common_methods {
 		//HashMap<String, String> attributes = reusemethods.excelReadWrite();
 		ExcelReadWrite_API ExcelReadWrite = new ExcelReadWrite_API();
 		HashMap<String, String> attributes = ExcelReadWrite.excelReadWrite();
-		
-	    /*String propFileName = "application.properties";
-	  InputStream inputStream = getClass().getClassLoader().getResourceAsStream("./src/main/java/application.properties");
-	    properties.load(inputStream);*/
-	    /*String filePath = new File("application.properties").getAbsolutePath();
-		System.out.println("filename:" +filePath);
-        */		
-	    SampleModel samp = new SampleModel();
-	    //properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
+
+		SampleModel samp = new SampleModel();
 		properties.load(new FileInputStream("Resources\\application.properties"));
-				
 		String make = properties.getProperty("Asset.make");
-		
 		samp.setMake(make);
-		
 		SerialNumber = attributes.get("SerialNumber");
+		SerialNumbers.add(SerialNumber);
+		System.out.println("List of SerialNumbers:" +SerialNumbers);
+		//SerialNumbers = new ArrayList<String>();
+		//SerialNumbers.add(SerialNumber);
+		//System.out.println("List of SerialNumbers:" +SerialNumbers);
 		samp.setSerialNumber(SerialNumber);
 
 		AttachedDevices attachedDevices = new AttachedDevices();
@@ -88,7 +78,7 @@ public class Common_methods {
 				if (attributes.get("RadioNumber").contains(",")) {
 					String[] radioNumbers = attributes.get("RadioNumber").split(",");
 					
-					for(int k=1;k<radioNumbers.length;k++){
+					for(int k=0;k<radioNumbers.length;k++){
 						
 						String eachSerialNumber=radioNumbers[k];
 						AttachedRadios attachedRadios = new AttachedRadios();
@@ -98,8 +88,7 @@ public class Common_methods {
 					}
 					attachedDevices.setAttachedRadios(attachedRadioslst);
 				} else {
-					throw new Exception("Radionumber has only one radio number in excel sheet for "
-									+ commercialType);
+					throw new Exception("Radionumber has only one radio number in excel sheet for "+ commercialType);
 				}
 
 			} else {
@@ -155,16 +144,12 @@ public class Common_methods {
 		}
 		}
 		// return jsonInString;
-
+		
 	}
 
 	// Following function will build a URL
 	public URI buildingurl() throws FileNotFoundException, IOException {
 		Properties properties = new Properties();
-		properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
-		/*try (InputStream is = getClass().getResourceAsStream("application.properties")) {
-			  properties.load(is);
-			}*/
 		properties.load(new FileInputStream("Resources\\application.properties"));
 		DefaultHttpClient client = new DefaultHttpClient();
 		String Requesturl = properties.getProperty("assetstrcuturecreate.int");
@@ -193,7 +178,6 @@ public class Common_methods {
 		HttpPost request = new HttpPost(uri);
 		request.addHeader("Authorization", Oauthkey);
 		request.addHeader("Ocp-Apim-Subscription-Key","ec53923cc0e5447bb0110812925f9ce2");
-		request.addHeader("cwsId" , "ramaia1");
 		// String jsonInString = reusemethods.AssetTemplate(commercialType);
 		JsonParser parser = new JsonParser();
 
@@ -230,16 +214,12 @@ public class Common_methods {
 		DefaultHttpClient client = new DefaultHttpClient();
 
 		Properties properties = new Properties();
-		properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
-		/*try (InputStream is = getClass().getResourceAsStream("application.properties")) {
-			  properties.load(is);
-			}*/
 		properties.load(new FileInputStream("Resources\\application.properties"));
 		String decrypPwd = properties.getProperty("ClientSecret");
 		String ldapUserName = properties.getProperty("ClientId");
-		String ucidSearchURL = properties.getProperty("SearchURL");
 		String UserName = properties.getProperty("UserName");
 		String Password = properties.getProperty("Password");
+		String ucidSearchURL = properties.getProperty("SearchURL");
 		//System.out.println("ucidurl:" + ucidSearchURL);
 
 		HttpResponse httpResponse = null;
@@ -249,7 +229,7 @@ public class Common_methods {
 		byte[] encodedAuth = org.apache.commons.codec.binary.Base64
 				.encodeBase64((ldapUserName + ":" + decrypPwd).getBytes());
 		String authorization = "Basic " + new String(encodedAuth);
-		System.out.println("Authorization:" + authorization);
+		//System.out.println("Authorization:" + authorization);
 		URIBuilder builder = new URIBuilder();
 		builder = builder.setScheme("https").setHost(ucidSearchURL);
 		//System.out.println("builder:" + builder);
@@ -265,7 +245,6 @@ public class Common_methods {
 
 		try {
 			input = new StringEntity("grant_type=client_credentials&username="+UserName+"&password="+Password);
-					
 			input.setContentType("application/x-www-form-urlencoded");
 			request.setEntity(input);
 			System.out.println("Request:" + request);

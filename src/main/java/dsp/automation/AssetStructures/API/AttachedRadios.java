@@ -1,10 +1,5 @@
 package dsp.automation.AssetStructures.API;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.codehaus.jackson.annotate.JsonProperty;
-
 public class AttachedRadios {
 
 	private String id;
