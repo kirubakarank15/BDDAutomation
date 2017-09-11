@@ -13,6 +13,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,6 +23,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
+import org.testng.Assert;
 
 public class TestFunctionsFactory {
 
@@ -55,7 +57,7 @@ public class TestFunctionsFactory {
 	public static void mouseHover(WebElement element) throws CustomisedException {
 		try {
 			Actions obj = new Actions(driver);
-			obj.moveToElement(element).build().perform();
+			obj.moveToElement(element).moveByOffset(element.getLocation().x,element.getLocation().y).build().perform();
 		} catch (Exception e) {
 			e.printStackTrace();
 			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
@@ -70,7 +72,7 @@ public class TestFunctionsFactory {
 			Actions obj = new Actions(driver);
 			System.out.println("Locating");
 	
-			obj.moveToElement(element).click().build().perform();
+			obj.moveToElement(element).moveByOffset(element.getLocation().x,element.getLocation().y).click(element).build().perform();
 			System.out.println("Done");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -108,31 +110,23 @@ public class TestFunctionsFactory {
 
 	public static void selectFromDropDown(WebElement element, String option) throws CustomisedException {
 		try {
-
-			//driver.manage().window().maximize();
 			TestFunctionsFactory.waitForPageLoaded();
-		/*	Actions obj = new Actions(driver);
-			obj.moveToElement(element,element.getLocation().x,element.getLocation().y).click().build().perform();
-			*/
-		/*	((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+element.getLocation().x+")");
-			
-			webClick(element);*/
-			Thread.sleep(36000);
-			mouseHover(element);
-			webClick(element);
 			Select selectObj = new Select(element);
 		
 			 	
 			List<WebElement> optionsList = selectObj.getOptions();
-			
+			int i=0;
 			for (WebElement options : optionsList) {
+				
 				System.out.println("Options" + options.getText());
 				if (options.getText().trim().equalsIgnoreCase(option.trim())) {
-					webWait(10, options);
-					selectObj.selectByValue(options.getText());
+					//webWait(10, options);
+					selectObj.selectByIndex(i);
+					//selectObj.selectByValue(options.getText());
 					System.out.println("Option Clicked" + options.getText());
 					break;
 				}
+				i++;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -141,7 +135,21 @@ public class TestFunctionsFactory {
 		}
 
 	}
+	public static void compareSelectedValue(WebElement element, String option) throws CustomisedException {
+		try {
+			TestFunctionsFactory.waitForPageLoaded();
+			Select selectObj = new Select(element);
+			Assert.assertEquals(selectObj.getFirstSelectedOption().getText().trim(),option.trim());
+			
+			
 
+		} catch (Exception e) {
+			e.printStackTrace();
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			throw obj;
+		}
+
+	}
 	public static void verifyElementdisplayed(WebElement element) throws CustomisedException {
 		try {
 
@@ -233,6 +241,10 @@ public class TestFunctionsFactory {
 		case "CHROME":
 			driver = objDriver.driverChrome();
 			break;
+		case "FIREFOX":
+			driver = objDriver.driverFirfox();
+			
+			break;
 		case "INTERNET EXPLORER":
 		case "IE":
 			System.out.println("ÏE Driver");
@@ -245,6 +257,7 @@ public class TestFunctionsFactory {
 
 		driver.manage().deleteAllCookies();
 		objDriver.driver.manage().window().maximize();
+
 		driver.get(url);
 		objDriver.driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 

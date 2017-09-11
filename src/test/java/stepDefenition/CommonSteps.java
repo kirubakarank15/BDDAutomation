@@ -1,7 +1,7 @@
 package stepDefenition;
 
 import org.testng.annotations.AfterMethod;
-import org.testng.AssertJUnit;
+import org.testng.Assert;
 import java.util.Properties;
 
 import org.openqa.selenium.support.PageFactory;
@@ -45,11 +45,11 @@ public class CommonSteps {
 
 			if (CustomisedException.getErrorMessage() != null) {
 				TestFunctionsFactory.takeSnapShot( "Login_page");
-				AssertJUnit.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
 				e.printStackTrace();
 				TestFunctionsFactory.takeSnapShot( "Login_page"); 
-				AssertJUnit.fail(e.getMessage().toString()); 
+				Assert.fail(e.getMessage().toString()); 
 			}
 		}
 
@@ -65,7 +65,7 @@ public class CommonSteps {
 
 				TestFunctionsFactory.takeSnapShot( "MenuNavigation");
 		
-			AssertJUnit.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
 
 	} 
@@ -122,7 +122,7 @@ public class CommonSteps {
 		} catch (Exception e) {
 			TestFunctionsFactory.takeSnapShot( pageName+"IsPageDisplayed");
 			e.printStackTrace();
-			AssertJUnit.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
 
 	}
@@ -139,7 +139,7 @@ public class CommonSteps {
 		menuObj.dealerSearch(dealerCode);}
 		catch (Exception e) {
 			TestFunctionsFactory.takeSnapShot("DelaerCodeChange");
-			AssertJUnit.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
 	}
 	@When("^DealerCode should be changed to \"([^\"]*)\"$")
@@ -149,7 +149,7 @@ public class CommonSteps {
 		menuObj.delaerCodeVerification(dealerCode);;}
 		catch (Exception e) {
 			TestFunctionsFactory.takeSnapShot("DelaerCodeChange_Verification");
-			AssertJUnit.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
 	}
 }

@@ -22,7 +22,9 @@ public class MenuBarNaviagtions {
 		fieldValue = menu;
 		try {
 			LOGGER.info("Navigating to Menubar "+ menu);
+	
 			String[] menuSplit = menu.split("->");
+		
 			for (String menuBar : menuSplit) {
 	
 

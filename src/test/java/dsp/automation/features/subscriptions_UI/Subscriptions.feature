@@ -1,7 +1,7 @@
 @Subscriptions
 Feature: To Validate Subscription UI functionalities for different Device Types.
 
-  @Subscription_Sanity @Subscription_Regression
+  @Subscription_Sanity @Subscription_Regression1
   Scenario: Navigate to My Worklist
     Given Login into DSP Portal
 
@@ -16,10 +16,11 @@ Feature: To Validate Subscription UI functionalities for different Device Types.
     Then verify the message "New Subscription Applied Successfully" is displayed
 
     Examples: 
-      | Device Type | S/N      | Services   | Cat             | Dealer          | Customer       | Base Subscription | Additional Services |
-      | PLE641      | AUT10011 | VisionLink | Aide (EC4-14-T) | Aide (EC4-14-T) | Vitals (EC1-4) |                   |                     |
+      | Device Type | S/N      | Services         | Cat             | Dealer          | Customer       | Base Subscription      | Additional Services |
+      | PLE641      | AUT10011 | VisionLink       |                 |                 |                | Cat Basic - 10 Minutes | Onboard Analytics   |
+      | PLE641      | AUT10011 | Product Link Web | Aide (EC4-14-T) | Aide (EC4-14-T) | Vitals (EC1-4) |                        |                     |
 
-  @Subscription_Regression
+  @Subscription_Regression1
   Scenario Outline: To verify the subscription functionality with different Device Types
     When Navigate to "My worklist"
     Then The page "Myworklist" should be displayed
@@ -34,7 +35,6 @@ Feature: To Validate Subscription UI functionalities for different Device Types.
 
     Examples: 
       | Device Type  | S/N      | Services          | Cat                  | Dealer                 | Customer                   | Base Subscription          | Additional Services                               |
-      | PLE641       | AUT10011 | Product Link Web  | Aide (EC4-14-T)      | Aide (EC4-14-T)        | Vitals (EC1-4)             |                            |                                                   |
       | PLE631       | AUT10012 | Product Link Web  | Vitals (ES1-0)       | Vitals (ES1-0)         | Vitals (ES1-0)             |                            |                                                   |
       | PLE631       | AUT10013 | VisionLink        |                      |                        |                            | Cat Essentials - 4 Hours   | VisionLink Load and Cycle Project Monitoring=True |
       | PL161        | AUT10014 | Equipment Tracker |                      |                        |                            | Cat Daily                  |                                                   |

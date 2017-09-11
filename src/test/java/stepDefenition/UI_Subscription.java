@@ -21,7 +21,7 @@ public class UI_Subscription {
 	@When("^search Asset details as \"([^\"]*)\" in My Worklist Page$")
 	public void search_Asset_details_as_in_My_Worklist_Page(String data) {
 		try {
-
+			System.out.println(data);
 			MyWorklist obj = PageFactory.initElements(TestFunctionsFactory.driver, MyWorklist.class);
 			obj.searchAssetDetails(data);
 			obj.actions("Submit");
@@ -70,9 +70,9 @@ public class UI_Subscription {
 
 	@When("^enter or modify Subscription details as \"([^\"]*)\"$")
 	public void enter_Subscription_details_as(String data) throws Throwable {
-	
-		try {
 
+		try {
+			System.out.println(data);
 			Subscriptions obj = PageFactory.initElements(TestFunctionsFactory.driver, Subscriptions.class);
 			obj.enterSubscriptionValues(data);
 
@@ -95,8 +95,22 @@ public class UI_Subscription {
 
 	@When("^click \"([^\"]*)\" button or link$")
 	public void click_button_or_link(String arg1) throws Throwable {
+		try{
 		Subscriptions obj = PageFactory.initElements(TestFunctionsFactory.driver, Subscriptions.class);
 		obj.actions(arg1);
+		}
+		catch (Exception e) {
+
+			if (CustomisedException.getErrorMessage() != null) {
+				TestFunctionsFactory.takeSnapShot("Subscriptions_Page");
+				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			} else {
+				e.printStackTrace();
+				TestFunctionsFactory.takeSnapShot("Subscriptions_Page");
+				Assert.fail(e.getMessage().toString());
+			}
+		}
+
 	}
 
 	@Then("^verify the message \"([^\"]*)\" is displayed$")
