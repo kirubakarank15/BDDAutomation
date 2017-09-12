@@ -6,11 +6,11 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
     Given Login into DSP Portal
 
   @CatProfile @US_162 @TC_495 @Postitive
-  Scenario Outline: To Verify applicable PromotionName and DiscountAmount for the selected subscription in Payment Preview popup in CAT profile
+  Scenario Outline: To Verify applicable PromotionName and DiscountAmount for the selected subscription in CAT profile
     When Navigate to "MY WORKLIST"
     And Logged in CatProfile as "<Dealercode>"
     When Search Asset details as "Serial Number" in My Worklist Page
-    Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" for the selected Subscription in Payment Preview popup
+    Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" for the selected Subscription
     And Verify the values of "ApplicablePromotionName", "DiscountAmount" for the selected Subscription are retrieved from Zuora Promotion App correctly.
 
     Examples: 
@@ -22,12 +22,12 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
       | M610       |               |               |                  |
 
   @DealerProfile @US_162 @TC_499 @Postitive
-  Scenario Outline: To Verify applicable PromotionName and DiscountAmount for the selected subscription in Payment Preview popup in Dealer profile
+  Scenario Outline: To Verify applicable PromotionName and DiscountAmount for the selected subscription in Dealer profile
     When Navigate to "MY WORKLIST"
     And Logged in DealerProfile as "<Dealercode>"
     When Search Asset details as "Serial Number" in My Worklist Page
-    Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" for the selected Subscription in Payment Preview popup
-    And Verify the values of "ApplicablePromotionName", "DiscountAmount" for the selected Subscription are retrieved from Zuora Promotion App correctly.
+    Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" for the selected Subscription
+    And Verify the values of "ApplicablePromotionName", "DiscountAmount" for the selected Subscription are retrieved from Zuora Promotion App correctly
 
     Examples: 
       | DealerCode | Serial Number | Subscriptions | Applications     |
@@ -43,8 +43,8 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
     And Logged in CatProfile as "<Dealercode>"
     When Search Asset details as "Serial Number" in My Worklist Page
     And Change the subscription for the asset
-    Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" for the selected Subscription are updated accordingly in Payment Preview popup
-    And Verify the values of "ApplicablePromotionName", "DiscountAmount" for the selected Subscription are retrieved from Zuora Promotion App correctly.
+    Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" for the selected Subscription are updated accordingly
+    And Verify the values of "ApplicablePromotionName", "DiscountAmount" for the selected Subscription are retrieved from Zuora Promotion App correctly
 
     Examples: 
       | DealerCode | Serial Number | Subscriptions | Applications     |
@@ -60,8 +60,8 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
     And Logged in DealerProfile as "<Dealercode>"
     When Search Asset details as "Serial Number" in My Worklist Page
     And Change the subscription for the asset
-    Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" for the selected Subscription are updated accordingly in Payment Preview popup
-    And Verify the values of "ApplicablePromotionName", "DiscountAmount" for the selected Subscription are retrieved from Zuora Promotion App correctly.
+    Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" for the selected Subscription are updated accordingly
+    And Verify the values of "ApplicablePromotionName", "DiscountAmount" for the selected Subscription are retrieved from Zuora Promotion App correctly
 
     Examples: 
       | DealerCode | Serial Number | Subscriptions | Applications     |
@@ -74,22 +74,22 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
   @CatProfile @US_162 @TC_502 @Postitive
   Scenario Outline: To Verify PromotionName and DiscountAmount are displayed while setting a new subscription for an asset in CAT profile
     When Search Asset details as "Serial Number" in My Worklist Page
-    Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" for the new Subscription in Payment Preview popup
+    Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" for the new Subscription
 
   @DealerProfile @US_162 @TC_503 @Postitive
   Scenario Outline: To Verify PromotionName and DiscountName are displayed while setting a new subscription for an asset in Dealer Profile
     When Search Asset details as "Serial Number" in My Worklist Page
-    Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" for the new Subscription in Payment Preview popup
+    Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" for the new Subscription
 
   @CatProfile @US_162 @TC_504 @Postitive
   Scenario Outline: To Verify PromotionName and DiscountName are displayed while changing existing subscription for an asset in CAT profile
     When Search Asset details as "Serial Number" in My Worklist Page
-    Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" while changing an existing Subscription in Payment Preview popup
+    Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" while changing an existing Subscription
 
   @DealerProfile @US_162 @TC_505 @Positive
   Scenario Outline: To Verify PromotionName and DiscountName are displayed while changing existing subscription for an asset in Dealer Profile
     When Search Asset details as "Serial Number" in My Worklist Page
-    Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" while changing an existing Subscription in Payment Preview popup
+    Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" while changing an existing Subscription
 
   @CatProfile @US_162 @TC_506 @Positive
   Scenario Outline: To Verify PromotionName and DiscountName are not displayed for already subscribed assets in CAT profile
