@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -137,6 +138,7 @@ public class TestFunctionsFactory {
 	}
 	public static void compareSelectedValue(WebElement element, String option) throws CustomisedException {
 		try {
+			
 			TestFunctionsFactory.waitForPageLoaded();
 			Select selectObj = new Select(element);
 			Assert.assertEquals(selectObj.getFirstSelectedOption().getText().trim(),option.trim());
@@ -150,16 +152,19 @@ public class TestFunctionsFactory {
 		}
 
 	}
-	public static void verifyElementdisplayed(WebElement element) throws CustomisedException {
+	public static boolean verifyElementdisplayed(WebElement element) throws CustomisedException {
+	     boolean status = false;
 		try {
-
-			element.isDisplayed();
+ if(element.isDisplayed()){
+      status=true;
+      }
 		
 		} catch (Exception e) {
-			e.printStackTrace();
+			/*e.printStackTrace();
 			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
-			throw obj;
+			throw obj;*/
 		}
+		return status;
 
 	}
 
@@ -256,10 +261,10 @@ public class TestFunctionsFactory {
 		}
 
 		driver.manage().deleteAllCookies();
-		objDriver.driver.manage().window().maximize();
+	driver.manage().window().maximize();
 
 		driver.get(url);
-		objDriver.driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
 	}
 
