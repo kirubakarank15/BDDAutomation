@@ -4,7 +4,7 @@ Feature: To Validate Subscription UI functionalities for different Device Types.
   @Subscription_Sanity @Subscription_Regression1
   Scenario: Navigate to My Worklist
     Given Login into DSP Portal
-
+ 
   @Subscription_Sanity
   Scenario Outline: Sanity on Subscription
     When Navigate to "My worklist"
@@ -25,27 +25,25 @@ Feature: To Validate Subscription UI functionalities for different Device Types.
     When Navigate to "My worklist"
     Then The page "Myworklist" should be displayed
     When search Asset details as "S/N =<S/N>" in My Worklist Page
-    Then Verify Subscription details should be displayed with "S/N =<S/N>" in My Worklist page
-    When enter or modify Subscription details as "Services=<Services>,Cat =<Cat>,Dealer =<Dealer>,Customer =<Customer>,Base Subscription =<Base Subscription>,Additional Services  =<Additional Services >"
+    #Then Verify Subscription details should be displayed with "S/N =<S/N>" in My Worklist page
+    When enter or modify Subscription details as "Services=<Services>,Cat =<Cat>,Dealer =<Dealer>,Customer =<Customer>,Base Subscription =<Base Subscription>,Additional Services  =<Additional Services>"
     And click "Save" button or link
-    Then verify the message "New Subscription Applied Successfully" is displayed
+    Then verify the message "New Subscription Applied Successfully" is displayed 
     And click "Back" button or link
     When search Asset details as "S/N =<S/N>" in My Worklist Page
-    Then Verify Subscription details should be displayed with "S/N =<S/N>,Services=<Services>,Cat =<Cat>,Dealer =<Dealer>,Customer =<Customer>,Base Subscription =<Base Subscription>,Additional Services  =<Additional Services >" in My Worklist page
+    Then Verify Subscription details should be displayed with "Services=<Services>,Cat =<Cat>,Dealer =<Dealer>,Customer =<Customer>,Base Subscription =<Base Subscription>,Additional Services  =<Additional Services>" in My Worklist page
 
     Examples: 
-      | Device Type  | S/N      | Services          | Cat                  | Dealer                 | Customer                   | Base Subscription          | Additional Services                               |
-      | PLE631       | AUT10012 | Product Link Web  | Vitals (ES1-0)       | Vitals (ES1-0)         | Vitals (ES1-0)             |                            |                                                   |
-      | PLE631       | AUT10013 | VisionLink        |                      |                        |                            | Cat Essentials - 4 Hours   | VisionLink Load and Cycle Project Monitoring=True |
-      | PL161        | AUT10014 | Equipment Tracker |                      |                        |                            | Cat Daily                  |                                                   |
-      | PLE641+PL631 | AUT10015 | Product Link Web  | Aide (EC4-14 & S4-0) | Aide (EC4-14-T & S0-0) | Advisor (EC24-54-T & S0-0) |                            |                                                   |
-      | PL641        | AUT10016 | VisionLink        |                      |                        |                            | Cat Essentials - Hourly    | VisionLink Load and Cycle Project Monitoring=True |
-      | PLE640       | AUT10017 | My.Cat.Com        |                      |                        |                            | Cat Daily                  |                                                   |
-      | PL241        | AUT10018 | Product Link Web  | Basic Vitals         | Basic Vitals           | Basic Vitals               | Cat Daily                  |                                                   |
-      | PLE640       | AUT10019 | Product Link Web  | Advisor (EC24-104)   | Advisor (EC24-104)     | Advisor (EC24-54-T)        | Cat Daily                  | Onboard Analytics=True                            |
-      | PLE631       | AUT10012 | Product Link Web  | Aide (ES4-0)         | Aide (ES4-0)           | Vitals (ES1-0)             |                            |                                                   |
-      | PLE641+PL631 | AUT10015 | VisionLink        |                      |                        |                            | Cat Essentials - Dual Mode | Onboard Analytic=True                             |
+      | Device Type | S/N      | Services   | Cat | Dealer | Customer | Base Subscription        | Additional Services                               |
+      # | PLE631       | AUT10012 | Product Link Web  | Vitals (ES1-0)       | Vitals (ES1-0)         | Vitals (ES1-0)             |                            |                                                   |
+      | PLE631      | AUT10013 | VisionLink |     |        |          | Cat Essentials - 4 Hours | VisionLink Load and Cycle Project Monitoring.True |
 
+  #| PL161        | AUT10014 | Equipment Tracker |                      |                        |                            | Cat Daily                  |                                                   |
+  #| PLE641+PL631 | AUT10015 | Product Link Web  | Aide (EC4-14 & S4-0) | Aide (EC4-14-T & S0-0) | Advisor (EC24-54-T & S0-0) |                            |                                                   |
+  #| PL641        | AUT10016 | VisionLink        |                      |                        |                            | Cat Essentials - Hourly    | VisionLink Load and Cycle Project Monitoring.True |
+  #| PLE640       | AUT10017 | My.Cat.Com        |                      |                        |                            | Cat Daily                  |                                                   |
+  #| PL241        | AUT10018 | Product Link Web  | Basic Vitals         | Basic Vitals           | Basic Vitals               | Cat Daily                  |                                                   |
+  #| PLE640       | AUT10019 | Product Link Web  | Advisor (EC24-104)   | Advisor (EC24-104)     | Advisor (EC24-54-T)        | Cat Daily                  | Onboard Analytics=True                            |
   @Subscription_Regression
   Scenario Outline: To validate the unsubscribe functionality with different Device Types.
     When Navigate to "My worklist"

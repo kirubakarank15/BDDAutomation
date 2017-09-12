@@ -2,6 +2,7 @@ package dsp.automation.pom;
 
 import java.util.HashMap;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,6 +29,8 @@ public class MyWorklist {
 
 	private WebElement lblSearchResults;
 	String fieldValue;
+	
+	private final static Logger LOGGER = Logger.getLogger(MyWorklist.class.getName());
 
 	public MyWorklist isPageDisplayed() throws CustomisedException, Exception {
 

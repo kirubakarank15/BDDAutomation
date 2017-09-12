@@ -5,8 +5,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 import org.testng.annotations.Parameters;
 
@@ -44,6 +47,9 @@ public class App
 	System.out.println(screenshotPath.toString());*/
     	
     App obj=new App();
+    String[] trueOrFalse="fdf.True".split("\\.");
+
+System.out.println(trueOrFalse[0]);
 	
    // getParameter( @Parameters("environment"));
     	

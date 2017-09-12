@@ -42,13 +42,13 @@ public class UI_Subscription {
 	}
 
 	@Then("^Verify Subscription details should be displayed with \"([^\"]*)\" in My Worklist page$")
-	public void asset_details_should_be_displayed_as_in_My_Worklist_page(String data) throws Throwable {
+	public void asset_details_should_be_displayed_as_in_My_Worklist_page(String testData) throws Throwable {
 
 
 		try {
 
 			Subscriptions obj = PageFactory.initElements(TestFunctionsFactory.driver, Subscriptions.class);
-			obj.isSubscriptionRecordDisplayed(data.split("=")[1]);
+			obj.verifySubscriptionDetails(testData);
 
 		}
 
@@ -75,6 +75,8 @@ public class UI_Subscription {
 			System.out.println(data);
 			Subscriptions obj = PageFactory.initElements(TestFunctionsFactory.driver, Subscriptions.class);
 			obj.enterSubscriptionValues(data);
+			
+			
 
 		}
 
@@ -84,6 +86,7 @@ public class UI_Subscription {
 				TestFunctionsFactory.takeSnapShot("Search_Asset_Details_Page");
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
+			
 				e.printStackTrace();
 				TestFunctionsFactory.takeSnapShot("Search_Asset_Details_Page");
 				Assert.fail(e.getMessage().toString());
