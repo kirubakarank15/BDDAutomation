@@ -64,7 +64,7 @@ Feature: Subscription Contract Visualization -  Payment Preview Popup - Newly On
     And click "Review & Submit" button or link
     Then Verify in UI Payment Previre Popup fields
     And Click "Submit" button
-    Then verify the message "New Subscription Applied Successfully" is displayed 
+    Then verify the message "New Subscription Applied Successfully" is displayed
 
   @DealerProfile @US_163 @TC_569 @Positive
   Scenario Outline: To Verify the functionality after click on SUBMIT button in Payment Preview Popup in Dealer login
@@ -87,7 +87,7 @@ Feature: Subscription Contract Visualization -  Payment Preview Popup - Newly On
     Then Verify in UI Payment Previre Popup fields
     And Click "Cancel" button
     Then Verify the UI should be redirected to worklist page and the subscription should not become active for the asset
-    
+
   @DealerProfile @US_163 @TC_571 @Positive
   Scenario Outline: To Verify the functionality after click on CANCEL button in Payment Preview Popup in Dealer login
     When Navigate to "My worklist"
@@ -97,4 +97,13 @@ Feature: Subscription Contract Visualization -  Payment Preview Popup - Newly On
     And click "Review & Submit" button or link
     Then Verify in UI Payment Previre Popup fields
     And Click "Cancel" button
-    Then Verify the UI should be redirected to worklist page and the subscription should not become active for the asset
+    Then Verify in UI should be redirected to worklist page and the subscription should not become active for the asset
+
+  @CATProfile @US_163 @TC_576 @Negative
+  Scenario Outline: To Verify CAT level billing popup is displayed after click on Review & Submit
+    When Navigate to "My worklist"
+    And Logged in DealerProfile as "<Dealercode>"
+    Then Verify Subscription details should be displayed with "S/N =<S/N>" in My Worklist page
+    When enter or modify Subscription details as "Services=<Services>,Cat =<Cat>,Dealer =<Dealer>,Customer =<Customer>,Base Subscription =<Base Subscription>,Additional Services  =<Additional Services>"
+    And click "Review & Submit" button or link
+    Then Verify in UI "CatBilling_popup.isDisplayed=true" 
