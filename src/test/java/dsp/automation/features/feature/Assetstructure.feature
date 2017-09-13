@@ -10,7 +10,7 @@ Feature: Asset Onboarding through CCDS
 
     Examples: 
       | CommercialType | HttpStatus |
-      | PLE641+PL631   |        201 |
+      | PLE641         |        201 |
 
   @Sanity @Regression @Positive
   Scenario: Retrieve AssetStructureVerbose from AssetStructureMessage Table

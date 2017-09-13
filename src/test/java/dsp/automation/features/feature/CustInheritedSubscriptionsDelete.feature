@@ -1,4 +1,4 @@
-@API
+@API1
 Feature: Update Customer Inherited Subscriptions in all Levels
   This feature is to Validate Deletion of Customer Inherited subscriptions in all Levels
 
