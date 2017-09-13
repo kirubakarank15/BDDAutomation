@@ -189,7 +189,7 @@ public class CommonMethods_Subscriptions
 				apiReponse.setFailureReason(response);
 			}
 			apiReponse.setStatusCode(statusCode);
-			System.out.println("Response of the API :" + "\n" + response + "\n" + "status:" + "\n" + statusCode);
+			System.out.println("Response of the API :" + "\n" + response + "\n" + "status:" + statusCode);
 			return apiReponse;
 		}
 		

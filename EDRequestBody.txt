@@ -1,1 +1,1 @@
-{"serialNumber":"MMM00033","manufacturerCode":"CAT","prodWorkCode":"","model":"2016A","manufacturingYear":"2015","ownerType":"O","dealerCustomerNumber":"000114","equipmentId":"Testasset","vin":"","dealerCode":"TD00"}
+{"serialNumber":"RRR10109","manufacturerCode":"CAT","prodWorkCode":"","model":"2016A","manufacturingYear":"2015","ownerType":"O","dealerCustomerNumber":"000114","equipmentId":"Testasset","vin":"","dealerCode":"TD00"}

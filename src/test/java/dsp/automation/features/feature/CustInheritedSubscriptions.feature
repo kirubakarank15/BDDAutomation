@@ -1,4 +1,4 @@
-@API1
+@API
 Feature: Creating Customer Inherited Subscriptions in all Levels
   This feature is to Validate creation of Customer Inherited subscriptions in all Levels
 
