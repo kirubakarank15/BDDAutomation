@@ -133,12 +133,14 @@ Feature: Subscription Contract Visualization - Subscription Pricing Value
     And Logged in CatProfile as "<DealerCode>"
     When Cat user is viewing the subscription selection dropdown for an asset with "<Serial Number>"
     Then Verify in UI "SubscriptionPricingValue.isDisplayed=True" for all subscriptions at Customer level dropdown for "<My.Cat.Com>" application alone
+
   @DealerProfile @US_161 @TC_322 @Postitive
   Scenario Outline: To verify Subscription pricing values for My.Cat.Com application alone as Dealer profile
     When Navigate to "MY WORKLIST"
     And Logged in DealerProfile as "<DealerCode>"
     When Dealer user is viewing the subscription selection dropdown for an asset with "<Serial Number>"
-   Then Verify in UI "SubscriptionPricingValue.isDisplayed=True" for all subscriptions at Customer level dropdown for "<My.Cat.Com>" application alone
+    Then Verify in UI "SubscriptionPricingValue.isDisplayed=True" for all subscriptions at Customer level dropdown for "<My.Cat.Com>" application alone
+
   @CatProfile @US_161 @TC_452 @Positive
   Scenario: To Verify Subscription pricing values are not displayed when only cat level subscription is selected
     When Navigate to "MY WORKLIST"
