@@ -2,6 +2,7 @@ package dsp.automation.pom;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -82,6 +83,7 @@ public class Subscriptions {
 			String addServicesOption = "";
 			HashMap<String, String> testDataMap = TestFunctionsFactory.getTestData(testData);
 			Set<String> testDataKey = testDataMap.keySet();
+
 			for (String key : testDataKey) {
 				fieldValue = key;
 				LOGGER.info("Selecting the Value :" + key);
@@ -119,7 +121,7 @@ public class Subscriptions {
 					throw new CustomisedException(fieldValue,
 							"The Given Field " + key + ": is not a valid field for the page, Please correct it");
 
-				} 
+				}
 
 			}
 			if (additionalServicesflag) {
@@ -134,42 +136,36 @@ public class Subscriptions {
 					String[] trueOrFalse = addServicesOption.split("\\.");
 					LOGGER.info("Selecting the Value :" + addServicesOption + " " + trueOrFalse);
 					if (chkBox.getText().trim().equalsIgnoreCase(trueOrFalse[0])) {
-						
+
 						if (trueOrFalse[1].equalsIgnoreCase("TRUE")) {
 							List<WebElement> element = TestFunctionsFactory.driver
 									.findElements(By.xpath("//li[" + i + "]//input[contains(@class,'ng-not-empty')]"));
 							if (element.size() == 0) {
 
-								
 								LOGGER.info("TRUE OR FALSE BLOCK1");
-								 
-								  TestFunctionsFactory.javaScriptClick(
-								 TestFunctionsFactory.driver.findElement(By
-								.xpath("//div[contains(text(),' Additional Services')]//parent::button//parent::div//ul//li["
-								  + i + "]//input")));
-								 
-							}  
+
+								TestFunctionsFactory.javaScriptClick(TestFunctionsFactory.driver.findElement(By
+										.xpath("//div[contains(text(),' Additional Services')]//parent::button//parent::div//ul//li["
+												+ i + "]//input")));
+
 							}
-						else if (trueOrFalse[1].equalsIgnoreCase("FALSE")) {
+						} else if (trueOrFalse[1].equalsIgnoreCase("FALSE")) {
 							List<WebElement> elementFalse = TestFunctionsFactory.driver
 									.findElements(By.xpath("//li[" + i + "]//input[contains(@class,'ng-empty')]"));
 							if (elementFalse.size() == 0) {
-								 
-								  TestFunctionsFactory.javaScriptClick(
-								 TestFunctionsFactory.driver.findElement(By
-								.xpath("//div[contains(text(),' Additional Services')]//parent::button//parent::div//ul//li["
-								  + i + "]//input")));
-								 
+
+								TestFunctionsFactory.javaScriptClick(TestFunctionsFactory.driver.findElement(By
+										.xpath("//div[contains(text(),' Additional Services')]//parent::button//parent::div//ul//li["
+												+ i + "]//input")));
+
 								LOGGER.info("TRUE OR FALSE BLOCK2");
 							}
 
-						} 
+						}
 
-				}
-					else if (chkBoxOptions.size() == i) {
+					} else if (chkBoxOptions.size() == i) {
 						throw new CustomisedException(
-								"Ädditional FieldServices drop down is not having the value :" + addServicesOption,
-								"");
+								"Ädditional FieldServices drop down is not having the value :" + addServicesOption, "");
 					}
 				}
 			}
