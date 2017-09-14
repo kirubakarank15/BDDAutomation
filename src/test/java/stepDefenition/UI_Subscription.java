@@ -44,7 +44,6 @@ public class UI_Subscription {
 	@Then("^Verify Subscription details should be displayed with \"([^\"]*)\" in My Worklist page$")
 	public void asset_details_should_be_displayed_as_in_My_Worklist_page(String testData) throws Throwable {
 
-
 		try {
 
 			Subscriptions obj = PageFactory.initElements(TestFunctionsFactory.driver, Subscriptions.class);
@@ -64,8 +63,6 @@ public class UI_Subscription {
 			}
 		}
 
-	
-	
 	}
 
 	@When("^enter or modify Subscription details as \"([^\"]*)\"$")
@@ -75,8 +72,6 @@ public class UI_Subscription {
 			System.out.println(data);
 			Subscriptions obj = PageFactory.initElements(TestFunctionsFactory.driver, Subscriptions.class);
 			obj.enterSubscriptionValues(data);
-			
-			
 
 		}
 
@@ -86,23 +81,21 @@ public class UI_Subscription {
 				TestFunctionsFactory.takeSnapShot("Search_Asset_Details_Page");
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
-			
+
 				e.printStackTrace();
 				TestFunctionsFactory.takeSnapShot("Search_Asset_Details_Page");
 				Assert.fail(e.getMessage().toString());
 			}
 		}
 
-	
 	}
 
 	@When("^click \"([^\"]*)\" button or link$")
 	public void click_button_or_link(String arg1) throws Throwable {
-		try{
-		Subscriptions obj = PageFactory.initElements(TestFunctionsFactory.driver, Subscriptions.class);
-		obj.actions(arg1);
-		}
-		catch (Exception e) {
+		try {
+			Subscriptions obj = PageFactory.initElements(TestFunctionsFactory.driver, Subscriptions.class);
+			obj.actionsSubscripition(arg1);
+		} catch (Exception e) {
 
 			if (CustomisedException.getErrorMessage() != null) {
 				TestFunctionsFactory.takeSnapShot("Subscriptions_Page");
@@ -122,13 +115,64 @@ public class UI_Subscription {
 		// throw new PendingException();
 	}
 
+	@When("^select Account details as \"([^\"]*)\" in billing Pop Up and \"([^\"]*)\" it$")
+	public void selctAccountDetails(String data, String action) throws Throwable {
+		try {
+			Subscriptions obj = PageFactory.initElements(TestFunctionsFactory.driver, Subscriptions.class);
+			obj.enterSubscriptionValues(data);
+			obj.actionsSubscripition(action);
+		} catch (Exception e) {
 
-	
-	
-	@Then("^select reason as \"([^\"]*)\" and click \"([^\"]*)\" in Cancel Reason Pop Up$")
-	public void canceLReason(String arg1) throws Throwable {
+			if (CustomisedException.getErrorMessage() != null) {
+				TestFunctionsFactory.takeSnapShot("Billing PopUp");
+				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			} else {
+				e.printStackTrace();
+				TestFunctionsFactory.takeSnapShot("Billing PopUpe");
+				Assert.fail(e.getMessage().toString());
+			}
+		}
+
+	}
+
+	@Then("^verify and accept the select customer warning Pop Up$")
+	public void verifyAndAcceptSelectCustomerWarning() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
 		// throw new PendingException();
+		Subscriptions obj = PageFactory.initElements(TestFunctionsFactory.driver, Subscriptions.class);
+		obj.VerifySelectCustomerWarningPopUp();
+		obj.actionsSubscripition("OK");
+
 	}
-	
+
+	@Then("^verify the subscription unsaved warning message and click \"([^\"]*)\"$")
+	public void verifyUnsavedWarning(String arg1) throws Throwable {
+		// Write code here that turns the phrase above into concrete actions
+		// throw new PendingException();
+		Subscriptions obj = PageFactory.initElements(TestFunctionsFactory.driver, Subscriptions.class);
+		obj.VerifyUnSavedSubscriptionWarningPopUp();
+		obj.actionsSubscripition(arg1);
+
+	}
+
+	@Then("^select reason as \"([^\"]*)\" and click \"([^\"]*)\" in Cancel Reason Pop Up$")
+	public void canceLReason(String arg1, String arg2) throws Throwable {
+		try {
+			Subscriptions obj = PageFactory.initElements(TestFunctionsFactory.driver, Subscriptions.class);
+			obj.enterSubscriptionValues(arg1);
+			obj.actionsSubscripition(arg2);
+		} catch (Exception e) {
+
+			if (CustomisedException.getErrorMessage() != null) {
+				TestFunctionsFactory.takeSnapShot("Subscriptions_Page");
+				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			} else {
+				e.printStackTrace();
+				TestFunctionsFactory.takeSnapShot("Subscriptions_Page");
+				Assert.fail(e.getMessage().toString());
+			}
+		}
+
+	}
+
 }

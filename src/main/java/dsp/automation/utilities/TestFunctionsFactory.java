@@ -7,6 +7,7 @@ import java.security.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
@@ -300,8 +301,8 @@ public class TestFunctionsFactory {
 	 * 
 	 */
 
-	public static HashMap<String, String> getTestData(String data) {
-		HashMap<String, String> map = new HashMap<>();
+	public static LinkedHashMap<String, String> getTestData(String data) {
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		String[] values = data.split(",");
 
 		for (String k : values) {

@@ -14,7 +14,7 @@ import dsp.automation.utilities.TestFunctionsFactory;
 @RunWith(Cucumber.class)
 
 @CucumberOptions( strict = false,format = { "pretty",
-"json:target/cucumber.json" ,"html:target/site/cucumber-pretty"},features = "src\\test\\java\\dsp\\automation\\features",glue = "stepDefenition",tags ={"@API1"} ) 
+"json:target/cucumber.json" ,"html:target/site/cucumber-pretty"},features = "src\\test\\java\\dsp\\automation\\features",glue = "stepDefenition",tags ={"@Subscriptions_Reg"} ) 
 
 
 public class TestRunner extends AbstractTestNGCucumberTests {

@@ -47,9 +47,16 @@ public class App
 	System.out.println(screenshotPath.toString());*/
     	
     App obj=new App();
-    String[] trueOrFalse="fdf.True".split("\\.");
-
-System.out.println(trueOrFalse[0]);
+//    String[] trueOrFalse="fdf.True".split("\\.");
+ switch("S/N".toLowerCase().trim().replaceAll(" ", "")){
+ case"s/n":
+	 System.out.println("DONEE");
+	 break;
+ case"S/n":
+	 System.out.println("DONEE");
+	 break;
+	 
+ }
 	
    // getParameter( @Parameters("environment"));
     	
@@ -66,8 +73,8 @@ System.out.println(objProperty.keySet().toString());
 */
   /*  System.out.println(EcncryptorDecryptor.encryptor("Myvision@18"));
     System.out.println(EcncryptorDecryptor.decryptor("!:_/=/(^9ry"));*/
-    Common_methods comm = new Common_methods();
-    comm.AssetTemplate("PLE641+PL631");
+/*    Common_methods comm = new Common_methods();
+    comm.AssetTemplate("PLE641+PL631");*/
     }
     
 }

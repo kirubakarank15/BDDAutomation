@@ -1,6 +1,9 @@
 package dsp.automation.pom;
 
+import static org.testng.Assert.assertEquals;
+
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -13,6 +16,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 
 import dsp.automation.utilities.CustomisedException;
+import dsp.automation.utilities.FileHandling;
 import dsp.automation.utilities.TestFunctionsFactory;
 
 public class Subscriptions {
@@ -51,6 +55,35 @@ public class Subscriptions {
 			@FindBy(xpath = "//div[contains(text(),' Additional Services')]//parent::button//following-sibling::ul//li") })
 	private List<WebElement> chkBoxAdditonalServices;
 
+	// CANCELLATION POP UP
+	@FindBy(xpath = "	//div[contains(text(),'Cancellation Reason')]")
+	private WebElement titleCancelPopUp;
+	@FindBy(id = "cancelReasonDropdown")
+	private WebElement drpDownCancelPopUp;
+	@FindBy(xpath = "//button[contains(text(),'OK')]")
+	private WebElement btnOK;
+	@FindBy(xpath = "	//button[contains(text(),'Cancel')]")
+	private WebElement btnCancelPopUp;
+	// button[contains(text(),'OK')]//parent::div//preceding-sibling::div
+	// SELECT CUSTOMER WARNING POP UP
+	@FindBy(xpath = "//div[contains(text(),'Select Customer')]")
+	private WebElement titleSelectCustErrPopUp;
+	@FindBy(xpath = "//div[contains(@class,'customerConfigBody')]//div")
+	private WebElement messageSelectCustErrPopUp;
+	// UnsavedWarningPopUp
+	@FindBy(xpath = "//button[contains(text(),'OK')]//parent::div//preceding-sibling::div")
+	private WebElement messageUnsavedWarning;
+	// Billling Pop Up
+	@FindBy(xpath = "//option[contains(text(),'Select account description')]//parent::select")
+	private WebElement drpDownAccountDesc;
+	@FindBy(xpath = "//option[contains(text(),'Select account number')]//parent::select")
+	private WebElement drpDownAccountNum;
+	@FindBy(xpath = "//option[contains(text(),'Select account contact')]//parent::select")
+	private WebElement drpDownAccountContact;
+	@FindBy(xpath = "//input[@value='Confirm']")
+	private WebElement btnConfirmBillingPopUp;
+	@FindBy(xpath = "//input[@value='Cancel']")
+	private WebElement btnCancelBillingPopUp;
 	String fieldValue;
 	private final static Logger LOGGER = Logger.getLogger(Subscriptions.class.getName());
 
@@ -81,7 +114,7 @@ public class Subscriptions {
 		try {
 			boolean additionalServicesflag = false;
 			String addServicesOption = "";
-			HashMap<String, String> testDataMap = TestFunctionsFactory.getTestData(testData);
+			LinkedHashMap<String, String> testDataMap = TestFunctionsFactory.getTestData(testData);
 			Set<String> testDataKey = testDataMap.keySet();
 
 			for (String key : testDataKey) {
@@ -89,6 +122,13 @@ public class Subscriptions {
 				LOGGER.info("Selecting the Value :" + key);
 				switch (key.toLowerCase().trim().replaceAll(" ", "")) {
 
+				// SubscripitionScreens
+				case "s/n":
+				case "serialno:":
+					LOGGER.info("Checking SerialNo:" + key);
+					TestFunctionsFactory.webWait(30, TestFunctionsFactory.driver
+							.findElement(By.xpath("//div[contains(@title,'S/N " + testDataMap.get(key) + "')]")));
+					break;
 				case "services":
 				case "services:":
 					TestFunctionsFactory.selectFromDropDown(drpDwnServices, testDataMap.get(key));
@@ -116,6 +156,27 @@ public class Subscriptions {
 
 					addServicesOption = testDataMap.get(key);
 					additionalServicesflag = true;
+					break;
+				// CANCEL REASON POP UP
+				case "reason:":
+				case "reason":
+				case "cancellationreason":
+				case "cancelreason":
+					TestFunctionsFactory.selectFromDropDown(drpDownCancelPopUp, testDataMap.get(key));
+					break;
+
+				// Billing PopUP
+				case "accountnameordescription:":
+				case "accountnameordescription":
+					TestFunctionsFactory.selectFromDropDown(drpDownAccountDesc, testDataMap.get(key));
+					break;
+				case "accountnumber:":
+				case "accountnumber":
+					TestFunctionsFactory.selectFromDropDown(drpDownAccountNum, testDataMap.get(key));
+					break;
+				case "accountcontact:":
+				case "accountcontact":
+					TestFunctionsFactory.selectFromDropDown(drpDownAccountContact, testDataMap.get(key));
 					break;
 				default:
 					throw new CustomisedException(fieldValue,
@@ -193,6 +254,7 @@ public class Subscriptions {
 			Set<String> testDataKey = testDataMap.keySet();
 			for (String key : testDataKey) {
 				fieldValue = key;
+				LOGGER.info("SN CHECK" + key.toLowerCase().trim().replaceAll(" ", ""));
 				switch (key.toLowerCase().trim().replaceAll(" ", "")) {
 
 				case "services":
@@ -259,7 +321,53 @@ public class Subscriptions {
 
 	}
 
-	public void actions(String action) throws CustomisedException, Exception {
+	public void VerifySelectCustomerWarningPopUp() throws CustomisedException, Exception {
+
+		fieldValue = "Select Customer Error PopUp";
+		try {
+			TestFunctionsFactory.verifyElementdisplayed(titleSelectCustErrPopUp);
+			assertEquals(messageSelectCustErrPopUp.getText().trim().toLowerCase(),
+					(FileHandling.getProperty("SUBSCRIPTION_NO_CUSTOMER_WARN")).trim().toLowerCase());
+
+		} catch (Exception e) {
+			if (!CustomisedException.getFieldValue().equals(null)) {
+				throw new CustomisedException(
+						"Subscriptions page is facing problem with" + CustomisedException.getFieldValue(),
+						CustomisedException.getErrorMessage());
+			} else {
+				throw new CustomisedException(fieldValue, e.getMessage().toString());
+			}
+
+		}
+
+	}
+
+	public void VerifyUnSavedSubscriptionWarningPopUp() throws CustomisedException, Exception {
+
+		fieldValue = "Unsaved Subscription warning PopUp";
+		try {
+			System.out.println(messageUnsavedWarning.getText());
+
+			/*
+			 * assertEquals(messageSelectCustErrPopUp.getText().trim().
+			 * toLowerCase(),
+			 * (FileHandling.getProperty("SUBSCRIPTION_NO_CUSTOMER_WARN")).trim(
+			 * ).toLowerCase());
+			 */
+		} catch (Exception e) {
+			if (!CustomisedException.getFieldValue().equals(null)) {
+				throw new CustomisedException(
+						"Subscriptions page is facing problem with" + CustomisedException.getFieldValue(),
+						CustomisedException.getErrorMessage());
+			} else {
+				throw new CustomisedException(fieldValue, e.getMessage().toString());
+			}
+
+		}
+
+	}
+
+	public void actionsSubscripition(String action) throws CustomisedException, Exception {
 
 		fieldValue = "My Worklist Page-Actions";
 		try {
@@ -273,6 +381,20 @@ public class Subscriptions {
 			case "<<Back":
 			case "BACK":
 				TestFunctionsFactory.javaScriptClick(linkback);
+				TestFunctionsFactory.waitForPageLoaded();
+				break;
+			case "OK":
+				TestFunctionsFactory.webWait(10, btnOK);
+				TestFunctionsFactory.javaScriptClick(btnOK);
+				TestFunctionsFactory.waitForPageLoaded();
+				break;
+
+			case "CANCEL":
+				TestFunctionsFactory.javaScriptClick(btnCancelPopUp);
+				TestFunctionsFactory.waitForPageLoaded();
+				break;
+			case "CONFIRM":
+				TestFunctionsFactory.javaScriptClick(btnConfirmBillingPopUp);
 				TestFunctionsFactory.waitForPageLoaded();
 				break;
 			default:
@@ -293,4 +415,5 @@ public class Subscriptions {
 		}
 
 	}
+
 }
