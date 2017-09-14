@@ -1,1 +1,0 @@
-{"make":"CAT","serialNumber":"RRR10114","attachedDevices":[{"commercialType":"PLE641","type":"A5:N2","deviceId":"RRR10114VIRT","attachedEcms":[{"serialNumber":"RRR10114TR"}],"attachedRadios":[{"serialNumber":"RRR10114CR"}]}],"components":[{"serialNumber":"RRR10114Comp","make":"CAT"}]}
