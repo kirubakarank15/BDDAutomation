@@ -44,65 +44,73 @@ Feature: Subscription Contract Visualization - Contract Period and Automatic Ren
     When Navigate to "MY WORKLIST"
     And Logged in CATProfile as "<Dealercode>"
     When Search Asset details as "S/N =<S/N>" in My Worklist Page
-    And Verify in UI "ContractPeriod_dropdown.value=No Contract"
+    And Verify in UI "ContractPeriod.dropdown=<value>"
     Then Verify in UI "AutoRenew_checkbox.selection=false"
+      | value       |
+      | No contract |
 
   @DealerProfile @US_163 @TC_531 @Positive
   Scenario: To Verify the AutoRenew option not selectable when No Contract period is selected in Dealer Login
     When Navigate to "MY WORKLIST"
     And Logged in DealerProfile as "<Dealercode>"
     When Search Asset details as "S/N =<S/N>" in My Worklist Page
-    And Verify in UI "ContractPeriod_dropdown.value=No Contract"
+    And Verify in UI "ContractPeriod.dropdown=<value>"
     Then Verify in UI "AutoRenew_checkbox.selection=false"
+      | value       |
+      | No contract |
 
   @CatProfile @US_163 @TC_532 @Positive
   Scenario: To Verify the AutoRenew option is selectable when Contract Period is 1,2,3 years in CAT login
     When Navigate to "MY WORKLIST"
     And Logged in CATProfile as "<Dealercode>"
     When Search Asset details as "S/N =<S/N>" in My Worklist Page
-    And Verify in UI "ContractPeriod_dropdown.value=<value>"
-    Then Verify in UI "AutoRenew_checkbox.selection=Checked"
-    And Verify in UI "AutoRenew_checkbox.selection=true" by default after selecting Contract period as 1,2,3 years
-      | value  |
-      | 1 year |
-      | 2 year |
-      | 3 year |
+    And Verify in UI "ContractPeriod.dropdown=<value>"
+    Then Verify in UI "AutoRenew.checkbox=Checked"
+    And Verify in UI "AutoRenew.checkbox=true" by default after selecting Contract period as 1,2,3 years
+      | value       |
+      | No Contract |
+      | 1 year      |
+      | 2 year      |
+      | 3 year      |
 
   @DealerProfile @US_163 @TC_533 @Positive
   Scenario: To Verify  AutoRenew option is selectable when Contract Period is 1,2,3 years in Dealerlogin
     When Navigate to "MY WORKLIST"
     And Logged in DealerProfile as "<Dealercode>"
     When Search Asset details as "S/N =<S/N>" in My Worklist Page
-    And Verify in UI "ContractPeriod_dropdown.value=<value>"
-    Then Verify in UI "AutoRenew_checkbox.selection=Checked"
-    And Verify in UI "AutoRenew_checkbox.selection=Checked" by default after selecting Contract period as 1,2,3 years
-      | value  |
-      | 1 year |
-      | 2 year |
-      | 3 year |
+    And Verify in UI "ContractPeriod.dropdown=<value>"
+    Then Verify in UI "AutoRenew.checkbox=Checked"
+    And Verify in UI "AutoRenew.checkbox=Checked" by default after selecting Contract period as 1,2,3 years
+      | value       |
+      | No Contract |
+      | 1 year      |
+      | 2 year      |
+      | 3 year      |
 
   @CatProfile @US_163 @TC_534 @Positive
   Scenario: To Verify the AutoRenew option when the checkbox is unchecked in CAT login
     When Navigate to "MY WORKLIST"
     And Logged in CATProfile as "<Dealercode>"
     When Search Asset details as "S/N =<S/N>" in My Worklist Page
-    And Verify in UI "ContractPeriod_dropdown.value=<value>"
-    Then Verify in UI "AutoRenew_checkbox.selection=Unchecked"
+    And Verify in UI "ContractPeriod.dropdown=<value>"
+    Then Verify in UI "AutoRenew.checkbox=Unchecked"
     And Verify in UI AutoRenewal is opted out
-      | value  |
-      | 1 year |
-      | 2 year |
-      | 3 year |
+      | value       |
+      | No Contract |
+      | 1 year      |
+      | 2 year      |
+      | 3 year      |
 
   @DealerProfile @US_163 @TC_535 @Positive
   Scenario: To Verify the AutoRenew option when the checkbox is unchecked in Dealer login
     When Navigate to "MY WORKLIST"
     And Logged in DealerProfile as "<Dealercode>"
     When Search Asset details as "S/N =<S/N>" in My Worklist Page
-    And Verify in UI "ContractPeriod_dropdown.value=<value>"
-    Then Verify in UI "AutoRenew_checkbox.selection=Unchecked"
+    And Verify in UI "ContractPeriod.dropdown=<value>"
+    Then Verify in UI "AutoRenew.checkbox=Unchecked"
     And Verify in UI AutoRenewal is opted out
-      | value  |
-      | 1 year |
-      | 2 year |
-      | 3 year |
+      | value       |
+      | No Contract |
+      | 1 year      |
+      | 2 year      |
+      | 3 year      |
