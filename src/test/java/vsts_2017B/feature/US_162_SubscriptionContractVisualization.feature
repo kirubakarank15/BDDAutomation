@@ -75,21 +75,25 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
   Scenario Outline: To Verify PromotionName and DiscountAmount are displayed while setting a new subscription for an asset in CAT profile
     When Search Asset details as "Serial Number" in My Worklist Page
     Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" for the new Subscription
+    And Verify the values of "ApplicablePromotionName", "DiscountAmount" for the selected Subscription are retrieved from Zuora Promotion App correctly
 
   @DealerProfile @US_162 @TC_503 @Postitive
   Scenario Outline: To Verify PromotionName and DiscountName are displayed while setting a new subscription for an asset in Dealer Profile
     When Search Asset details as "Serial Number" in My Worklist Page
     Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" for the new Subscription
+    And Verify the values of "ApplicablePromotionName", "DiscountAmount" for the selected Subscription are retrieved from Zuora Promotion App correctly
 
   @CatProfile @US_162 @TC_504 @Postitive
   Scenario Outline: To Verify PromotionName and DiscountName are displayed while changing existing subscription for an asset in CAT profile
     When Search Asset details as "Serial Number" in My Worklist Page
     Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" while changing an existing Subscription
+    And Verify the values of "ApplicablePromotionName", "DiscountAmount" for the selected Subscription are retrieved from Zuora Promotion App correctly
 
   @DealerProfile @US_162 @TC_505 @Positive
   Scenario Outline: To Verify PromotionName and DiscountName are displayed while changing existing subscription for an asset in Dealer Profile
     When Search Asset details as "Serial Number" in My Worklist Page
     Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" while changing an existing Subscription
+    And Verify the values of "ApplicablePromotionName", "DiscountAmount" for the selected Subscription are retrieved from Zuora Promotion App correctly
 
   @CatProfile @US_162 @TC_506 @Positive
   Scenario Outline: To Verify PromotionName and DiscountName are not displayed for already subscribed assets in CAT profile

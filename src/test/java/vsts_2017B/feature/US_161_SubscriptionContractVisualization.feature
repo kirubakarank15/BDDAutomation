@@ -1,6 +1,6 @@
 @US_161 @DSP @2017B @SubscriptionContractVisualization
 Feature: Subscription Contract Visualization - Subscription Pricing Value
-  This feature is to Verify Subscription Contract Visualization for CAT/Dealer Profiles in DSP
+  This feature is to Verify Subscription Pricing values are displayed for Subscriptions
 
   Scenario: Navigate to My Worklist
     Given Login into DSP Portal
@@ -141,16 +141,28 @@ Feature: Subscription Contract Visualization - Subscription Pricing Value
     When Dealer user is viewing the subscription selection dropdown for an asset with "<Serial Number>"
     Then Verify in UI "SubscriptionPricingValue.isDisplayed=True" for all subscriptions at Customer level dropdown for "<My.Cat.Com>" application alone
 
-  @CatProfile @US_161 @TC_452 @Positive
+  @CatProfile @US_161 @TC_452 @Negative
   Scenario: To Verify Subscription pricing values are not displayed when only cat level subscription is selected
     When Navigate to "MY WORKLIST"
     And Logged in CATProfile as "<DealerCode>"
     When Cat user is trying to set subscription for Only CAT level for PLWEB application
     Then Verify in UI "Subscription pricing values.isDisplayed=false" at cat level
 
-  @CatProfile @US_161 @TC_455 @Positive
-  Scenario: To Verify Subscription pricing values are not displayed for Onboard analytics after selecting cat level subscription
+  @CatProfile @US_161 @TC_455 @Negative
+  Scenario: To Verify Subscription pricing values are not displayed for Onboard analytics after selecting cat level subscription for PLWEB application
     When Navigate to "MY WORKLIST"
     And Logged in CATProfile as "<DealerCode>"
-    When Cat user selected some subscription at Cat level
+    When Cat user selected some higher level subscription than dealer at Cat level
     Then Verify in UI "Subscription pricing values.isDisplayed=false" for Onboard analytics after selecting cat level subscription
+    
+    @CatProfile @US_161 @TC_ @Negative
+    Scenario: To Verify Subscription pricing values are not displayed for Onboard analytics Add on for VisionLink application as Cat profile
+    And Logged in CATProfile as "<DealerCode>"
+    When Cat user selected some subscription at Customer level
+    Then Verify in UI "Subscription pricing values.isDisplayed=false" for Onboard analytics for VisionLink application
+
+    @DealerProfile @US_161 @TC_ @Negative
+    Scenario: To Verify Subscription pricing values are not displayed for Onboard analytics Add on for VisionLink application as Dealer profile
+    And Logged in DealerProfile as "<DealerCode>"
+    When Dealer user selected some subscription at Customer level
+    Then Verify in UI "Subscription pricing values.isDisplayed=false" for Onboard analytics for VisionLink application
