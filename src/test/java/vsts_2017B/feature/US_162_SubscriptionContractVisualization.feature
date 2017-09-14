@@ -6,7 +6,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
     Given Login into DSP Portal
 
   @CatProfile @US_162 @TC_495 @Postitive
-  Scenario Outline: To Verify applicable PromotionName and DiscountAmount for the selected subscription in CAT profile
+  Scenario Outline: To Verify Applicable PromotionName and DiscountAmount for the selected subscription in CAT profile
     When Navigate to "MY WORKLIST"
     And Logged in CatProfile as "<Dealercode>"
     When Search Asset details as "Serial Number" in My Worklist Page
@@ -22,7 +22,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
       | M610       |               |               |                  |
 
   @DealerProfile @US_162 @TC_499 @Postitive
-  Scenario Outline: To Verify applicable PromotionName and DiscountAmount for the selected subscription in Dealer profile
+  Scenario Outline: To Verify Applicable PromotionName and DiscountAmount for the selected subscription in Dealer profile
     When Navigate to "MY WORKLIST"
     And Logged in DealerProfile as "<Dealercode>"
     When Search Asset details as "Serial Number" in My Worklist Page
@@ -38,7 +38,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
       | M610       |               |               |                  |
 
   @CatProfile @US_162 @TC_500 @Postitive
-  Scenario Outline: To Verify updated values of applicable promotionName and DiscountAmount if change in subscription happened in CAT profile
+  Scenario Outline: To Verify updated values of Applicable promotionName and DiscountAmount if change in subscription happened in CAT profile
     When Navigate to "MY WORKLIST"
     And Logged in CatProfile as "<Dealercode>"
     When Search Asset details as "Serial Number" in My Worklist Page
@@ -55,7 +55,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
       | M610       |               |               |                  |
 
   @DealerProfile @US_162 @TC_501 @Postitive
-  Scenario Outline: To Verify updated values of applicable PromotionName and DiscountAmount if change in subscription happened in Dealer Profile
+  Scenario Outline: To Verify updated values of Applicable PromotionName and DiscountAmount if change in subscription happened in Dealer Profile
     When Navigate to "MY WORKLIST"
     And Logged in DealerProfile as "<Dealercode>"
     When Search Asset details as "Serial Number" in My Worklist Page

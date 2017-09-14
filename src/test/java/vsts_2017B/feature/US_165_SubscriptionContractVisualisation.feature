@@ -1,6 +1,6 @@
 @US_165 @DSP @2017B @SubscriptionContractVisualization
 Feature: Subscription Contract Visualization -  Payment Preview Popup - Newly Onboarded asset
-  This feature is to Verify and Validate Payment Preview Popup and its fields for Newly Onboarded assets while Setting Subscription
+  This feature is to Verify and Validate Payment Preview Popup and its fields for Newly Onboarded assets
 
   Scenario: Navigate to My Worklist
     Given Login into DSP Portal
@@ -13,7 +13,7 @@ Feature: Subscription Contract Visualization -  Payment Preview Popup - Newly On
     Then Verify Subscription details should be displayed with "S/N =<S/N>" in My Worklist page
     When enter or modify Subscription details as "Services=<Services>,Cat =<Cat>,Dealer =<Dealer>,Customer =<Customer>,Base Subscription =<Base Subscription>,Additional Services  =<Additional Services>"
     And click "Review & Submit" button or link
-    Then Verify in UI Payment Preview popup is displayed
+    Then Verify in UI "PaymentPreviewPopup.isDisplayed=true"
 
     Examples: 
       | Device Type | S/N      | Services         | Cat             | Dealer          | Customer       | Base Subscription      | Additional Services |
@@ -28,7 +28,7 @@ Feature: Subscription Contract Visualization -  Payment Preview Popup - Newly On
     Then Verify Subscription details should be displayed with "S/N =<S/N>" in My Worklist page
     When enter or modify Subscription details as "Services=<Services>,Cat =<Cat>,Dealer =<Dealer>,Customer =<Customer>,Base Subscription =<Base Subscription>,Additional Services  =<Additional Services>"
     And click "Review & Submit" button or link
-    Then Verify in UI Payment Preview popup is displayed
+    Then Verify in UI "PaymentPreviewPopup.isDisplayed=true"
 
     Examples: 
       | Device Type | S/N      | Services         | Dealer          | Customer       | Base Subscription      | Additional Services |
@@ -36,7 +36,7 @@ Feature: Subscription Contract Visualization -  Payment Preview Popup - Newly On
       | PLE641      | AUT10011 | Product Link Web | Aide (EC4-14-T) | Vitals (EC1-4) |                        |                     |
 
   @CatProfile @US_165 @TC_566 @Positive
-  Scenario Outline: To Verify the Payment Preview popup fields in CAT profile for newly subscribed asset
+  Scenario Outline: To Verify the Payment Preview popup fields in CAT profile for newly subscribed asset in Cat login
     When Navigate to "My worklist"
     And Logged in CatProfile as "<Dealercode>"
     Then Verify Subscription details should be displayed with "S/N =<S/N>" in My Worklist page
@@ -120,7 +120,7 @@ Feature: Subscription Contract Visualization -  Payment Preview Popup - Newly On
     Then verify the message "New Subscription Applied Successfully" is displayed
 
   @CATProfile @US_165 @TC_598 @Positive
-  Scenario Outline: To Verify Contract Period and Renewal Opt-in/Opt-Out dropdown should not appear after subscription is sucessfull in Cat login
+  Scenario Outline: To Verify Contract Period and Renewal Opt-in/Opt-Out dropdown should not appear after subscription is sucessful in Cat login
     When Navigate to "My worklist"
     And Logged in CATProfile as "<Dealercode>"
     Then Verify Subscription details should be displayed with "S/N =<S/N>" in My Worklist page
@@ -130,8 +130,8 @@ Feature: Subscription Contract Visualization -  Payment Preview Popup - Newly On
     And Click "Submit" button
     Then Vefiry in UI "Contract Period" & "Renewal Opt-In / Out" drop-down should not appear in the worklist after subscription becomes active
 
- @DealerProfile @US_165 @TC_599 @Positive
-  Scenario Outline: To Verify Contract Period and Renewal Opt-in/Opt-Out dropdown should not appear after subscription is sucessfull in Dealer login
+  @DealerProfile @US_165 @TC_599 @Positive
+  Scenario Outline: To Verify Contract Period and Renewal Opt-in/Opt-Out dropdown should not appear after subscription is sucessful in Dealer login
     When Navigate to "My worklist"
     And Logged in DealerProfile as "<Dealercode>"
     Then Verify Subscription details should be displayed with "S/N =<S/N>" in My Worklist page
@@ -168,6 +168,69 @@ Feature: Subscription Contract Visualization -  Payment Preview Popup - Newly On
     When Navigate to "My worklist"
     And Logged in DealerProfile as "<Dealercode>"
     Then Verify Subscription details should be displayed with "S/N =<S/N>" in My Worklist page
-    When enter or modify Subscription details as "Services=<Services>,Cat =<Cat>,Dealer =<Dealer>,Customer =<Customer>,Base Subscription =<Base Subscription>,Additional Services  =<Additional Services>"
+    When enter or modify Subscription details as "Services=<Services>,Cat =<Cat>,Dealer =<Dealer>"
     And click "Review & Submit" button or link
     Then Verify in UI "CatBilling_popup.isDisplayed=true"
+      | S/N | Serives          | Cat              | Dealer       |
+      |     | Product Link Web | Advisor(EC24-54) | Aide(EC4-14) |
+      |     | Product Link Web | Advisor(EC24-54) |              |
+
+  @CATProfile @US_165 @TC_624 @Negative
+  Scenario Outline: To Verify and Validate Subscription and Additional Services fields in Payment Preview Popup after selecting Base/Addon Subscriptions in Cat login
+    When Navigate to "My worklist"
+    And Logged in CATProfile as "<Dealercode>"
+    Then Verify Subscription details should be displayed with "S/N =<S/N>" in My Worklist page
+    When enter or modify Subscription details as "Services=<Services>,Cat =<Cat>,Dealer =<Dealer>,Customer =<Customer>,Base Subscription =<Base Subscription>,Additional Services  =<Additional Services>"
+    And click "Review & Submit" button or link
+    Then Verify in UI "PaymentPreviewPopup.isDisplayed=true"
+    And Validate all the Base and Add on Subscriptions details are displayed as expected in payment preview popup
+
+    Examples: 
+      | Device Type | S/N      | Services         | Cat             | Dealer          | Customer       | Base Subscription      | Additional Services_1 | Additioanl Services_2 |
+      | PLE641      | AUT10011 | VisionLink       |                 |                 |                | Cat Basic - 10 Minutes | Onboard Analytics     | Advanced Produtivity  |
+      | PLE641      | AUT10011 | Product Link Web | Aide (EC4-14-T) | Aide (EC4-14-T) | Vitals (EC1-4) |                        |                       |                       |
+
+  @DealerProfile @US_165 @TC_625 @Negative
+  Scenario Outline: To Verify and Validate Subscription and Additional Services fields after selecting Base/Addon Subscriptions in Payment Preview Popup in Dealer login
+    When Navigate to "My worklist"
+    And Logged in DealerProfile as "<Dealercode>"
+    Then Verify Subscription details should be displayed with "S/N =<S/N>" in My Worklist page
+    When enter or modify Subscription details as "Services=<Services>,Cat =<Cat>,Dealer =<Dealer>,Customer =<Customer>,Base Subscription =<Base Subscription>,Additional Services  =<Additional Services>"
+    And click "Review & Submit" button or link
+    Then Verify in UI "PaymentPreviewPopup.isDisplayed=true"
+    And Validate all the Base and Add on Subscriptions details are displayed as expected in payment preview popup
+
+    Examples: 
+      | Device Type | S/N      | Services         | Cat             | Dealer          | Customer       | Base Subscription      | Additional Services_1 | Additioanl Services_2 |
+      | PLE641      | AUT10011 | VisionLink       |                 |                 |                | Cat Basic - 10 Minutes | Onboard Analytics     | Advanced Produtivity  |
+      | PLE641      | AUT10011 | Product Link Web | Aide (EC4-14-T) | Aide (EC4-14-T) | Vitals (EC1-4) |                        |                       |                       |
+
+  @CATProfile @US_165 @TC_626 @Negative
+  Scenario Outline: To Verify and Validate Subscription and Additional Services fields after removing some Add On services in Payment Preview popup in Cat login
+    When Navigate to "My worklist"
+    And Logged in CATProfile as "<Dealercode>"
+    Then Verify Subscription details should be displayed with "S/N =<S/N>" in My Worklist page
+    When enter or modify Subscription details as "Services=<Services>,Cat =<Cat>,Dealer =<Dealer>,Customer =<Customer>,Base Subscription =<Base Subscription>,Additional Services  =<Additional Services>"
+    And click "Review & Submit" button or link
+    Then Verify in UI "PaymentPreviewPopup.isDisplayed=true"
+    And Validate all the Base and Add on Subscriptions details are displayed as expected in payment preview popup
+
+    Examples: 
+      | Device Type | S/N      | Services         | Cat             | Dealer          | Customer       | Base Subscription      | Additional Services_1 | Additioanl Services_2 |
+      | PLE641      | AUT10011 | VisionLink       |                 |                 |                | Cat Basic - 10 Minutes | Onboard Analytics     |                       |
+      | PLE641      | AUT10011 | Product Link Web | Aide (EC4-14-T) | Aide (EC4-14-T) | Vitals (EC1-4) |                        |                       |                       |
+
+  @DealerProfile @US_165 @TC_627 @Negative
+  Scenario Outline: To Verify and Validate Subscription and Additional Services fields after removing some Add On services in Payment Preview popup in Dealer login
+    When Navigate to "My worklist"
+    And Logged in DealerProfile as "<Dealercode>"
+    Then Verify Subscription details should be displayed with "S/N =<S/N>" in My Worklist page
+    When enter or modify Subscription details as "Services=<Services>,Cat =<Cat>,Dealer =<Dealer>,Customer =<Customer>,Base Subscription =<Base Subscription>,Additional Services  =<Additional Services>"
+    And click "Review & Submit" button or link
+    Then Verify in UI "PaymentPreviewPopup.isDisplayed=true"
+    And Validate all the Base and Add on Subscriptions details are displayed as expected in payment preview popup
+
+    Examples: 
+      | Device Type | S/N      | Services         | Cat             | Dealer          | Customer       | Base Subscription      | Additional Services_1 | Additioanl Services_2 |
+      | PLE641      | AUT10011 | VisionLink       |                 |                 |                | Cat Basic - 10 Minutes | Onboard Analytics     |                       |
+      | PLE641      | AUT10011 | Product Link Web | Aide (EC4-14-T) | Aide (EC4-14-T) | Vitals (EC1-4) |                        |                       |                       |
