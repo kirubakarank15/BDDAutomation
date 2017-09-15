@@ -3,6 +3,8 @@ package dsp.automation.subscriptions.API;
 import java.io.FileNotFoundException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,7 +40,14 @@ public class DealerInheritedScubscriptions
 	    CreateDealerSub.setBillingtUserAccountId(billingtUserAccountId);
 	    CreateDealerSub.setEndTime(CommonMethods.getCurrenttime());
 	    CreateDealerSub.setStartTime(CommonMethods.getCurrenttime());
-	    CreateDealerSub.setSerialNumber(Common_methods.SerialNumber);
+	    List<String> SerialNumbers = new ArrayList<String>();
+		SerialNumbers = Common_methods.SerialNumbers;
+		CreateDealerSub.setSerialNumber(SerialNumbers.get(0));
+		/*for (int i =0;i<=SerialNumbers.size();i++){
+			CreateDealerSub.setSerialNumber(SerialNumbers.get(i));
+		}*/
+	    
+	   // CreateDealerSub.setSerialNumber(Common_methods.SerialNumber);
         
 	    Gson gson = new Gson();
 		String DealertLevel = gson.toJson(CreateDealerSub);

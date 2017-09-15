@@ -35,7 +35,7 @@ import com.google.gson.JsonParser;
 
 import dsp.automation.utilities.DBconnection_API;
 import dsp.automation.utilities.ExcelReadWrite_API;
-
+import dsp.automation.AssetStructures.API.*;
 
 public class Common_methods {
 	// Following function will create instance all the dependent classes.

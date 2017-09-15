@@ -1,4 +1,4 @@
-@API
+@Subscription
 Feature: Update DealerInherited Subscriptions in two Levels
   This feature is to Validate Deletion of DealerInherited subscriptions in two Levels
 

@@ -8,6 +8,7 @@ import java.util.Properties;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 
+import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -128,7 +129,7 @@ public class Asset_structure_API {
 
 	@Then("^Retrieve the values of Subscription_id in AssetSubscriptionHistory Table for onboarded asset$")
 	public void retrieve_the_values_of_Subscription_id_in_AssetSubscriptionHistory_Table_for_onboarded_asset() throws Throwable {
-		properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
+		properties.load(new FileInputStream("Resources\\application.properties"));
 		String query = properties.getProperty("db.AssetSubscriptionHistory").replace("DUMMYXYZ", Asset_id);
 	    System.out.println("AssetSubscriptionHistory Query:" +query);
 	    reusemethods.getassetDetails(query);
@@ -136,7 +137,7 @@ public class Asset_structure_API {
 
 	@Then("^Retrieve the values of Subscription_id in AssetSubscription Table for onboarded asset$")
 	public void retrieve_the_values_of_Subscription_id_in_AssetSubscription_Table_for_onboarded_asset() throws Throwable {
-		properties.load(new FileInputStream("C:\\Users\\dariss\\Downloads\\Workpaces\\Automation\\Resources\\application.properties"));
+		properties.load(new FileInputStream("Resources\\application.properties"));
 		String query = properties.getProperty("db.AssetSubscription").replace("DUMMYXYZ", Asset_id);
 	    System.out.println("AssetSubscription Query:" +query);
 	    //reusemethods.getassetDetails(query);

@@ -1,7 +1,10 @@
 package dsp.automation.subscriptions.API;
 
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,7 +41,13 @@ public class CATLevelSubscription
 		createcatSub.setEndTime(CommonMethods.getCurrenttime());
 		createcatSub.setStartTime(CommonMethods.getCurrenttime());
 		//createcatSub.setSerialNumber(CommonMethods.AssetSno);
-		createcatSub.setSerialNumber(Common_methods.SerialNumber);
+		List<String> SerialNumbers = new ArrayList<String>();
+		SerialNumbers = Common_methods.SerialNumbers;
+		createcatSub.setSerialNumber(SerialNumbers.get(0));
+		/*for (int i =0;i<=SerialNumbers.size();i++){
+			createcatSub.setSerialNumber(SerialNumbers.get(i));
+		}*/
+		
 		createcatSub.setParentId(parentId);
 		
 		Gson gson = new Gson();

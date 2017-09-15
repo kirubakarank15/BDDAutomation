@@ -1,4 +1,4 @@
-@API
+@Subscription
 Feature: Update CATLevel Subscriptions for the Onboarded Asset
   This feature is to Validate Deletion of CATLevel subscriptions for the Onboarded Asset
 
