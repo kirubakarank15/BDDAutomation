@@ -1,10 +1,10 @@
-@Subscription
+@API
 Feature: Creating CATLevel Subscription for the OnboardedAsset
   This feature is to Validate creation of CATLevelsubscriptions for the OnboardedAsset
 
   @Sanity @Regression @Positive
   Scenario Outline: : Validate Subscription is set for the CATLevelSubscription
-    Then Set the Subscription for CATLevel with serialNumber,startTime,endTime, "<parentId>","<make>","<siteId>","<typeId>", "<level>", "<origin>" , "<organization>" ,"<organizationType>" ,"<associatedOrganization>" , "<associatedOrganizationType>" ,"<dcn>","<billingtUserAccountId>" and retrive the ParentID
+    Then Set CATLevelSubscription for CATLevel with serialNumber,startTime,endTime, "<parentId>","<make>","<siteId>","<typeId>", "<level>", "<origin>" , "<organization>" ,"<organizationType>" ,"<associatedOrganization>" , "<associatedOrganizationType>" ,"<dcn>","<billingtUserAccountId>" and retrive the ParentID
 
     Examples: 
       | parentId | make | siteId | typeId | level | origin | organization | organizationType | associatedOrganization | associatedOrganizationType | dcn    | billingtUserAccountId |

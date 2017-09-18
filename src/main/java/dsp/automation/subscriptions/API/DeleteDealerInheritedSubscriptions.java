@@ -54,13 +54,13 @@ public class DeleteDealerInheritedSubscriptions
 		}
 		else if(level.equals("CAT"))
 		{
-			 id = DealerInheritedScubscriptions.CATId;
+			 id = DealerInheritedSubscriptions.CATId;
 			 
 				
 		}
 		else if(level.equals("Dealer"))
 		{
-			id= DealerInheritedScubscriptions.DealerParentId;
+			id= DealerInheritedSubscriptions.DealerParentId;
 			
 		}
       APIReponse APIObj = CommonMethods_DeleteSubscriptions.apiexecutuion(requestBody, postAPIContentType, postAPIAcceptType,"POST",id);

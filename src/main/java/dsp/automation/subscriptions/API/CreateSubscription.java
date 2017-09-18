@@ -2,10 +2,10 @@ package dsp.automation.subscriptions.API;
 
 import java.util.Date;
 
-public class CreateCustomerSubscription {
+public class CreateSubscription {
 	
 	private String make;
-	private String serialNumber;
+	private String serialNumber;                  
 	private String siteId;
 	private String typeId;
 	private String level;
@@ -33,7 +33,6 @@ public class CreateCustomerSubscription {
 		this.endTime = endTime;
 	}
 
-	
 	public String getParentId() {
 		return parentId;
 	}

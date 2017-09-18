@@ -17,32 +17,33 @@ import ReusableUtils.CommonMethods_Subscriptions;*/
 import dsp.automation.AssetStructures.API.*;
 import dsp.automation.utilities.APIReponse;
 
-public class DealerInheritedScubscriptions 
+public class DealerInheritedSubscriptions 
 {
 	public static String DealerParentId= null;
 	public static String CATId = null;
 	
 	public static String DealerInheritedDealerLevelSubscription(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId ) throws FileNotFoundException, NullPointerException, IOException, JSONException
 	{
-		CreateDealerSubscription CreateDealerSub = new CreateDealerSubscription();
+		//CreateDealerSubscription CreateDealerSub = new CreateDealerSubscription();
+		CreateSubscription creatsub = new CreateSubscription();
 		
-		CreateDealerSub.setParentId(parentId);
-		CreateDealerSub.setMake(make);
-		CreateDealerSub.setSiteId(siteId);
-		CreateDealerSub.setTypeId(typeId);
-		CreateDealerSub.setLevel(level);
-		CreateDealerSub.setOrigin(origin);
-		CreateDealerSub.setOrganization(organization);
-		CreateDealerSub.setOrganizationType(organizationType);
-	    CreateDealerSub.setAssociatedOrganization(associatedOrganization);
-	    CreateDealerSub.setAssociatedOrganizationType(associatedOrganizationType);
-	    CreateDealerSub.setDcn(dcn);
-	    CreateDealerSub.setBillingtUserAccountId(billingtUserAccountId);
-	    CreateDealerSub.setEndTime(CommonMethods.getCurrenttime());
-	    CreateDealerSub.setStartTime(CommonMethods.getCurrenttime());
+		creatsub.setParentId(parentId);
+		creatsub.setMake(make);
+		creatsub.setSiteId(siteId);
+		creatsub.setTypeId(typeId);
+		creatsub.setLevel(level);
+		creatsub.setOrigin(origin);
+		creatsub.setOrganization(organization);
+		creatsub.setOrganizationType(organizationType);
+		creatsub.setAssociatedOrganization(associatedOrganization);
+		creatsub.setAssociatedOrganizationType(associatedOrganizationType);
+		creatsub.setDcn(dcn);
+		creatsub.setBillingtUserAccountId(billingtUserAccountId);
+		creatsub.setEndTime(CommonMethods.getCurrenttime());
+		creatsub.setStartTime(CommonMethods.getCurrenttime());
 	    List<String> SerialNumbers = new ArrayList<String>();
 		SerialNumbers = Common_methods.SerialNumbers;
-		CreateDealerSub.setSerialNumber(SerialNumbers.get(0));
+		creatsub.setSerialNumber(SerialNumbers.get(0));
 		/*for (int i =0;i<=SerialNumbers.size();i++){
 			CreateDealerSub.setSerialNumber(SerialNumbers.get(i));
 		}*/
@@ -50,7 +51,7 @@ public class DealerInheritedScubscriptions
 	   // CreateDealerSub.setSerialNumber(Common_methods.SerialNumber);
         
 	    Gson gson = new Gson();
-		String DealertLevel = gson.toJson(CreateDealerSub);
+		String DealertLevel = gson.toJson(creatsub);
 		System.out.println("Dealer Level:" + DealertLevel);
 		String requestBody  = DealertLevel;
 		String postAPIContentType = "application/subscriptions-v1+json";
@@ -70,26 +71,27 @@ public class DealerInheritedScubscriptions
 	public static String DealerInheritedCATLevelSubscription(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, IOException, JSONException
 	{
 	
-		CreateCatSubscription CreateCATSub  = new CreateCatSubscription();
+		//CreateCatSubscription CreateCATSub  = new CreateCatSubscription();
+		CreateSubscription creatsub = new CreateSubscription();
 		
-		CreateCATSub.setMake(make);
-		CreateCATSub.setSiteId(siteId);
-		CreateCATSub.setTypeId(typeId);
-		CreateCATSub.setLevel(level);
-		CreateCATSub.setOrigin(origin);
-		CreateCATSub.setOrganization(organization);
-		CreateCATSub.setOrganizationType(organizationType);
-		CreateCATSub.setAssociatedOrganization(associatedOrganization);
-		CreateCATSub.setAssociatedOrganizationType(associatedOrganizationType);
-		CreateCATSub.setDcn(dcn);
-		CreateCATSub.setBillingtUserAccountId(billingtUserAccountId);
-		CreateCATSub.setEndTime(CommonMethods.getCurrenttime());
-		CreateCATSub.setStartTime(CommonMethods.getCurrenttime());
-		CreateCATSub.setSerialNumber(Common_methods.SerialNumber);
-		CreateCATSub.setParentId(DealerParentId);
+		creatsub.setMake(make);
+		creatsub.setSiteId(siteId);
+		creatsub.setTypeId(typeId);
+		creatsub.setLevel(level);
+		creatsub.setOrigin(origin);
+		creatsub.setOrganization(organization);
+		creatsub.setOrganizationType(organizationType);
+		creatsub.setAssociatedOrganization(associatedOrganization);
+		creatsub.setAssociatedOrganizationType(associatedOrganizationType);
+		creatsub.setDcn(dcn);
+		creatsub.setBillingtUserAccountId(billingtUserAccountId);
+		creatsub.setEndTime(CommonMethods.getCurrenttime());
+		creatsub.setStartTime(CommonMethods.getCurrenttime());
+		creatsub.setSerialNumber(Common_methods.SerialNumber);
+		creatsub.setParentId(DealerParentId);
 		
 		Gson gson = new Gson();
-		String CATLevel = gson.toJson(CreateCATSub);
+		String CATLevel = gson.toJson(creatsub);
 		System.out.println("CAT Level:" + CATLevel);
 		String requestBody  = CATLevel;
 		String postAPIContentType = "application/subscriptions-v1+json";
