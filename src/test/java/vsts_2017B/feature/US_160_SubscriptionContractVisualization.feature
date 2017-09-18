@@ -10,23 +10,11 @@ Feature: Subscription Contract Visualization - Applications and Dealer Codes Con
   @CatProfile @US_160 @TC_268 @Positive
   Scenario Outline: To Verify the visibility of Subscription Contract Visualization feature in DSP for CAT Login
     When Search Asset details as "<SerialNumber>" in My Worklist Page
+    And Select some subscription
     Then Verify Subscription Contract Visualization feature should be visible to only "<Applications>"
 
     Examples: 
-      | DealerCode | SerialNumber | Application      |
-      | B330       |              | VisionLink       |
-      | E250       |              | Product Link Web |
-      | H160       |              | My.Cat.Com       |
-      | N030       |              |                  |
-      | M610       |              |                  |
-
-  @DealerProfile @US_160 @TC_270 @Positive
-  Scenario Outline: To Verify the visibility of Subscription Contract Visualization feature in DSP for Dealer Login
-    When Search Asset details as "<SerialNumber>" in My Worklist Page
-    Then Verify Subscription Contract Visualization feature should be visible to only "<Applications>"
-
-    Examples: 
-      | DealerCode | SerialNumber | Application      |
+      | DealerCode | SerialNumber | Applications     |
       | B330       |              | VisionLink       |
       | E250       |              | Product Link Web |
       | H160       |              | My.Cat.Com       |
@@ -36,6 +24,7 @@ Feature: Subscription Contract Visualization - Applications and Dealer Codes Con
   @CatProfile @US_160 @TC_271 @Positive
   Scenario Outline: To Verify Subscription Contract Visualization feature is Configurable for other dealer codes in DSP for CAT Login
     When Search Asset details as "<SerialNumber>" in My Worklist Page
+    And Select some subscription
     Then Verify Subscription Contract Visualization feature is enabled for all other dealercodes whenever zuora starts supporting billing for those dealers
 
     Examples: 
@@ -45,9 +34,24 @@ Feature: Subscription Contract Visualization - Applications and Dealer Codes Con
       | TD67       |              | My.Cat.Com       |
       | E350       |              |                  |
 
+  @DealerProfile @US_160 @TC_270 @Positive
+  Scenario Outline: To Verify the visibility of Subscription Contract Visualization feature in DSP for Dealer Login
+    When Search Asset details as "<SerialNumber>" in My Worklist Page
+    And Select some subscription
+    Then Verify Subscription Contract Visualization feature should be visible to only "<Applications>"
+
+    Examples: 
+      | DealerCode | SerialNumber | Application      |
+      | B330       |              | VisionLink       |
+      | E250       |              | Product Link Web |
+      | H160       |              | My.Cat.Com       |
+      | N030       |              |                  |
+      | M610       |              |                  |
+
   @DealerProfile @US_160 @TC_272 @Positive
   Scenario Outline: To Verify Subscription Contract Visualization feature is Configurable for other dealer codes in DSP for Dealer Login
     When Search Asset details as "<SerialNumber>" in My Worklist Page
+    And Select some subscription
     Then Verify Subscription Contract Visualization feature is enabled for all other dealercodes whenever zuora starts supporting billing for those dealers
 
     Examples: 
