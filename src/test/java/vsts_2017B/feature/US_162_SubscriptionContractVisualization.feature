@@ -9,7 +9,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
   Scenario Outline: To Verify Applicable PromotionName and DiscountAmount for the selected subscription in CAT profile
     When Navigate to "MY WORKLIST"
     And Logged in CatProfile as "<Dealercode>"
-    When Search Asset details as "Serial Number" in My Worklist Page
+    And Search Asset details as "Serial Number" in My Worklist Page
     Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" for the selected Subscription
     And Verify the values of "ApplicablePromotionName", "DiscountAmount" for the selected Subscription are retrieved from Zuora Promotion App correctly.
 
@@ -25,7 +25,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
   Scenario Outline: To Verify Applicable PromotionName and DiscountAmount for the selected subscription in Dealer profile
     When Navigate to "MY WORKLIST"
     And Logged in DealerProfile as "<Dealercode>"
-    When Search Asset details as "Serial Number" in My Worklist Page
+    And Search Asset details as "Serial Number" in My Worklist Page
     Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" for the selected Subscription
     And Verify the values of "ApplicablePromotionName", "DiscountAmount" for the selected Subscription are retrieved from Zuora Promotion App correctly
 
@@ -41,7 +41,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
   Scenario Outline: To Verify updated values of Applicable promotionName and DiscountAmount if change in subscription happened in CAT profile
     When Navigate to "MY WORKLIST"
     And Logged in CatProfile as "<Dealercode>"
-    When Search Asset details as "Serial Number" in My Worklist Page
+    And Search Asset details as "Serial Number" in My Worklist Page
     And Change the subscription for the asset
     Then Verify in UI "ApplicablePromotionName.isDisplayed=true","DiscountAmount.isDisplayed=true" for the selected Subscription are updated accordingly
     And Verify the values of "ApplicablePromotionName", "DiscountAmount" for the selected Subscription are retrieved from Zuora Promotion App correctly
