@@ -1,13 +1,13 @@
 @2017B @US_55 @US_493640 @ScanningofPL161
 Feature: Change or Edit Product Id Change popup for PL161
 
-  @FactoryUserProfile @Sprint5 @FunctionalPositive1
+  @FactoryUserProfile @Sprint5 @FunctionalPositive
   Scenario: Navigation to My Worklist in Chrome and IE
     Given Login into DSP Portal as "Role = <Role>"
       | Role            |
       | FactoryUserName |
 
-  @FactoryUserProfile @Sprint5 @FunctionalPositive2 @CATMake @NonCATMake @PL161
+  @FactoryUserProfile @Sprint5 @FunctionalPositive @CATMake @NonCATMake @PL161
   Scenario: Verify UI of Edit Serial Number popup in My Worklist Page in Chrome and IE
     When Navigate to "My worklist"
     And Click in UI "Equipment S/N Pencil icon.isEnabled =True" in MyWorklist Page
@@ -15,7 +15,7 @@ Feature: Change or Edit Product Id Change popup for PL161
     When clicked New SerialNumber radiobutton in Edit Serial Number pop up
     Then "SerialNumber.Textbox = Empty,SerialNumber Textbox Msg =Please select a valid Serial Number or Enter a new Serial Number "in Edit Serial Number pop up
 
-  @FactoryUserProfile @Sprint5 @FunctionalPositive3 @CATMake @PL161
+  @FactoryUserProfile @Sprint5 @FunctionalPositive @CATMake @PL161
   Scenario Outline: Scanning Valid Productid for CATMake,PL161 with No active Subscriptions for the Asset in Chrome and IE
     When Click in UI "Equipment S/N Pencil icon.isEnabled =True" in MyWorklist Page
     Then "Edit Serial Number pop up.isDisplayed = True" in MyWorklist Page
@@ -27,7 +27,7 @@ Feature: Change or Edit Product Id Change popup for PL161
       | New SerialNumber | CommercialType |
       | RAM000103        | PL161          |
 
-  @FactoryUserProfile @Sprint5 @FunctionalPositive4 @CATMake @PL161
+  @FactoryUserProfile @Sprint5 @FunctionalPositive @CATMake @PL161
   Scenario Outline: Cancel Scanning of Valid Productid for CATMake for PL161 with No active Subscriptions for the Asset in Chrome and IE
     When Click in UI "Equipment S/N Pencil icon.isEnabled =True" in MyWorklist Page
     Then "Edit Serial Number pop up.isDisplayed = True" in MyWorklist Page
@@ -38,7 +38,7 @@ Feature: Change or Edit Product Id Change popup for PL161
       | New SerialNumber | CommercialType |
       | RAM000103        | PL161          |
 
-  @FactoryUserProfile @Sprint5 @FunctionalPositive5 @CATMake @NonPL161
+  @FactoryUserProfile @Sprint5 @FunctionalPositive @CATMake @NonPL161
   Scenario Outline: Scanning Valid Productid for CATMake other than PL161 with No active Subscriptions for the Asset in Chrome and IE
     When Click in UI "Equipment S/N Pencil icon.isEnabled =True" in MyWorklist Page
     Then "Edit Serial Number pop up.isDisplayed = True" in MyWorklist Page
@@ -50,7 +50,7 @@ Feature: Change or Edit Product Id Change popup for PL161
       | New SerialNumber | CommercialType |
       | RAM000103        | PL161          |
 
-  @FactoryUserProfile @Sprint5 @FunctionalPositive6 @CATMake @NonPL161
+  @FactoryUserProfile @Sprint5 @FunctionalPositive @CATMake @NonPL161
   Scenario Outline: Cancel Scanning of Valid Productid for CATMake other than PL161 with No active Subscriptions for the Asset in Chrome and IE
     When Click in UI "Equipment S/N Pencil icon.isEnabled =True" in MyWorklist Page
     Then "Edit Serial Number pop up.isDisplayed = True" in MyWorklist Page
@@ -61,7 +61,7 @@ Feature: Change or Edit Product Id Change popup for PL161
       | New SerialNumber | CommercialType |
       | RAM000103        | PL161          |
 
-  @FactoryUserProfile @Sprint5 @FunctionalNegative7 @CATMake @PL161
+  @FactoryUserProfile @Sprint5 @FunctionalNegative @CATMake @PL161
   Scenario Outline: Set Make as CAT for CATMake for PL161 for the Asset in Chrome and IE
     When Click in UI "Equipment S/N Pencil icon.isEnabled =True" in MyWorklist Page
     Then "Edit Serial Number pop up.isDisplayed = True" in MyWorklist Page
@@ -72,7 +72,7 @@ Feature: Change or Edit Product Id Change popup for PL161
       | New SerialNumber | CommercialType |
       | RAM000103        | PL161          |
 
-  @FactoryUserProfile @Sprint5 @FunctionalNegative8 @CATMake @PL161
+  @FactoryUserProfile @Sprint5 @FunctionalNegative @CATMake @PL161
   Scenario Outline: Scan Invalid Productid with SpecialCharacters for CATMake for PL161 with No active Subscriptions for the Asset in Chrome and IE
     When Click in UI "Equipment S/N Pencil icon.isEnabled =True" in MyWorklist Page
     Then "Edit Serial Number pop up.isDisplayed = True" in MyWorklist Page
@@ -83,7 +83,7 @@ Feature: Change or Edit Product Id Change popup for PL161
       | New SerialNumber | CommercialType |
       | RAM000103        | PL161          |
 
-  @FactoryUserProfile @Sprint5 @FunctionalPositive9 @NonCATMake @PL161
+  @FactoryUserProfile @Sprint5 @FunctionalPositive @NonCATMake @PL161
   Scenario Outline: Validate ProductId characterLimit for NonCATmake for PL161 with No active Subscriptions for the Asset in Chrome and IE
     When Click in UI "Equipment S/N Pencil icon.isEnabled =True" in MyWorklist Page
     Then "Edit Serial Number pop up.isDisplayed = True" in MyWorklist Page
@@ -94,7 +94,7 @@ Feature: Change or Edit Product Id Change popup for PL161
       | New SerialNumber | CommercialType |
       | RAM000103        | PL161          |
 
-  @FactoryUserProfile @Sprint5 @FunctionalPositive10 @NonCATMake @PL161
+  @FactoryUserProfile @Sprint5 @FunctionalPositive @NonCATMake @PL161
   Scenario Outline: Validate ProductId with space and Hyphen for NonCATmake for PL161 with No active Subscriptions for the Asset in Chrome and IE
     When Click in UI "Equipment S/N Pencil icon.isEnabled =True" in MyWorklist Page
     Then "Edit Serial Number pop up.isDisplayed = True" in MyWorklist Page

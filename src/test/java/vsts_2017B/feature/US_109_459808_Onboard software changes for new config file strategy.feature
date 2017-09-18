@@ -1,7 +1,7 @@
 @2017B @US_109 @US_459808 @NewConfigFile
 Feature: Verify Device Info Popup in DSP for software changes of new config file
 
-  @CATLoginProfile @DealerLoginUserName @FactoryUserProfile @Sprint5 @FunctionalPositive1
+  @CATLoginProfile @DealerLoginUserName @FactoryUserProfile @Sprint5 @FunctionalPositive
   Scenario Outline: Navigation to My Worklist in Chrome and IE
     Given Login into DSP Portal as "Role = <Role>"
 
@@ -11,7 +11,7 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
       | DealerLoginUserName |
       | FactoryUserName     |
 
-  @CATLoginProfile @Sprint5 @FunctionalPositive2
+  @CATLoginProfile @Sprint5 @FunctionalPositive
   Scenario Outline: Verify the Base Config and Base Config Date Field  in Device Info Popup for various DeviceTypes in Chrome and IE for CATLoginProfile
     When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS
     And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
@@ -24,7 +24,7 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
       | Customer     | PL241          |
       | Engineeering | PLE641+PL631   |
 
-  @DealerLoginUserName @Sprint5 @FunctionalPositive3
+  @DealerLoginUserName @Sprint5 @FunctionalPositive
   Scenario Outline: Verify the Base Config and Base Config Date Field  in Device Info Popup for various DeviceTypes in Chrome and IE for DealerLoginUserName
     When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS
     And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
@@ -37,7 +37,7 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
       | Customer     | PLE640         |
       | Engineeering | PLE742         |
 
-  @FactoryUserName @Sprint5 @FunctionalPositive4
+  @FactoryUserName @Sprint5 @FunctionalPositive
   Scenario Outline: Verify the Base Config and Base Config Date Field  in Device Info Popup for various DeviceTypes in Chrome and IE for FactoryUserName
     When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS
     And clicked on Device Info Popup for "CommercialType=<CommercialType>"in MyWorklist Page
@@ -50,7 +50,7 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
       | Customer     | PLE742         |
       | Engineeering | PLE640         |
 
-  @CATLoginProfile @Sprint5 @FunctionalPositive5 @SingleConfigfile
+  @CATLoginProfile @Sprint5 @FunctionalPositive @SingleConfigfile
   Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Single Config in Chrome and IE for CATLoginProfile
     When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Single Config
     And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
@@ -63,7 +63,7 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
       | Single     | PLE641+PL631   |
       | Single     | PL241          |
 
-  @DealerLoginUserName @Sprint5 @FunctionalPositive6 @SingleConfigfile
+  @DealerLoginUserName @Sprint5 @FunctionalPositive @SingleConfigfile
   Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Single Config in Chrome and IE for DealerLoginUserName
     When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Single Config
     And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
@@ -76,7 +76,7 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
       | Single     | PLE641+PL631   |
       | Single     | PL241          |
 
-  @FactoryUserName @Sprint5 @FunctionalPositive7 @SingleConfigfile
+  @FactoryUserName @Sprint5 @FunctionalPositive @SingleConfigfile
   Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Single Config in Chrome and IE for FactoryUserName
     When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Single Config
     And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
@@ -89,7 +89,7 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
       | Single     | PLE641+PL631   |
       | Single     | PL241          |
 
-  @CATLoginProfile @Sprint5 @FunctionalPositive8 @CustomerConfigfile
+  @CATLoginProfile @Sprint5 @FunctionalPositive @CustomerConfigfile
   Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Customer Config in Chrome and IE for CATLoginProfile
     When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Customer Config
     And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
@@ -102,7 +102,7 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
       | Customer   | PL641          |
       | Customer   | PLE742         |
 
-  @DealerLoginUserName @Sprint5 @FunctionalPositive9 @CustomerConfigfile
+  @DealerLoginUserName @Sprint5 @FunctionalPositive @CustomerConfigfile
   Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Customer Config in Chrome and IE for DealerLoginUserName
     When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Customer Config
     And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
@@ -115,7 +115,7 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
       | Customer   | PL641          |
       | Customer   | PLE742         |
 
-  @FactoryUserName @Sprint5 @FunctionalPositive10 @CustomerConfigfile
+  @FactoryUserName @Sprint5 @FunctionalPositive @CustomerConfigfile
   Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Customer Config in Chrome and IE for FactoryUserName
     When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Customer Config
     And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
@@ -128,7 +128,7 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
       | Customer   | PL641          |
       | Customer   | PLE742         |
 
-  @CATLoginProfile @Sprint5 @FunctionalPositive11 @EngineeringConfigfile
+  @CATLoginProfile @Sprint5 @FunctionalPositive @EngineeringConfigfile
   Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Engineering Config in Chrome and IE for CATLoginProfile
     When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Engineering Config
     And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
@@ -141,7 +141,7 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
       | Engineering | PL641          |
       | Engineering | PL161          |
 
-  @DealerLoginUserName @Sprint5 @FunctionalPositive12 @EngineeringConfigfile
+  @DealerLoginUserName @Sprint5 @FunctionalPositive @EngineeringConfigfile
   Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Engineering Config in Chrome and IE for DealerLoginUserName
     When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Engineering Config
     And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
@@ -154,7 +154,7 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
       | Engineering | PL641          |
       | Engineering | PL161          |
 
-  @FactoryUserName @Sprint5 @FunctionalPositive13 @EngineeringConfigfile
+  @FactoryUserName @Sprint5 @FunctionalPositive @EngineeringConfigfile
   Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Engineering Config in Chrome and IE for FactoryUserName
     When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Engineering Config 
     And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
@@ -167,7 +167,7 @@ Feature: Verify Device Info Popup in DSP for software changes of new config file
       | Engineering | PL641          |
       | Engineering | PL161          |
 
-  @CATLoginProfile @Sprint5 @FunctionalPositive14 @MultipleConfilefile
+  @CATLoginProfile @Sprint5 @FunctionalPositive @MultipleConfilefile
   Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for Multiple other Config Dataset in Chrome and IE for CATLoginProfile
     When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for Multiple Config data set
     And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
