@@ -1,55 +1,69 @@
 @2017B @US_56 @US_493640 @ScanningofpartnumberPL161
 Feature: Scan PartNumber Commercial type PL161
 
-  @FactoryUserProfile @Sprint5 @FunctionalPositive
-  Scenario: Navigation to My Worklist in Chrome and IE
-    Given Login into DSP Portal as "Role = <Role>"
-      | Role            |
-      | FactoryUserName |
+  @FactoryUserProfile @US_56 @TC_ @Positive @CATMake @NonCATMake @PL161
+  Scenario: Verify UI of set Part Number popup UI in My Worklist Page in Chrome and IE
+   When Navigate to "My worklist"
+    And verify PartNumber PencilIcon is diplayed in MyWorklist Page
+    And click on PartNumber PencilIcon in MyWorklist Page
+    Then Set Part Number popup should be displayed
+    And Old Part Number should be displayed with Existing PartNumber in disabled mode in Set Part Number popup
+    And New Part Number should be Empty in Set Part Number popup
+    And Scan button with ICON should be displayed in Set Part Number popup
+    And Manual Entry button with ICON should be displayed in Set Part Number popup
+    And Retype Part Number textbox should be Empty in Set Part Number popup
+    And Save button should be should be displayed in Set Part Number popup
+    And Cancel button should be should be displayed in Set Part Number popup
 
-  @FactoryUserProfile @Sprint5 @FunctionalPositive @CATMake @NonCATMake @PL161
-  Scenario: Verify UI of Edit Serial Number popup in My Worklist Page in Chrome and IE
+ @FactoryUserProfile @US_56 @TC_ @Positive @CATMake @PL161
+     Scenario Outline: Validate Refactored UI for PartNumber change for CATMake for PL161 with No active Subscriptions for the Asset in Chrome and IE
     When Navigate to "My worklist"
-    And "Search Text Box=By Equipment S/N / Engine S/N / Device S/N /Radio S/N,Tool tip=Enter minimum of 3 characters,Search Button.isEnabled=True" in MyWorklist Page
-    And "PartNumber PencilIcon.IsEnabled = True,PencilIcon.clicked = True" in MyWorklist Page
-    Then verify UI "EditPartNumer popup.isDisplayed = True ,PartNumber.Texbox = Empty" in EditPartNumber Popup
-
-  @FactoryUserProfile @Sprint5 @FunctionalPositive @CATmake
-  Scenario Outline: Set or Edit Scanning valid PartNumber for PL161 for CATMake in Chrome and IE
-    When "PartNumber PencilIcon.isEnabled = True,PencilIcon.clicked = True" in MyWorklist Page
-    And "CommercialType =<CommercialType>,Scan PartNumber = True,PartNumber.Format =7AN with -,PartNumber.Textbox = Valid PartNumbervalue,PartNumber.PencilIcon.isDisplayed =True, Save.Clicked = True" in EditPartNumber Popup
-    Then "Part Number Set Successfully" displayed in Device Information section in MyWorklist Page
+    And click on PencilEditICON of PartNumber field in Device information popup for "CommercialType=<CommercialType>" in MyWorklist Page
+    And uncheck  Old PartNumber Radiobutton in set Part Number Popup
+    And click on New PartNumber radiobutton in set Part Number Popup
+    Then Scan button with ICON along with Manual Entry with ICON should be displayed in set Part Number Popup
+    And Retype PartNumber with Textbox should be displayed in set Part Number Popup
 
     Examples: 
       | CommercialType |
       | PL161          |
-
-  @FactoryUserProfile @Sprint5 @FunctionalPositive @CATMake
-  Scenario Outline: Cancelling Scanning valid PartNumber for PL161 for CATMake in Chrome and IE
-    When "PartNumber PencilIcon.isEnabled = True,PencilIcon.clicked = True" in MyWorklist Page
-    And "CommercialType =<CommercialType>,Scan PartNumber = True,PartNumber.Format =7AN with -,PartNumber.Textbox = Valid PartNumbervalue,PartNumber.PencilIcon.isDisplayed =True, Cancel.Clicked = True" in EditPartNumber Popup
-    Then Edit PartNumber pop up should be closed
-
-    Examples: 
-      | CommercialType |
       | PL161          |
 
-  @FactoryUserProfile @Sprint5 @FunctionalNegative @CATMake
-  Scenario Outline: validate PartNumber Scanning CharacterLimit for PL161 for CATMake in Chrome and IE
-    When "PartNumber PencilIcon.isEnabled = True,PencilIcon.clicked = True" in MyWorklist Page
-    And "CommercialType =<CommercialType>,Scan PartNumber = True,PartNumber.Format =6AN with - or 8AN with -,PartNumber.PencilIcon.isDisplayed =True, Save.Clicked = True" in EditPartNumber Popup
+
+ @FactoryUserProfile @US_56 @TC_ @Positive @CATMake @PL161
+  Scenario Outline: valdiate Save Functionality for Scanning valid PartNumber for PL161 for CATMake in Chrome and IE
+    When click on Scan button to scan valid "PartNumber = <PartNumber>" for "CommercialType=<CommercialType>" in set Part Number Popup
+    And click Save button
+    Then "Part Number Set Successfully" msg should be displayed Device section in MyWorklist Page
+  
+   Examples: 
+      | CommercialType | PartNumber |
+      | PL161          | AZ0 5263   |
+    
+     @FactoryUserProfile @US_56 @TC_ @Positive @CATMake @PL161
+    Scenario Outline: valdiate Cancel Functionality for Scanning valid PartNumber for PL161 for CATMake in Chrome and IE
+    When click on Scan button to scan valid "PartNumber = <PartNumber>" for "CommercialType=<CommercialType>" in set Part Number Popup
+    And click Cancel button
+   Then Set PartNumber pop up should be closed
+  
+   Examples: 
+      | CommercialType | PartNumber |
+      | PL161          | AZ0 5263   |
+  
+  @FactoryUserProfile @US_58 @TC_ @Negative @CATMake
+  Scenario Outline: Scanning Invalid PartNumber for PL161 for CATMake in Chrome and IE
+    When Scan Invalid "PartNumber = <PartNumber>"  for "CommercialType =<CommercialType>" Set Part Number popup
+    And click Save button in Set Part Number popup
     Then Error Msg "Please Enter Valid PartNumber" should be displayed
 
     Examples: 
-      | CommercialType |
-      | PL161          |
+      | CommercialType | PartNumber |
+      | PL161          | AZ0-0263   |
+      | PL161          | AZ0-026323 |
+      | PL161          | A#0-0263   |
+      | PL161          | AZ0-0$$3   |
+   
 
-  @FactoryUserProfile @Sprint5 @FunctionalNegative @CATMake
-  Scenario Outline: Set or Edit PartNumber Scanning with SpecialCharacters for PL161 for CATMake in Chrome and IE
-    When "PartNumber PencilIcon.isEnabled = True,PencilIcon.clicked = True" in MyWorklist Page
-    And "CommercialType =<CommercialType>,Scan PartNumber = True,PartNumber.Format =PartNumber with SpecialCharacters,PartNumber.PencilIcon.isDisplayed =True, Save.Clicked = True" in EditPartNumber Popup
-    Then Error Msg "Please Enter Valid PartNumber" should be displayed
 
-    Examples: 
-      | CommercialType |
-      | PL161          |
+
+  
