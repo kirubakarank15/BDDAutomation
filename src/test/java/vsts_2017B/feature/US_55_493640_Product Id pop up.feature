@@ -30,7 +30,7 @@ Feature: Change or Edit Product Id Change popup for PL161
   @FactoryUserProfile @Positive @US_55 @TC_ @PL161
   Scenario Outline: Scan Valid Productid for PL161 with No active Subscriptions for the Asset in Chrome and IE
     When Click on Equipment S/N Pencil icon displayed in MyWorklist Page
-    And Scan new "ProductId = <ProductId>" for "CommercialType=<CommercialType>" in MyWorklist Page in Edit Serial Number pop up
+    And Scan new <ProductId> for <CommercialType> in MyWorklist Page in Edit Serial Number pop up
     And verify Make 'CW1 - CAT WORK TOOLS (SERIALIZED)'is displayed in Edit Serial Number pop up
     And click Save button in Edit Serial Number pop up
     Then ProductId should be displayed New SerialNumber Textbox in Edit Serial Number pop up
@@ -45,7 +45,7 @@ Feature: Change or Edit Product Id Change popup for PL161
   @FactoryUserProfile @Positive @US_55 @TC_ @PL161
   Scenario Outline: Cancel Scanning of Valid Productid  PL161 with No active Subscriptions for the Asset in Chrome and IE
     When Click on Equipment S/N Pencil icon displayed in MyWorklist Page
-    And Scan new "ProductId = <ProductId>" for "CommercialType=<CommercialType>" in MyWorklist Page in Edit Serial Number pop up
+    And Scan new  <ProductId> for <CommercialType> in MyWorklist Page in Edit Serial Number pop up
     And verify Make 'CW1 - CAT WORK TOOLS (SERIALIZED)' is displayed in Edit Serial Number pop up
     And click Cancel button in Edit Serial Number pop up
     Then Edit Serial Number pop up should be closed
@@ -58,7 +58,7 @@ Feature: Change or Edit Product Id Change popup for PL161
   @FactoryUserProfile @Positive @US_55 @TC_ @NonPL161
   Scenario Outline: Scanning Valid Productid for NonPL161 with No active Subscriptions for the Asset in Chrome and IE
     When Click on Equipment S/N Pencil icon displayed in MyWorklist Page
-    And Scan new "ProductId = <ProductId>" for "CommercialType=<CommercialType>" in MyWorklist Page in Edit Serial Number pop up
+    And Scan new <ProductId> for <CommercialType> in MyWorklist Page in Edit Serial Number pop up
     And verify Make CAT is displayed in Edit Serial Number pop up
     And click Save button in Edit Serial Number pop up
     Then ProductId should be displayed New SerialNumber Textbox in Edit Serial Number pop up
@@ -73,7 +73,7 @@ Feature: Change or Edit Product Id Change popup for PL161
   @FactoryUserProfile @Positive @US_55 @TC_ @NonPL161
   Scenario Outline: Cancel Scanning of Valid Productid for Nonn PL161 with No active Subscriptions for the Asset in Chrome and IE
     When Click on Equipment S/N Pencil icon displayed in MyWorklist Page
-    And Scan new "ProductId = <ProductId>" for "CommercialType=<CommercialType>" in MyWorklist Page in Edit Serial Number pop up
+    And Scan new <ProductId> for <CommercialType> in MyWorklist Page in Edit Serial Number pop up
     And verify Make CAT is displayed in Edit Serial Number pop up
     And click Cancel button in Edit Serial Number pop up
     Then Edit Serial Number pop up should be closed
@@ -86,7 +86,7 @@ Feature: Change or Edit Product Id Change popup for PL161
   @FactoryUserProfile @Negative @US_55 @TC_ @PL161
   Scenario Outline: Set Make as CAT for PL161 for the Asset in Chrome and IE
     When Click on Equipment S/N Pencil icon displayed in MyWorklist Page
-    And Scan new "ProductId = <ProductId>" for "CommercialType=<CommercialType>" in MyWorklist Page in Edit Serial Number pop up
+    And Scan new <ProductId> for <CommercialType> in MyWorklist Page in Edit Serial Number pop up
     And Set Make as CAT in Edit Serial Number pop up
     And click Save button in Edit Serial Number pop up
     Then ProductId should be displayed New SerialNumber Textbox in Edit Serial Number pop up
@@ -99,7 +99,7 @@ Feature: Change or Edit Product Id Change popup for PL161
   @FactoryUserProfile @Negative @US_55 @TC_ @PL161
   Scenario Outline: Scan Invalid Productid with SpecialCharacters for PL161 with No active Subscriptions for the Asset in Chrome and IE
     When Click on Equipment S/N Pencil icon displayed in MyWorklist Page
-    And Scan new "ProductId = <ProductId>" for "CommercialType=<CommercialType>" in MyWorklist Page in Edit Serial Number pop up
+    And Scan new <ProductId> for <CommercialType> in MyWorklist Page in Edit Serial Number pop up
     And verify Make 'CW1 - CAT WORK TOOLS (SERIALIZED)' is displayed in Edit Serial Number pop up
     And click Save button in Edit Serial Number pop up
     Then ProductId should be displayed New SerialNumber Textbox in Edit Serial Number pop up
@@ -112,7 +112,7 @@ Feature: Change or Edit Product Id Change popup for PL161
   @FactoryUserProfile @Positive @US_55 @TC_ @PL161 @CATMake
   Scenario Outline: Validate ProductId Format for CATMake PL161 with No active Subscriptions for the Asset in Chrome and IE
     When Click on Equipment S/N Pencil icon displayed in MyWorklist Page
-    And Scan new "ProductId = <ProductId>" for "CommercialType=<CommercialType>" in MyWorklist Page in Edit Serial Number pop up
+    And Scan new <ProductId> for <CommercialType> in MyWorklist Page in Edit Serial Number pop up
     And verify new Productid Format is 17AN is displayed in Edit Serial Number pop up
     And click Save button in Edit Serial Number pop up
     Then ProductId should be displayed New SerialNumber Textbox in Edit Serial Number pop up

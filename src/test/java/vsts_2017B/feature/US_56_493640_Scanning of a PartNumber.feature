@@ -18,7 +18,7 @@ Feature: Scan PartNumber Commercial type PL161
  @FactoryUserProfile @US_56 @TC_ @Positive @CATMake @PL161
      Scenario Outline: Validate Refactored UI for PartNumber change for CATMake for PL161 with No active Subscriptions for the Asset in Chrome and IE
     When Navigate to "My worklist"
-    And click on PencilEditICON of PartNumber field in Device information popup for "CommercialType=<CommercialType>" in MyWorklist Page
+    And click on PencilEditICON of PartNumber field in Device information popup for <CommercialType> in MyWorklist Page
     And uncheck  Old PartNumber Radiobutton in set Part Number Popup
     And click on New PartNumber radiobutton in set Part Number Popup
     Then Scan button with ICON along with Manual Entry with ICON should be displayed in set Part Number Popup
@@ -32,7 +32,7 @@ Feature: Scan PartNumber Commercial type PL161
 
  @FactoryUserProfile @US_56 @TC_ @Positive @CATMake @PL161
   Scenario Outline: valdiate Save Functionality for Scanning valid PartNumber for PL161 for CATMake in Chrome and IE
-    When click on Scan button to scan valid "PartNumber = <PartNumber>" for "CommercialType=<CommercialType>" in set Part Number Popup
+    When click on Scan button to scan valid <PartNumber> for <CommercialType> in set Part Number Popup
     And click Save button
     Then "Part Number Set Successfully" msg should be displayed Device section in MyWorklist Page
   
@@ -42,7 +42,7 @@ Feature: Scan PartNumber Commercial type PL161
     
      @FactoryUserProfile @US_56 @TC_ @Positive @CATMake @PL161
     Scenario Outline: valdiate Cancel Functionality for Scanning valid PartNumber for PL161 for CATMake in Chrome and IE
-    When click on Scan button to scan valid "PartNumber = <PartNumber>" for "CommercialType=<CommercialType>" in set Part Number Popup
+    When click on Scan button to scan valid <PartNumber> for <CommercialType> in set Part Number Popup
     And click Cancel button
    Then Set PartNumber pop up should be closed
   
@@ -52,7 +52,7 @@ Feature: Scan PartNumber Commercial type PL161
   
   @FactoryUserProfile @US_58 @TC_ @Negative @CATMake
   Scenario Outline: Scanning Invalid PartNumber for PL161 for CATMake in Chrome and IE
-    When Scan Invalid "PartNumber = <PartNumber>"  for "CommercialType =<CommercialType>" Set Part Number popup
+    When Scan Invalid <PartNumber>  for <CommercialType> Set Part Number popup
     And click Save button in Set Part Number popup
     Then Error Msg "Please Enter Valid PartNumber" should be displayed
 
