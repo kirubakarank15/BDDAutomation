@@ -64,7 +64,7 @@ public class UI_Subscription {
 		}
 
 	}
-
+	@Then("^select the services as \"([^\"]*)\" from subscriptions page$")
 	@When("^enter or modify Subscription details as \"([^\"]*)\"$")
 	public void enter_Subscription_details_as(String data) throws Throwable {
 

@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -24,7 +25,7 @@ public class DriverSupplier {
         options.addArguments("--start-maximized"); 
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--disable-popup-blocking");
-// options.addArguments("--headless");
+//options.addArguments("--headless");
         options.addArguments("disable-infobars"); 
         //options.setBinary("Resources\\Drivers\\chromedriver.exe");
         //options.addArguments("--incognito");

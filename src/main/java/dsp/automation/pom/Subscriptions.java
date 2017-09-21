@@ -120,15 +120,8 @@ public class Subscriptions {
 			for (String key : testDataKey) {
 				fieldValue = key;
 				LOGGER.info("Selecting the Value :" + key);
-				switch (key.toLowerCase().trim().replaceAll(" ", "")) {
+				switch (fieldValue.toLowerCase().trim().replaceAll(" ", "")) {
 
-				// SubscripitionScreens
-				case "s/n":
-				case "serialno:":
-					LOGGER.info("Checking SerialNo:" + key);
-					TestFunctionsFactory.webWait(30, TestFunctionsFactory.driver
-							.findElement(By.xpath("//div[contains(@title,'S/N " + testDataMap.get(key) + "')]")));
-					break;
 				case "services":
 				case "services:":
 					TestFunctionsFactory.selectFromDropDown(drpDwnServices, testDataMap.get(key));
@@ -157,6 +150,8 @@ public class Subscriptions {
 					addServicesOption = testDataMap.get(key);
 					additionalServicesflag = true;
 					break;
+
+
 				// CANCEL REASON POP UP
 				case "reason:":
 				case "reason":
@@ -256,7 +251,13 @@ public class Subscriptions {
 				fieldValue = key;
 				LOGGER.info("SN CHECK" + key.toLowerCase().trim().replaceAll(" ", ""));
 				switch (key.toLowerCase().trim().replaceAll(" ", "")) {
-
+				// SubscripitionScreens
+				case "s/n":
+				case "serialno:":
+					LOGGER.info("Checking SerialNo:" + key);
+					TestFunctionsFactory.webWait(30, TestFunctionsFactory.driver
+							.findElement(By.xpath("//div[contains(@title,'S/N " + testDataMap.get(key).trim() + "')]")));
+					break;
 				case "services":
 				case "services:":
 					TestFunctionsFactory.compareSelectedValue(drpDwnServices, testDataMap.get(key));

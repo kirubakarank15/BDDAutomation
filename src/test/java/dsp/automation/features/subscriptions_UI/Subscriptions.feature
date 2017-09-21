@@ -1,16 +1,21 @@
 @Subscriptions_Reg
 Feature: To Validate Subscription UI functionalities for different Device Types.
+   
+ Background: 
+       When Navigate to "My worklist"
+    Then The page "Myworklist" should be displayed
 
-  @Subscription_Sanity @Subscription_Regression_Login
+  @Subscription_Sanity @Subscription_Regression_Login @UnitTest
   Scenario: Navigate to My Worklist
     Given Login into DSP Portal
 
-  @Subscription_Sanity
+  
+  @Subscription_Sanity1
   Scenario Outline: Sanity on Subscription
-    When Navigate to "My worklist"
-    Then The page "Myworklist" should be displayed
+    #When Navigate to "My worklist"
+    #Then The page "Myworklist" should be displayed
     When search Asset details as "S/N =<S/N>" in My Worklist Page
-    #Then Verify Subscription details should be displayed with "S/N =<S/N>" in My Worklist page
+    Then Verify Subscription details should be displayed with "S/N =<S/N>" in My Worklist page
     When enter or modify Subscription details as "Services=<Services>,Cat =<Cat>,Dealer =<Dealer>,Customer =<Customer>,Base Subscription =<Base Subscription>,Additional Services  =<Additional Services>"
     And click "Save" button or link
     Then verify the message "New Subscription Applied Successfully" is displayed
@@ -20,12 +25,12 @@ Feature: To Validate Subscription UI functionalities for different Device Types.
       | PLE641      | AUT10001 | VisionLink       |                |                |                | Cat Basic - 10 Minutes | Onboard Analytics.True |
       | PLE631      | AUT10002 | Product Link Web | Vitals (ES1-0) | Vitals (ES1-0) | Vitals (ES1-0) |                        |                        |
 
-  @Subscription_Regression1
+  @Subscription_Regression1 @UnitTest
   Scenario Outline: To verify the subscription functionality with different Device Types
     When Navigate to "My worklist"
     Then The page "Myworklist" should be displayed
     When search Asset details as "S/N =<S/N>" in My Worklist Page
-    #Then Verify Subscription details should be displayed with "S/N =<S/N>" in My Worklist page
+    Then Verify Subscription details should be displayed with "S/N =<S/N>" in My Worklist page
     When enter or modify Subscription details as "Services=<Services>,Customer =<Customer>,Dealer =<Dealer>,Cat =<Cat>,Base Subscription =<Base Subscription>,Additional Services  =<Additional Services>"
     And click "Save" button or link
     Then verify the message "New Subscription Applied Successfully" is displayed
@@ -36,14 +41,14 @@ Feature: To Validate Subscription UI functionalities for different Device Types.
     Examples: 
       | Device Type  | S/N      | Services          | Cat                        | Dealer                     | Customer              | Base Subscription        | Additional Services                               |
       | PL641        | AUT10011 | Product Link Web  | Aide (EC4-14)              | Aide (EC4-14)              | Vitals (EC1-4)        |                          | Onboard Analytics.False                           |
-      | PL631        | AUT10012 | Product Link Web  | Aide (ES4-0)               | Aide (ES4-0)               | Aide (ES4-0)          |                          | Onboard Analytics.False                           |
-      | PLE631       | AUT10013 | VisionLink        |                            |                            |                       | Cat Essentials - 4 Hours | VisionLink Load and Cycle Project Monitoring.True |
-      | PL161        | AUT10014 | Equipment Tracker |                            |                            |                       | Cat Daily                |                                                   |
-      | PLE641+PL631 | AUT10015 | Product Link Web  | Advisor (EC24-54-T & S0-0) | Advisor (EC24-54-T & S0-0) | Vitals (EC1-4 & S1-0) |                          |                                                   |
-      | PL641        | AUT10016 | VisionLink        |                            |                            |                       | Cat Essentials - Hourly  | VisionLink Load and Cycle Project Monitoring.True |
-      | PLE640       | AUT10017 | My.Cat.Com        |                            |                            |                       | Cat Daily                |                                                   |
-      | PL241        | AUT10018 | Product Link Web  | Basic Vitals               | Basic Vitals               | Basic Vitals          |                          |                                                   |
-      | PLE640       | AUT10019 | Product Link Web  | Vitals (EC1-4)             | Vitals (EC1-4)             | Vitals (EC1-4)        |                          | Onboard Analytics.True                            |
+      #| PL631        | AUT10012 | Product Link Web  | Aide (ES4-0)               | Aide (ES4-0)               | Aide (ES4-0)          |                          | Onboard Analytics.False                           |
+      #| PLE631       | AUT10013 | VisionLink        |                            |                            |                       | Cat Essentials - 4 Hours | VisionLink Load and Cycle Project Monitoring.True |
+      #| PL161        | AUT10014 | Equipment Tracker |                            |                            |                       | Cat Daily                |                                                   |
+      #| PLE641+PL631 | AUT10015 | Product Link Web  | Advisor (EC24-54-T & S0-0) | Advisor (EC24-54-T & S0-0) | Vitals (EC1-4 & S1-0) |                          |                                                   |
+      #| PL641        | AUT10016 | VisionLink        |                            |                            |                       | Cat Essentials - Hourly  | VisionLink Load and Cycle Project Monitoring.True |
+      #| PLE640       | AUT10017 | My.Cat.Com        |                            |                            |                       | Cat Daily                |                                                   |
+      #| PL241        | AUT10018 | Product Link Web  | Basic Vitals               | Basic Vitals               | Basic Vitals          |                          |                                                   |
+      #| PLE640       | AUT10019 | Product Link Web  | Vitals (EC1-4)             | Vitals (EC1-4)             | Vitals (EC1-4)        |                          | Onboard Analytics.True                            |
 
   @Subscription_RegressionCancel
   Scenario Outline: To validate the unsubscribe functionality with different Device Types.
@@ -62,12 +67,14 @@ Feature: To Validate Subscription UI functionalities for different Device Types.
     Examples: 
       | Device Type  | S/N      | Services          | Cat | Dealer | Customer | Base Subscription | Reason                               |
       | PLE641       | AUT10011 | Product Link Web  |     |        | None     |                   | Cust Product Transferred             |
-      | PLE631       | AUT10012 | Product Link Web  |     |        | None     |                   | End of Term                          |
-      | PLE631       | AUT10013 | VisionLink        |     |        |          | None              | Device Removed/Stored for Future Use |
-      | PL161        | AUT10014 | Equipment Tracker |     |        |          | None              | Subscription Payment Not Received    |
-      | PLE641+PL631 | AUT10015 | Product Link Web  |     |        | None     |                   | Device Not Functioning               |
-      | PL641        | AUT10016 | VisionLink        |     |        |          | None              | Device Permanently Removed           |
-      | PLE640       | AUT10017 | My.Cat.Com        |     |        |          | None              | Cust Product Transferred             |
+      #| PLE631       | AUT10012 | Product Link Web  |     |        | None     |                   | End of Term                          |
+      #| PLE631       | AUT10013 | VisionLink        |     |        |          | None              | Device Removed/Stored for Future Use |
+      #| PL161        | AUT10014 | Equipment Tracker |     |        |          | None              | Subscription Payment Not Received    |
+      #| PLE641+PL631 | AUT10015 | Product Link Web  |     |        | None     |                   | Device Not Functioning               |
+      #| PL641        | AUT10016 | VisionLink        |     |        |          | None              | Device Permanently Removed           |
+      #| PLE640       | AUT10017 | My.Cat.Com        |     |        |          | None              | Cust Product Transferred             |
+      | PL241        | AUT10018 | Product Link Web  |     |        | None     |                   | Device Permanently Removed           |
+      | PLE640       | AUT10019 | Product Link Web  |     |        | None     |                   | Cust Product Transferred             |
 
   @Subscription_Regression @Subscription_Regression_Login
   Scenario Outline: To verify the billing pop up displayed and Cat user is able to add the account details
