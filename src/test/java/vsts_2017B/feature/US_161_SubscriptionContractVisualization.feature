@@ -1,154 +1,239 @@
 @US_161 @DSP @2017B @SubscriptionContractVisualization
 Feature: Subscription Contract Visualization - Subscription Pricing Value
-  This feature is to Verify Subscription Contract Visualization for CAT/Dealer Profiles in DSP
+  This feature is to Verify Subscription Pricing values are displayed for Subscriptions
 
-  Scenario: Navigate to My Worklist
+  Scenario Outline: Navigate to My Worklist and Search for an asset
     Given Login into DSP Portal
+    When Navigate to "My worklist"
+    And search Asset details as "<SerialNumber>" in My Worklist Page
+    Then Verify Subscription details should be displayed with "<SerialNumber>" in My Worklist page
 
+    Examples: 
+      | SerialNumber |
+      |              |
+
+  #communication mode for dual mode
   @CatProfile @US_161 @TC_310 @Postitive
-  Scenario Outline: To Verify Subscription Widget and its fields in DSP as CAT profile
-    When Navigate to "MY WORKLIST"
-    And Logged in CatProfile as "<Dealercode>"
-    When Search Asset details as "Serial Number" in My Worklist Page
-    Then Verify in UI "SubscriptionPricingValue.isDisplayed=True", "DiscountCode.isDisplayed=True", "ContractPeriod_DropDown.isDisplayed=True" and "AutoRenew_Checkbox.isDisplayed=True" options should be displayed for all "<Subscriptions>" for supported "<Applications>"
+  Scenario Outline: To Verify Subscription Widget and its fields in DSP as CAT Login
+    When Set in UI "<DealerCode>"
+    And enter or modify Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    Then Verify in UI "SubscriptionPricingValue", "PromotionName","DiscountAmount", "ContractPeriodDropdown" and "AutoRenewCheckbox" options are displayed for all Subscriptions for supported "<Applications>"
 
     Examples: 
-      | Broswer | DealerCode | Serial Number | Subscriptions | Applications     |
-      | IE      | B330       |               |               | VisionLink       |
-      | Chrome  | E250       |               |               | Product Link Web |
-      | Chrome  | H160       |               |               | My.Cat.com       |
-      | Chrome  | N030       |               |               |                  |
-      | Chrome  | M610       |               |               |                  |
-
-  @DealerProfile @US_161 @TC_312 @Postitive
-  Scenario Outline: To Verify Subscription Widget and its fields in DSP as Dealer profile
-    When Navigate to "MY WORKList"
-    And Logged in Dealerprofile as "<Dealercode>"
-    When Search Asset details as "Serial number" in My Worklist Page
-    Then Verify in UI "SubscriptionPricingValue.isDisplayed=True", "DiscountCode.isDisplayed=True", "ContractPeriod_DropDown.isDisplayed=True" and "AutoRenew_Checkbox.isDisplayed=True" options should be displayed for all "<Subscriptions>" for supported "<Applications>"
-
-    Examples: 
-      | Dealercode | Serial Number | Subscriptions | Applications     |
-      | B330       |               |               | VisionLink       |
-      | E250       |               |               | Product Link Web |
-      | H160       |               |               | My.Cat.Com       |
-      | N030       |               |               |                  |
-      | M610       |               |               |                  |
+      | DealerCode | Device Type | S/N      | Services         | Cat Level Subscription | Dealer Level Subscription | Customer Level Subscription | Additional Services |
+      | E250       | PLE641      | AUT10011 | VisionLink       |                        |                           | Cat Basic - 10 Minutes      | Onboard Analytics   |
+      | H160       | PLE641      | AUT10011 | Product Link Web | Aide (EC4-14-T)        | Aide (EC4-14-T)           | Vitals (EC1-4)              |                     |
+      | N030       |             |          | My.Cat.Com       |                        |                           | Cat Daily                   |                     |
+      | M610       |             |          |                  |                        |                           |                             |                     |
+      | B330       |             |          |                  |                        |                           |                             |                     |
 
   @CatProfile @US_161 @TC_313 @Postitive
-  Scenario Outline: To Verify Subscription pricing values for assets in DSP as CAT profile
-    When Navigate to "MY WORKLIST"
-    And Logged in CatProfile as "<Dealercode>"
-    When Cat user is viewing the subscription selection dropdown for an newly onboarded asset with "<Serial Number>"
-    Then Verify in UI "SubscriptionPricingValue.isDisplayed=true" for all Base and Add-on subscriptions of that asset for supported "<Applications>"
-    And verify the Subscription pricing values are matching with Zuora product catalog
+  Scenario Outline: To Verify Subscription pricing values for assets in DSP as CAT Login
+    When Set in UI "DealerCode=<DealerCode>"
+    And enter or modify Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    Then Verify in UI SubscriptionPricingValues for all Base and Add-on subscriptions are displayed for supported Applications
+    And Verify the Subscription pricing values are matching with Zuora product catalog
 
     Examples: 
-      | Dealercode | Serial Number | Applications     |
-      | B330       |               | VisionLink       |
-      | E250       |               | Product Link Web |
-      | H160       |               | My.Cat.Com       |
-      | N030       |               |                  |
-      | M610       |               |                  |
-
-  @DealerProfile @US_161 @TC_314 @Postitive
-  Scenario Outline: To Verify Subscription pricing values for assets in DSP as Dealer profile
-    When Navigate to "MY WORKLIST"
-    And Logged in DealerProfile as "<Dealercode>"
-    When Dealer user is viewing the subscription selection dropdown for an newly onboarded asset with "<Serial Number>"
-    Then Verify in UI "SubscriptionPricingValue.isDisplayed=true" for all Base and Add-on subscriptions of that asset for supported "<Applications>"
-    And verify the Subscription pricing values are matching with Zuora product catalog
-
-    Examples: 
-      | Dealercode | Serial Number | Applications     |
-      | B330       |               | VisionLink       |
-      | E250       |               | Product Link Web |
-      | H160       |               | My.Cat.Com       |
-      | N030       |               |                  |
-      | M610       |               |                  |
+      | DealerCode | Device Type | Services         | Cat Level Subscription | Dealer Level Subscription | Customer Level Subsscription | Additional Services |
+      | E250       | PLE641      | VisionLink       |                        |                           | Cat Basic - 10 Minutes       | Onboard Analytics   |
+      | H160       | PLE641      | Product Link Web | Aide (EC4-14-T)        | Aide (EC4-14-T)           | Vitals (EC1-4)               |                     |
+      | N030       |             | My.Cat.Com       |                        |                           | Cat Daily                    |                     |
+      | M610       |             |                  |                        |                           |                              |                     |
+      | B330       |             |                  |                        |                           |                              |                     |
 
   @CatProfile @US_161 @TC_315 @Postitive
-  Scenario Outline: To Verify Subscription pricing values for already subscribed assets as Cat profile
-    When Navigate to "MY WORKLIST"
-    And Logged in CatProfile as "<Dealercode>"
-    When Cat user is viewing the subscription selection dropdown for an asset with "<Serial Number>"
-    Then Verify in UI "SubscriptionPricingValue.isDisplayed=false" for the current subscription combination of that asset for supported "<Applications>"
-    And Verify in UI "SubscriptionPricingValue.isDisplayed=false" for the remanining subscriptions for supported Applications "<Applications>"
+  Scenario Outline: To Verify Subscription pricing values for already subscribed assets as Cat Login
+    When Set in UI "<DealerCode>"
+    And enter or modify Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Base Subscription>","<Additional Services>"
+    Then Verify in UI SubscriptionPricingValues for already subscribed subscription are not displayed for supported "<Applications>"
+    And Verify in UI SubscriptionPricingValues for the remanining subscriptions are displayed for supported "<Applications>"
 
     Examples: 
-      | Dealercode | Serial Number | Applications     |
-      | B330       |               | VisionLink       |
-      | E250       |               | Product Link Web |
-      | H160       |               | My.Cat.Com       |
-      | N030       |               |                  |
-      | M610       |               |                  |
-
-  @DealerProfile @US_161 @TC_316 @Postitive
-  Scenario Outline: To Verify Subscription pricing values for already subscribed assets as Dealer profile
-    When Navigate to "MY WORKLIST"
-    And Logged in DealerProfile as "<Dealercode>"
-    When Dealer user is viewing the subscription selection dropdown for an asset with "<Serial Number>"
-    Then Verify in UI "SubscriptionPricingValue.isDisplayed=false" for the current subscription combination of that asset for supported "<Applications>"
-    And Verify in UI "SubscriptionPricingValue.isDisplayed=True" for the remanining subscriptions for supported Applications "<Applications>"
-
-    Examples: 
-      | Dealercode | Serial Number | Applications     |
-      | B330       |               | VisionLink       |
-      | E250       |               | Product Link Web |
-      | H160       |               | My.Cat.Com       |
-      | N030       |               |                  |
-      | M610       |               |                  |
+      | DealerCode | Device Type | Services         | Cat Level Subscription | Dealer Level Subscription | Customer Level Subscription | Base Subscription      | Additional Services |
+      | E250       | PLE641      | VisionLink       |                        |                           |                             | Cat Basic - 10 Minutes | Onboard Analytics   |
+      | H160       | PLE641      | Product Link Web | Aide (EC4-14-T)        | Aide (EC4-14-T)           | Vitals (EC1-4)              |                        |                     |
+      | N030       |             | My.Cat.Com       |                        |                           |                             |                        | Cat Daily           |
+      | M610       |             |                  |                        |                           |                             |                        |                     |
+      | B330       |             |                  |                        |                           |                             |                        |                     |
 
   @CatProfile @US_161 @TC_317 @Postitive
-  Scenario Outline: To verify Subscription pricing values for PLWEB application alone as Cat profile
-    When Navigate to "MY WORKLIST"
-    And Logged in CatProfile as "<DealerCode>"
-    When Cat user is viewing the subscription selection dropdown for an asset with "<Serial Number>"
-    Then Verify in UI "SubscriptionPricingValue.isDisplayed=True" for all subscriptions at Dealer level only for "<PLWEB>" application alone
+  Scenario Outline: To verify Subscription pricing values for PLWEB application when inherited from Customer level in Cat login
+    When Set in UI "<DealerCode>"
+    And enter or modify Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>" inherited from customer level
+    Then Verify in UI Subscription Pricing Values are displayed for all subscriptions at Dealer level only for PLWEB application alone
 
-  @DealerProfile @US_161 @TC_318 @Postitive
-  Scenario Outline: To verify Subscription pricing values for PLWEB application alone as Dealer profile
-    When Navigate to "MY WORKLIST"
-    And Logged in DealerProfile as "<DealerCode>"
-    When Dealer user is viewing the subscription selection dropdown for an asset with "<Serial Number>"
-    Then Verify in UI "SubscriptionPricingValue.isDisplayed=True" for all subscriptions at Dealer level only for "<PLWEB>" application alone
+    Examples: 
+      | Services        | Cat Level Subscription | Dealer Level Subscription | Customer Level Subscription | DealerCode |
+      | ProductLink Web | Advisor(EC24-54)       | Advisor(EC24-54)          | Advisor(EC24-54)            | E250       |
+      |                 |                        |                           |                             | H160       |
+      |                 |                        |                           |                             | N030       |
+      |                 |                        |                           |                             | M610       |
+      |                 |                        |                           |                             | B330       |
 
+  @CatProfile @US_161 @TC_ @Positive
+  Scenario Outline: To verify Subscription pricing values for PLWEB application when inherited from Dealer level in Cat login
+    When Set in UI "<DealerCode>"
+    And enter or modify Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>" inherited from Dealer level
+    Then Verify in UI Subscription Pricing Values are displayed for all subscriptions at Dealer level only for PLWEB application alone
+
+    Examples: 
+      | Services        | Cat Level Subscription | Dealer Level Subscription | DealerCode |
+      | ProductLink WEB | Aide (EC4-14-T)        | Aide (EC4-14-T)           | E250       |
+      |                 |                        |                           | H160       |
+      |                 |                        |                           | N030       |
+      |                 |                        |                           | M610       |
+      |                 |                        |                           | B330       |
+
+  #couple of sub's rates cross check in DB
   @CatProfile @US_161 @TC_319 @Positive
-  Scenario Outline: To verify Subscription pricing values for VisionLink application alone as Cat profile
-    When Navigate to "MY WORKLIST"
-    And Logged in CatProfile as "<DealerCode>"
-    When Cat user is viewing the subscription selection dropdown for an asset with "<Serial Number>"
-    Then Verify in UI "SubscriptionPricingValue.isDisplayed=True" for all subscriptions at Customer level dropdown for "<VisionLink>" application alone
+  Scenario Outline: To verify Subscription pricing values for VisionLink application as Cat login
+    When Set in UI "<DealerCode>"
+    When enter or modify Subscription details as "<Services>,<Customer Level Subscription>,<Additional Services>"
+    Then Verify in UI Subscription Pricing values are displayed for all subscriptions at Customer level dropdown for VisionLink application alone
 
-  @DealerProfile @US_161 @TC_320 @Positive
-  Scenario Outline: To verify Subscription pricing values for VisionLink application alone as Dealer profile
-    When Navigate to "MY WORKLIST"
-    And Logged in DealerProfile as "<DealerCode>"
-    When Dealer user is viewing the subscription selection dropdown for an asset with "<Serial Number>"
-    Then Verify in UI "SubscriptionPricingValue.isDisplayed=True" for all subscriptions at Customer level dropdown for "<VisionLink>" application alone
+    Examples: 
+      | Services   | Customer Level Subscription | Additional Services | DealerCode |
+      | VisionLink | Cat Basic - 10 Minutes      | Onboard Analytics   | E250       |
+      | VisionLinK |                             |                     | H160       |
+      |            |                             |                     | N030       |
+      |            |                             |                     | M610       |
+      |            |                             |                     | B330       |
 
   @CatProfile @US_161 @TC_321 @Postitive
-  Scenario Outline: To verify Subscription pricing values for My.Cat.Com application alone as Cat profile
-    When Navigate to "MY WORKLIST"
-    And Logged in CatProfile as "<DealerCode>"
-    When Cat user is viewing the subscription selection dropdown for an asset with "<Serial Number>"
-    Then Verify in UI "SubscriptionPricingValue.isDisplayed=True" for all subscriptions at Customer level dropdown for "<My.Cat.Com>" application alone
-  @DealerProfile @US_161 @TC_322 @Postitive
-  Scenario Outline: To verify Subscription pricing values for My.Cat.Com application alone as Dealer profile
-    When Navigate to "MY WORKLIST"
-    And Logged in DealerProfile as "<DealerCode>"
-    When Dealer user is viewing the subscription selection dropdown for an asset with "<Serial Number>"
-   Then Verify in UI "SubscriptionPricingValue.isDisplayed=True" for all subscriptions at Customer level dropdown for "<My.Cat.Com>" application alone
-  @CatProfile @US_161 @TC_452 @Positive
-  Scenario: To Verify Subscription pricing values are not displayed when only cat level subscription is selected
-    When Navigate to "MY WORKLIST"
-    And Logged in CATProfile as "<DealerCode>"
-    When Cat user is trying to set subscription for Only CAT level for PLWEB application
-    Then Verify in UI "Subscription pricing values.isDisplayed=false" at cat level
+  Scenario Outline: To verify Subscription pricing values for My.Cat.Com application as Cat login
+    When Set in UI "DealerCode=<DealerCode>"
+    And enter or modify Subscription details as "Services=<Services>,<Customer Level Subscription>"
+    Then Verify in UI Subscription Pricing values are displayed for all subscriptions at Customer level dropdown for My.Cat.Com application alone
 
-  @CatProfile @US_161 @TC_455 @Positive
-  Scenario: To Verify Subscription pricing values are not displayed for Onboard analytics after selecting cat level subscription
-    When Navigate to "MY WORKLIST"
-    And Logged in CATProfile as "<DealerCode>"
-    When Cat user selected some subscription at Cat level
-    Then Verify in UI "Subscription pricing values.isDisplayed=false" for Onboard analytics after selecting cat level subscription
+    Examples: 
+      | Services   | Customer Level Subscription | DealerCode |
+      | My.Cat.Com | Cat Daily                   | E250       |
+      |            |                             | H160       |
+      |            |                             | N030       |
+      |            |                             | M610       |
+      |            |                             | B330       |
+
+  @CatProfile @US_161 @TC_452 @Negative
+  Scenario Outline: To Verify Subscription pricing values are not displayed when only cat level subscription is selected
+    When Set in UI "<DealerCode>"
+    And enter or modify Subscription details as "<Services>,<Cat Level Subscription>"
+    Then Verify in UI Subscription Pricing Values are not displayed at Cat level
+
+    Examples: 
+      | Services        | Cat Level Subscription | DealerCode |
+      | ProductLink Web | Aide(EC41-14)          | E250       |
+      |                 |                        | H160       |
+      |                 |                        | N030       |
+      |                 |                        | M610       |
+      |                 |                        | B330       |
+
+  @CatProfile @US_161 @TC_455 @Negative
+  Scenario Outline: To Verify Subscription pricing values are not displayed for Onboard analytics Add on Subscription for PLWEB as Cat login
+    When Set in UI "<DealerCode>"
+    And enter or modify Subscription details as "<Services>,<Customer Level Subscription>,<Dealer Level Subscription>,<Cat Level Subscription>,<Additional Services>"
+    Then Verify in UI Subscription Pricing Values are not displayed at Onboard Analytics
+
+    Examples: 
+      | Services        | Customer Level Subscription | Dealer Level Subscription | Cat Level Subscription | Additional Service | DealerCode |
+      | ProductLink Web | Aide(EC4-14)                | Aide(EC4-14)              | Advisor(EC24-54)       | Onboard Analytics  | E250       |
+      |                 |                             |                           |                        |                    | H160       |
+      |                 |                             |                           |                        |                    | N030       |
+      |                 |                             |                           |                        |                    | M610       |
+      |                 |                             |                           |                        |                    | B330       |
+
+  @CatProfile @US_161 @TC_ @Negative
+  Scenario Outline: To Verify Subscription pricing values are not displayed for Onboard analytics Add on for VisionLink application as Cat login
+    When Set in UI "<DealerCode>"
+    And enter or modify Subscription details as "<Services>,<Customer Level Subscription>,<Additional Services>"
+    Then Verify in UI Subscription Pricing Values are not displayed at Onboard Analytics
+
+    Examples: 
+      | Services   | Customer Level Subscription | Additional Services | DealerCode |
+      | VisionLink | Cat Basic - 10 Minutes      | Onboard Analytics   | E250       |
+      |            |                             |                     | H160       |
+      |            |                             |                     | N030       |
+      |            |                             |                     | M610       |
+      |            |                             |                     | B330       |
+
+  #for dealer login Vl onboard analytics is not applicable
+  @DealerProfile @US_161 @TC_ @Postitive
+  Scenario Outline: To Verify Subscription Widget and its fields in DSP as Dealer Login
+    When enter or modify Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    Then Verify in UI "SubscriptionPricingValue", "PromotionName","DiscountAmount", "ContractPeriodDropdown" and "AutoRenewCheckbox" options are displayed for all Subscriptions for supported "<Applications>"
+
+    Examples: 
+      | Services         | Dealer          | Customer       | Base Subscription      | Additional Services |
+      | VisionLink       |                 |                | Cat Basic - 10 Minutes | Onboard Analytics   |
+      | Product Link Web | Aide (EC4-14-T) | Vitals (EC1-4) |                        |                     |
+      | My.Cat.Com       |                 |                | Cat Daily              |                     |
+      |                  |                 |                |                        |                     |
+      |                  |                 |                |                        |                     |
+
+  @DealerProfile @US_161 @TC_ @Postitive
+  Scenario Outline: To Verify Subscription pricing values for assets in DSP as Dealer Login
+    When enter or modify Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    Then Verify in UI SubscriptionPricingValues for all Base and Add-on subscriptions are displayed for supported Applications
+    And Verify the Subscription pricing values are matching with Zuora product catalog
+
+    Examples: 
+      | DealerCode | Device Type | Services         | Dealer Level Subscription | Customer Level Subscription | Additional Services |
+      | E250       | PLE641      | VisionLink       |                           | Cat Basic - 10 Minutes      | Onboard Analytics   |
+      | H160       | PLE641      | Product Link Web | Aide (EC4-14-T)           | Vitals (EC1-4)              |                     |
+      | N030       |             | My.Cat.Com       |                           | Cat Daily                   |                     |
+      | M610       |             |                  |                           |                             |                     |
+      | B330       |             |                  |                           |                             |                     |
+
+  @DealerProfile @US_161 @TC_ @Postitive
+  Scenario Outline: To Verify Subscription pricing values for already subscribed assets as Dealer Login
+    When enter or modify Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    Then Verify in UI SubscriptionPricingValues for already subscribed subscription are not displayed for supported "<Applications>"
+    And Verify in UI SubscriptionPricingValues for the remanining subscriptions are displayed for supported "<Applications>"
+
+    Examples: 
+      | DealerCode | Device Type | Services         | Dealer Level Subscription | Customer Level Subscription | Additional Services |
+      | E250       | PLE641      | VisionLink       |                           | Cat Basic - 10 Minutes      | Onboard Analytics   |
+      | H160       | PLE641      | Product Link Web | Aide (EC4-14-T)           | Vitals (EC1-4)              |                     |
+      | N030       |             | My.Cat.Com       |                           | Cat Daily                   | Cat Daily           |
+      | M610       |             |                  |                           |                             |                     |
+      | B330       |             |                  |                           |                             |                     |
+
+  @DealerProfile @US_161 @TC_ @Postitive
+  Scenario Outline: To verify Subscription pricing values for PLWEB application when inherited from Customer level in Dealer login
+    When enter or modify Subscription details as "<Services>","<Customer Level Subscription>" inherited from customer level
+    Then Verify in UI Subscription Pricing Values are displayed for all subscriptions at Dealer level only for PLWEB application alone
+
+    Examples: 
+      | Services        | Customer Level Subscription | DealerCode |
+      | ProductLink WEB | Aide (EC4-14-T)             | E250       |
+      |                 |                             | H160       |
+      |                 |                             | N030       |
+      |                 |                             | M610       |
+      |                 |                             | B330       |
+
+  @DealerProfile @US_161 @TC_319 @Positive
+  Scenario Outline: To verify Subscription pricing values for VisionLink application as Dealer login
+    When enter or modify Subscription details as "<Services>","<Customer Level Subscription>","<Additional Services>"
+    Then Verify in UI Subscription Pricing values are displayed for all subscriptions at Customer level dropdown for VisionLink application alone
+
+    Examples: 
+      | Services   | Customer Level Subscription | Additional Services | DealerCode |
+      | VisionLink | Cat Basic - 10 Minutes      | Onboard Analytics   | E250       |
+      | VisionLinK |                             |                     | H160       |
+      |            |                             |                     | N030       |
+      |            |                             |                     | M610       |
+      |            |                             |                     | B330       |
+
+  @DealerProfile @US_161 @TC_321 @Postitive
+  Scenario Outline: To verify Subscription pricing values for My.Cat.Com application as Dealer login
+    When Set in UI "DealerCode=<DealerCode>"
+    And enter or modify Subscription details as "<Services>","<Customer Level Subscription>"
+    Then Verify in UI Subscription Pricing values are displayed for all subscriptions at Customer level dropdown for My.Cat.Com application alone
+
+    Examples: 
+      | Services   | Customer Level Subscription | DealerCode |
+      | My.Cat.Com | Cat Daily                   | E250       |
+      |            |                             | H160       |
+      |            |                             | N030       |
+      |            |                             | M610       |
+      |            |                             | B330       |
