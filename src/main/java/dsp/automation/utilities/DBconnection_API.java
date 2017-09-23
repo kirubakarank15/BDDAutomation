@@ -29,8 +29,9 @@ public class DBconnection_API {
 
 			// Properties DB_info = connection.getClientInfo();
 			// System.out.println("clientinfo:" +DB_info);
-			if (connection != null) {
-				System.out.println("DB is Connected");
+			if (connection != null) 
+			{
+				//System.out.println("DB is Connected");
 				//System.out.println("Doneee !");
 			} else {
 				System.out.println("Failed to make connection!");

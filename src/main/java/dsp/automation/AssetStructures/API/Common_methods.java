@@ -35,97 +35,84 @@ import com.google.gson.JsonParser;
 
 import dsp.automation.utilities.DBconnection_API;
 import dsp.automation.utilities.ExcelReadWrite_API;
-
+import dsp.automation.utilities.ReusableMethodsAPI;
+import dsp.automation.utilities.*;
 
 public class Common_methods {
 	// Following function will create instance all the dependent classes.
 	// We are creating List for the instances
 	public static String SerialNumber = null;
-	public static String value = null;
+	public static String Radio_1_SerialNumber = null;
+	public static String Radio_2_SerialNumber = null;
+	public static String Device_id  = null;
+	public static String Device_component = null;
+	 
 	public static List<String> SerialNumbers = new ArrayList<String>();
-
-	public void AssetTemplate(String commercialType) throws Exception {
+	static Properties properties = new Properties();
+	//Common_methods reusemethods = new Common_methods();
+	ExcelReadWrite_API ExcelReadWrite = new ExcelReadWrite_API();
+	StringEntity input = null;
 	
-		StringEntity input = null;
-		Properties properties = new Properties();
-		//Common_methods reusemethods = new Common_methods();
-		//HashMap<String, String> attributes = reusemethods.excelReadWrite();
-		ExcelReadWrite_API ExcelReadWrite = new ExcelReadWrite_API();
-		HashMap<String, String> attributes = ExcelReadWrite.excelReadWrite();
-
+	public void AssetTemplate(String commercialType) throws Exception 
+	{
+      properties.load(new FileInputStream("Resources\\application.properties"));
+      SerialNumber = ReusableMethodsAPI.valueIncrementor(DBMapValues.dbValue("Serial_Number", properties.getProperty("db_asset")));
+      Radio_1_SerialNumber = ReusableMethodsAPI.valueIncrementor(DBMapValues.dbValue("radio_1_serial_number", properties.getProperty("db_radio_1_serial_number")));
+     Radio_2_SerialNumber = ReusableMethodsAPI.valueIncrementor(DBMapValues.dbValue("radio_2_serial_number", properties.getProperty("db_radio_2_serial_number")));
+      Device_id = ReusableMethodsAPI.valueIncrementor(DBMapValues.dbValue("device_id", properties.getProperty("db_deviceid")));
+      Device_component = ReusableMethodsAPI.valueIncrementor(DBMapValues.dbValue("engine_serial_no", properties.getProperty("db_devicecomponent")));
+		//HashMap<String, String> attributes = ExcelReadWrite.excelReadWrite();
 		SampleModel samp = new SampleModel();
-		properties.load(new FileInputStream("Resources\\application.properties"));
 		String make = properties.getProperty("Asset.make");
 		samp.setMake(make);
-		SerialNumber = attributes.get("SerialNumber");
 		SerialNumbers.add(SerialNumber);
 		System.out.println("List of SerialNumbers:" +SerialNumbers);
-		//SerialNumbers = new ArrayList<String>();
-		//SerialNumbers.add(SerialNumber);
-		//System.out.println("List of SerialNumbers:" +SerialNumbers);
 		samp.setSerialNumber(SerialNumber);
 
 		AttachedDevices attachedDevices = new AttachedDevices();
-		// String CommercialType = properties.getProperty("Asset.ComType");
+	
 		String Type = properties.getProperty("Asset.type");
 		if (commercialType != null) {
 			attachedDevices.setCommercialType(commercialType);
 			
 			List<AttachedRadios> attachedRadioslst = new ArrayList<AttachedRadios>();
+			if (commercialType.contains("+")) 
+			{
+				AttachedRadios attachedRadios_1 = new AttachedRadios();
+				AttachedRadios attachedRadios_2 = new AttachedRadios();
+				attachedRadios_1.setSerialNumber(Radio_1_SerialNumber);
+				attachedRadioslst.add(attachedRadios_1);
 
-			if (commercialType.contains("+")) {
-
-				if (attributes.get("RadioNumber").contains(",")) {
-					String[] radioNumbers = attributes.get("RadioNumber").split(",");
-					
-					for(int k=0;k<radioNumbers.length;k++){
-						
-						String eachSerialNumber=radioNumbers[k];
-						AttachedRadios attachedRadios = new AttachedRadios();
-						attachedRadios.setSerialNumber(eachSerialNumber);
-						attachedRadioslst.add(attachedRadios);
-						
-					}
-					attachedDevices.setAttachedRadios(attachedRadioslst);
-				} else {
-					throw new Exception("Radionumber has only one radio number in excel sheet for "+ commercialType);
-				}
-
-			} else {
-				/*AttachedRadios attachedRadios = new AttachedRadios();
-				 attachedRadios.setSerialNumber(attributes.get("RadioNumber").split(",")[0]);
-				 String attachedRadios_1 = attachedRadios.getSerialNumber();
-				 attachedDevices.setAttachedRadios_1(attachedRadios_1);
-				 System.out.println("RadioNumber:" +attributes.get("RadioNumber"));*/
-				
+				attachedRadios_2.setSerialNumber(Radio_2_SerialNumber);
+				attachedRadioslst.add(attachedRadios_2);
+				attachedDevices.setAttachedRadios(attachedRadioslst);
+			}
+			
+			 else 
+			{
 				AttachedRadios attachedRadios = new AttachedRadios();
-				attachedRadios.setSerialNumber(attributes.get("RadioNumber").split(",")[0]);
+				attachedRadios.setSerialNumber(Radio_1_SerialNumber);
+				//attachedRadios.setSerialNumber(attributes.get("RadioNumber").split(",")[0]);
 				attachedRadioslst.add(attachedRadios);
 				attachedDevices.setAttachedRadios(attachedRadioslst);
 				}
+		
 		attachedDevices.setType(Type);
-		attachedDevices.setDeviceId(attributes.get("DeviceId"));
+		attachedDevices.setDeviceId(Device_id);
 
 		AttachedEcms attachedEcms = new AttachedEcms();
-		attachedEcms.setSerialNumber(attributes.get("EcmsSerialNumber"));
+		attachedEcms.setSerialNumber(SerialNumber);
 
-		
 		Components devicecomponents = new Components();
-		devicecomponents.setSerialNumber(attributes.get("ComponentSerialNumber"));
+		devicecomponents.setSerialNumber(Device_component);
 		String compMake = properties.getProperty("Asset.make");
 		devicecomponents.setMake(compMake);
 
 		List<AttachedDevices> attachedDevicesList = new ArrayList<AttachedDevices>();
-
 		List<AttachedEcms> attachedEcmsList = new ArrayList<AttachedEcms>();
-		
 		List<Components> attachedcomponentList = new ArrayList<Components>();
-
 		attachedEcmsList.add(attachedEcms);
-
 		attachedDevices.setAttachedEcms(attachedEcmsList);
-
-		
 		attachedcomponentList.add(devicecomponents);
 		attachedDevicesList.add(attachedDevices);
 
@@ -264,106 +251,11 @@ public class Common_methods {
 		return access_token;
 	}
 
-/*	public Connection checkConnection() throws SQLException {
-		System.out.println("-------- SQL JDBC Connection Testing ------");
 
-		try {
 
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+	
 
-		} catch (ClassNotFoundException e) {
-
-			System.out.println("Where is your SQL JDBC Driver?");
-			e.printStackTrace();
-
-		}
-
-		System.out.println("SQL JDBC Driver Registered!");
-
-		Connection connection = null;
-
-		try {
-			connection = DriverManager
-					.getConnection("jdbc:sqlserver://dealerserviceportal-dev.database.windows.net:1433;database=DEALERSERVICEPORTAL-INT;user=dspapp;password=dspn0access@123;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
-
-			// Properties DB_info = connection.getClientInfo();
-			// System.out.println("clientinfo:" +DB_info);
-			if (connection != null) {
-				System.out
-						.println("You made it, take control your database now!");
-				System.out.println("Doneee !");
-			} else {
-				System.out.println("Failed to make connection!");
-			}
-		} catch (SQLException e) {
-			System.out.println("Connection Failed! Check output console");
-			e.printStackTrace();
-		}
-
-		return connection;
-
-	}*/
-
-	public TreeMap<String, List<String>> getassetDetails(String query)
-			throws SQLException {
-		// String sNumber=(String) htable.get("serialNumber");
-		// String makeNum=(String) htable.get("make");
-		DBconnection_API dbConnection = new DBconnection_API();
-		Statement st = dbConnection.checkConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-
-		String sql = (query);
-		ResultSet rs = st.executeQuery(sql);
-		ResultSetMetaData rsmd = rs.getMetaData();
-		/*
-		 * int noOfRows=0; int k=0; rs.last(); noOfRows = rs.getRow(); // Move
-		 * to beginning rs.beforeFirst(); System.out.println(noOfRows);
-		 */
-		int columnsNumber = rsmd.getColumnCount();
-		List<String> querylist = new ArrayList<>();
-		TreeMap<String, List<String>> dbValues = new TreeMap<>();
-
-		for (int i = 1; i <= columnsNumber; i++) {
-			querylist.add(rsmd.getColumnLabel(i));
-		}
-		// System.out.println(querylist);
-
-		for (String St : querylist) {
-			rs.beforeFirst();
-			// System.out.println(St);
-			List<String> colValues = new ArrayList<>();
-			while (rs.next()) {
-				String columnValue = rs.getString(St);
-				// System.out.println(columnValue);
-				colValues.add(columnValue);
-
-				if (!rs.next()) {
-					dbValues.put(St, colValues);
-
-					break;
-				}
-				rs.previous();
-
-			}
-			// System.out.println(colValues);
-
-		}
-		System.out.println(dbValues);
-		return dbValues;
-	}
-
-	public String dbValue(String columName, String Query) throws SQLException {
-
-		TreeMap<String, List<String>> map = this.getassetDetails(Query);
-
-		value = map.get(columName).get(0);
-		if(value==null)
-		{
-			System.out.println("No Value is Present in DB");
-		}
-		return value;
-
-	}
-
+	
 	public static void json() throws ClientProtocolException,
 			FileNotFoundException, NullPointerException, IOException,
 			JSONException {
@@ -391,85 +283,6 @@ public class Common_methods {
 		System.out.println(valArr[count]);
 	}
 
-	/*public HashMap<String, String> excelReadWrite() throws Exception {
-		HashMap<String, String> requestMap = new HashMap<>();
-		try {
-			File fileObj = new File("C:\\Users\\dariss\\Documents\\Book1.xls");
-			FileInputStream fsIP = new FileInputStream(fileObj);
-			HSSFWorkbook wb = new HSSFWorkbook(fsIP);
-			Sheet s = wb.getSheet("Sheet1");
-			int rowcount = s.getLastRowNum();
-
-			String key = null;
-			String valueConcat = "";
-
-			for (int i = 1; i <= rowcount; i++)
-
-			{
-
-				for (int j = 0; j < s.getRow(i).getLastCellNum(); j++) {
-					if (j == 0) {
-						key = s.getRow(i).getCell(j).toString();
-						System.out.println("key:" + key);
-
-					}
-					if (j == 1) {
-
-						String Value = s.getRow(i).getCell(j).toString();
-						System.out.println(Value);
-						String[] var = Value
-								.split("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)");
-
-						long h;
-						char[] zero = null;
-						String zeroString = "";
-						for (String k : var) {
-
-							if (k.matches("[0-9]+")) {
-
-								h = Long.parseLong(k) + 1;
-								// System.out.println("h is "+h);
-								if (k.startsWith("0")) {
-									zero = k.toCharArray();
-									for (char zeroLoop : zero) {
-										if (zeroLoop != '0') {
-											break;
-										}
-
-										zeroString = zeroString + zeroLoop;
-
-									}
-									valueConcat = valueConcat + zeroString + h;
-
-								} else {
-									valueConcat = valueConcat + h;
-								}
-
-							} else {
-
-								valueConcat = valueConcat + k;
-
-							}
-							s.getRow(i).getCell(j).setCellValue(valueConcat);
-
-						}
-
-					}
-				}
-
-				requestMap.put(key, valueConcat);
-				valueConcat = "";
-			}
-
-			System.out.println(requestMap);
-			FileOutputStream outputStream = new FileOutputStream(fileObj);
-			wb.write(outputStream);
-			wb.close();
-		} catch (NullPointerException e) {
-			throw new Exception(e);
-		}
-		return requestMap;
-	}*/
 
 	public String getSerialNumber() throws FileNotFoundException, IOException,
 			ParseException {

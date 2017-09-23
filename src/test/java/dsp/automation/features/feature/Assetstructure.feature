@@ -12,10 +12,13 @@ Feature: Asset Onboarding through CCDS
       | CommercialType | HttpStatus |
       | PLE641         |        201 |
       | PLE631         |        201 |
-      | PL641          |        201 |
       | PLE641+PL631   |        201 |
+      | PL641          |        201 |
+      | PL631          |        201 |
       | PL161          |        201 |
-      | PL241          |        201 |
+      | PL141          |        201 |
+      | PL131          |        201 |
+      | PL671          |        201 |
 
   @Sanity @Regression @Positive
   Scenario: Retrieve AssetStructureVerbose from AssetStructureMessage Table

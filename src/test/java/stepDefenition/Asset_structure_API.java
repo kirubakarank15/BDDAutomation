@@ -17,7 +17,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import dsp.automation.AssetStructures.API.Common_methods;
 import junit.framework.Assert;
-
+import dsp.automation.utilities.*;
 
 public class Asset_structure_API {
 	Common_methods reusemethods = new Common_methods(); 
@@ -72,7 +72,7 @@ public class Asset_structure_API {
 		//reusemethods.getassetDetails(query);
        //assertEquals(reusemethods.dbValue("STATUS", query).toUpperCase(), "SKIPPED");
 		
-		if(reusemethods.dbValue("STATUS", query).equalsIgnoreCase("SKIPPED")){
+		if(DBMapValues.dbValue("STATUS", query).equalsIgnoreCase("SKIPPED")){
 			Assert.fail("Status of Assetstructure Message is SKIPPED");	
 		}
 		
@@ -90,7 +90,7 @@ public class Asset_structure_API {
 		
 		String query = properties.getProperty("db.AssetTable").replace("DUMMYXYZ", iterateSerialNo);
 		System.out.println("Asset Table Query:" +query);
-		Asset_id = reusemethods.dbValue("ASSET_ID", query);
+		Asset_id = DBMapValues.dbValue("ASSET_ID", query);
 		AssetIds.add(Asset_id);
 		System.out.println("AssetID:" +Asset_id);
 	
@@ -109,7 +109,7 @@ public class Asset_structure_API {
 		String query = properties.getProperty("db.Radio").replace("DUMMYXYZ", iterateAssetId);
 		System.out.println("Asset Table Query:" +query);
 		
-		reusemethods.getassetDetails(query);
+		DBMapValues.getMapValues(query);
 	}
 	}
 
@@ -120,7 +120,7 @@ public class Asset_structure_API {
 		properties.load(new FileInputStream("Resources\\application.properties"));
 	   String query = properties.getProperty("db.Device").replace("DUMMYXYZ", iterateAssetId);
 	   System.out.println("Device Table Query:" +query);
-	   reusemethods.getassetDetails(query);
+	   DBMapValues.getMapValues(query);
 	}
 	}
 
@@ -131,7 +131,7 @@ public class Asset_structure_API {
 		properties.load(new FileInputStream("Resources\\application.properties"));
 		String query = properties.getProperty("db.AssetSubscriptionHistory").replace("DUMMYXYZ", iterateAssetId);
 	    System.out.println("AssetSubscriptionHistory Query:" +query);
-	    reusemethods.getassetDetails(query);
+	    DBMapValues.getMapValues(query);
 	}
 	}
 	@Then("^Retrieve the values of Subscription_id in AssetSubscription Table for onboarded asset$")
@@ -142,7 +142,7 @@ public class Asset_structure_API {
 		String query = properties.getProperty("db.AssetSubscription").replace("DUMMYXYZ", iterateAssetId);
 	    System.out.println("AssetSubscription Query:" +query);
 	    //reusemethods.getassetDetails(query);
-	    Subscription_ID = reusemethods.dbValue("SUBSCRIPTION_ID", query);
+	    Subscription_ID = DBMapValues.dbValue("SUBSCRIPTION_ID", query);
 	    System.out.println("Subscription_id:" +Subscription_ID);
 	   }
 	}
