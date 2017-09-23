@@ -49,7 +49,6 @@ public class Common_methods {
 	 
 	public static List<String> SerialNumbers = new ArrayList<String>();
 	static Properties properties = new Properties();
-	//Common_methods reusemethods = new Common_methods();
 	ExcelReadWrite_API ExcelReadWrite = new ExcelReadWrite_API();
 	StringEntity input = null;
 	
