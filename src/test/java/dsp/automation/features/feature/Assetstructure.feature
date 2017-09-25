@@ -13,11 +13,12 @@ Feature: Asset Onboarding through CCDS
       | PLE641         |        201 |
       | PLE631         |        201 |
       | PLE641+PL631   |        201 |
+      | PLE601         |        201 |
       | PL641          |        201 |
       | PL631          |        201 |
-      | PL161          |        201 |
-      | PL141          |        201 |
       | PL131          |        201 |
+      | PL141          |        201 |
+      | PL161          |        201 |
       | PL671          |        201 |
 
   @Sanity @Regression @Positive
@@ -37,4 +38,4 @@ Feature: Asset Onboarding through CCDS
     And Retrieve the values of Device_Id ,Commercial_type in Device Table for onboarded asset
     And Retrieve the values of Subscription_id in AssetSubscriptionHistory Table for onboarded asset
     And Retrieve the values of Subscription_id in AssetSubscription Table for onboarded asset
-    And Verify the Subscription_id is "375"
+    And Verify the Subscription_id is "376"

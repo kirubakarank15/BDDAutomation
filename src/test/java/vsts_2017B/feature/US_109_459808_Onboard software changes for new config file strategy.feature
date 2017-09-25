@@ -1,372 +1,239 @@
 @2017B @US_109 @US_459808 @NewConfigFile
 Feature: Verify Device Info Popup in DSP for software changes of new config file
 
-  @CATLoginProfile @DealerLoginUserName @FactoryUserProfile @Sprint5 @FunctionalPositive1
-  Scenario Outline: Navigation to My Worklist in Chrome and IE
-    Given Login into DSP Portal as "Role = <Role>"
+  @CATLoginProfile @DealerLoginUser @FactoryUser @Positive @US_109 @TC_
+  Scenario Outline: Verify the Base Config , Base Config Date Field and Position in Device Info Popup for various DeviceTypes in Chrome and IE
+    Given Login to DSP as "<Role>"
+    When Onboarded Asset Stubbed with "<ConfigFile>" thru CCDS
+    And click on Device Info Popup for "<CommercialType>" in MyWorklist Page
+    Then In UI Base Config should be displayed in Device Info Popup of MyWorklist Page
+    And Base Config field should be displayed in Device Info Popup of MyWorklist Page
+    And Base Config Part No should not be displayed in Device Info Popup of MyWorklist Page
+    And Base Config Date should be displayed in Device Info Popup of MyWorklist Page
+    And Base Config Date field should be displayed between Hardware PN and Base Config in Device Info Popup of MyWorklist Page
 
     Examples: 
-      | Role                |
-      | CATLoginUser        |
-      | DealerLoginUserName |
-      | FactoryUserName     |
+      | Role            | ConfigFile   | CommercialType |
+      | CATLoginProfile | Single       | PLE641         |
+      | DealerLoginUser | Standard     | PLE631         |
+      | FactoryUser     | Customer     | PL241          |
+      | DealerLoginUser | Engineeering | PLE641+PL631   |
+      | FactoryUser     | Single       | PL641          |
+      | DealerLoginUser | Standard     | PLE742         |
+      | CATLoginProfile | Standard     | PLE640         |
+      | DealerLoginUser | Customer     | PL240          |
+      | FactoryUser     | Engineeering | PL131          |
+      | DealerLoginUser | Standard     | PLE642         |
+      | CATLoginProfile | Single       | PL231          |
+      | DealerLoginUser | Customer     | PLE601         |
 
-  @CATLoginProfile @Sprint5 @FunctionalPositive2
-  Scenario Outline: Verify the Base Config and Base Config Date Field  in Device Info Popup for various DeviceTypes in Chrome and IE for CATLoginProfile
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify in UI "Base Config.isDisplayed=True,Base Config Date.isDisplayed=True,Base Config Date.Displayed=False,Base Config Date field displayed between Hardware PN and Base Config" in Device Info Popup of MyWorklist Page
-
-    Examples: 
-      | ConfigFile   | CommercialType |
-      | Single       | PLE641         |
-      | Standard     | PLE631         |
-      | Customer     | PL241          |
-      | Engineeering | PLE641+PL631   |
-
-  @DealerLoginUserName @Sprint5 @FunctionalPositive3
-  Scenario Outline: Verify the Base Config and Base Config Date Field  in Device Info Popup for various DeviceTypes in Chrome and IE for DealerLoginUserName
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify in UI "Base Config.isDisplayed=True,Base Config Date.isDisplayed=True,Base Config Date.Displayed=False,Base Config Date field displayed between Hardware PN and Base Config" in Device Info Popup of MyWorklist Page
-
-    Examples: 
-      | ConfigFile   | CommercialType |
-      | Single       | PLE641+PL631   |
-      | Standard     | PL641          |
-      | Customer     | PLE640         |
-      | Engineeering | PLE742         |
-
-  @FactoryUserName @Sprint5 @FunctionalPositive4
-  Scenario Outline: Verify the Base Config and Base Config Date Field  in Device Info Popup for various DeviceTypes in Chrome and IE for FactoryUserName
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>"in MyWorklist Page
-    Then verify in UI "Base Config.isDisplayed=True,Base Config Date.isDisplayed=True,Base Config Date.Displayed=False,Base Config Date field displayed between Hardware PN and Base Config" in Device Info Popup of MyWorklist Page
+  @CATLoginProfile @DealerLoginUser @FactoryUser @Positive @US_109 @TC_ @NewSingleConfigfile
+  Scenario Outline: Verify the Base Config and Base Config Date Fields in Device Info Popup with New Single Config in Chrome and IE
+    Given Login to DSP as "<Role>"
+    When click on Device Info Popup for "<CommercialType>" in MyWorklist Page
+    Then Base config Field should in be Alphanumeric format in Device Info Popup of MyWorklist Page
+    And Base Config Date should be in Timestamp format in Device Info Popup of MyWorklist Page
+    And Customer Config field should be blank in Device Info Popup of MyWorklist Page
+    And Base Config field should be binded with PartNumber value from New Single Config file in Device Info Popup of MyWorklist Page
+    And Base Config Date should be binded wuth modifiedTime value from New Single Config file in Device Info Popup of MyWorklist Page
 
     Examples: 
-      | ConfigFile   | CommercialType |
-      | Single       | PL161          |
-      | Standard     | PL631          |
-      | Customer     | PLE742         |
-      | Engineeering | PLE640         |
+      | Role            | CommercialType |
+      | CATLoginProfile | PLE631         |
+      | DealerLoginUser | PL641          |
+      | FactoryUser     | PLE641+PL631   |
+      | DealerLoginUser | PL241          |
+      | DealerLoginUser | PLE641+PL631   |
+      | FactoryUser     | PL641          |
+      | DealerLoginUser | PLE742         |
+      | CATLoginProfile | PLE640         |
+      | DealerLoginUser | PL240          |
+      | FactoryUser     | PL131          |
 
-  @CATLoginProfile @Sprint5 @FunctionalPositive5 @SingleConfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Single Config in Chrome and IE for CATLoginProfile
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Single Config
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify in UI Base config Field "Base Config =AN,Base Config Date= Timestamp format,Customer Config =blank,Base Config=PartNumber,Base Config Date=modifiedTime " for New Single Config in MyWorklist Page
-
-    Examples: 
-      | ConfigFile | CommercialType |
-      | Single     | PLE631         |
-      | Single     | PL641          |
-      | Single     | PLE641+PL631   |
-      | Single     | PL241          |
-
-  @DealerLoginUserName @Sprint5 @FunctionalPositive6 @SingleConfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Single Config in Chrome and IE for DealerLoginUserName
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Single Config
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify in UI Base config Field "Base Config =AN,Base Config Date= Timestamp format,Customer Config =blank,Base Config=PartNumber,Base Config Date=modifiedTime " for New Single Config in MyWorklist Page
+  @CATLoginProfile @DealerLoginUser @FactoryUser @Positive @US_109 @TC_ @CustomerConfigfile
+  Scenario Outline: Verify the Base Config and Base Config Date Fields in Device Info Popup with CustomerConfig file in Chrome and IE
+    Given Login to DSP as "<Role>"
+    When click on Device Info Popup for "<CommercialType>" in MyWorklist Page
+    Then Base Config field should be blank in Device Info Popup of MyWorklist Page
+    And Base Config Date should be blank in Device Info Popup of MyWorklist Page
+    And Customer Config Desc field should be binded with description value from New Customer Config file in Device Info Popup of MyWorklist Page
+    And Customer Config Date should be binded with modifiedTime value from from New Customer Config file in Device Info Popup of MyWorklist Page
 
     Examples: 
-      | ConfigFile | CommercialType |
-      | Single     | PLE640         |
-      | Single     | PL161          |
-      | Single     | PLE641+PL631   |
-      | Single     | PL241          |
+      | Role            | CommercialType |
+      | CATLoginProfile | PLE641         |
+      | DealerLoginUser | PL161          |
+      | FactoryUser     | PL641          |
+      | DealerLoginUser | PLE742         |
+      | DealerLoginUser | PLE641+PL631   |
+      | FactoryUser     | PL641          |
+      | DealerLoginUser | PLE742         |
+      | CATLoginProfile | PLE640         |
+      | DealerLoginUser | PL240          |
+      | FactoryUser     | PL131          |
 
-  @FactoryUserName @Sprint5 @FunctionalPositive7 @SingleConfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Single Config in Chrome and IE for FactoryUserName
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Single Config
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify in UI Base config Field "Base Config =AN,Base Config Date= Timestamp format,Customer Config =blank,Base Config=PartNumber,Base Config Date=modifiedTime " for New Single Config in MyWorklist Page
-
-    Examples: 
-      | ConfigFile | CommercialType |
-      | Single     | PLE742         |
-      | Single     | PL641          |
-      | Single     | PLE641+PL631   |
-      | Single     | PL241          |
-
-  @CATLoginProfile @Sprint5 @FunctionalPositive8 @CustomerConfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Customer Config in Chrome and IE for CATLoginProfile
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Customer Config
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify and compare in UI "Base Config =blank,Base Config Date=blank,Customer Config Desc=description,Customer Config Date = modifiedTime" from CCDS API Response for New Customer Config file in MyWorklist Page
+  @CATLoginProfile @DealerLoginUser @FactoryUser @Positive @US_109 @TC_ @EngineeringConfigfile
+  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup with Engineering Config file in Chrome and IE
+    Given Login to DSP as "<Role>"
+    When click on Device Info Popup for "<CommercialType>"in MyWorklist Page
+    Then Base Config field should be blank in Device Info Popup of MyWorklist Page
+    And Base Config Date should be blank in Device Info Popup of MyWorklist Page
+    And Engineering Config Desc field should be binded with description value from Engineering Config file in Device Info Popup of MyWorklist Page
+    And Engineering Config Date field should be binded with description value from Engineering Config file in Device Info Popup of MyWorklist Page
 
     Examples: 
-      | ConfigFile | CommercialType |
-      | Customer   | PLE641         |
-      | Customer   | PL161          |
-      | Customer   | PL641          |
-      | Customer   | PLE742         |
+      | Role            | CommercialType |
+      | CATLoginProfile | PLE641         |
+      | DealerLoginUser | PL161          |
+      | FactoryUser     | PL141          |
+      | DealerLoginUser | PLE742         |
+      | DealerLoginUser | PLE641+PL631   |
+      | FactoryUser     | PL641          |
+      | DealerLoginUser | PLE742         |
+      | CATLoginProfile | PLE640         |
+      | DealerLoginUser | PL542          |
+      | FactoryUser     | PL131          |
 
-  @DealerLoginUserName @Sprint5 @FunctionalPositive9 @CustomerConfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Customer Config in Chrome and IE for DealerLoginUserName
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Customer Config
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify and compare in UI "Base Config =blank,Base Config Date=blank,Customer Config Desc=description,Customer Config Date = modifiedTime" from CCDS API Response for New Customer Config file in MyWorklist Page
-
-    Examples: 
-      | ConfigFile | CommercialType |
-      | Customer   | PLE641         |
-      | Customer   | PL161          |
-      | Customer   | PL641          |
-      | Customer   | PLE742         |
-
-  @FactoryUserName @Sprint5 @FunctionalPositive10 @CustomerConfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Customer Config in Chrome and IE for FactoryUserName
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Customer Config
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify and compare in UI "Base Config =blank,Base Config Date=blank,Customer Config Desc=description,Customer Config Date = modifiedTime" from CCDS API Response for New Customer Config file in MyWorklist Page
-
-    Examples: 
-      | ConfigFile | CommercialType |
-      | Customer   | PLE641         |
-      | Customer   | PL161          |
-      | Customer   | PL641          |
-      | Customer   | PLE742         |
-
-  @CATLoginProfile @Sprint5 @FunctionalPositive11 @EngineeringConfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Engineering Config in Chrome and IE for CATLoginProfile
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Engineering Config
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify and compare in UI "Base Config =blank,Base Config Date=blank,Engineering Config Desc=description,Engineering Config Date = modifiedTime" from CCDS API Response for New Engineering Config file in MyWorklist Page
+  @CATLoginProfile @DealerLoginUser @FactoryUser @Positive @US_109 @TC_ @Single&Standard&Customer&Engineeringfile
+  Scenario Outline: Verify the Base Config and Base Config Date Fields in Device Info Popup with Single & Standard & Customer & Engineering config Data in Chrome and IE
+    Given Login to DSP as "<Role>"
+    When click on Device Info Popup for "<CommercialType>" in MyWorklist Page
+    Then Base config field should be binded with PartNumber value of Single Type from Mulitple Config Dataset in Device Info Popup of MyWorklist Page
+    And Base Config Date field should be binded with ModifiedTime value of Single Type from Mulitple Config Dataset in Device Info Popup of MyWorklist Page
+    And Customer config Date should be binded with description value of Customer Type from Mulitple Config Dataset in Device Info Popup of MyWorklist Page
+    And Customer Config Desc should be binded with ModifiedTime value of Customer Type from Mulitple Config Dataset in Device Info Popup of MyWorklist Page
+    And Engineering Config Desc should be binded with description value of Engineering Type from Mulitple Config Dataset in Device Info Popup of MyWorklist Page
+    And Engineering config Date should be binded with ModifiedTime value of Engineering Type from Mulitple Config Dataset in Device Info Popup of MyWorklist Page
+    But Partnumber of Customer or Engineering config file should not be displayed in DSP from Mulitple Config Dataset in Device Info Popup of MyWorklist Page
 
     Examples: 
-      | ConfigFile  | CommercialType |
-      | Engineering | PLE641+PL631   |
-      | Engineering | PLE631         |
-      | Engineering | PL641          |
-      | Engineering | PL161          |
+      | Role            | CommercialType |
+      | CATLoginProfile | PLE641         |
+      | DealerLoginUser | PL161          |
+      | FactoryUser     | PL641          |
+      | DealerLoginUser | PLE742         |
+      | DealerLoginUser | PLE641+PL631   |
+      | FactoryUser     | PL641          |
+      | DealerLoginUser | PLE742         |
+      | CATLoginProfile | PLE640         |
+      | DealerLoginUser | PL240          |
+      | FactoryUser     | PL131          |
 
-  @DealerLoginUserName @Sprint5 @FunctionalPositive12 @EngineeringConfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Engineering Config in Chrome and IE for DealerLoginUserName
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Engineering Config
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify and compare in UI "Base Config =blank,Base Config Date=blank,Engineering Config Desc=description,Engineering Config Date = modifiedTime" from CCDS API Response for New Engineering Config file in MyWorklist Page
-
-    Examples: 
-      | ConfigFile  | CommercialType |
-      | Engineering | PLE641+PL631   |
-      | Engineering | PLE631         |
-      | Engineering | PL641          |
-      | Engineering | PL161          |
-
-  @FactoryUserName @Sprint5 @FunctionalPositive13 @EngineeringConfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Engineering Config in Chrome and IE for FactoryUserName
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Engineering Config 
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify and compare in UI "Base Config =blank,Base Config Date=blank,Engineering Config Desc=description,Engineering Config Date = modifiedTime" from CCDS API Response for New Engineering Config file in MyWorklist Page
+  @CATLoginProfile @DealerLoginUser @FactoryUser @Positive @US_109 @TC_ @Single&StandardConfigfile
+  Scenario Outline: Verify the Base Config and Base Config Date Fields in Device Info Popup with Single & Standard config data in Chrome and IE
+    Given Login to DSP as "<Role>"
+    When click on Device Info Popup for "<CommercialType>" in MyWorklist Page
+    Then Base config field should be binded with PartNumber value of Single Type from Single & Standard config data in Device Info Popup of MyWorklist Page
+    And Base Config Date field should be binded with ModifiedTime of Single Type from Single & Standard config data in Device Info Popup of MyWorklist Page
+    But Partnumber and Modified time of Standard config data should not be displayed in the Base config and Base config date fields in Device Info Popup of MyWorklist Page
 
     Examples: 
-      | ConfigFile  | CommercialType |
-      | Engineering | PLE641+PL631   |
-      | Engineering | PLE631         |
-      | Engineering | PL641          |
-      | Engineering | PL161          |
+      | Role            | CommercialType |
+      | CATLoginProfile | PLE641         |
+      | DealerLoginUser | PL161          |
+      | FactoryUser     | PL641          |
+      | DealerLoginUser | PLE742         |
+      | DealerLoginUser | PLE641+PL631   |
+      | FactoryUser     | PL641          |
+      | DealerLoginUser | PLE742         |
+      | CATLoginProfile | PLE640         |
+      | DealerLoginUser | PL240          |
+      | FactoryUser     | PL131          |
 
-  @CATLoginProfile @Sprint5 @FunctionalPositive14 @MultipleConfilefile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for Multiple other Config Dataset in Chrome and IE for CATLoginProfile
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for Multiple Config data set
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify and compare in UI "Base config =Single.PartNumber,Base Config Date=Single.ModifiedTime,Customer config Date=Customer.description,Customer Config Desc=Customer.ModifiedTime,Engineering Config Desc=Engineering.description,Engineering config Date =Engineering.ModifiedTime" from CCDS API Response for Mulitple Config Dataset in MyWorklist Page
-    But verify Partnumber of Customer or Engineering config file are not displayed in DSP in  MyWorklist Page
-
-    Examples: 
-      | ConfigFile                                 | CommercialType |
-      | Single & Standard & Customer & Engineering | PLE631         |
-      | Single & Standard & Customer & Engineering | PLE640         |
-      | Single & Standard & Customer & Engineering | PL241          |
-      | Single & Standard & Customer & Engineering | PL641          |
-
-  @DealerLoginUserName @Sprint5 @FunctionalPositive15 @MultipleConfilefile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for Multiple other Config Dataset in Chrome and IE for DealerLoginUserName
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for Multiple Config data set
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in  MyWorklist Page
-    Then verify and compare in UI "Base config =Single.PartNumber,Base Config Date=Single.ModifiedTime,Customer config Date=Customer.description,Customer Config Desc=Customer.ModifiedTime,Engineering Config Desc=Engineering.description,Engineering config Date =Engineering.ModifiedTime" from CCDS API Response for Mulitple Config Dataset in MyWorklist Page
-    But verify Partnumber of Customer or Engineering config file are not displayed in DSP in  MyWorklist Page
+  @CATLoginProfile @DealerLoginUser @FactoryUser @Negative @US_109 @TC_ @noConfigfile
+  Scenario Outline: Verify the Base Config and Base Config Date Fields in Device Info Popup with no config File in Chrome and IE
+    Given Login to DSP as "<Role>"
+    When click on Device Info Popup with "<CommercialType>" in MyWorklist Page
+    Then Base Config  should be blank in Device Info Popup of MyWorklist Page
+    And Base Config Date field should be blank in Device Info Popup of MyWorklist Page
+    And Customer Config Date should be blank in Device Info Popup of MyWorklist Page
+    And Customer Config Desc should be blank in Device Info Popup of MyWorklist Page
+    And Engineering Config Date should be blank in Device Info Popup of MyWorklist Page
+    And Engineering Config Desc should be blank in Device Info Popup of MyWorklist Page
 
     Examples: 
-      | ConfigFile                                 | CommercialType |
-      | Single & Standard & Customer & Engineering | PLE631         |
-      | Single & Standard & Customer & Engineering | PLE640         |
-      | Single & Standard & Customer & Engineering | PL241          |
-      | Single & Standard & Customer & Engineering | PL641          |
+      | Role            | CommercialType |
+      | CATLoginProfile | PLE641         |
+      | DealerLoginUser | PL161          |
+      | FactoryUser     | PL641          |
+      | DealerLoginUser | PLE742         |
+      | DealerLoginUser | PLE641+PL631   |
+      | FactoryUser     | PL641          |
+      | DealerLoginUser | PL240          |
+      | CATLoginProfile | PLE640         |
+      | DealerLoginUser | PL240          |
+      | FactoryUser     | PL131          |
 
-  @FactoryUserName @Sprint5 @FunctionalPositive16 @MultipleConfilefile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for Multiple other Config Dataset in Chrome and IE for FactoryUserName
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for Multiple Config data set
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in  MyWorklist Page
-    Then verify and compare in UI "Base config =Single.PartNumber,Base Config Date=Single.ModifiedTime,Customer config Date=Customer.description,Customer Config Desc=Customer.ModifiedTime,Engineering Config Desc=Engineering.description,Engineering config Date =Engineering.ModifiedTime" from CCDS API Response for Mulitple Config Dataset in MyWorklist Page
-    But verify Partnumber of Customer or Engineering config file are not displayed in DSP in  MyWorklist Page
-
-    Examples: 
-      | ConfigFile                                 | CommercialType |
-      | Single & Standard & Customer & Engineering | PLE631         |
-      | Single & Standard & Customer & Engineering | PLE640         |
-      | Single & Standard & Customer & Engineering | PL241          |
-      | Single & Standard & Customer & Engineering | PL641          |
-
-  @CATLoginProfile @Sprint5 @FunctionalPositive17 @SingleStandardConfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup with Single & Standard config data in Chrome and IE for CATLoginProfile
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS with Single and Standard config data
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify and Compare in UI "Base config=Single.PartNumber,Base Config Date.ModifiedTime" from CCDS API Response of Single Config file with Single & Standard config data in MyWorklist Page
-    But verify Standard Partnumber and  Modified time of Standard config data in CCDS API Response are not displayed in the Base config and Base config date fields in DSP in MyWorklist Page
+  @CATLoginProfile @DealerLoginUser @FactoryUser @Positive @Standardconfigfile
+  Scenario Outline: Verify the Base Config and Base Config Date Fields in Device Info Popup with New Standard/Base Config file in Chrome and IE
+    Given Login to DSP as "<Role>"
+    When click on Device Info Popup with "<CommercialType>" in MyWorklist Page
+    Then Base config Field should in be Alphanumeric format in Device Info Popup of MyWorklist Page
+    And Base Config Date field should be in Timestamp format in Device Info Popup of MyWorklist Page
+    And Customer Config field should be blank in Device Info Popup of MyWorklist Page
+    And Base Config field should be binded with PartNumber value from New Standard Config file in Device Info Popup of MyWorklist Page
+    And Base Config Date field should be binded with modifiedTime value from New Standard Config file in Device Info Popup of MyWorklist Page
+    And PartNumber, modifiedTime field values should populate correctly from the Config file in MyWorklist Page
 
     Examples: 
-      | ConfigFile        | CommercialType |
-      | Single & Standard | PLE631         |
-      | Single & Standard | PLE641+PL631   |
-      | Single & Standard | PL241          |
-      | Single & Standard | PLE742         |
+      | Role            | CommercialType |
+      | CATLoginProfile | PLE641         |
+      | DealerLoginUser | PL161          |
+      | FactoryUser     | PL641          |
+      | DealerLoginUser | PLE742         |
+      | DealerLoginUser | PLE641+PL631   |
+      | FactoryUser     | PL641          |
+      | DealerLoginUser | PLE742         |
+      | CATLoginProfile | PLE642         |
+      | DealerLoginUser | PL240          |
+      | FactoryUser     | PL131          |
 
-  @DealerLoginUserName @Sprint5 @FunctionalPositive18 @SingleStandardConfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup with Single and Standard config data in Chrome and IE for DealerLoginUserName
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS with Single and Standard config data
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify and Compare in UI "Base config=Single.PartNumber,Base Config Date.ModifiedTime" from CCDS API Response of Single Config file with Single & Standard config data in MyWorklist Page
-    But verify Standard Partnumber and  Modified time of Standard config data in CCDS API Response are not displayed in the Base config and Base config date fields in DSP in MyWorklist Page
-
-    Examples: 
-      | ConfigFile        | CommercialType |
-      | Single & Standard | PLE631         |
-      | Single & Standard | PLE641+PL631   |
-      | Single & Standard | PL241          |
-      | Single & Standard | PLE742         |
-
-  @FactoryUserName @Sprint5 @FunctionalPositive19 @SingleStandardConfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup with Single and Standard config data in Chrome and IE for FactoryUserName
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS with Single and Standard config data
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in  MyWorklist Page
-    Then verify and Compare in UI "Base config=Single.PartNumber,Base Config Date.ModifiedTime" from CCDS API Response of Single Config file with Single & Standard config data in MyWorklist Page
-    But verify Standard Partnumber and  Modified time of Standard config data in CCDS API Response are not displayed in the Base config and Base config date fields in DSP in MyWorklist Page
+  @CATLoginProfile @DealerLoginUser @FactoryUser @Positive @Standard&Customer&Engineeringconfigfile
+  Scenario Outline: Verify the Base Config and Base Config Date Fields in Device Info Popup with Standard & Customer & Engineering Config Dataset in Chrome and IE
+    Given Login to DSP as "<Role>"
+    When click on Device Info Popup with "<CommercialType>" in MyWorklist Page
+    Then Base config field should be binded with PartNumber value from New Standard Config file in Device Info Popup of MyWorklist Page
+    And Base Config Date field should be binded with modifiedTime value from New Standard Config file in Device Info Popup of MyWorklist Page
+    And Customer config Date field should be binded with description value from from New Customer Config file in Device Info Popup of MyWorklist Page
+    And Customer Config Desc field should be binded with modifiedTime value from from New Customer Config file in Device Info Popup of MyWorklist Page
+    And Engineering config Date field should be binded with description value from from New Engineering Config file in Device Info Popup of MyWorklist Page
+    And Engineering Config Desc field should be binded with modifiedTime value from from New Engineering Config fil in Device Info Popup of MyWorklist Page
+    But Partnumber of Customer or Engineering config file should not be displayed in DSP in MyWorklist Page
 
     Examples: 
-      | ConfigFile        | CommercialType |
-      | Single & Standard | PLE631         |
-      | Single & Standard | PLE641+PL631   |
-      | Single & Standard | PL241          |
-      | Single & Standard | PLE742         |
+      | Role            | CommercialType |
+      | CATLoginProfile | PLE641         |
+      | DealerLoginUser | PL161          |
+      | FactoryUser     | PL641          |
+      | DealerLoginUser | PLE742         |
+      | DealerLoginUser | PLE641+PL631   |
+      | FactoryUser     | PL641          |
+      | DealerLoginUser | PLE742         |
+      | CATLoginProfile | PLE640         |
+      | DealerLoginUser | PL240          |
+      | FactoryUser     | PL131          |
 
-  @CATLoginProfile @Sprint5 @FunctionalNegative20 @noConfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup with no config File in Chrome and IE for CATLoginProfile
-    When clicked on Device Info Popup with "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify and Compare in UI "Base Config=blank,Base Config Date =blank,Customer Config Date =blank,Customer Config Desc=blank,Engineering Config Date=blank,Engineering Config Desc=blank" in MyWorklist Page
-
-    Examples: 
-      | CommercialType |
-      | PLE631         |
-      | PLE641+PL631   |
-      | PL241          |
-      | PLE742         |
-
-  @DealerLoginUserName @Sprint5 @FunctionalNegative21 @noConfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup with no config File in Chrome and IE for DealerLoginUserName
-    When clicked on Device Info Popup with "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify and Compare in UI "Base Config=blank,Base Config Date =blank,Customer Config Date =blank,Customer Config Desc=blank,Engineering Config Date=blank,Engineering Config Desc=blank" in MyWorklist Page
-
-    Examples: 
-      | CommercialType |
-      | PLE631         |
-      | PLE641+PL631   |
-      | PL241          |
-      | PLE742         |
-
-  @FactoryUserName @Sprint5 @FunctionalNegative22 @noConfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup with no config File in Chrome and IE for FactoryUserName
-    When clicked on Device Info Popup with "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify and Compare in UI "Base Config=blank,Base Config Date =blank,Customer Config Date =blank,Customer Config Desc=blank,Engineering Config Date=blank,Engineering Config Desc=blank" in MyWorklist Page
+  @CATLoginProfile @DealerLoginUser @FactoryUser @Positive @Customer&Enginneringconfigfile
+  Scenario Outline: Verify the Base Config and Base Config Date Fields in Device Info Popup with Customer & Engineering config Data in Chrome and IE
+    Given Login to DSP as  "<Role>"
+    When click on Device Info Popup with "<CommercialType>"  in MyWorklist Page
+    Then Base Config  should be blank in Device Info Popup of MyWorklist Page
+    And Base Config Date field should be blank in Device Info Popup of MyWorklist Page
+    And Customer config Date field should be binded with description value from from New Customer Config file in Device Info Popup of MyWorklist Page
+    And Customer Config Desc field should be binded with modifiedTime value from from New Customer Config file in Device Info Popup of MyWorklist Page
+    And Engineering config Date field should be binded with description value from from New Engineering Config file in Device Info Popup of MyWorklist Page
+    And Engineering Config Desc field should be binded with modifiedTime value from from New Engineering Config fil in Device Info Popup of MyWorklist Page
+    But Partnumber of Customer or Engineering config file should not be displayed in DSP in MyWorklist Page
 
     Examples: 
-      | CommercialType |
-      | PLE631         |
-      | PLE641+PL631   |
-      | PL241          |
-      | PLE742         |
-
-  @CATLoginProfile @Sprint5 @FunctionalPositive23 @Standardconfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Standard/Base Config in Chrome and IE for CATLoginProfile
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Standard/Base Config
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify in UI Base config Field "Base Config =AN,Base Config Date= Timestamp format,Customer Config =blank,Base Config=PartNumber,Base Config Date=modifiedTime " for New Standard Config in MyWorklist Page
-    And verify PartNumber, modifiedTime field values populated correctly from the Config file in MyWorklist Page
-
-    Examples: 
-      | ConfigFile | CommercialType |
-      | Standard   | PLE631         |
-      | Standard   | PL641          |
-      | Standard   | PLE641+PL631   |
-      | Standard   | PL241          |
-
-  @DealerLoginUserName @Sprint5 @FunctionalPositive24 @Standardconfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Standard/Base Config in Chrome and IE for DealerLoginUserName
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Standard/Base Config
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify in UI Base config Field "Base Config =AN,Base Config Date= Timestamp format,Customer Config =blank,Base Config=PartNumber,Base Config Date=modifiedTime " for New Standard Config in MyWorklist Page
-    And verify PartNumber, modifiedTime field values populated correctly from the Config file in MyWorklist Page
-
-    Examples: 
-      | ConfigFile | CommercialType |
-      | Standard   | PLE631         |
-      | Standard   | PL641          |
-      | Standard   | PLE641+PL631   |
-      | Standard   | PL241          |
-
-  @FactoryUserName @Sprint5 @FunctionalPositive25 @Standardconfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for New Standard/Base Config in Chrome and IE for FactoryUserName
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for New Standard/Base Config
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify in UI Base config Field "Base Config =AN,Base Config Date= Timestamp format,Customer Config =blank,Base Config=PartNumber,Base Config Date=modifiedTime " for New Standard Config in MyWorklist Page
-    And verify PartNumber, modifiedTime field values populated correctly from the Config file in MyWorklist Page
-
-    Examples: 
-      | ConfigFile | CommercialType |
-      | Standard   | PLE631         |
-      | Standard   | PL641          |
-      | Standard   | PLE641+PL631   |
-      | Standard   | PL241          |
-
-  @CATLoginProfile @Sprint5 @FunctionalPositive26 @StandardwithMultipleconfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for Standard and Multiple other Config Dataset in Chrome and IE for CATLoginProfile
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for standard and Multiple other Config Dataset
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify and compare in UI "Base config =Standard.PartNumber,Base Config Date =Standard.modifiedTime,Customer config Date =Customer.description,Customer Config Desc=Customer.modifiedTime,Engineering config Date=Engineering.description,Engineering Config Desc =Engineering.modifiedTime" CCDS API Response for Mulitple Config Dataset in MyWorklist Page
-    But verify Partnumber of Customer or Engineering config file are not displayed in DSP in MyWorklist Page
-
-    Examples: 
-      | ConfigFile                        | CommercialType |
-      | Standard & Customer & Engineering | PLE631         |
-      | Standard & Customer & Engineering | PLE640         |
-      | Standard & Customer & Engineering | PL241          |
-      | Standard & Customer & Engineering | PL641          |
-
-  @DealerLoginUserName @Sprint5 @FunctionalPositive27 @StandardwithMultipleconfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for Standard and Multiple other Config Dataset in Chrome and IE for DealerLoginUserName
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for standard and Multiple other Config Dataset
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify and compare in UI "Base config =Standard.PartNumber,Base Config Date =Standard.modifiedTime,Customer config Date =Customer.description,Customer Config Desc=Customer.modifiedTime,Engineering config Date=Engineering.description,Engineering Config Desc =Engineering.modifiedTime" CCDS API Response for Mulitple Config Dataset in MyWorklist Page
-    But verify Partnumber of Customer or Engineering config file are not displayed in DSP in MyWorklist Page
-
-    Examples: 
-      | ConfigFile                        | CommercialType |
-      | Standard & Customer & Engineering | PLE631         |
-      | Standard & Customer & Engineering | PLE640         |
-      | Standard & Customer & Engineering | PL241          |
-      | Standard & Customer & Engineering | PL641          |
-
-  @FactoryUserName @Sprint5 @FunctionalPositive28 @StandardwithMultipleconfigfile
-  Scenario Outline: Verify the Base Config and Base Config Date Field in Device Info Popup for Standard and Multiple other Config Dataset in Chrome and IE for FactoryUserName
-    When Asset Onboarded Successfully and "ConfigFile=<ConfigFile>" Stubbed thru CCDS for standard and Multiple other Config Dataset
-    And clicked on Device Info Popup for "CommercialType=<CommercialType>" in MyWorklist Page
-    Then verify and compare in UI "Base config =Standard.PartNumber,Base Config Date =Standard.modifiedTime,Customer config Date =Customer.description,Customer Config Desc=Customer.modifiedTime,Engineering config Date=Engineering.description,Engineering Config Desc =Engineering.modifiedTime" CCDS API Response for Mulitple Config Dataset in MyWorklist Page
-    But verify Partnumber of Customer or Engineering config file are not displayed in DSP in MyWorklist Page
-
-    Examples: 
-      | ConfigFile                        | CommercialType |
-      | Standard & Customer & Engineering | PLE631         |
-      | Standard & Customer & Engineering | PLE640         |
-      | Standard & Customer & Engineering | PL241          |
-      | Standard & Customer & Engineering | PL641          |
+      | Role            | CommercialType |
+      | CATLoginProfile | PLE641         |
+      | DealerLoginUser | PL161          |
+      | FactoryUser     | PL641          |
+      | DealerLoginUser | PLE742         |
+      | DealerLoginUser | PLE641+PL631   |
+      | FactoryUser     | PL641          |
+      | DealerLoginUser | PLE742         |
+      | CATLoginProfile | PLE640         |
+      | DealerLoginUser | PL240          |
+      | FactoryUser     | PL131          |

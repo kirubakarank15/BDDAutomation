@@ -29,13 +29,13 @@ import dsp.automation.AssetStructures.API.Common_methods;
 public class Common_methods_ED 
 { 
 	public String assetSno;
+	static List<String> SerialNumbers  = Common_methods.SerialNumbers;
+	static int counter=0;
 public String AssetTemplate(String manufacturerCode, String productWorkCode, String Model, String ManufacturingYear, String OnwerType, String DealerCustomerNumber, String EquipmentID, String VinNumber, String DealerCode)
 {
-	//List<a,a> l1 = new List();
-	assetSno = Common_methods.SerialNumber;
-	System.out.println("AssetSNO:" +assetSno);
 	AssetRegisterED assetregister = new AssetRegisterED();
-	assetregister.setSerialNumber(assetSno);
+	assetregister.setSerialNumber(SerialNumbers.get(counter));
+	System.out.println("AssetSNO:" +SerialNumbers.get(counter));
 	assetregister.setManufacturerCode(manufacturerCode);
 	assetregister.setProdWorkCode(productWorkCode);
 	assetregister.setModel(Model);
@@ -53,9 +53,11 @@ public String AssetTemplate(String manufacturerCode, String productWorkCode, Str
 		PrintWriter writer = new PrintWriter("EDRequestBody.txt","UTF-8");
 		writer.println(JsonInString);
 		writer.close();
-	} catch (IOException e) {
+	} catch (IOException e) 
+	{
 
 	}
+	counter++;
 	return JsonInString;
 	
 	}

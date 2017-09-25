@@ -12,13 +12,14 @@ public class DBMapValues {
 	public static String value = null;
 
 	public static TreeMap<String, List<String>> getMapValues(String query)
-			throws SQLException {
+			throws SQLException, InterruptedException {
 		// String sNumber=(String) htable.get("serialNumber");
 		// String makeNum=(String) htable.get("make");
 		DBconnection_API dbConnection = new DBconnection_API();
 		Statement st = dbConnection.checkConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 		String sql = (query);
+		Thread.sleep(15000);
 		ResultSet rs = st.executeQuery(sql);
 		ResultSetMetaData rsmd = rs.getMetaData();
 		/*
@@ -57,11 +58,11 @@ public class DBMapValues {
 		return dbValues;
 	}
 	
-	public static String dbValue(String columName, String Query) throws SQLException {
+	public static String dbValue(String columName, String Query) throws SQLException, InterruptedException {
 
 		TreeMap<String, List<String>> map = getMapValues(Query);
 		//System.out.println("Printing"+map);
-		
+		Thread.sleep(10000);
 		value = map.get(columName.toUpperCase()).get(0);
 		
 		if(value==null)

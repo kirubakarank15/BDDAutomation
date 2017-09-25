@@ -69,9 +69,6 @@ public class Asset_structure_API {
 		System.out.println("AssetStructure query:" +query);
 		Thread.sleep(60000);
 		
-		//reusemethods.getassetDetails(query);
-       //assertEquals(reusemethods.dbValue("STATUS", query).toUpperCase(), "SKIPPED");
-		
 		if(DBMapValues.dbValue("STATUS", query).equalsIgnoreCase("SKIPPED")){
 			Assert.fail("Status of Assetstructure Message is SKIPPED");	
 		}
