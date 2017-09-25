@@ -16,10 +16,16 @@ import cucumber.api.java.en.Then;
 import dsp.automation.subscriptions.API.CATLevelSubscription;
 import dsp.automation.subscriptions.API.CommonMethods;
 import dsp.automation.subscriptions.API.CustInheritedSubscriptions;
+import dsp.automation.subscriptions.API.CustInheritedwithCATLevelSubscription;
+import dsp.automation.subscriptions.API.CustInheritedwithCATLevelSubscriptionDelete;
 import dsp.automation.subscriptions.API.DeleteCATSubscriptions;
 import dsp.automation.subscriptions.API.DeleteCustInheritedSubscriptions;
 import dsp.automation.subscriptions.API.DeleteDealerInheritedSubscriptions;
-import dsp.automation.subscriptions.API.DealerInheritedScubscriptions;
+import dsp.automation.subscriptions.API.DeleteNonInheritedSubscriptions;
+import dsp.automation.subscriptions.API.NonInheritedSubscriptions;
+import dsp.automation.subscriptions.API.DealerInheritedSubscriptions;
+import dsp.automation.subscriptions.API.DealerInheritedwithCustomerSubscription;
+import dsp.automation.subscriptions.API.DealerInheritedwithCustomerSubscriptionDelete;
 import dsp.automation.utilities.DBconnection_API;
 import junit.framework.Assert;
 
@@ -29,9 +35,11 @@ public class Asset_subscriptions_API
 	CommonMethods CommonInstance = new CommonMethods();
 	//DSPSqlconnection DBinstance = new DSPSqlconnection();
 	CustInheritedSubscriptions CustInheritSub = new CustInheritedSubscriptions();
-	DealerInheritedScubscriptions DealerInheritSub = new DealerInheritedScubscriptions();
+	DealerInheritedSubscriptions DealerInheritSub = new DealerInheritedSubscriptions();
 	CATLevelSubscription CATLevelSub = new CATLevelSubscription();
-	
+	NonInheritedSubscriptions NonInheritedSub = new NonInheritedSubscriptions();
+	DealerInheritedwithCustomerSubscription DealerInheritedwithCust = new DealerInheritedwithCustomerSubscription();
+	CustInheritedwithCATLevelSubscription CustInheritedwithCAT = new CustInheritedwithCATLevelSubscription();
 	static String AssetSerialNumber;
 	static String AssetID;
 	static String APIresponse;
@@ -168,33 +176,29 @@ public class Asset_subscriptions_API
 		dbcheck.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
 
 	}*/
-
-	@Then("^Set the Subscription for Customer Level with serialNumber,startTime,endTime, \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\" and retrive the ParentID$")
-	public void set_the_Subscription_for_Customer_Level_with_serialNumber_startTime_endTime_and_retrive_the_ParentID(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, IOException, JSONException, ParseException 
+	
+	@Then("^Set CustInheritedSubscription for Customer Level with serialNumber,startTime,endTime, \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\" and retrive the ParentID$")
+	public void set_CustInheritedSubscription_for_Customer_Level_with_serialNumber_startTime_endTime_and_retrive_the_ParentID(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, IOException, JSONException, ParseException 
 	{
 		System.out.println("*************************************  CREATING CUSTOMER INHERITED SUBSCRIPTIONS******************************************");
 		CustInheritSub.CustInheritedCustLevelSubscription(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 
 	}
 
-	@Then("^Set the Subscription for Dealer Level with serialNumber,parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\",startTime,endTime$")
-	public void set_the_Subscription_for_Dealer_Level_with_serialNumber_parentId_startTime_endTime(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, IOException, JSONException 
+	@Then("^Set CustInheritedSubscription for Dealer Level with serialNumber,parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\",startTime,endTime$")
+	public void set_CustInheritedSubscription_for_Dealer_Level_with_serialNumber_parentId_startTime_endTime(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, IOException, JSONException 
 	{
-
 		CustInheritSub.CustInheritedDealerLevelSubscription(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
-
-
 	}
 
-	@Then("^Set the Subscription for CAT Level with serialNumber,parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\",startTime,endTime$")
-	public void set_the_Subscription_for_CAT_Level_with_serialNumber_parentId_startTime_endTime(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, IOException, JSONException 
+	@Then("^Set CustInheritedSubscription for CAT Level with serialNumber,parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\",startTime,endTime$")
+	public void set_CustInheritedSubscription_for_CAT_Level_with_serialNumber_parentId_startTime_endTime(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, IOException, JSONException 
 	{
 		CustInheritSub.CustInheritedCATLevelSubscription(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 	}
-	
-		
-	@Then("^Retrieve the Values of Subscription_id in AssetSubscription and Table for CustInheritedSubscriptions$")
-	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscription_and_Table_for_CustInheritedSubscriptions() throws FileNotFoundException, IOException, SQLException 
+
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscription and Table for CustInheritedSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscription_and_Table_for_CustInheritedSubscription() throws FileNotFoundException, IOException, SQLException 
 	{
 		String SubAssetID = Asset_structure_API.Asset_id;
 		System.out.println("SubscriptionAssetid :" +SubAssetID);
@@ -207,8 +211,8 @@ public class Asset_subscriptions_API
 
 	}
 
-	@Then("^Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for CustInheritedSubscriptions$")
-	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscriptionHistory_Table_for_CustInheritedSubscriptions() throws FileNotFoundException, IOException, SQLException 
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for CustInheritedSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscriptionHistory_Table_for_CustInheritedSubscription() throws FileNotFoundException, IOException, SQLException 
 	{
 		String SubAssetID = Asset_structure_API.Asset_id;
 		System.out.println("SubscriptionhistoryAssetid :" +SubAssetID);
@@ -220,38 +224,36 @@ public class Asset_subscriptions_API
 		CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 	}
 	
-	
 	/*public void delete_the_Subscription_for_Customer_Level_with_endTime_without_deleting_the_ChildLevel_Subscription_and_Validate_the_ErrorMsg(String cancelReason) throws FileNotFoundException, NullPointerException, IOException, JSONException 
 	{
 		System.out.println("************************************* DELETING SUBSCRIPTIONS******************************************");
 		DSPDeleteSubscriptions.Delsubscriptions(cancelReason);
 
 	}*/
-
-
-	@Then("^Delete the Subscription for CAT Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")		
-	public void delete_the_Subscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws FileNotFoundException, NullPointerException, IOException, JSONException 
+	
+	
+	@Then("^Delete CustInheritedSubscription for CAT Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
+	public void delete_CustInheritedSubscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws FileNotFoundException, NullPointerException, IOException, JSONException 
 	{
-
 		System.out.println("************************************* DELETING CUST INHERITED SUBSCRIPTIONS******************************************");
 		DeleteCustInheritedSubscriptions.DelCustInheritedsubscriptions(cancelReason,level);
 	}
 
-	@Then("^Delete the Subscription for Dealer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
-	public void delete_the_Subscription_for_Dealer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws FileNotFoundException, NullPointerException, IOException, JSONException 
+	@Then("^Delete CustInheritedSubscription for Dealer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
+	public void delete_CustInheritedSubscription_for_Dealer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws FileNotFoundException, NullPointerException, IOException, JSONException 
 	{
 		
 		DeleteCustInheritedSubscriptions.DelCustInheritedsubscriptions(cancelReason,level);
 	}
 
-	@Then("^Delete the Subscription for Customer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
-	public void delete_the_Subscription_for_Customer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws FileNotFoundException, NullPointerException, IOException, JSONException 
+	@Then("^Delete CustInheritedSubscription for Customer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
+	public void delete_CustInheritedSubscription_for_Customer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws FileNotFoundException, NullPointerException, IOException, JSONException 
 	{
 		DeleteCustInheritedSubscriptions.DelCustInheritedsubscriptions(cancelReason,level);
 	}
 
-	@Then("^Retrieve the Values of Subscription_id in AssetSubscription and Table for CancelledCustInheritedSubscriptions$")
-	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscription_and_Table_for_CancelledCustInheritedSubscriptions() throws FileNotFoundException, IOException, SQLException 
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscription and Table for CancelledCustInheritedSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscription_and_Table_for_CancelledCustInheritedSubscription() throws FileNotFoundException, IOException, SQLException 
 	{
 		String SubAssetID = Asset_structure_API.Asset_id;
 		System.out.println("SubscriptionAssetid :" +SubAssetID);
@@ -261,11 +263,11 @@ public class Asset_subscriptions_API
 		//DSPSqlconnection dbcheck = new DSPSqlconnection();
 		//CommonInstance.getassetDetails(SubscritpionTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
-
+	
 	}
 
-	@Then("^Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for CancelledCustInheritedSubscriptions$")
-	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscriptionHistory_Table_for_CancelledCustInheritedSubscriptions() throws FileNotFoundException, IOException, SQLException 
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for CancelledCustInheritedSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscriptionHistory_Table_for_CancelledCustInheritedSubscription() throws FileNotFoundException, IOException, SQLException 
 	{
 		String SubAssetID = Asset_structure_API.Asset_id;
 		System.out.println("SubscriptionhistoryAssetid :" +SubAssetID);
@@ -275,27 +277,25 @@ public class Asset_subscriptions_API
 		//DSPSqlconnection dbcheck = new DSPSqlconnection();
 		//CommonInstance.getassetDetails(HistoryTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
-
+	
 	}
-	
-	
-	@Then("^Set the Subscription for Dealer Level with serialNumber,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\",startTime,endTime for DealerInheritedSubscriptions$")
-	public void set_the_Subscription_for_Dealer_Level_with_serialNumber_startTime_endTime_for_DealerInheritedSubscriptions(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, IOException, JSONException
+
+	@Then("^Set DealerInheritedSubscription for Dealer Level with serialNumber,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\",startTime,endTime for DealerInheritedSubscriptions$")
+	public void set_DealerInheritedSubscription_for_Dealer_Level_with_serialNumber_startTime_endTime_for_DealerInheritedSubscriptions(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, IOException, JSONException
 	{
 		System.out.println("************************************* CREATING DEALER LEVEL SUBSCRIPTIONS******************************************");
 		DealerInheritSub.DealerInheritedDealerLevelSubscription(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
-
 	}
 
-	@Then("^Set the Subscription for CAT Level with serialNumber,parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\",startTime,endTime for DealerInheritedSubscriptions$")
-	public void set_the_Subscription_for_CAT_Level_with_serialNumber_parentId_startTime_endTime_for_DealerInheritedSubscriptions(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, IOException, JSONException 
+	@Then("^Set DealerInheritedSubscription for CAT Level with serialNumber,parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\",startTime,endTime for DealerInheritedSubscriptions$")
+	public void set_DealerInheritedSubscription_for_CAT_Level_with_serialNumber_parentId_startTime_endTime_for_DealerInheritedSubscriptions(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, IOException, JSONException 
 	{
 		DealerInheritSub.DealerInheritedCATLevelSubscription(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
  
 	}
 
-	@Then("^Retrieve the Values of Subscription_id in AssetSubscription and Table for DealerInheritedSubscriptions$")
-	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscription_and_Table_for_DealerInheritedSubscriptions() throws FileNotFoundException, IOException, SQLException 
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscription and Table for DealerInheritedSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscription_and_Table_for_DealerInheritedSubscription() throws FileNotFoundException, IOException, SQLException 
 	{
 
 		String SubAssetID = Asset_structure_API.Asset_id;
@@ -307,12 +307,10 @@ public class Asset_subscriptions_API
 		//DSPSqlconnection dbcheck = new DSPSqlconnection();
 	//	CommonInstance.getassetDetails(SubscritpionTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
-		
-
 	}
 
-	@Then("^Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for DealerInheritedSubscriptions$")
-	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscriptionHistory_Table_for_DealerInheritedSubscriptions() throws FileNotFoundException, IOException, SQLException
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for DealerInheritedSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscriptionHistory_Table_for_DealerInheritedSubscription() throws FileNotFoundException, IOException, SQLException
 	{
 		
 		String SubAssetID = Asset_structure_API.Asset_id;
@@ -324,26 +322,25 @@ public class Asset_subscriptions_API
 		//DSPSqlconnection dbcheck = new DSPSqlconnection();
 	//	CommonInstance.getassetDetails(HistoryTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
-		
-	   
 	}
+		
 
-	@Then("^Delete the Subscription for CAT Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg for DealerInherited Subscription$")
-	public void delete_the_Subscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg_for_DealerInherited_Subscription(String cancelReason, String level) throws FileNotFoundException, NullPointerException, IOException, JSONException 
+	@Then("^Delete DealerInheritedSubscription for CAT Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg for DealerInherited Subscription$")
+	public void delete_DealerInheritedSubscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg_for_DealerInherited_Subscription(String cancelReason, String level) throws FileNotFoundException, NullPointerException, IOException, JSONException 
 	{
 		System.out.println("************************************* DELETING DEALER INHERITED SUBSCRIPTIONS******************************************");
 		DeleteDealerInheritedSubscriptions.DelDealerInheritedsubscriptions(cancelReason, level);
 	}
 
-	@Then("^Delete the Subscription for Dealer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg for DealerInherited Subscription$")
-	public void delete_the_Subscription_for_Dealer_Level_with_endTime_and_Validate_the_SuccessMsg_for_DealerInherited_Subscription(String cancelReason, String level) throws FileNotFoundException, NullPointerException, IOException, JSONException 
+	@Then("^Delete DealerInheritedSubscription for Dealer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg for DealerInherited Subscription$")
+	public void delete_DealerInheritedSubscription_for_Dealer_Level_with_endTime_and_Validate_the_SuccessMsg_for_DealerInherited_Subscription(String cancelReason, String level) throws FileNotFoundException, NullPointerException, IOException, JSONException 
 	{
 		DeleteDealerInheritedSubscriptions.DelDealerInheritedsubscriptions(cancelReason, level);
 
 	}
 
-	@Then("^Retrieve the Values of Subscription_id in AssetSubscription and Table for CancelledDealerInheritedSubscriptions$")
-	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscription_and_Table_for_CancelledDealerInheritedSubscriptions() throws FileNotFoundException, IOException, SQLException 
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscription and Table for CancelledDealerInheritedSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscription_and_Table_for_CancelledDealerInheritedSubscription() throws FileNotFoundException, IOException, SQLException 
 	{
 		String SubAssetID = Asset_structure_API.Asset_id;
 		System.out.println("SubscriptionAssetid :" +SubAssetID);
@@ -354,12 +351,10 @@ public class Asset_subscriptions_API
 	//	DSPSqlconnection dbcheck = new DSPSqlconnection();
 		//CommonInstance.getassetDetails(SubscritpionTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
-		
-
 	}
 
-	@Then("^Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for CancelledDealerInheritedSubscriptions$")
-	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscriptionHistory_Table_for_CancelledDealerInheritedSubscriptions() throws FileNotFoundException, IOException, SQLException 
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for CancelledDealerInheritedSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscriptionHistory_Table_for_CancelledDealerInheritedSubscription() throws FileNotFoundException, IOException, SQLException 
 	{
 		String SubAssetID = Asset_structure_API.Asset_id;
 		System.out.println("SubscriptionhistoryAssetid :" +SubAssetID);
@@ -373,19 +368,20 @@ public class Asset_subscriptions_API
 			    
 	}
 
-	@Then("^Set the Subscription for CATLevel with serialNumber,startTime,endTime, \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\" and retrive the ParentID$")
-	public void set_the_Subscription_for_CATLevel_with_serialNumber_startTime_endTime_and_retrive_the_ParentID(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, IOException, JSONException 
+	
+	@Then("^Set CATLevelSubscription for CATLevel with serialNumber,startTime,endTime, \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\" and retrive the ParentID$")
+	public void set_CATLevelSubscription_for_CATLevel_with_serialNumber_startTime_endTime_and_retrive_the_ParentID(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, IOException, JSONException 
 	{
 		System.out.println("************************************* CREATING CAT LEVEL SUBSCRIPTIONS******************************************");
 		CATLevelSub.CATLevelSubscription(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 	}
-
+	
+	
 	@Then("^Retrieve the Values of Subscription_id in AssetSubscription and Table for CATLevelSubscription$")
 	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscription_and_Table_for_CATLevelSubscription() throws FileNotFoundException, IOException, SQLException 
 	{
 		String SubAssetID = Asset_structure_API.Asset_id;
 		System.out.println("SubscriptionAssetid :" +SubAssetID);
-		
 		properties.load(new FileInputStream("Resources\\application.properties"));
 		String SubscritpionTableQuery = properties.getProperty("db.AssetSubscription").replace("DUMMYXYZ", SubAssetID);
 		System.out.println("SubscriptionHistoryTableQuery:" +SubscritpionTableQuery);
@@ -400,7 +396,6 @@ public class Asset_subscriptions_API
 	{
 		String SubAssetID = Asset_structure_API.Asset_id;
 		System.out.println("SubscriptionhistoryAssetid :" +SubAssetID);
-		
 		properties.load(new FileInputStream("Resources\\application.properties"));
 		String HistoryTableQuery = properties.getProperty("db.AssetSubscriptionHistory").replace("DUMMYXYZ", SubAssetID);
 		System.out.println("SubscriptionHistoryTableQuery:" +HistoryTableQuery);
@@ -409,42 +404,316 @@ public class Asset_subscriptions_API
 		CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 		
 	}
-
-	@Then("^Delete the  CATLevel Subscription with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
-	public void delete_the_CATLevel_Subscription_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws FileNotFoundException, NullPointerException, IOException, JSONException 
+		
+	@Then("^Delete CATLevelSubscription for CAT Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
+	public void delete_CATLevelSubscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws FileNotFoundException, NullPointerException, IOException, JSONException 
 	{
 		System.out.println("************************************* DELETING CATLEVEL SUBSCRIPTIONS******************************************");
 		DeleteCATSubscriptions.DelCATLevelsubscriptions(cancelReason, level);
 	}
 
-	@Then("^Retrieve the Values of Subscription_id in AssetSubscription and Table for CancelledCATLevelSubscriptions$")
-	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscription_and_Table_for_CancelledCATLevelSubscriptions() throws FileNotFoundException, IOException, SQLException 
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscription and Table for CancelledCATLevelSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscription_and_Table_for_CancelledCATLevelSubscription() throws FileNotFoundException, IOException, SQLException 
 	{
 		String SubAssetID = Asset_structure_API.Asset_id;
 		System.out.println("SubscriptionAssetid :" +SubAssetID);
-	
 		properties.load(new FileInputStream("Resources\\application.properties"));
 		String SubscritpionTableQuery = properties.getProperty("db.AssetSubscription").replace("DUMMYXYZ", SubAssetID);
 		System.out.println("SubscriptionHistoryTableQuery:" +SubscritpionTableQuery);
 	//	DSPSqlconnection dbcheck = new DSPSqlconnection();
 	// CommonInstance.getassetDetails(SubscritpionTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
-		
 	}
 
-	@Then("^Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for CancelledCATLevelSubscriptions$")
-	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscriptionHistory_Table_for_CancelledCATLevelSubscriptions() throws FileNotFoundException, IOException, SQLException 
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for CancelledCATLevelSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscriptionHistory_Table_for_CancelledCATLevelSubscription() throws FileNotFoundException, IOException, SQLException 
 	{
 		String SubAssetID = Asset_structure_API.Asset_id;
 		System.out.println("SubscriptionhistoryAssetid :" +SubAssetID);
-	
 		properties.load(new FileInputStream("Resources\\application.properties"));
 		String HistoryTableQuery = properties.getProperty("db.AssetSubscriptionHistory").replace("DUMMYXYZ", SubAssetID);
 		System.out.println("SubscriptionHistoryTableQuery:" +HistoryTableQuery);
 		//DSPSqlconnection dbcheck = new DSPSqlconnection();
 	 //	CommonInstance.getassetDetails(HistoryTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
-			    
 	}
+
+	@Then("^Set NonInheritedsubscription for Customer Level with serialNumber,startTime,endTime, \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" for CustomerLevel$")
+	public void set_NonInheritedsubscription_for_Customer_Level_with_serialNumber_startTime_endTime_for_CustomerLevel(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, JSONException, IOException 
+	{
+		System.out.println("************************************* CREATING NONINHERITEDALLLEVEL SUBSCRIPTIONS******************************************");
+		NonInheritedSub.NoninheritedCustLevelSubscription(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
+
+	}
+
+	@Then("^Set NonInheritedsubscription Dealer Level with serialNumber,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",startTime,endTime for Dealerlevel$")
+	public void set_NonInheritedsubscription_Dealer_Level_with_serialNumber_startTime_endTime_for_Dealerlevel(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, JSONException, IOException 
+	{
+		NonInheritedSub.NonInheritedDealerLevelSubscription(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
+
+	}
+
+	@Then("^Set NonInheritedsubscription CATLevel with serialNumber,startTime,endTime,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\" for CATLevel$")
+	public void set_NonInheritedsubscription_CATLevel_with_serialNumber_startTime_endTime_for_CATLevel(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, JSONException, IOException 
+	{
+
+		NonInheritedSub.NonInheritedCATLevelSusbcription(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
+	}
+
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscription and Table for NonInheritedSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscription_and_Table_for_NonInheritedSubscription() throws FileNotFoundException, IOException, SQLException 
+	{
+		
+		String SubAssetID = Asset_structure_API.Asset_id;
+		System.out.println("SubscriptionAssetid :" +SubAssetID);
+		properties.load(new FileInputStream("Resources\\application.properties"));
+		String SubscritpionTableQuery = properties.getProperty("db.AssetSubscription").replace("DUMMYXYZ", SubAssetID);
+		System.out.println("SubscriptionHistoryTableQuery:" +SubscritpionTableQuery);
+		//DSPSqlconnection dbcheck = new DSPSqlconnection();
+		//CommonInstance.getassetDetails(SubscritpionTableQuery);
+		CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
+	}
+
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for NonInheritedSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscriptionHistory_Table_for_NonInheritedSubscription() throws SQLException, FileNotFoundException, IOException 
+	{
+	    
+		String SubAssetID = Asset_structure_API.Asset_id;
+		System.out.println("SubscriptionhistoryAssetid :" +SubAssetID);
+		properties.load(new FileInputStream("Resources\\application.properties"));
+		String HistoryTableQuery = properties.getProperty("db.AssetSubscriptionHistory").replace("DUMMYXYZ", SubAssetID);
+		System.out.println("SubscriptionHistoryTableQuery:" +HistoryTableQuery);
+	//	DSPSqlconnection dbcheck = new DSPSqlconnection();
+	//	CommonInstance.getassetDetails(HistoryTableQuery);
+		CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
+	}
+
+	@Then("^Delete NonInheritedSubscription for CAT Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
+	public void delete_NonInheritedSubscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws FileNotFoundException, NullPointerException, IOException, JSONException 
+	{
+		System.out.println("************************************* DELETING NONINHERITED SUBSCRIPTIONS******************************************");
+		DeleteNonInheritedSubscriptions.DelNonInheritedsubscriptions(cancelReason, level);
+	}
+
+	@Then("^Delete NonInheritedSubscription for Dealer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
+	public void delete_NonInheritedSubscription_for_Dealer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws FileNotFoundException, NullPointerException, JSONException, IOException 
+	{
+		DeleteNonInheritedSubscriptions.DelNonInheritedsubscriptions(cancelReason, level);
+	}
+
+	@Then("^Delete NonInheritedSubscription Customer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
+	public void delete_NonInheritedSubscription_Customer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws FileNotFoundException, NullPointerException, JSONException, IOException 
+	{
+		DeleteNonInheritedSubscriptions.DelNonInheritedsubscriptions(cancelReason, level);
+	}
+
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscription and Table for CancelledNonInheritedSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscription_and_Table_for_CancelledNonInheritedSubscription()throws FileNotFoundException, IOException, SQLException 
+	{
+		String SubAssetID = Asset_structure_API.Asset_id;
+		System.out.println("SubscriptionAssetid :" +SubAssetID);
+		properties.load(new FileInputStream("Resources\\application.properties"));
+		String SubscritpionTableQuery = properties.getProperty("db.AssetSubscription").replace("DUMMYXYZ", SubAssetID);
+		System.out.println("SubscriptionHistoryTableQuery:" +SubscritpionTableQuery);
+	//	DSPSqlconnection dbcheck = new DSPSqlconnection();
+	// CommonInstance.getassetDetails(SubscritpionTableQuery);
+		CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
+	}
+
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for CancelledNonInheritedSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscriptionHistory_Table_for_CancelledNonInheritedSubscription() throws FileNotFoundException, IOException, SQLException 
+	{
+		String SubAssetID = Asset_structure_API.Asset_id;
+		System.out.println("SubscriptionhistoryAssetid :" +SubAssetID);
+		properties.load(new FileInputStream("Resources\\application.properties"));
+		String HistoryTableQuery = properties.getProperty("db.AssetSubscriptionHistory").replace("DUMMYXYZ", SubAssetID);
+		System.out.println("SubscriptionHistoryTableQuery:" +HistoryTableQuery);
+		//DSPSqlconnection dbcheck = new DSPSqlconnection();
+	 //	CommonInstance.getassetDetails(HistoryTableQuery);
+		CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
+	}	
+	
+	@Then("^Set DealerInheritedwithNonInheritedSubscription for Customer Level with serialNumber,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\",startTime,endTime for DealerInheritedwithNonInheritedSubscription$")
+	public void set_DealerInheritedwithNonInheritedSubscription_for_Customer_Level_with_serialNumber_startTime_endTime_for_DealerInheritedwithNonInheritedSubscription(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, JSONException, IOException 
+	{
+		System.out.println("************************************* CREATING DEALERINHERITEDWITHCUST SUBSCRIPTIONS******************************************");
+		DealerInheritedwithCust.DealerInheritedwithCustomerSubscriptionCustomerLevel(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
+	}
+
+	@Then("^Set DealerInheritedwithNonInheritedSubscription for Dealer Level with serialNumber,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\",startTime,endTime for DealerInheritedwithNonInheritedSubscription$")
+	public void set_DealerInheritedwithNonInheritedSubscription_for_Dealer_Level_with_serialNumber_startTime_endTime_for_DealerInheritedwithNonInheritedSubscription(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, JSONException, IOException
+	{
+		DealerInheritedwithCust.DealerInheritedwithCustomerSubscriptionDealerLevel(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
+	}
+
+	@Then("^Set DealerInheritedwithNonInheritedSubscription for CAT Level with serialNumber,parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\",startTime,endTime for DealerInheritedwithNonInheritedSubscription$")
+	public void set_DealerInheritedwithNonInheritedSubscription_for_CAT_Level_with_serialNumber_parentId_startTime_endTime_for_DealerInheritedwithNonInheritedSubscription(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, JSONException, IOException 
+	{
+		DealerInheritedwithCust.DealerInheritedwithCustomerSubscriptionCATLevel(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
+	}
+
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscription and Table for DealerInheritedwithNonInheritedSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscription_and_Table_for_DealerInheritedwithNonInheritedSubscription()throws FileNotFoundException, IOException, SQLException 
+	{
+		
+		String SubAssetID = Asset_structure_API.Asset_id;
+		System.out.println("SubscriptionAssetid :" +SubAssetID);
+		properties.load(new FileInputStream("Resources\\application.properties"));
+		String SubscritpionTableQuery = properties.getProperty("db.AssetSubscription").replace("DUMMYXYZ", SubAssetID);
+		System.out.println("SubscriptionHistoryTableQuery:" +SubscritpionTableQuery);
+		//DSPSqlconnection dbcheck = new DSPSqlconnection();
+		//CommonInstance.getassetDetails(SubscritpionTableQuery);
+		CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
+	}
+
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for DealerInheritedwithNonInheritedSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscriptionHistory_Table_for_DealerInheritedwithNonInheritedSubscription() throws SQLException, FileNotFoundException, IOException 
+	{
+	    
+		String SubAssetID = Asset_structure_API.Asset_id;
+		System.out.println("SubscriptionhistoryAssetid :" +SubAssetID);
+		properties.load(new FileInputStream("Resources\\application.properties"));
+		String HistoryTableQuery = properties.getProperty("db.AssetSubscriptionHistory").replace("DUMMYXYZ", SubAssetID);
+		System.out.println("SubscriptionHistoryTableQuery:" +HistoryTableQuery);
+	//	DSPSqlconnection dbcheck = new DSPSqlconnection();
+	//	CommonInstance.getassetDetails(HistoryTableQuery);
+		CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
+	}
+	
+	@Then("^Delete DealerInheritedwithCustSubscription for CAT Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
+	public void delete_DealerInheritedwithCustSubscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws FileNotFoundException, NullPointerException, JSONException, IOException 
+	{
+		System.out.println("************************************* DELETING DEALERINHERITEDWITHCUST SUBSCRIPTIONS******************************************");
+		DealerInheritedwithCustomerSubscriptionDelete.DelDealerInheritedwithCustomerSubscriptions(cancelReason, level);
+	}
+
+	@Then("^Delete DealerInheritedwithCustSubscription for Dealer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
+	public void delete_DealerInheritedwithCustSubscription_for_Dealer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws FileNotFoundException, NullPointerException, JSONException, IOException 
+	{
+		DealerInheritedwithCustomerSubscriptionDelete.DelDealerInheritedwithCustomerSubscriptions(cancelReason, level);
+		
+	}
+
+	@Then("^Delete DealerInheritedwithCustSubscription for Customer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
+	public void delete_DealerInheritedwithCustSubscription_for_Customer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws FileNotFoundException, NullPointerException, JSONException, IOException 
+	{
+		DealerInheritedwithCustomerSubscriptionDelete.DelDealerInheritedwithCustomerSubscriptions(cancelReason, level);
+	}
+
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscription and Table for CancelledDealerInheritedwithCustSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscription_and_Table_for_CancelledDealerInheritedwithCustSubscription() throws FileNotFoundException, IOException, SQLException 
+	{
+		String SubAssetID = Asset_structure_API.Asset_id;
+		System.out.println("SubscriptionAssetid :" +SubAssetID);
+		properties.load(new FileInputStream("Resources\\application.properties"));
+		String SubscritpionTableQuery = properties.getProperty("db.AssetSubscription").replace("DUMMYXYZ", SubAssetID);
+		System.out.println("SubscriptionHistoryTableQuery:" +SubscritpionTableQuery);
+	//	DSPSqlconnection dbcheck = new DSPSqlconnection();
+	// CommonInstance.getassetDetails(SubscritpionTableQuery);
+		CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
+	}
+
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for CancelledDealerInheritedwithCustSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscriptionHistory_Table_for_CancelledDealerInheritedwithCustSubscription() throws FileNotFoundException, IOException, SQLException 
+	{
+		String SubAssetID = Asset_structure_API.Asset_id;
+		System.out.println("SubscriptionhistoryAssetid :" +SubAssetID);
+		properties.load(new FileInputStream("Resources\\application.properties"));
+		String HistoryTableQuery = properties.getProperty("db.AssetSubscriptionHistory").replace("DUMMYXYZ", SubAssetID);
+		System.out.println("SubscriptionHistoryTableQuery:" +HistoryTableQuery);
+		//DSPSqlconnection dbcheck = new DSPSqlconnection();
+	 //	CommonInstance.getassetDetails(HistoryTableQuery);
+		CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
+	}
+	@Then("^Set CustInheritedwithCATLevelSubscription for Customer Level with serialNumber,startTime,endTime, \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\" and retrive the ParentID$")
+	public void set_CustInheritedwithCATLevelSubscription_for_Customer_Level_with_serialNumber_startTime_endTime_and_retrive_the_ParentID(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, JSONException, IOException, ParseException 
+	{
+		System.out.println("************************************* CREATING CUSTINHERITEDWITHCATLEVEL SUBSCRIPTIONS******************************************");
+		CustInheritedwithCAT.CustInheritedwithCATLevelSubscriptionCustLevel(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
+	}
+
+	@Then("^Set CustInheritedwithCATLevelSubscription for Dealer Level with serialNumber,parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\",startTime,endTime$")
+	public void set_CustInheritedwithCATLevelSubscription_for_Dealer_Level_with_serialNumber_parentId_startTime_endTime(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, JSONException, IOException 
+	{
+		CustInheritedwithCAT.CustInheritedwithCATLevelSubscriptionDealerLevel(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
+	}
+
+	@Then("^Set CustInheritedwithCATLevelSubscription for CATLevel with serialNumber,startTime,endTime, \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\"$")
+	public void set_CustInheritedwithCATLevelSubscription_for_CATLevel_with_serialNumber_startTime_endTime(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, JSONException, IOException 
+	{
+		CustInheritedwithCAT.CustInheritedwithCATLevelSubscriptionCATLevel(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
+	}
+
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscription and Table for CustInheritedwithCATLevelSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscription_and_Table_for_CustInheritedwithCATLevelSubscription() throws FileNotFoundException, IOException, SQLException 
+	{
+		String SubAssetID = Asset_structure_API.Asset_id;
+		System.out.println("SubscriptionAssetid :" +SubAssetID);
+		properties.load(new FileInputStream("Resources\\application.properties"));
+		String SubscritpionTableQuery = properties.getProperty("db.AssetSubscription").replace("DUMMYXYZ", SubAssetID);
+		System.out.println("SubscriptionHistoryTableQuery:" +SubscritpionTableQuery);
+	//	DSPSqlconnection dbcheck = new DSPSqlconnection();
+	// CommonInstance.getassetDetails(SubscritpionTableQuery);
+		CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
+	}
+
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for CustInheritedwithCATLevelSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscriptionHistory_Table_for_CustInheritedwithCATLevelSubscription() throws FileNotFoundException, IOException, SQLException 
+	{
+		String SubAssetID = Asset_structure_API.Asset_id;
+		System.out.println("SubscriptionhistoryAssetid :" +SubAssetID);
+		properties.load(new FileInputStream("Resources\\application.properties"));
+		String HistoryTableQuery = properties.getProperty("db.AssetSubscriptionHistory").replace("DUMMYXYZ", SubAssetID);
+		System.out.println("SubscriptionHistoryTableQuery:" +HistoryTableQuery);
+		//DSPSqlconnection dbcheck = new DSPSqlconnection();
+	 //	CommonInstance.getassetDetails(HistoryTableQuery);
+		CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
+	}
+	
+	@Then("^Delete CustInheritedwithCATLevelSubscription for CAT Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
+	public void delete_CustInheritedwithCATLevelSubscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws FileNotFoundException, NullPointerException, JSONException, IOException 
+	{
+		System.out.println("************************************* DELETING CUSTINHERITEDWITHCATLEVEL SUBSCRIPTIONS******************************************");
+		CustInheritedwithCATLevelSubscriptionDelete.DelCustInheritedwithCATLevelSubscription(cancelReason, level);
+	}
+
+	@Then("^Delete CustInheritedwithCATLevelSubscription for Dealer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
+	public void delete_CustInheritedwithCATLevelSubscription_for_Dealer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws FileNotFoundException, NullPointerException, JSONException, IOException 
+	{
+		CustInheritedwithCATLevelSubscriptionDelete.DelCustInheritedwithCATLevelSubscription(cancelReason, level);
+	}
+
+	@Then("^Delete CustInheritedwithCATLevelSubscription for Customer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
+	public void delete_CustInheritedwithCATLevelSubscription_for_Customer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws FileNotFoundException, NullPointerException, JSONException, IOException 
+	{
+		CustInheritedwithCATLevelSubscriptionDelete.DelCustInheritedwithCATLevelSubscription(cancelReason, level);
+	}
+
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscription and Table for CancelledCustInheritedwithCATLevelSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscription_and_Table_for_CancelledCustInheritedwithCATLevelSubscription() throws FileNotFoundException, IOException, SQLException 
+	{
+		String SubAssetID = Asset_structure_API.Asset_id;
+		System.out.println("SubscriptionAssetid :" +SubAssetID);
+		properties.load(new FileInputStream("Resources\\application.properties"));
+		String SubscritpionTableQuery = properties.getProperty("db.AssetSubscription").replace("DUMMYXYZ", SubAssetID);
+		System.out.println("SubscriptionHistoryTableQuery:" +SubscritpionTableQuery);
+	//	DSPSqlconnection dbcheck = new DSPSqlconnection();
+	// CommonInstance.getassetDetails(SubscritpionTableQuery);
+		CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
+	}
+
+	@Then("^Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for CancelledCustInheritedwithCATLevelSubscription$")
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscriptionHistory_Table_for_CancelledCustInheritedwithCATLevelSubscription() throws FileNotFoundException, IOException, SQLException 
+	{
+		String SubAssetID = Asset_structure_API.Asset_id;
+		System.out.println("SubscriptionhistoryAssetid :" +SubAssetID);
+		properties.load(new FileInputStream("Resources\\application.properties"));
+		String HistoryTableQuery = properties.getProperty("db.AssetSubscriptionHistory").replace("DUMMYXYZ", SubAssetID);
+		System.out.println("SubscriptionHistoryTableQuery:" +HistoryTableQuery);
+		//DSPSqlconnection dbcheck = new DSPSqlconnection();
+	 //	CommonInstance.getassetDetails(HistoryTableQuery);
+		CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
+	}
+
 		
 }

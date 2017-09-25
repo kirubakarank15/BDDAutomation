@@ -7,19 +7,16 @@ import org.json.JSONException;
 
 import com.google.gson.Gson;
 
-/*import APIAutomation.APIReponse;
-import ReusableUtils.CommonMethods;
-import ReusableUtils.CommonMethods_DeleteSubscriptions;*/
-
-import dsp.automation.AssetStructures.API.*;
 import dsp.automation.utilities.APIReponse;
 
-public class DeleteDealerInheritedSubscriptions
+public class DealerInheritedwithCustomerSubscriptionDelete
 {
+
 	public static String level = null;
 	public static String id =null;
 	
-	public static String DelDealerInheritedsubscriptions(String cancelReason,String level) throws FileNotFoundException, NullPointerException, IOException, JSONException
+	
+	public static String DelDealerInheritedwithCustomerSubscriptions(String cancelReason,String level) throws FileNotFoundException, NullPointerException, IOException, JSONException
 	{
 		DeleteSubscription DelSub = new DeleteSubscription();
 		DelSub.setCancelReason(cancelReason);
@@ -50,17 +47,17 @@ public class DeleteDealerInheritedSubscriptions
 				
 		if(level.equals("Customer"))
 		{
-			id = null;
+			id = DealerInheritedwithCustomerSubscription.NonInheritedcustId;
 		}
 		else if(level.equals("CAT"))
 		{
-			 id = DealerInheritedSubscriptions.CATId;
+			 id = DealerInheritedwithCustomerSubscription.CATId;
 			 
 				
 		}
 		else if(level.equals("Dealer"))
 		{
-			id= DealerInheritedSubscriptions.DealerParentId;
+			id= DealerInheritedwithCustomerSubscription.DealerParentId;
 			
 		}
       APIReponse APIObj = CommonMethods_DeleteSubscriptions.apiexecutuion(requestBody, postAPIContentType, postAPIAcceptType,"POST",id);
@@ -77,4 +74,6 @@ public class DeleteDealerInheritedSubscriptions
 		
 	}
 
+	
+	
 }

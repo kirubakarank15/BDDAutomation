@@ -3,6 +3,8 @@ package dsp.automation.subscriptions.API;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +35,7 @@ public class CustInheritedSubscriptions
 			throws FileNotFoundException, IOException, JSONException, ParseException 
 	{
 
-		CreateCustomerSubscription creatsub = new CreateCustomerSubscription();
+		CreateSubscription creatsub = new CreateSubscription();
 		
 		creatsub.setParentId(parentId);
 		creatsub.setBillingtUserAccountId(billingtUserAccountId);
@@ -48,7 +50,13 @@ public class CustInheritedSubscriptions
 		creatsub.setOrganizationType(organizationType);
 		creatsub.setOrigin(origin);
 		//creatsub.setSerialNumber(CommonMethods.AssetSno);
-		creatsub.setSerialNumber(Common_methods.SerialNumber);
+		List<String> SerialNumbers = new ArrayList<String>();
+		SerialNumbers = Common_methods.SerialNumbers;
+		creatsub.setSerialNumber(SerialNumbers.get(0));
+		/*for (int i =0;i<=SerialNumbers.size();i++){
+			creatsub.setSerialNumber(SerialNumbers.get(i));
+		}*/
+		//creatsub.setSerialNumber(Common_methods.SerialNumber);
 		creatsub.setSiteId(siteId);
 		creatsub.setTypeId(typeId);
 
@@ -75,25 +83,27 @@ public class CustInheritedSubscriptions
 	public static String CustInheritedDealerLevelSubscription(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, IOException, JSONException
 	{
 		
-		CreateDealerSubscription createDealerSub = new CreateDealerSubscription();
-		createDealerSub.setMake(make);
-		createDealerSub.setSiteId(siteId);
-		createDealerSub.setAssociatedOrganization(associatedOrganization);
-		createDealerSub.setAssociatedOrganizationType(associatedOrganizationType);
-		createDealerSub.setBillingtUserAccountId(billingtUserAccountId);
-		createDealerSub.setDcn(dcn);
-		createDealerSub.setEndTime(CommonMethods.getCurrenttime());
-		createDealerSub.setStartTime(CommonMethods.getCurrenttime());
-		createDealerSub.setLevel(level);
-		createDealerSub.setOrganization(organization);
-		createDealerSub.setOrganizationType(organizationType);
-		createDealerSub.setOrigin(origin);
-		createDealerSub.setParentId(custParentId);
-		createDealerSub.setTypeId(typeId);
-		createDealerSub.setSerialNumber(Common_methods.SerialNumber);
+		//CreateDealerSubscription createDealerSub = new CreateDealerSubscription();
+		CreateSubscription creatsub = new CreateSubscription();
+		
+		creatsub.setMake(make);
+		creatsub.setSiteId(siteId);
+		creatsub.setAssociatedOrganization(associatedOrganization);
+		creatsub.setAssociatedOrganizationType(associatedOrganizationType);
+		creatsub.setBillingtUserAccountId(billingtUserAccountId);
+		creatsub.setDcn(dcn);
+		creatsub.setEndTime(CommonMethods.getCurrenttime());
+		creatsub.setStartTime(CommonMethods.getCurrenttime());
+		creatsub.setLevel(level);
+		creatsub.setOrganization(organization);
+		creatsub.setOrganizationType(organizationType);
+		creatsub.setOrigin(origin);
+		creatsub.setParentId(custParentId);
+		creatsub.setTypeId(typeId);
+		creatsub.setSerialNumber(Common_methods.SerialNumber);
 				
 		Gson gson = new Gson();
-		String Dealerlevel = gson.toJson(createDealerSub);
+		String Dealerlevel = gson.toJson(creatsub);
 		System.out.println("Dealer Level:" + Dealerlevel);
 		String requestBody  = Dealerlevel;
 		String postAPIContentType = "application/subscriptions-v1+json";
@@ -114,26 +124,27 @@ public class CustInheritedSubscriptions
 		public static String CustInheritedCATLevelSubscription(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, IOException, JSONException
 		{
 	    
-			CreateCatSubscription createcatSub = new CreateCatSubscription();
+			//CreateCatSubscription createcatSub = new CreateCatSubscription();
+			CreateSubscription creatsub = new CreateSubscription();
 			
-			createcatSub.setAssociatedOrganization(associatedOrganization);
-			createcatSub.setAssociatedOrganizationType(associatedOrganizationType);
-			createcatSub.setBillingtUserAccountId(billingtUserAccountId);
-			createcatSub.setDcn(dcn);
-			createcatSub.setEndTime(CommonMethods.getCurrenttime());
-			createcatSub.setStartTime(CommonMethods.getCurrenttime());
-			createcatSub.setLevel(level);
-			createcatSub.setMake(make);
-			createcatSub.setSerialNumber(Common_methods.SerialNumber);
-			createcatSub.setOrganization(associatedOrganizationType);
-			createcatSub.setOrganizationType(associatedOrganizationType);
-			createcatSub.setOrigin(origin);
-			createcatSub.setSiteId(siteId);
-			createcatSub.setTypeId(typeId);
-			createcatSub.setParentId(custParentId);
+			creatsub.setAssociatedOrganization(associatedOrganization);
+			creatsub.setAssociatedOrganizationType(associatedOrganizationType);
+			creatsub.setBillingtUserAccountId(billingtUserAccountId);
+			creatsub.setDcn(dcn);
+			creatsub.setEndTime(CommonMethods.getCurrenttime());
+			creatsub.setStartTime(CommonMethods.getCurrenttime());
+			creatsub.setLevel(level);
+			creatsub.setMake(make);
+			creatsub.setSerialNumber(Common_methods.SerialNumber);
+			creatsub.setOrganization(associatedOrganizationType);
+			creatsub.setOrganizationType(associatedOrganizationType);
+			creatsub.setOrigin(origin);
+			creatsub.setSiteId(siteId);
+			creatsub.setTypeId(typeId);
+			creatsub.setParentId(custParentId);
 					
 			Gson gson = new Gson();
-			String catlevel = gson.toJson(createcatSub);
+			String catlevel = gson.toJson(creatsub);
 			System.out.println("Cat Level:" + catlevel);
 			String requestBody  = catlevel;
 			String postAPIContentType = "application/subscriptions-v1+json";
