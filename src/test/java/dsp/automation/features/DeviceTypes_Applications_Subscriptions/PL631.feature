@@ -10,7 +10,7 @@ Feature:
     Then verify whether the subscription dropdown values "<Customer Level Subscription  >","<Dealer Level Subscription>","<Cat Level Subscription>"  are populated according to the selected service
 
     Examples: 
-      | Device Type | S/N  | Services          | Customer Level Subscription                                     | Dealer                      | Cat                         |
+      | Device Type | S/N  | Services          | Customer Level Subscription                                     | Dealer Level Subscription   | Cat Level Subscription      |
       | PL631       | NULL | PRODUCT LINK WEB  | Vitals (ES1-0),Aide (ES4-0)                                     | Vitals (ES1-0),Aide (ES4-0) | Vitals (ES1-0),Aide (ES4-0) |
       | PL631       | NULL | VISION_LINK       | Cat Basic - 4 Hours,Cat Basic - Hourly,Cat Essentials - 4 Hours |                             |                             |
       | PL631       | NULL | MY.CAT.COM        | Cat Daily                                                       |                             |                             |
@@ -23,5 +23,5 @@ Feature:
     Then verify whether the Add-On services are displayed as "<Additional Services>"
 
     Examples: 
-      | Device Type | S/N  | Services    | Customer Level Subscription | Dealer | Cat | Additional Services                          |
-      | PL631       | NULL | VISION_LINK | Cat Basic - 4 Hours         |        |     | VisionLink Load and Cycle Project Monitoring |
+      | Device Type | S/N  | Services    | Customer Level Subscription | Dealer Level Subscription | Cat Level Subscription | Additional Services                          |
+      | PL631       | NULL | VISION_LINK | Cat Basic - 4 Hours         |                           |                        | VisionLink Load and Cycle Project Monitoring |

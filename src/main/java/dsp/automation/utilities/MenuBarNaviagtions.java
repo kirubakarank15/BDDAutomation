@@ -9,6 +9,11 @@ import org.openqa.selenium.support.FindBy;
 
 import dsp.automation.pom.Login;
 
+/**
+ * @author Kirubakaran.K(Krishk10)
+ *DSP-ISSS Cucumber Automation
+ * 
+ */
 public class MenuBarNaviagtions {
 	//// following-sibling::a
 	// @FindBy(xpath="//span[@id='dealerPopover']//following-sibling::a" )
@@ -18,6 +23,10 @@ public class MenuBarNaviagtions {
 	private WebElement txtDealerCode;
 	String fieldValue = null;
 	private final static Logger LOGGER = Logger.getLogger(MenuBarNaviagtions.class.getName());
+	/*krishk10
+	 * @param menu
+	 * @throws CustomisedException
+	 */
 	public void menuNavigation(String menu) throws CustomisedException {
 		fieldValue = menu;
 		try {
@@ -53,6 +62,10 @@ public class MenuBarNaviagtions {
 
 	}
 
+	/*krishk10
+	 * @param dealerCode
+	 * @throws CustomisedException
+	 */
 	public void dealerSearch(String dealerCode) throws CustomisedException {
 		fieldValue = dealerCode;
 		try {
@@ -77,6 +90,10 @@ public class MenuBarNaviagtions {
 
 	}
 
+	/*krishk10
+	 * @param dealerCode
+	 * @throws CustomisedException
+	 */
 	public void delaerCodeVerification(String dealerCode) throws CustomisedException {
 		fieldValue = dealerCode;
 		try {

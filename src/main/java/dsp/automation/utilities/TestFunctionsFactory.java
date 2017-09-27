@@ -26,11 +26,29 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 
+/**
+ * @author Kirubakaran.K(Krishk10)
+ *DSP-ISSS Cucumber Automation
+ * 
+ */
+/**
+ * @author Kirubakaran.K(Krishk10) DSP-ISSS Cucumber Automation
+ * 
+ */
 public class TestFunctionsFactory {
 
 	public static WebDriver driver;
 	CustomisedException obj;
 
+	/*
+	 * krishk10
+	 * 
+	 * @param element
+	 * 
+	 * @param text
+	 * 
+	 * @throws CustomisedException
+	 */
 	public static void webEditText(WebElement element, String text) throws CustomisedException {
 		try {
 			element.clear();
@@ -43,6 +61,13 @@ public class TestFunctionsFactory {
 
 	}
 
+	/*
+	 * krishk10
+	 * 
+	 * @param element
+	 * 
+	 * @throws CustomisedException
+	 */
 	public static void webClick(WebElement element) throws CustomisedException {
 		try {
 			element.click();
@@ -55,10 +80,17 @@ public class TestFunctionsFactory {
 	}
 
 	// Mouse Hover
+	/*
+	 * krishk10
+	 * 
+	 * @param element
+	 * 
+	 * @throws CustomisedException
+	 */
 	public static void mouseHover(WebElement element) throws CustomisedException {
 		try {
 			Actions obj = new Actions(driver);
-			obj.moveToElement(element).moveByOffset(element.getLocation().x,element.getLocation().y).build().perform();
+			obj.moveToElement(element).moveByOffset(element.getLocation().x, element.getLocation().y).build().perform();
 		} catch (Exception e) {
 			e.printStackTrace();
 			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
@@ -68,12 +100,20 @@ public class TestFunctionsFactory {
 	}
 
 	// Mouse Hover and click
+	/*
+	 * krishk10
+	 * 
+	 * @param element
+	 * 
+	 * @throws CustomisedException
+	 */
 	public static void mouseHoverAndClick(WebElement element) throws CustomisedException {
 		try {
 			Actions obj = new Actions(driver);
 			System.out.println("Locating");
-	
-			obj.moveToElement(element).moveByOffset(element.getLocation().x,element.getLocation().y).click(element).build().perform();
+
+			obj.moveToElement(element).moveByOffset(element.getLocation().x, element.getLocation().y).click(element)
+					.build().perform();
 			System.out.println("Done");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -83,11 +123,18 @@ public class TestFunctionsFactory {
 
 	}
 
+	/*
+	 * krishk10
+	 * 
+	 * @param element
+	 * 
+	 * @throws CustomisedException
+	 */
 	public static void javaScriptClick(WebElement element) throws CustomisedException {
 		try {
 			JavascriptExecutor executor = (JavascriptExecutor) driver;
 			executor.executeScript("arguments[0].click();", element);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 
@@ -109,21 +156,29 @@ public class TestFunctionsFactory {
 
 	}
 
+	/*
+	 * krishk10
+	 * 
+	 * @param element
+	 * 
+	 * @param option
+	 * 
+	 * @throws CustomisedException
+	 */
 	public static void selectFromDropDown(WebElement element, String option) throws CustomisedException {
 		try {
 			TestFunctionsFactory.waitForPageLoaded();
 			Select selectObj = new Select(element);
-		
-			 	
+
 			List<WebElement> optionsList = selectObj.getOptions();
-			int i=0;
+			int i = 0;
 			for (WebElement options : optionsList) {
-				
+
 				System.out.println("Options" + options.getText());
 				if (options.getText().trim().replace(" ", "").equalsIgnoreCase(option.trim().replace(" ", ""))) {
-					//webWait(10, options);
+					// webWait(10, options);
 					selectObj.selectByIndex(i);
-					//selectObj.selectByValue(options.getText());
+					// selectObj.selectByValue(options.getText());
 					System.out.println("Option Clicked" + options.getText());
 					break;
 				}
@@ -136,13 +191,21 @@ public class TestFunctionsFactory {
 		}
 
 	}
+
+	/*
+	 * krishk10
+	 * 
+	 * @param element
+	 * 
+	 * @param option
+	 * 
+	 * @throws CustomisedException
+	 */
 	public static void compareSelectedValue(WebElement element, String option) throws CustomisedException {
 		try {
 			TestFunctionsFactory.waitForPageLoaded();
 			Select selectObj = new Select(element);
-			Assert.assertEquals(selectObj.getFirstSelectedOption().getText().trim(),option.trim());
-			
-			
+			Assert.assertEquals(selectObj.getFirstSelectedOption().getText().trim(), option.trim());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -151,11 +214,19 @@ public class TestFunctionsFactory {
 		}
 
 	}
+
+	/*
+	 * krishk10
+	 * 
+	 * @param element
+	 * 
+	 * @throws CustomisedException
+	 */
 	public static void verifyElementdisplayed(WebElement element) throws CustomisedException {
 		try {
 
 			element.isDisplayed();
-		
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
@@ -164,6 +235,15 @@ public class TestFunctionsFactory {
 
 	}
 
+	/*
+	 * krishk10
+	 * 
+	 * @param waitTime
+	 * 
+	 * @param element
+	 * 
+	 * @throws CustomisedException
+	 */
 	public static void webWaitPages(int waitTime, WebElement element) throws CustomisedException {
 		try {
 
@@ -187,6 +267,15 @@ public class TestFunctionsFactory {
 		}
 	}
 
+	/*
+	 * krishk10
+	 * 
+	 * @param waitTime
+	 * 
+	 * @param element
+	 * 
+	 * @throws CustomisedException
+	 */
 	public static void webWait(int waitTime, WebElement element) throws CustomisedException {
 		try {
 
@@ -202,6 +291,10 @@ public class TestFunctionsFactory {
 		}
 	}
 
+	/*
+	 * krishk10
+	 * 
+	 */
 	public static void waitForPageLoaded() {
 		ExpectedCondition expectation = new ExpectedCondition() {
 			public Boolean apply(WebDriver driver) {
@@ -230,6 +323,15 @@ public class TestFunctionsFactory {
 
 	}
 
+	/*
+	 * krishk10
+	 * 
+	 * @param browser
+	 * 
+	 * @param url
+	 * 
+	 * @throws Exception
+	 */
 	public static void launchUrl(String browser, String url) throws Exception {
 		DriverSupplier objDriver = new DriverSupplier();
 
@@ -244,7 +346,7 @@ public class TestFunctionsFactory {
 			break;
 		case "FIREFOX":
 			driver = objDriver.driverFirfox();
-			
+
 			break;
 		case "INTERNET EXPLORER":
 		case "IE":
@@ -265,6 +367,11 @@ public class TestFunctionsFactory {
 	}
 
 	// Screenshot taking fucntion
+	/*
+	 * krishk10
+	 * 
+	 * @param pageName
+	 */
 	public static void takeSnapShot(String pageName) {
 		try {
 			Date dNow = new Date();
@@ -301,6 +408,13 @@ public class TestFunctionsFactory {
 	 * 
 	 */
 
+	/*
+	 * krishk10
+	 * 
+	 * @param data
+	 * 
+	 * @return
+	 */
 	public static LinkedHashMap<String, String> getTestData(String data) {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		String[] values = data.split(",");
@@ -320,6 +434,10 @@ public class TestFunctionsFactory {
 
 	}
 
+	/*
+	 * krishk10
+	 * 
+	 */
 	public static void closeBrowser() {
 		TestFunctionsFactory.driver.quit();
 

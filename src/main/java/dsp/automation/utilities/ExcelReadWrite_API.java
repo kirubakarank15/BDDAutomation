@@ -8,7 +8,16 @@ import java.util.HashMap;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Sheet;
 
+/**
+ * @author Kirubakaran.K(Krishk10)
+ *DSP-ISSS Cucumber Automation
+ * 
+ */
 public class ExcelReadWrite_API {
+	/*krishk10
+	 * @return
+	 * @throws Exception
+	 */
 	public HashMap<String, String> excelReadWrite() throws Exception {
 		HashMap<String, String> requestMap = new HashMap<>();
 		try {

@@ -17,6 +17,11 @@ import dsp.automation.pom.Subscriptions;
 import dsp.automation.utilities.CustomisedException;
 import dsp.automation.utilities.TestFunctionsFactory;
 
+/**
+ * @author Kirubakaran.K(Krishk10)
+ *DSP-ISSS Cucumber Automation
+ * 
+ */
 public class UI_Subscription {
 	@When("^search Asset details as \"([^\"]*)\" in My Worklist Page$")
 	public void search_Asset_details_as_in_My_Worklist_Page(String data) {

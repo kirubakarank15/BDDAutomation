@@ -25,7 +25,7 @@ Feature:
     Then verify whether the Add-On services are displayed as "<Additional Services>"
 
     Examples: 
-      | Device Type | S/N  | Services         | Customer Level Subscription                         | Dealer                                              | Cat                                                 | Additional Services                                                                  |
+      | Device Type | S/N  | Services         | Customer Level Subscription                         | Dealer Level Subscription                           | Cat  Level Subscription                             | Additional Services                                                                  |
       | PLE641      | NULL | PRODUCT LINK WEB | Vitals (EE1-4 ) - Customer Supplied Connection      | Vitals (EE1-4 ) - Customer Supplied Connection      | Vitals (EE1-4 ) - Customer Supplied Connection      | Onboard Analytics                                                                    |
       | PLE641      | NULL | PRODUCT LINK WEB | Aide (EE4-14 ) - Customer Supplied Connection       | Aide (EE4-14 ) - Customer Supplied Connection       | Aide (EE4-14 ) - Customer Supplied Connection       | Onboard Analytics                                                                    |
       | PLE641      | NULL | PRODUCT LINK WEB | Aide (EE4-14-T )                                    | Aide (EE4-14-T )                                    | Aide (EE4-14-T )                                    | Onboard Analytics                                                                    |

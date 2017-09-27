@@ -27,6 +27,11 @@ import dsp.automation.utilities.FileHandling;
 import dsp.automation.utilities.MenuBarNaviagtions;
 import dsp.automation.utilities.TestFunctionsFactory;
 
+/**
+ * @author Kirubakaran.K(Krishk10)
+ *DSP-ISSS Cucumber Automation
+ * 
+ */
 public class CommonSteps { 
 	 
 

@@ -8,9 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
+/**
+ * @author Kirubakaran.K(Krishk10)
+ *DSP-ISSS Cucumber Automation
+ * 
+ */
 public class DBMapValues {
 	public static String value = null;
 
+	/*krishk10
+	 * @param query
+	 * @return complete DB result as TreeMap<String, List<String>>
+	 * @throws SQLException
+	 * @throws InterruptedException
+	 */
 	public static TreeMap<String, List<String>> getMapValues(String query)
 			throws SQLException, InterruptedException {
 		// String sNumber=(String) htable.get("serialNumber");
@@ -58,6 +69,13 @@ public class DBMapValues {
 		return dbValues;
 	}
 	
+	/*krishk10
+	 * @param columName
+	 * @param Query
+	 * @return
+	 * @throws SQLException
+	 * @throws InterruptedException
+	 */
 	public static String dbValue(String columName, String Query) throws SQLException, InterruptedException {
 
 		TreeMap<String, List<String>> map = getMapValues(Query);

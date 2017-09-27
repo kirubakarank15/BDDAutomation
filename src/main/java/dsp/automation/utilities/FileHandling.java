@@ -6,6 +6,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * @author Kirubakaran.K(Krishk10)
+ *DSP-ISSS Cucumber Automation
+ * 
+ */
 public class FileHandling {
 	public static Properties objProperty= null;
 /*	public Properties readConfig() throws Exception {
@@ -30,7 +35,11 @@ public class FileHandling {
 
 	}*/
 
- public static String getProperty(String key) {
+ /*krishk10
+ * @param key
+ * @return
+ */
+public static String getProperty(String key) {
  	        String value = "";
 	           try {
 			         if (objProperty== null)

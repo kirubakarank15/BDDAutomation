@@ -17,6 +17,13 @@ public class ReusableMethodsAPI {
 	static String previousSerialNo = "";
 
 	
+	/*krishk10
+	 * @param data
+	 * @return
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws SQLException
+	 */
 	public static String valueIncrementor(String data) throws FileNotFoundException, IOException, SQLException {
 String value;
 
@@ -27,6 +34,10 @@ return value;
 			
 	}
 	
+	/*krishk10
+	 * @param data
+	 * @return
+	 */
 	public static String incremnetHelper(String data) {
 		String valueConcat = "";
 		String[] var = data.split("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)");

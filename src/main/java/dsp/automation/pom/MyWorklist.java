@@ -10,6 +10,11 @@ import org.openqa.selenium.support.FindBy;
 import dsp.automation.utilities.CustomisedException;
 import dsp.automation.utilities.TestFunctionsFactory;
 
+/**
+ * @author Kirubakaran.K(Krishk10)
+ *DSP-ISSS Cucumber Automation
+ * 
+ */
 public class MyWorklist {
 
 	// Search Section Elements
@@ -32,6 +37,11 @@ public class MyWorklist {
 	
 	private final static Logger LOGGER = Logger.getLogger(MyWorklist.class.getName());
 
+	/*krishk10
+	 * @return
+	 * @throws CustomisedException
+	 * @throws Exception
+	 */
 	public MyWorklist isPageDisplayed() throws CustomisedException, Exception {
 
 		fieldValue = "My Worklist Page";
@@ -52,6 +62,12 @@ public class MyWorklist {
 		return null;
 	}
 
+	/*krishk10
+	 * @param testData
+	 * @return
+	 * @throws CustomisedException
+	 * @throws Exception
+	 */
 	public MyWorklist searchAssetDetails(String testData) throws CustomisedException, Exception {
 
 		fieldValue = "My Worklist-Search Asset Details";

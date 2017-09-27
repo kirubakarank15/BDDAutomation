@@ -11,9 +11,17 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+/**
+ * @author Kirubakaran.K(Krishk10)
+ *DSP-ISSS Cucumber Automation
+ * 
+ */
 public class DriverSupplier {  
 	public  RemoteWebDriver driver;
  
+	/*krishk10
+	 * @return
+	 */
 	public WebDriver driverChrome() {
 
 		System.setProperty("webdriver.chrome.driver",
@@ -39,6 +47,9 @@ public class DriverSupplier {
 	}
 
 
+	/*krishk10
+	 * @return
+	 */
 	public WebDriver driverIE() { 
 	    String userProfile= "	C:\\Users\\krishk10.AP.000\\AppData\\Roaming\\Microsoft\\Internet Explorer\\UserData";
 	
@@ -62,6 +73,9 @@ public class DriverSupplier {
 		return driver;
 
 	} 
+	/*krishk10
+	 * @return
+	 */
 	public WebDriver htmlUnit(){
 		  WebDriver driver = new HtmlUnitDriver();
 		((HtmlUnitDriver) driver).setJavascriptEnabled(true);

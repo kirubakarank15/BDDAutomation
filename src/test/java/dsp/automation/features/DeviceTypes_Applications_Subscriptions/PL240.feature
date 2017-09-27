@@ -10,7 +10,7 @@ Feature:
     Then verify whether the subscription dropdown values "<Customer Level Subscription  >","<Dealer Level Subscription>","<Cat Level Subscription>"  are populated according to the selected service
 
     Examples: 
-      | Device Type | S/N  | Services          | Customer Level Subscription | Dealer | Cat |
+      | Device Type | S/N  | Services          | Customer Level Subscription | Dealer Level Subscription| CatLevel Subscription |
       | PL131       | NULL | VISION_LINK       | Cat Basic - Hourly          |        |     |
       | PL131       | NULL | VISION_LINK       | Cat Basic - 10 Minutes      |        |     |
       | PL131       | NULL | MY.CAT.COM        | Cat Daily                   |        |     |

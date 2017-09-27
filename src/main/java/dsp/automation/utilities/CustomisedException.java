@@ -1,5 +1,10 @@
 package dsp.automation.utilities;
 
+/**
+ * @author Kirubakaran.K(Krishk10)
+ *DSP-ISSS Cucumber Automation
+ * 
+ */
 public class CustomisedException extends Exception {
 	/**
 	 * 
@@ -9,6 +14,10 @@ public class CustomisedException extends Exception {
 	private static String fieldValue = null;
 	private static String errorMessage = null;
 
+	/**
+	 * @param fieldValue
+	 * @param errorMessage
+	 */
 	public CustomisedException(String fieldValue, String errorMessage) {
 
 		this.fieldValue = fieldValue;

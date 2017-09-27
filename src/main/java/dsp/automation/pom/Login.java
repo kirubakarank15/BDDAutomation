@@ -10,6 +10,11 @@ import dsp.automation.utilities.EcncryptorDecryptor;
 import dsp.automation.utilities.FileHandling;
 import dsp.automation.utilities.TestFunctionsFactory;
 
+/**
+ * @author Kirubakaran.K(Krishk10)
+ *DSP-ISSS Cucumber Automation
+ * 
+ */
 public class Login {
 	@FindBy(id = "cwsUID")
 	private WebElement txtCWSId;
@@ -21,6 +26,10 @@ public class Login {
 	private WebElement linkHomePageQuickLink;
 	String fieldValue;
 	private final static Logger LOGGER = Logger.getLogger(Login.class.getName());
+	/*krishk10
+	 * @return
+	 * @throws Exception
+	 */
 	public Login isPageDisplayed() throws Exception {
 
 		fieldValue = "Login";
@@ -43,6 +52,11 @@ public class Login {
 		return null;
 	}
 
+	/*krishk10
+	 * @param userName
+	 * @param pswd
+	 * @throws CustomisedException
+	 */
 	public void enterDetails(String userName, String pswd) throws CustomisedException {
 		fieldValue = "Login Enter Details Text boxes";
 		try {	
@@ -64,6 +78,9 @@ public class Login {
 
 	}
  
+	/*krishk10
+	 * @throws CustomisedException
+	 */
 	private void homePageVerification() throws CustomisedException {
 		try {
 			

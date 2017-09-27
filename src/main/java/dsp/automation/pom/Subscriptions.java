@@ -19,6 +19,11 @@ import dsp.automation.utilities.CustomisedException;
 import dsp.automation.utilities.FileHandling;
 import dsp.automation.utilities.TestFunctionsFactory;
 
+/**
+ * @author Kirubakaran.K(Krishk10)
+ *DSP-ISSS Cucumber Automation
+ * 
+ */
 public class Subscriptions {
 
 	// @FindBy(xpath = "//div[contains(@title,'CAT - S/N')]")
@@ -87,6 +92,12 @@ public class Subscriptions {
 	String fieldValue;
 	private final static Logger LOGGER = Logger.getLogger(Subscriptions.class.getName());
 
+	/*krishk10
+	 * @param serialNo
+	 * @return
+	 * @throws CustomisedException
+	 * @throws Exception
+	 */
 	public Subscriptions isSubscriptionRecordDisplayed(String serialNo) throws CustomisedException, Exception {
 
 		fieldValue = "SerialNo labels";
@@ -108,6 +119,10 @@ public class Subscriptions {
 		return null;
 	}
 
+	/*krishk10
+	 * @param testData
+	 * @throws CustomisedException
+	 */
 	public void enterSubscriptionValues(String testData) throws CustomisedException {
 
 		fieldValue = "Subscriptions Page";
@@ -241,6 +256,10 @@ public class Subscriptions {
 
 	}
 
+	/*krishk10
+	 * @param testData
+	 * @throws CustomisedException
+	 */
 	public void verifySubscriptionDetails(String testData) throws CustomisedException {
 
 		fieldValue = "Subscriptions Verification";
@@ -322,6 +341,10 @@ public class Subscriptions {
 
 	}
 
+	/*krishk10
+	 * @throws CustomisedException
+	 * @throws Exception
+	 */
 	public void VerifySelectCustomerWarningPopUp() throws CustomisedException, Exception {
 
 		fieldValue = "Select Customer Error PopUp";
@@ -343,6 +366,10 @@ public class Subscriptions {
 
 	}
 
+	/*krishk10
+	 * @throws CustomisedException
+	 * @throws Exception
+	 */
 	public void VerifyUnSavedSubscriptionWarningPopUp() throws CustomisedException, Exception {
 
 		fieldValue = "Unsaved Subscription warning PopUp";
@@ -368,6 +395,11 @@ public class Subscriptions {
 
 	}
 
+	/*krishk10
+	 * @param action
+	 * @throws CustomisedException
+	 * @throws Exception
+	 */
 	public void actionsSubscripition(String action) throws CustomisedException, Exception {
 
 		fieldValue = "My Worklist Page-Actions";
