@@ -11,6 +11,6 @@ Feature:
 
     Examples: 
       | Device Type | S/N  | Services          | Customer Level Subscription               | Dealer Level Subscription | Cat Level Subscription |
-      | PL240B      | NULL | VISION_LINK       | Cat Basic - Hourly,Cat Basic - 10 Minutes |                           |                        |
+      | PL240B      | NULL | VISION LINK       | Cat Basic - Hourly,Cat Basic - 10 Minutes |                           |                        |
       | PL240B      | NULL | MY.CAT.COM        | Cat Daily                                 |                           |                        |
-      | PL240B      | NULL | EQUIPMENT_TRACKER | Cat Daily                                 |                           |                        |
+      | PL240B      | NULL | EQUIPMENT TRACKER | Cat Daily                                 |                           |                        |

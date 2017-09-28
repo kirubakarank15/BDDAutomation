@@ -11,7 +11,7 @@ Feature:
 
     Examples: 
       | Device Type | S/N  | Services          | Customer Level Subscription                                                                                           | Dealer Level Subscription | Cat Level Subscription |
-      | PL641       | NULL | VISION_LINK       | Cat Basic - Hourly,Cat Basic - 10 Minutes,Cat Essentials - Hourly,Cat Essentials - Hourly,Cat Essentials - 10 Minutes |                           |                        |
+      | PL641       | NULL | VISION LINK       | Cat Basic - Hourly,Cat Basic - 10 Minutes,Cat Essentials - Hourly,Cat Essentials - Hourly,Cat Essentials - 10 Minutes |                           |                        |
       | PL641       | NULL | MY.CAT.COM        | Cat Daily                                                                                                             |                           |                        |
-      | PL641       | NULL | EQUIPMENT_TRACKER | Cat Daily                                                                                                             |                           |                        |
+      | PL641       | NULL | EQUIPMENT TRACKER | Cat Daily                                                                                                             |                           |                        |
 ## no Add-On is available

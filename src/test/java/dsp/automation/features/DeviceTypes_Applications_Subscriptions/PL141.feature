@@ -13,8 +13,8 @@ Feature:
     Examples: 
       | Device Type | S/N  | Services          | Customer Level Subscription | Dealer  | Cat     |
       | PL141       | NULL | PRODUCT LINK WEB  | Locator                     | Locator | Locator |
-      | PL141       | NULL | VISION_LINK       | Cat Locator - 6 Hours       |         |         |
+      | PL141       | NULL | VISION LINK       | Cat Locator - 6 Hours       |         |         |
       | PL141       | NULL | MY.CAT.COM        | Cat Daily                   |         |         |
-      | PL141       | NULL | EQUIPMENT_TRACKER | Cat Daily                   |         |         |
+      | PL141       | NULL | EQUIPMENT TRACKER | Cat Daily                   |         |         |
 
 ##NO Add on

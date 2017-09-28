@@ -12,9 +12,9 @@ Feature:
     Examples: 
       | Device Type | S/N  | Services          | Customer Level Subscription                                                                   | Dealer Level Subscription | Cat Level Subscription  |
       | PL241       | NULL | PRODUCT LINK WEB  | Basic Vitals,Basic Aide                                                                       | Basic Vitals,Basic Aide   | Basic Vitals,Basic Aide |
-      | PL241       | NULL | VISION_LINK       | Cat Basic - Hourly,Cat Basic - 10 Minutes,Cat Essentials - Hourly,Cat Essentials - 10 Minutes |                           |                         |
+      | PL241       | NULL | VISION LINK       | Cat Basic - Hourly,Cat Basic - 10 Minutes,Cat Essentials - Hourly,Cat Essentials - 10 Minutes |                           |                         |
       | PL241       | NULL | MY.CAT.COM        | Cat Daily                                                                                     |                           |                         |
-      | PL241       | NULL | EQUIPMENT_TRACKER | Cat Daily                                                                                     |                           |                         |
+      | PL241       | NULL | EQUIPMENT TRACKER | Cat Daily                                                                                     |                           |                         |
 
   Scenario Outline: To
     When search Asset details as "<S/N>" in My Worklist Page
@@ -24,5 +24,5 @@ Feature:
 
     Examples: 
       | Device Type | S/N  | Services    | Customer Level Subscription | Dealer Level Subscription | Cat Level Subscription | Additional Services                          |
-      | PL241       | NULL | VISION_LINK | Cat Basic - Hourly          |                           |                        | VisionLink Load and Cycle Project Monitoring |
-      | PL241       | NULL | VISION_LINK | Cat Basic - 10 Minutes      |                           |                        | VisionLink Load and Cycle Project Monitoring |
+      | PL241       | NULL | VISION LINK | Cat Essentials - Hourly     |                           |                        | VisionLink Load and Cycle Project Monitoring |
+      | PL241       | NULL | VISION LINK | Cat Essentials - 10 Minutes |                           |                        | VisionLink Load and Cycle Project Monitoring |

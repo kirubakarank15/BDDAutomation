@@ -11,9 +11,9 @@ Feature:
 
     Examples: 
       | Device Type | S/N  | Services          | Customer Level Subscription                                                                   | Dealer Level Subscription | Cat Level Subscription |
-      | PLE742      | NULL | VISION_LINK       | Cat Basic - Hourly,Cat Basic - 10 Minutes,Cat Essentials - Hourly,Cat Essentials - 10 Minutes |                           |                        |
+      | PLE742      | NULL | VISION LINK       | Cat Basic - Hourly,Cat Basic - 10 Minutes,Cat Essentials - Hourly,Cat Essentials - 10 Minutes |                           |                        |
       | PLE742      | NULL | MY.CAT.COM        | Cat Daily                                                                                     |                           |                        |
-      | PLE742      | NULL | EQUIPMENT_TRACKER | Cat Daily                                                                                     |                           |                        |
+      | PLE742      | NULL | EQUIPMENT TRACKER | Cat Daily                                                                                     |                           |                        |
 
   Scenario Outline: To
     When search Asset details as "<S/N>" in My Worklist Page
@@ -23,7 +23,7 @@ Feature:
 
     Examples: 
       | Device Type | S/N  | Services    | Customer Level Subscription | Dealer Level Subscription | Cat Level Subscription | Additional Services                                                                  |
-      | PLE742      | NULL | VISION_LINK | Cat Basic - Hourly          |                           |                        | Advanced Productivity,Onboard Analytics                                              |
-      | PLE742      | NULL | VISION_LINK | Cat Basic - 10 Minutes      |                           |                        | Advanced Productivity,Onboard Analytics                                              |
-      | PLE742      | NULL | VISION_LINK | Cat Essentials - Hourly     |                           |                        | Advanced Productivity,VisionLink Load and Cycle Project Monitoring,Onboard Analytics |
-      | PLE742      | NULL | VISION_LINK | Cat Essentials - 10 Minutes |                           |                        | Advanced Productivity,VisionLink Load and Cycle Project Monitoring,Onboard Analytics |
+      | PLE742      | NULL | VISION LINK | Cat Basic - Hourly          |                           |                        | Advanced Productivity,Onboard Analytics                                              |
+      | PLE742      | NULL | VISION LINK | Cat Basic - 10 Minutes      |                           |                        | Advanced Productivity,Onboard Analytics                                              |
+      | PLE742      | NULL | VISION LINK | Cat Essentials - Hourly     |                           |                        | Advanced Productivity,VisionLink Load and Cycle Project Monitoring,Onboard Analytics |
+      | PLE742      | NULL | VISION LINK | Cat Essentials - 10 Minutes |                           |                        | Advanced Productivity,VisionLink Load and Cycle Project Monitoring,Onboard Analytics |
