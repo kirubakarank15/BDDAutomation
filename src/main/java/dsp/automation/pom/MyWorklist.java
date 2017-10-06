@@ -30,7 +30,7 @@ public class MyWorklist {
 	private WebElement btnSearch;
 
 	// Search Result Section Elements
-	@FindBy(xpath = "//div[contains(text(),'Search Results for:')]")
+	@FindBy(xpath = "//*[contains(text(),'Search Results for:')]")
 
 	private WebElement lblSearchResults;
 	String fieldValue;

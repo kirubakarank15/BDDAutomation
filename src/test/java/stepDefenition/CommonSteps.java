@@ -63,6 +63,9 @@ public class CommonSteps {
 	@When("Navigate to \"([^\"]*)\"$")
 	public void menuBarNavigation(String menu) {
 		try {
+			if(TestFunctionsFactory.driver==null){
+				this.login();
+			}
 			MenuBarNaviagtions obj1 = PageFactory.initElements(TestFunctionsFactory.driver, MenuBarNaviagtions.class);
 			obj1.menuNavigation(menu);
 	

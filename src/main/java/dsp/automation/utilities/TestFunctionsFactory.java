@@ -5,10 +5,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -184,6 +188,49 @@ public class TestFunctionsFactory {
 				}
 				i++;
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			throw obj;
+		}
+
+	}
+
+	/*
+	 * krishk10
+	 * 
+	 * @param element
+	 * 
+	 * @param expectedOptions
+	 * 
+	 * @throws CustomisedException
+	 */
+	public static void verifyDropDown(WebElement element, List<String> expectedOptionList) throws CustomisedException {
+		try {
+
+			TestFunctionsFactory.waitForPageLoaded();
+			Select selectObj = new Select(element);
+			List<WebElement> actualOptionsList = selectObj.getOptions();
+
+			/// Temp lists to store trimmed and capitalised values
+			List<String> expectedTrimmedList = new ArrayList<>();
+			List<String> actualTrimmedList = new ArrayList<>();
+
+			for (WebElement toTrimUpperActual : actualOptionsList) {
+				actualTrimmedList.add(toTrimUpperActual.getText().trim().replace(" ", "").toUpperCase());
+			}
+			for (String toTrimUpperExpected : expectedOptionList) {
+				expectedTrimmedList.add(toTrimUpperExpected.trim().replace(" ", "").toUpperCase());
+			}
+
+			// now we have actual options and expected option as a string with
+			// UPPER case in two list
+			if ((!expectedTrimmedList.containsAll(actualTrimmedList))
+					|| expectedTrimmedList.size() != actualTrimmedList.size()) {
+				throw new CustomisedException("Expected Values are: " + expectedTrimmedList,
+						"But Actual Values are : " + actualTrimmedList);
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());

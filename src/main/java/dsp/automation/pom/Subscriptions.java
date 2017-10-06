@@ -194,7 +194,7 @@ public class Subscriptions {
 
 				}
 
-			}
+			} 
 			if (additionalServicesflag) {
 
 				int i = 0;
