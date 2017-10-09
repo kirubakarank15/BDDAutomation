@@ -35,9 +35,7 @@ public class SubscriptionsUpdated {
 	@FindBy(xpath = "//div//span[contains(text(),'/N')]//following-sibling::span")
 	private WebElement lblEquipmentSerialNumber;
 
-	@FindBy(xpath = "//button[contains(text(),'
-						Submit
-					')]")
+	@FindBy(xpath = "//button[contains(text(),'')]")
 	private WebElement btnSaveSync;
 	@FindBy(xpath = "//div[contains(@class,'services')]//span[contains(text(),'Services:')]//parent::div//select")
 

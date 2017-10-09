@@ -154,7 +154,7 @@ public class SubscripitionsNew {
 		}
 	}
 
-	@When("^Set Subscription details as \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
+	@When("^Set Subscription details as \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
 	public void set_Subscription_details_as(String arg1, String arg2, String arg3, String arg4, String arg5)
 			throws Throwable {
 
