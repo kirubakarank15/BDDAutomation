@@ -252,7 +252,8 @@ public class TestFunctionsFactory {
 		try {
 			TestFunctionsFactory.waitForPageLoaded();
 			Select selectObj = new Select(element);
-			Assert.assertEquals(selectObj.getFirstSelectedOption().getText().trim(), option.trim());
+			Assert.assertEquals(selectObj.getFirstSelectedOption().getText().trim().replace(" ", "").toUpperCase(),
+					option.trim().toUpperCase().replace(" ", ""));
 
 		} catch (Exception e) {
 			e.printStackTrace();

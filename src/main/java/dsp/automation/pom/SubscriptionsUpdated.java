@@ -35,8 +35,8 @@ public class SubscriptionsUpdated {
 	@FindBy(xpath = "//div//span[contains(text(),'/N')]//following-sibling::span")
 	private WebElement lblEquipmentSerialNumber;
 
-	@FindBy(xpath = "//button[contains(text(),'')]")
-	private WebElement btnSaveSync;
+	@FindBy(xpath = "//span//button")
+	private WebElement btnSubmit;
 	@FindBy(xpath = "//div[contains(@class,'services')]//span[contains(text(),'Services:')]//parent::div//select")
 
 	private WebElement drpDwnServices;
@@ -139,8 +139,9 @@ public class SubscriptionsUpdated {
 		try {
 			String[] inputData = data.split(",");
 			List<String> expectedOptionList = new ArrayList(Arrays.asList(inputData));
+			expectedOptionList.add("None");
 
-			TestFunctionsFactory.verifyDropDown(drpDwnServices, expectedOptionList);
+			TestFunctionsFactory.verifyDropDown(drpDwnCustomer, expectedOptionList);
 
 		} catch (Exception e) {
 			if (!CustomisedException.getFieldValue().equals(null)) {
@@ -165,11 +166,11 @@ public class SubscriptionsUpdated {
 	 */
 	public void dealerDrpDownSyncCheck(String data) throws CustomisedException {
 
-		fieldValue = "Customer Subscription DropDown";
+		fieldValue = "Dealer Subscription DropDown";
 		try {
 			String[] inputData = data.split(",");
 			List<String> expectedOptionList = new ArrayList(Arrays.asList(inputData));
-
+			expectedOptionList.add("None");
 			TestFunctionsFactory.verifyDropDown(drpDwnDealer, expectedOptionList);
 
 		} catch (Exception e) {
@@ -199,7 +200,7 @@ public class SubscriptionsUpdated {
 		try {
 			String[] inputData = data.split(",");
 			List<String> expectedOptionList = new ArrayList(Arrays.asList(inputData));
-
+			expectedOptionList.add("None");
 			TestFunctionsFactory.verifyDropDown(drpDwnCat, expectedOptionList);
 
 		} catch (Exception e) {
@@ -216,8 +217,8 @@ public class SubscriptionsUpdated {
 	}
 
 	/*
-	 * krishk10 
-	 * Method to check the applicale add-Ons are displayed or not
+	 * krishk10 Method to check the applicale add-Ons are displayed or not
+	 * 
 	 * @param data
 	 * 
 	 * @throws CustomisedException
@@ -233,11 +234,11 @@ public class SubscriptionsUpdated {
 			for (WebElement chkBox : chkBoxOptions) {
 				i++;
 
-				LOGGER.info("checking the AddOn Value :" + inputData);
 				for (String inputAddOn : inputData) {
-					if (chkBox.getText().trim().equalsIgnoreCase(inputAddOn.trim())) {
 
-					} else if (chkBoxOptions.size() == i) {
+					if (chkBox.getAttribute("innerText").toString().trim().equalsIgnoreCase(inputAddOn.trim())) {
+						LOGGER.info("Text matched");
+					} else if (chkBoxOptions.size() > i) {
 						throw new CustomisedException("The following add-On is not available for this Serial No :",
 								inputAddOn);
 					}
@@ -277,6 +278,7 @@ public class SubscriptionsUpdated {
 			case "services:":
 				TestFunctionsFactory.selectFromDropDown(drpDwnServices, testData);
 				break;
+			case "basesubscripition":
 			case "customer":
 			case "customer:":
 				TestFunctionsFactory.selectFromDropDown(drpDwnCustomer, testData);
@@ -372,15 +374,19 @@ public class SubscriptionsUpdated {
 				break;
 			case "additionalservices":
 			case "additionalservices:":
-
+				TestFunctionsFactory.webWait(10, drpAdditionalServices);
+				TestFunctionsFactory.javaScriptClick(drpAdditionalServices);
+				TestFunctionsFactory.webWait(10, drpAdditionalServices);
 				List<WebElement> chkBoxOptions = chkBoxAdditonalServices;
 				int i = 0;
 				for (WebElement chkBox : chkBoxOptions) {
 					i++;
 					String[] addOnServices = testData.split(",");
-					LOGGER.info("checking the AddOn Value :" + addOnServices);
+
+					LOGGER.info(chkBox.getAttribute("innerText").toString() + "checking the AddOn Value2 :"
+							+ addOnServices);
 					for (String inputAddOn : addOnServices) {
-						if (chkBox.getText().trim().equalsIgnoreCase(inputAddOn.trim())) {
+						if (chkBox.getAttribute("innerText").trim().equalsIgnoreCase(inputAddOn.trim())) {
 
 							TestFunctionsFactory.verifyElementdisplayed(TestFunctionsFactory.driver
 									.findElement(By.xpath("//li[" + i + "]//input[contains(@class,'ng-not-empty')]")));
@@ -462,14 +468,10 @@ public class SubscriptionsUpdated {
 		fieldValue = drpDwnName;
 		try {
 
-			switch (drpDwnName.toLowerCase().trim().replaceAll(" ", "")) {
-			case "reason:":
-			case "reason":
-			case "cancellationreason":
-			case "cancelreason":
+			
 				TestFunctionsFactory.selectFromDropDown(drpDownCancelPopUp, testData);
-				break;
-			}
+		
+			
 
 		} catch (Exception e) {
 			CustomisedException.setErrorMessage(e.getMessage().toString());
@@ -506,7 +508,9 @@ public class SubscriptionsUpdated {
 			case "SUBMIT":
 			case "REVIEW":
 			case "SAVE/SYNC":
-				TestFunctionsFactory.javaScriptClick(btnSaveSync);
+				TestFunctionsFactory.waitForPageLoaded();
+				TestFunctionsFactory.javaScriptClick(btnSubmit);
+
 				TestFunctionsFactory.waitForPageLoaded();
 				break;
 			case "<<Back":

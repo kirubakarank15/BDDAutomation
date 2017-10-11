@@ -1,9 +1,11 @@
 package dsp.automation.pom;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -28,7 +30,9 @@ public class MyWorklist {
 	private WebElement txtDCNnumber;
 	@FindBy(className = "srchButtonPane")
 	private WebElement btnSearch;
-
+	//susbcripition page
+	@FindBy(xpath = "//span[contains(text(),'Back')]")
+	private WebElement linkback;
 	// Search Result Section Elements
 	@FindBy(xpath = "//*[contains(text(),'Search Results for:')]")
 
@@ -68,33 +72,33 @@ public class MyWorklist {
 	 * @throws CustomisedException
 	 * @throws Exception
 	 */
-	public MyWorklist searchAssetDetails(String testData) throws CustomisedException, Exception {
+	public MyWorklist searchAssetDetails(String fieldName,String testData) throws CustomisedException, Exception {
 
 		fieldValue = "My Worklist-Search Asset Details";
 		try {
-			HashMap<String, String> testDataMap = TestFunctionsFactory.getTestData(testData); 
-			Set<String> testDataKey = testDataMap.keySet();
-			for (String key : testDataKey) {
-				switch (key.toUpperCase().trim().replaceAll(" ", "")) {
+			List<WebElement> nullCheck=TestFunctionsFactory.driver.findElements(By.xpath("//span[contains(text(),'Back')]"));
+		
+		if(nullCheck.size()!=0){
+			TestFunctionsFactory.javaScriptClick(linkback);
+			TestFunctionsFactory.waitForPageLoaded();
+		}
+				switch (fieldName.toUpperCase().trim().replaceAll(" ", "")) {
 
 				case "S/N":
 				case "SERIALNUMBER":
 				case "SERIALNO":
 				case "S/N(MINIMUMTHREECHARACTERS)":
-					TestFunctionsFactory.webEditText(txtSerialNumber, testDataMap.get(key));
+					TestFunctionsFactory.webEditText(txtSerialNumber, testData);
 					break;
 				case "UCIDNUMBER":
-					TestFunctionsFactory.webEditText(txtucIdNumber, testDataMap.get(key));
+					TestFunctionsFactory.webEditText(txtucIdNumber,testData);
 					break;
 				case "DCNNUMBER":
-					TestFunctionsFactory.webEditText(txtDCNnumber, testDataMap.get(key));
+					TestFunctionsFactory.webEditText(txtDCNnumber, testData);
 					break;
-				default:
-					throw new CustomisedException(fieldValue,
-							"The Given Field " + key + ": is not a valid field for the page, Please correct it");
 
 				}
-			}
+			
 
 		} catch (Exception e) {
 			if (!CustomisedException.getFieldValue().equals(null)) {

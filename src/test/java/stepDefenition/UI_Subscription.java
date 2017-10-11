@@ -26,9 +26,9 @@ public class UI_Subscription {
 	@When("^search Asset details as \"([^\"]*)\" in My Worklist Page$")
 	public void search_Asset_details_as_in_My_Worklist_Page(String data) {
 		try {
-			System.out.println(data);
+		
 			MyWorklist obj = PageFactory.initElements(TestFunctionsFactory.driver, MyWorklist.class);
-			obj.searchAssetDetails(data);
+			obj.searchAssetDetails("S/N",data);
 			obj.actions("Submit");
 		}
 
@@ -69,7 +69,7 @@ public class UI_Subscription {
 		}
 
 	}
-	@Then("^select the services as \"([^\"]*)\" from subscriptions page$")
+	
 	@When("^enter or modify Subscription details as \"([^\"]*)\"$")
 	public void enter_Subscription_details_as(String data) throws Throwable {
 

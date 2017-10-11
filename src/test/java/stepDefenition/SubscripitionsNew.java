@@ -3,6 +3,8 @@
  */
 package stepDefenition;
 
+import java.util.Map;
+
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
@@ -19,18 +21,18 @@ import dsp.automation.utilities.TestFunctionsFactory;
  * 
  */
 public class SubscripitionsNew {
+	SubscriptionsUpdated obj = PageFactory.initElements(TestFunctionsFactory.driver, SubscriptionsUpdated.class);
 
 	@When("^verify the services drop down is displayed with applicable \"([^\"]*)\" values for the device type \"([^\"]*)\"$")
 	public void verifyServices(String arg1, String arg2) {
 		// Write code here that turns the phrase above into concrete actions
 		// throw new PendingException();
 		try {
-			SubscriptionsUpdated obj = PageFactory.initElements(TestFunctionsFactory.driver,
-					SubscriptionsUpdated.class);
+
 			obj.servicesDrpDownSyncCheck(arg1);
 		} catch (Exception e) {
 
-			if (CustomisedException.getErrorMessage() != null) {
+			if (CustomisedException.getErrorMessage() != "") {
 				TestFunctionsFactory.takeSnapShot("ServicesDropDown");
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
@@ -46,15 +48,13 @@ public class SubscripitionsNew {
 
 		try {
 
-			SubscriptionsUpdated obj = PageFactory.initElements(TestFunctionsFactory.driver,
-					SubscriptionsUpdated.class);
 			obj.enterSubscriptionValues("services", data);
 
 		}
 
 		catch (Exception e) {
 
-			if (CustomisedException.getErrorMessage() != null) {
+			if (CustomisedException.getErrorMessage() != "") {
 				TestFunctionsFactory.takeSnapShot("Subscriptions-Services DropDown");
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
@@ -72,22 +72,21 @@ public class SubscripitionsNew {
 		// Write code here that turns the phrase above into concrete actions
 		// throw new PendingException();
 		try {
-			SubscriptionsUpdated obj = PageFactory.initElements(TestFunctionsFactory.driver,
-					SubscriptionsUpdated.class);
-			if (customer != null) {
+
+			if (!customer.equals("")) {
 				obj.customerAndBaseSubscriptionDrpDownSyncCheck(customer);
 			}
 
-			if (dealer != null) {
+			if (!dealer.equals("")) {
 				obj.dealerDrpDownSyncCheck(dealer);
 			}
-			if (cat != null) {
+			if (!cat.equals("")) {
 				obj.catDrpDownSyncCheck(cat);
 			}
 
 		} catch (Exception e) {
 
-			if (CustomisedException.getErrorMessage() != null) {
+			if (CustomisedException.getErrorMessage() != "") {
 				TestFunctionsFactory.takeSnapShot("Subscriptions DropDown");
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
@@ -103,16 +102,14 @@ public class SubscripitionsNew {
 
 		try {
 
-			SubscriptionsUpdated obj = PageFactory.initElements(TestFunctionsFactory.driver,
-					SubscriptionsUpdated.class);
-			if (customer != null) {
+			if (!customer.equals("")) {
 				obj.enterSubscriptionValues("customer", customer);
 			}
-			if (dealer != null) {
+			if (!dealer.equals("")) {
 				obj.enterSubscriptionValues("dealer", dealer);
 			}
 
-			if (cat != null) {
+			if (!cat.equals("")) {
 				obj.enterSubscriptionValues("cat", cat);
 			}
 
@@ -120,7 +117,7 @@ public class SubscripitionsNew {
 
 		catch (Exception e) {
 
-			if (CustomisedException.getErrorMessage() != null) {
+			if (CustomisedException.getErrorMessage() != "") {
 				TestFunctionsFactory.takeSnapShot("Subscriptions-Services DropDown");
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
@@ -138,12 +135,11 @@ public class SubscripitionsNew {
 		// Write code here that turns the phrase above into concrete actions
 		// throw new PendingException();
 		try {
-			SubscriptionsUpdated obj = PageFactory.initElements(TestFunctionsFactory.driver,
-					SubscriptionsUpdated.class);
+
 			obj.addOnValuesCheck(addOnServices);
 		} catch (Exception e) {
 
-			if (CustomisedException.getErrorMessage() != null) {
+			if (CustomisedException.getErrorMessage() != "") {
 				TestFunctionsFactory.takeSnapShot("Add-Onservices");
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
@@ -155,48 +151,180 @@ public class SubscripitionsNew {
 	}
 
 	@When("^Set Subscription details as \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
-	public void set_Subscription_details_as(String arg1, String arg2, String arg3, String arg4, String arg5)
+	public void set_Subscription_details_as(String service, String customer, String dealer, String cat)
 			throws Throwable {
+		try {
+			if (!service.equals("")) {
+				obj.enterSubscriptionValues("services", service);
+			}
+			if (!customer.equals("")) {
+				obj.enterSubscriptionValues("customer", customer);
+			}
+			if (!dealer.equals("")) {
+				obj.enterSubscriptionValues("dealer", dealer);
+			}
 
-		if (arg1 != null) {
-			System.out.println(arg1);
-		}
-		if (arg2 != null) {
-			System.out.println(arg2);
-		}
-		if (arg3 != null) {
-			System.out.println(arg3);
-		}
-		if (arg4 != null) {
-			System.out.println(arg4);
-		}
-		if (arg5 != null) {
-			System.out.println(arg5);
+			if (!cat.equals("")) {
+				obj.enterSubscriptionValues("cat", cat);
+			}
+		} catch (Exception e) {
+
+			if (CustomisedException.getErrorMessage() != "") {
+				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			} else {
+				e.printStackTrace();
+				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				Assert.fail(e.getMessage().toString());
+			}
 		}
 
-		// Write code here that turns the phrase above into concrete actions
-		// throw new PendingException();
+	}
+	@When("^Set Subscription details as \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
+	public void set_Subscription_details_as(String service, String customer,String AdditionalServices,Map<String, String> tableData)
+			throws Throwable {
+		try {
+			System.out.println(tableData);
+			if (!service.equals("")) {
+				obj.enterSubscriptionValues("services", service);
+			}
+			if (!customer.equals("")) {
+				obj.enterSubscriptionValues("customer", customer);
+			}
+			if (!AdditionalServices.equals("")) {
+				obj.enterSubscriptionValues("AdditionalServices", AdditionalServices);
+			}
+			
+		} catch (Exception e) {
+
+			if (CustomisedException.getErrorMessage() != "") {
+				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			} else {
+				e.printStackTrace();
+				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				Assert.fail(e.getMessage().toString());
+			}
+		}
+
+	}
+	
+	@When("^Set Subscription details as \"([^\"]*)\",\"([^\"]*)\"$")
+	public void set_Subscription_details_as(String service, String customer)
+			throws Throwable {
+		try {
+			if (!service.equals("")) {
+				obj.enterSubscriptionValues("services", service);
+			}
+			if (!customer.equals("")) {
+				obj.enterSubscriptionValues("customer", customer);
+			}
+		
+			
+		} catch (Exception e) {
+
+			if (CustomisedException.getErrorMessage() != "") {
+				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			} else {
+				e.printStackTrace();
+				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				Assert.fail(e.getMessage().toString());
+			}
+		}
+
 	}
 
 	@When("^submit subscription details$")
 	public void submit_subscription_details() throws Throwable {
+		obj.actionsSubscripition("submit");
 		// Write code here that turns the phrase above into concrete actions
 		// throw new PendingException();
 	}
 
-	@Then("^Verify Subscription details are displayed with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" in My Worklist page$")
-	public void verify_Subscription_details_should_be_displayed_with_in_My_Worklist_page(String arg1, String arg2,
-			String arg3, String arg4, String arg5, String arg6) throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		// System.out.println(arg1 + " " + arg2 + " " + arg3 + " " + arg4 + " "
-		// + arg5 + " " + arg6);
-		// throw new PendingException();
-	}
+	@Then("^Verify Subscription details are displayed with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" in My Worklist page$")
+	public void verify_Subscription_details_should_be_displayed_with_in_My_Worklist_page(String service, String customer,String AdditionalServices)
+			throws Throwable {
+		try {
+			if (!service.equals("")) {
+				obj.verifySubscriptionValues("services", service);
+			}
+			if (!customer.equals("")) {
+				obj.verifySubscriptionValues("customer", customer);
+			}
+			if (!AdditionalServices.equals("")) {
+				obj.verifySubscriptionValues("AdditionalServices", AdditionalServices);
+			}
+			
+		} catch (Exception e) {
 
-	@When("^cancel subscription by selecting \"([^\"]*)\"$")
-	public void cancel_subscription_by_selecting(String arg1) throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		// throw new PendingException();
+			if (CustomisedException.getErrorMessage() != "") {
+				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			} else {
+				e.printStackTrace();
+				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				Assert.fail(e.getMessage().toString());
+			}
+		}}
+	@Then("^Verify Subscription details are displayed with \"([^\"]*)\",\"([^\"]*)\" in My Worklist page$")
+	public void verify_Subscription_details_should_be_displayed_with_in_My_Worklist_page(String service, String customer)
+			throws Throwable {
+		try {
+			if (!service.equals("")) {
+				obj.verifySubscriptionValues("services", service);
+			}
+			if (!customer.equals("")) {
+				obj.verifySubscriptionValues("customer", customer);
+			}
+
+			
+		} catch (Exception e) {
+
+			if (CustomisedException.getErrorMessage() != "") {
+				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			} else {
+				e.printStackTrace();
+				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				Assert.fail(e.getMessage().toString());
+			}
+		}}
+
+	@Then("^Verify Subscription details are displayed with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" in My Worklist page$")
+	public void verify_Subscription_details_should_be_displayed_with_in_My_Worklist_page(String service, String customer,String dealer,String cat,String AdditionalServices)
+			throws Throwable {
+		try {
+			if (!service.equals("")) {
+				obj.verifySubscriptionValues("services", service);
+			}
+			if (!customer.equals("")) {
+				obj.verifySubscriptionValues("customer", customer);
+			}
+			if (!dealer.equals("")) {
+				obj.verifySubscriptionValues("customer", customer);
+			}
+			if (!cat.equals("")) {
+				obj.verifySubscriptionValues("customer", customer);
+			}
+			if (!AdditionalServices.equals("")) {
+				obj.verifySubscriptionValues("AdditionalServices", AdditionalServices);
+			}
+			
+		} catch (Exception e) {
+
+			if (CustomisedException.getErrorMessage() != "") {
+				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			} else {
+				e.printStackTrace();
+				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				Assert.fail(e.getMessage().toString());
+			}
+		}}
+	@When("^cancel subscription by selecting reason as \"([^\"]*)\"$")
+	public void cancel_subscription_by_selecting(String reason) throws Throwable {
+	obj.selectCancelReason("cancelreason", reason);
 	}
 
 	@When("^select account name \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" from billing Pop Up$")
