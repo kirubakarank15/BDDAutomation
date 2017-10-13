@@ -30,7 +30,7 @@
                     </systemPropertyVariables>
 					<suiteXmlFiles>
 						<!-- TestNG suite XML files -->
-						<suiteXmlFile>$xml</suiteXmlFile>
+						<suiteXmlFile>${xml}</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 				
