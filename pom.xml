@@ -31,13 +31,9 @@
                         <property>
                 <name>fileName</name>
                 <value>${fileName}</value>
-            </property>
+                        </property>
                     </systemProperties>
-					<!--> <suiteXmlFiles>
-						<!-- TestNG suite XML files -->
-						<suiteXmlFile>${xml}</suiteXmlFile>
-					</suiteXmlFiles>--> 
-				</configuration>
+					</configuration>
 				
 			</plugin>	
 			
