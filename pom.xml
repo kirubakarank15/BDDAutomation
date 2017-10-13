@@ -27,7 +27,8 @@
 				<version>2.18.1</version>
 				<configuration>
 						<suiteXmlFiles>
-                        <suiteXmlFile>${xml}</suiteXmlFile>
+                        <suiteXmlFile>${xml1}</suiteXmlFile>
+                        <suiteXmlFile>${xml2}</suiteXmlFile>
 					</suiteXmlFiles>
                     
 					</configuration>
