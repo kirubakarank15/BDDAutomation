@@ -29,8 +29,7 @@
 						<suiteXmlFiles>
                         <suiteXmlFile>${xml}</suiteXmlFile>
 					</suiteXmlFiles>
-                        </property>
-                    </systemProperties>
+                    
 					</configuration>
 				
 			</plugin>	
