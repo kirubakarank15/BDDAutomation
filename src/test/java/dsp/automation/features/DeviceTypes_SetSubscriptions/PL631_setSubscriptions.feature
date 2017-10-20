@@ -5,7 +5,7 @@ Feature:
     When Navigate to "My worklist"
     Then The page "Myworklist" should be displayed
 
-  @Services
+
   Scenario Outline: To set different base subscrip	tions for PL631 device with VISIONLINK application
     When search Asset details as "<S/N>" in My Worklist Page
     And Set Subscription details as "<Services>","<Base Level>","<Additional Services>"
@@ -93,7 +93,7 @@ Feature:
   Scenario Outline: To check whether the user is able to set higher subscription at CAT level for PL631 device
     When search Asset details as "<S/N>" in My Worklist Page
     And Set Subscription details as "<Services>","<Customer Level>","<Dealer Level>","<Cat Level>"
-    And select account name "<Account Name>","<Account Number>","<Account Contact> " from billing Pop Up
+    And select account name "<Account Name>" from billing Pop Up
     And submit subscription details
     And search Asset details as "<S/N>" in My Worklist Page
     Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>","<Additional Services>" in My Worklist page
@@ -105,7 +105,7 @@ Feature:
   Scenario Outline: To check whether the user is able to set subscription for CAT  alone
     When search Asset details as "<S/N>" in My Worklist Page
     And Set Subscription details as "<Services>","<Customer Level>","<Dealer Level>","<Cat Level>"
-    And select account name "<Account Name>","<Account Number>","Account Contact " from billing Pop Up
+    And select account Number "<Account Number>" from billing Pop Up
     And submit subscription details
     And search Asset details as "<S/N>" in My Worklist Page
     Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>","<Additional Services>" in My Worklist page

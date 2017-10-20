@@ -1,15 +1,13 @@
 package stepDefenition;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.Assert;
-import java.util.Properties;
+import java.io.IOException;
 
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Parameters;
 
-import cucumber.api.java.Before;
+import com.cucumber.listener.Reporter;
+
+import cucumber.api.Scenario;
 import cucumber.api.java.en.When;
 import dsp.automation.pom.AdministratorConfiguration;
 import dsp.automation.pom.AssetPopulation;
@@ -28,33 +26,43 @@ import dsp.automation.utilities.MenuBarNaviagtions;
 import dsp.automation.utilities.TestFunctionsFactory;
 
 /**
- * @author Kirubakaran.K(Krishk10)
- *DSP-ISSS Cucumber Automation
+ * @author Kirubakaran.K(Krishk10) DSP-ISSS Cucumber Automation
  * 
  */
-public class CommonSteps { 
-	 
+public class CommonSteps {
+
+	public Scenario scenario;
 
 	@When("Login into DSP Portal$")
-	
-	public void login()  {
+
+	public void login() { 
 		try {
-			TestFunctionsFactory.launchUrl(FileHandling.getProperty("Browser"), FileHandling.getProperty(TestRunner.RUNTIME_ENV));
+
+			TestFunctionsFactory.launchUrl(FileHandling.getProperty("Browser"),
+					FileHandling.getProperty(TestRunner.RUNTIME_ENV));
 			Login obj = PageFactory.initElements(TestFunctionsFactory.driver, Login.class);
-			
+
 			obj.isPageDisplayed();
 
-			obj.enterDetails(FileHandling.getProperty("User_Name"),EcncryptorDecryptor.decryptor(FileHandling.getProperty("Password")) ); 
+			obj.enterDetails(FileHandling.getProperty("User_Name"),
+					EcncryptorDecryptor.decryptor(FileHandling.getProperty("Password")));
 
 		} catch (Exception e) {
 
 			if (CustomisedException.getErrorMessage() != null) {
-				TestFunctionsFactory.takeSnapShot( "Login_page");
+
+				try {
+					Reporter.addScreenCast(TestFunctionsFactory.takeSnapShot("Login"));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace(); 
+				}
+
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
 				e.printStackTrace();
-				TestFunctionsFactory.takeSnapShot( "Login_page"); 
-				Assert.fail(e.getMessage().toString()); 
+				TestFunctionsFactory.takeSnapShot("Login_page");
+				Assert.fail(e.getMessage().toString());
 			}
 		}
 
@@ -63,20 +71,20 @@ public class CommonSteps {
 	@When("Navigate to \"([^\"]*)\"$")
 	public void menuBarNavigation(String menu) {
 		try {
-			if(TestFunctionsFactory.driver==null){
+			if (TestFunctionsFactory.driver == null) {
 				this.login();
 			}
 			MenuBarNaviagtions obj1 = PageFactory.initElements(TestFunctionsFactory.driver, MenuBarNaviagtions.class);
 			obj1.menuNavigation(menu);
-	
-		} catch (Exception e) {
 
-				TestFunctionsFactory.takeSnapShot( "MenuNavigation");
-		
+		} catch (Exception e) {
+			TestFunctionsFactory.takeSnapShot("Login_page");
+			TestFunctionsFactory.takeSnapShot("MenuNavigation");
+
 			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
 
-	} 
+	}
 
 	@When("The page \"([^\"]*)\" should be displayed")
 	public void isPageDisplayed(String pageName) {
@@ -128,7 +136,7 @@ public class CommonSteps {
 			}
 
 		} catch (Exception e) {
-			TestFunctionsFactory.takeSnapShot( pageName+"IsPageDisplayed");
+			TestFunctionsFactory.takeSnapShot(pageName + "IsPageDisplayed");
 			e.printStackTrace();
 			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
@@ -136,26 +144,31 @@ public class CommonSteps {
 	}
 
 	@When("close browser")
-	public void closeBrows() {  
+	public void closeBrows() {
 		TestFunctionsFactory.closeBrowser();
 
 	}
+
 	@When("^change dealer code to \"([^\"]*)\"$")
 	public void dealerCodeSearch(String dealerCode) {
-		try{
-		MenuBarNaviagtions menuObj=PageFactory.initElements(TestFunctionsFactory.driver, MenuBarNaviagtions.class);
-		menuObj.dealerSearch(dealerCode);}
-		catch (Exception e) {
+		try {
+			MenuBarNaviagtions menuObj = PageFactory.initElements(TestFunctionsFactory.driver,
+					MenuBarNaviagtions.class);
+			menuObj.dealerSearch(dealerCode);
+		} catch (Exception e) {
 			TestFunctionsFactory.takeSnapShot("DelaerCodeChange");
 			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}
 	}
+
 	@When("^DealerCode should be changed to \"([^\"]*)\"$")
 	public void dealerCodeVerify(String dealerCode) {
-		try{ 
-		MenuBarNaviagtions menuObj=PageFactory.initElements(TestFunctionsFactory.driver, MenuBarNaviagtions.class);
-		menuObj.delaerCodeVerification(dealerCode);;}
-		catch (Exception e) {
+		try {
+			MenuBarNaviagtions menuObj = PageFactory.initElements(TestFunctionsFactory.driver,
+					MenuBarNaviagtions.class);
+			menuObj.delaerCodeVerification(dealerCode);
+			;
+		} catch (Exception e) {
 			TestFunctionsFactory.takeSnapShot("DelaerCodeChange_Verification");
 			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 		}

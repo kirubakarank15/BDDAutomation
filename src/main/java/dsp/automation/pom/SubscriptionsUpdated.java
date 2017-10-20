@@ -230,6 +230,10 @@ public class SubscriptionsUpdated {
 		try {
 			String[] inputData = data.split(",");
 			List<WebElement> chkBoxOptions = chkBoxAdditonalServices;
+			if(chkBoxOptions.size()==0){
+				throw new CustomisedException("The Add-On dropdown is not displayed :",
+						data);
+			}
 			int i = 0;
 			for (WebElement chkBox : chkBoxOptions) {
 				i++;

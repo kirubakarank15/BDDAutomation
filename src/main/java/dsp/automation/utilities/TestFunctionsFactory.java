@@ -30,6 +30,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 
+import com.google.common.primitives.Bytes;
+
 /**
  * @author Kirubakaran.K(Krishk10)
  *DSP-ISSS Cucumber Automation
@@ -173,7 +175,7 @@ public class TestFunctionsFactory {
 		try {
 			TestFunctionsFactory.waitForPageLoaded();
 			Select selectObj = new Select(element);
-
+			int counter = 0;
 			List<WebElement> optionsList = selectObj.getOptions();
 			int i = 0;
 			for (WebElement options : optionsList) {
@@ -184,9 +186,13 @@ public class TestFunctionsFactory {
 					selectObj.selectByIndex(i);
 					// selectObj.selectByValue(options.getText());
 					System.out.println("Option Clicked" + options.getText());
+					counter++;
 					break;
 				}
 				i++;
+			}
+			if (counter == 0) {
+				throw new CustomisedException(option, "is not available in the dropdown");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -420,7 +426,8 @@ public class TestFunctionsFactory {
 	 * 
 	 * @param pageName
 	 */
-	public static void takeSnapShot(String pageName) {
+	public static String takeSnapShot(String pageName) {
+		String path = null;
 		try {
 			Date dNow = new Date();
 			SimpleDateFormat ft = new SimpleDateFormat("Eyyyy.MM.dd'_'hh:mm:ssa");
@@ -429,6 +436,7 @@ public class TestFunctionsFactory {
 			String screenshotsDir = "test-output//ScreenShots//";
 
 			String filename = pageName + "_" + timeStamp + ".png";
+			path = screenshotsDir + filename;
 			Path screenshotPath = Paths.get(screenshotsDir, filename);
 			// File SrcFile =
 			// ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -448,6 +456,7 @@ public class TestFunctionsFactory {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return path;
 
 	}
 

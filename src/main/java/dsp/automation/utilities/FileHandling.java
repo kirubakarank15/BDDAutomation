@@ -39,21 +39,22 @@ public class FileHandling {
  * @param key
  * @return
  */
-public static String getProperty(String key) {
+public static String getProperty(String key) throws CustomisedException {
  	        String value = "";
 	           try {
 			         if (objProperty== null)
-					{	                
+					{	            
 			        	 objProperty = new Properties();
 			        		File fileObj = new File("Resources\\config.properties"); 
 			    			
 				InputStream inputStream = new FileInputStream(fileObj) ;             
 					objProperty.load(inputStream);	
 					 }
+			         System.out.println("protprty file is null"+(String) objProperty.get(key));  
 	                value = (String) objProperty.get(key);   
 
-	           } catch (IOException e) {
-
+	           } catch (Exception e) {
+throw new CustomisedException("key", "facing issue while fetching");
 	             }
 	          return value;
 	      }
