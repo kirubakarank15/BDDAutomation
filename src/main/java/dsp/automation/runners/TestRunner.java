@@ -28,7 +28,7 @@ import dsp.automation.utilities.FileHandling;
 import dsp.automation.utilities.TestFunctionsFactory;
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src\\test\\java\\dsp\\automation\\features", glue = "stepDefenition", tags = {
-"@Services" }, plugin = { "com.cucumber.listener.ExtentCucumberFormatter:" })
+"@API" }, plugin = { "com.cucumber.listener.ExtentCucumberFormatter:" })
 
 public class  TestRunner extends AbstractTestNGCucumberTests {
 	public static String RUNTIME_ENV;
