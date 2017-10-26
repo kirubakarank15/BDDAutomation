@@ -3,10 +3,12 @@
  */
 package stepDefenition;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+
 
 import cucumber.api.PendingException;
 import cucumber.api.Scenario;
@@ -14,7 +16,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import dsp.automation.pom.Subscriptions;
 import dsp.automation.pom.SubscriptionsUpdated;
-
+import dsp.automation.runners.TestRunnerUI;
 import dsp.automation.utilities.CustomisedException;
 import dsp.automation.utilities.TestFunctionsFactory;
 
@@ -87,8 +89,8 @@ public class SubscripitionsNew {
 			}
 
 		} catch (Exception e) {
-
 			if (CustomisedException.getErrorMessage() != "") {
+		new TestRunnerUI().embedScreenshot();
 				TestFunctionsFactory.takeSnapShot("Subscriptions DropDown");
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {

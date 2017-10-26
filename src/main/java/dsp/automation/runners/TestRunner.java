@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
-import com.cucumber.listener.Reporter;
+
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.Scenario;
@@ -24,7 +24,7 @@ import dsp.automation.utilities.TestFunctionsFactory;
 @RunWith(Cucumber.class)
 
 @CucumberOptions( strict = false,format = { "pretty",
-"json:target/cucumber.json" ,"html:target/site/cucumber-pretty"},  plugin = {"com.cucumber.listener.ExtentCucumberFormatter:output/report.html"},features = "src\\test\\java\\dsp\\automation\\features",glue = "stepDefenition",tags ={"@Services"} ) 
+"json:target/cucumber.json" ,"html:target/site/cucumber-pretty"}, /* plugin = {"com.cucumber.listener.ExtentCucumberFormatter:output/report.html"},*/features = "src\\test\\java\\dsp\\automation\\features",glue = "stepDefenition",tags ={"@Services"} ) 
 
 
 public class TestRunner extends AbstractTestNGCucumberTests {
@@ -44,10 +44,11 @@ public class TestRunner extends AbstractTestNGCucumberTests {
 	 @AfterClass
 	 
 	    public static void setup() {
-	        Reporter.loadXMLConfig(new File("Resources/extents-config.xml"));
+	      /*  Reporter.loadXMLConfig(new File("Resources/extents-config.xml"));
 	        Reporter.setSystemInfo("user", System.getProperty("user.name"));
 	        Reporter.setSystemInfo("os", "Mac OSX");
-	        Reporter.setTestRunnerOutput("Sample test runner output message");
+	        Reporter.setTestRunnerOutput("Sample test runner output message");*/
+	 
 	    }
 	
 }  

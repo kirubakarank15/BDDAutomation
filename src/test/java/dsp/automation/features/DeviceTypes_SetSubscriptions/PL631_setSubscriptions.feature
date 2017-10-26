@@ -5,7 +5,6 @@ Feature:
     When Navigate to "My worklist"
     Then The page "Myworklist" should be displayed
 
-
   Scenario Outline: To set different base subscrip	tions for PL631 device with VISIONLINK application
     When search Asset details as "<S/N>" in My Worklist Page
     And Set Subscription details as "<Services>","<Base Level>","<Additional Services>"
@@ -19,6 +18,9 @@ Feature:
       | SERIAL2 | VISION LINK | Cat Essentials - 4 Hours    |                                              | Cat Essentials - 4 Hours    |
       | SERIAL3 | VISION LINK | Cat Essentials - 10 Minutes |                                              | Cat Essentials - 10 Minutes |
       | SERIAL4 | VISION LINK | Cat Essentials - 4 Hours    | VisionLink Load and Cycle Project Monitoring | Cat Essentials - 4 Hours    |
+      | SERIAL1 | VISION LINK | Cat Essentials - 4 Hours    |                                              | Cat Essentials - 4 Hours    |
+      | SERIAL1 | VISION LINK | Cat Essentials - 10 Minutes |                                              | Cat Essentials - 10 Minutes |
+      | SERIAL1 | VISION LINK | Cat Essentials - 4 Hours    | VisionLink Load and Cycle Project Monitoring | Cat Essentials - 4 Hours    |
 
   #cancelSubscription
   Scenario Outline: To cancel the subscriptions for PL631 device with VISIONLINK application
@@ -32,6 +34,7 @@ Feature:
       | SERIAL1 | VISION LINK | None       | None                | End Of Term   |
       | SERIAL2 | VISION LINK | None       | None                | End Of Term   |
       | SERIAL3 | VISION LINK | None       | None                | End Of Term   |
+        | SERIAL4 | VISION LINK | None       | None                | End Of Term   |
 
   Scenario Outline: To set different subscriptions for PL631 device with MY.CAT.COM   application
     When search Asset details as "<S/N>" in My Worklist Page

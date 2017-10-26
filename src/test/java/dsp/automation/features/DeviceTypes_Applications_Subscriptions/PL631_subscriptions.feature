@@ -4,6 +4,7 @@ Feature:
     When Navigate to "My worklist"
     Then The page "Myworklist" should be displayed
 
+@Regress
   Scenario Outline: To check whether subscriptions are populated properly in Customer,cat and Dealer subscription dropdown for the device Type PL631.
     When search Asset details as "<S/N>" in My Worklist Page
     And select the services as "<Services>" from subscriptions page

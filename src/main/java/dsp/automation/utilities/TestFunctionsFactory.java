@@ -435,7 +435,7 @@ public class TestFunctionsFactory {
 
 			String screenshotsDir = "test-output//ScreenShots//";
 
-			String filename = pageName + "_" + timeStamp + ".png";
+			String filename = pageName + "_" + timeStamp + ".jpg";
 			path = screenshotsDir + filename;
 			Path screenshotPath = Paths.get(screenshotsDir, filename);
 			// File SrcFile =

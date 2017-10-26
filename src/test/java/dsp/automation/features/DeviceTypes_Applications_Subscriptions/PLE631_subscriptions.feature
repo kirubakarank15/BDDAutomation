@@ -14,10 +14,10 @@ Feature: PL631 verification
 
     Examples: 
       | Device Type | S/N      | Services          | Customer Level Subscription                                     | Dealer Level Subscription   | Cat Level Subscription      |
-      | PL631       | AUT10002 | PRODUCT LINK WEB  | Vitals (ES1-0),Aide (ES4-0)                                     | Vitals (ES1-0),Aide (ES4-0) | Vitals (ES1-0),Aide (ES4-0) |
+      #| PL631       | AUT10002 | PRODUCT LINK WEB  | Vitals (ES1-0),Aide (ES4-0)                                     | Vitals (ES1-0),Aide (ES4-0) | Vitals (ES1-0),Aide (ES4-0) |
       | PL631       | AUT10002 | VISION LINK       | Cat Basic - 4 Hours,Cat Basic - Hourly,Cat Essentials - 4 Hours |                             |                             |
-      | PL631       | AUT10002 | MY.CAT.COMs       | Cat Daily                                                       |                             |                             |
-      | PL631       | AUT10002 | EQUIPMENT TRACKER | Cat Daily                                                       |                             |                             |
+      #| PL631       | AUT10002 | MY.CAT.COM       | Cat Daily                                                       |                             |                             |
+      #| PL631       | AUT10002 | EQUIPMENT TRACKER | Cat Daily                                                       |                             |                             |
 
   Scenario Outline: To verify the addon servvices for the device type PL631
     When search Asset details as "<S/N>" in My Worklist Page

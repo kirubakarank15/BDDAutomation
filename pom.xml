@@ -232,11 +232,11 @@
 			<version>1.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.vimalselvam/cucumber-extentsreport -->
-<!-- 		<dependency>
+		<dependency>
 			<groupId>com.vimalselvam</groupId>
 			<artifactId>cucumber-extentsreport</artifactId>
 			<version>1.1.0</version>
-		</dependency> -->
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/javax.activation/activation -->
 		<dependency>
@@ -245,7 +245,7 @@
 			<version>1.1.1</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
-		<dependency>
+	<!-- 	<dependency>
 			<groupId>com.aventstack</groupId>
 			<artifactId>extentreports</artifactId>
 			<version>3.0.7</version>
@@ -256,7 +256,7 @@
 			<groupId>com.vimalselvam</groupId>
 			<artifactId>cucumber-extentsreport</artifactId>
 			<version>3.0.1</version>
-		</dependency>
+		</dependency> -->
 			<dependency>
 				<groupId>org.jsoup</groupId>
 				<artifactId>jsoup</artifactId>

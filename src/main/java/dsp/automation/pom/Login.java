@@ -35,8 +35,8 @@ public class Login {
 		fieldValue = "Login";
 		try {
 			LOGGER.info(EcncryptorDecryptor.decryptor(FileHandling.getProperty("Password")));
-			TestFunctionsFactory.waitForPageLoaded();
-			TestFunctionsFactory.webWait(30, txtCWSId);
+			//TestFunctionsFactory.waitForPageLoaded();
+			TestFunctionsFactory.webWait(3, txtCWSId);
 			LOGGER.info("Login Page is displayed");
 		
 

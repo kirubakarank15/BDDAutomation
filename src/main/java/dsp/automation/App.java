@@ -35,7 +35,7 @@ public class App {
 	@Parameters("environment")
 	public static String getParameter(String enviro) {
 
-		System.out.println(FileHandling.getProperty(enviro));
+		//System.out.println(FileHandling.getProperty(enviro));
 		return null;
 
 	}

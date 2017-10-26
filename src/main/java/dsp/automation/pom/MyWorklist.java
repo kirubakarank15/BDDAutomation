@@ -50,7 +50,7 @@ public class MyWorklist {
 
 		fieldValue = "My Worklist Page";
 		try {
-			TestFunctionsFactory.waitForPageLoaded();
+		
 			TestFunctionsFactory.webWait(30, txtucIdNumber);
 
 		} catch (Exception e) {

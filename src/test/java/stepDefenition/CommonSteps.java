@@ -4,8 +4,9 @@ import java.io.IOException;
 
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-
-import com.cucumber.listener.Reporter;
+/*
+import com.aventstack.extentreports.ExtentTest;
+import com.cucumber.listener.Reporter;*/
 
 import cucumber.api.Scenario;
 import cucumber.api.java.en.When;
@@ -24,6 +25,7 @@ import dsp.automation.utilities.EcncryptorDecryptor;
 import dsp.automation.utilities.FileHandling;
 import dsp.automation.utilities.MenuBarNaviagtions;
 import dsp.automation.utilities.TestFunctionsFactory;
+import gherkin.formatter.model.Result;
 
 /**
  * @author Kirubakaran.K(Krishk10) DSP-ISSS Cucumber Automation
@@ -45,21 +47,30 @@ public class CommonSteps {
 			obj.isPageDisplayed();
 
 			obj.enterDetails(FileHandling.getProperty("User_Name"),
-					EcncryptorDecryptor.decryptor(FileHandling.getProperty("Password")));
+					FileHandling.getProperty("Password"));
 
 		} catch (Exception e) {
 
-			if (CustomisedException.getErrorMessage() != null) {
-
+			if (CustomisedException.getErrorMessage() != null) { 
+/*
 				try {
-					Reporter.addScreenCast(TestFunctionsFactory.takeSnapShot("Login"));
+					
+					//Reporter.addScreenCaptureFromPath(TestFunctionsFactory.takeSnapShot("Login"), "LOGIN");
+
+				
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace(); 
-				}
+				}*/
 
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
+				/*try {
+					//Reporter.addScreenCaptureFromPath(TestFunctionsFactory.takeSnapShot("Login"), "LOGIN");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace(); 
+				}*/
 				e.printStackTrace();
 				TestFunctionsFactory.takeSnapShot("Login_page");
 				Assert.fail(e.getMessage().toString());
@@ -78,7 +89,7 @@ public class CommonSteps {
 			obj1.menuNavigation(menu);
 
 		} catch (Exception e) {
-			TestFunctionsFactory.takeSnapShot("Login_page");
+		
 			TestFunctionsFactory.takeSnapShot("MenuNavigation");
 
 			Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
