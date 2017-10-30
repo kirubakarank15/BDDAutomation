@@ -144,7 +144,7 @@ public class Asset_structure_API {
 	   }
 	}
 	@And("^Verify the Subscription_id is \"([^\"]*)\"$")
-	public void verify_the_Subscription_id(int Sub_ID)
+	public void verify_the_Subscription_id(String Sub_ID)
 	{
 		assertEquals(Sub_ID, Subscription_ID);
 	}
