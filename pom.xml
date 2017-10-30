@@ -27,7 +27,11 @@
 							<configuration>
 						<suiteXmlFiles>
                         <suiteXmlFile>${xml1}</suiteXmlFile>
+<<<<<<< HEAD
        
+=======
+                 
+>>>>>>> b35b9af0fb6da6090e6b5242284480c367d02125
 					</suiteXmlFiles>
                     
 					</configuration>
