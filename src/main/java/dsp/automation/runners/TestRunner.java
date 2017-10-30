@@ -46,7 +46,7 @@ public class  TestRunner extends AbstractTestNGCucumberTests {
 		DisplayOrder NEWEST_FIRST = null;
 		NetworkMode ONLINE = null;
 		ExtentCucumberFormatter.initiateExtentCucumberFormatter
-		(new File($(build.artifactstagingdirectory)+"\\DSP_Automation_API"+timeStamp+".html"),
+		(new File("$(build.artifactstagingdirectory)\\DSP_Automation_API"+timeStamp+".html"),
 		false, NEWEST_FIRST, ONLINE, new Locale("en-US"));
 
 	}
