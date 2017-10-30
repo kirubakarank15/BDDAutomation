@@ -1,93 +1,75 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("DeviceTypes_SetSubscriptions/PL631_setSubscriptions.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("DeviceTypes_Applications_Subscriptions/PLE631_subscriptions.feature");
 formatter.feature({
   "line": 2,
-  "name": "",
+  "name": "PL631 verification",
   "description": "",
-  "id": "",
-  "keyword": "Feature",
-  "tags": [
-    {
-      "line": 1,
-      "name": "@Regression"
-    },
-    {
-      "line": 1,
-      "name": "@PL631_SetSubscriptions"
-    }
-  ]
+  "id": "pl631-verification",
+  "keyword": "Feature"
 });
 formatter.scenarioOutline({
-  "line": 9,
-  "name": "To set different base subscrip\ttions for PL631 device with VISIONLINK application",
+  "line": 10,
+  "name": "To check whether subscriptions are populated properly in Customer,cat and Dealer subscription dropdown for the device Type PL631.",
   "description": "",
-  "id": ";to-set-different-base-subscrip-tions-for-pl631-device-with-visionlink-application",
+  "id": "pl631-verification;to-check-whether-subscriptions-are-populated-properly-in-customer,cat-and-dealer-subscription-dropdown-for-the-device-type-pl631.",
   "type": "scenario_outline",
   "keyword": "Scenario Outline",
   "tags": [
     {
-      "line": 8,
+      "line": 9,
       "name": "@Services"
     }
   ]
 });
 formatter.step({
-  "line": 10,
+  "line": 11,
   "name": "search Asset details as \"\u003cS/N\u003e\" in My Worklist Page",
   "keyword": "When "
 });
 formatter.step({
-  "line": 11,
-  "name": "Set Subscription details as \"\u003cServices\u003e\",\"\u003cBase Level\u003e\",\"\u003cAdditional Services\u003e\"",
-  "keyword": "And "
-});
-formatter.step({
   "line": 12,
-  "name": "submit subscription details",
+  "name": "select the services as \"\u003cServices\u003e\" from subscriptions page",
   "keyword": "And "
 });
 formatter.step({
   "line": 13,
-  "name": "search Asset details as \"\u003cS/N\u003e\" in My Worklist Page",
-  "keyword": "And "
-});
-formatter.step({
-  "line": 14,
-  "name": "Verify Subscription details are displayed with \"\u003cServices\u003e\",\"\u003cExpected Base Level\u003e\",\"\u003cAdditional Services\u003e\" in My Worklist page",
+  "name": "verify whether the subscription dropdown values \"\u003cCustomer Level Subscription\u003e\",\"\u003cDealer Level Subscription\u003e\",\"\u003cCat Level Subscription\u003e\"  are populated according to the selected service",
   "keyword": "Then "
 });
 formatter.examples({
-  "line": 16,
+  "line": 15,
   "name": "",
   "description": "",
-  "id": ";to-set-different-base-subscrip-tions-for-pl631-device-with-visionlink-application;",
+  "id": "pl631-verification;to-check-whether-subscriptions-are-populated-properly-in-customer,cat-and-dealer-subscription-dropdown-for-the-device-type-pl631.;",
   "rows": [
     {
       "cells": [
+        "Device Type",
         "S/N",
         "Services",
-        "Base Level",
-        "Additional Services",
-        "Expected Base Level"
+        "Customer Level Subscription",
+        "Dealer Level Subscription",
+        "Cat Level Subscription"
       ],
-      "line": 17,
-      "id": ";to-set-different-base-subscrip-tions-for-pl631-device-with-visionlink-application;;1"
+      "line": 16,
+      "id": "pl631-verification;to-check-whether-subscriptions-are-populated-properly-in-customer,cat-and-dealer-subscription-dropdown-for-the-device-type-pl631.;;1"
     },
     {
       "comments": [
         {
-          "line": 18,
-          "value": "#| AUT10002 | VISION LINK | Cat Basic - Hourly          |                     | Cat Basic - Hourly          |"
+          "line": 17,
+          "value": "#| PL631       | AUT10002 | PRODUCT LINK WEB  | Vitals (ES1-0),Aide (ES4-0)                                     | Vitals (ES1-0),Aide (ES4-0) | Vitals (ES1-0),Aide (ES4-0) |"
         }
       ],
       "cells": [
+        "PL631",
         "AUT10002",
         "VISION LINK",
-        "Cat Essentials - 4 Hours",
-        "VisionLink Load and Cycle Project Monitoring",
-        "Cat Essentials - 4 Hours"
+        "Cat Basic - 4 Hours,Cat Basic - Hourly,Cat Essentials - 4 Hours",
+        "",
+        ""
       ],
-      "line": 19,
-      "id": ";to-set-different-base-subscrip-tions-for-pl631-device-with-visionlink-application;;2"
+      "line": 18,
+      "id": "pl631-verification;to-check-whether-subscriptions-are-populated-properly-in-customer,cat-and-dealer-subscription-dropdown-for-the-device-type-pl631.;;2"
     }
   ],
   "keyword": "Examples"
@@ -119,7 +101,7 @@ formatter.match({
   "location": "CommonSteps.menuBarNavigation(String)"
 });
 formatter.result({
-  "duration": 47999391177,
+  "duration": 33783302243,
   "status": "passed"
 });
 formatter.match({
@@ -132,75 +114,52 @@ formatter.match({
   "location": "CommonSteps.isPageDisplayed(String)"
 });
 formatter.result({
-  "duration": 10123004006,
+  "duration": 124019137,
   "status": "passed"
 });
 formatter.scenario({
   "comments": [
     {
-      "line": 18,
-      "value": "#| AUT10002 | VISION LINK | Cat Basic - Hourly          |                     | Cat Basic - Hourly          |"
+      "line": 17,
+      "value": "#| PL631       | AUT10002 | PRODUCT LINK WEB  | Vitals (ES1-0),Aide (ES4-0)                                     | Vitals (ES1-0),Aide (ES4-0) | Vitals (ES1-0),Aide (ES4-0) |"
     }
   ],
-  "line": 19,
-  "name": "To set different base subscrip\ttions for PL631 device with VISIONLINK application",
+  "line": 18,
+  "name": "To check whether subscriptions are populated properly in Customer,cat and Dealer subscription dropdown for the device Type PL631.",
   "description": "",
-  "id": ";to-set-different-base-subscrip-tions-for-pl631-device-with-visionlink-application;;2",
+  "id": "pl631-verification;to-check-whether-subscriptions-are-populated-properly-in-customer,cat-and-dealer-subscription-dropdown-for-the-device-type-pl631.;;2",
   "type": "scenario",
   "keyword": "Scenario Outline",
   "tags": [
     {
-      "line": 8,
+      "line": 9,
       "name": "@Services"
-    },
-    {
-      "line": 1,
-      "name": "@Regression"
-    },
-    {
-      "line": 1,
-      "name": "@PL631_SetSubscriptions"
     }
   ]
 });
 formatter.step({
-  "line": 10,
+  "line": 11,
   "name": "search Asset details as \"AUT10002\" in My Worklist Page",
   "matchedColumns": [
-    0
+    1
   ],
   "keyword": "When "
 });
 formatter.step({
-  "line": 11,
-  "name": "Set Subscription details as \"VISION LINK\",\"Cat Essentials - 4 Hours\",\"VisionLink Load and Cycle Project Monitoring\"",
-  "matchedColumns": [
-    1,
-    2,
-    3
-  ],
-  "keyword": "And "
-});
-formatter.step({
   "line": 12,
-  "name": "submit subscription details",
+  "name": "select the services as \"VISION LINK\" from subscriptions page",
+  "matchedColumns": [
+    2
+  ],
   "keyword": "And "
 });
 formatter.step({
   "line": 13,
-  "name": "search Asset details as \"AUT10002\" in My Worklist Page",
+  "name": "verify whether the subscription dropdown values \"Cat Basic - 4 Hours,Cat Basic - Hourly,Cat Essentials - 4 Hours\",\"\",\"\"  are populated according to the selected service",
   "matchedColumns": [
-    0
-  ],
-  "keyword": "And "
-});
-formatter.step({
-  "line": 14,
-  "name": "Verify Subscription details are displayed with \"VISION LINK\",\"Cat Essentials - 4 Hours\",\"VisionLink Load and Cycle Project Monitoring\" in My Worklist page",
-  "matchedColumns": [
-    1,
     3,
-    4
+    4,
+    5
   ],
   "keyword": "Then "
 });
@@ -214,67 +173,42 @@ formatter.match({
   "location": "UI_Subscription.search_Asset_details_as_in_My_Worklist_Page(String)"
 });
 formatter.result({
-  "duration": 71019923337,
+  "duration": 71086468955,
   "status": "passed"
 });
 formatter.match({
   "arguments": [
     {
       "val": "VISION LINK",
-      "offset": 29
-    },
-    {
-      "val": "Cat Essentials - 4 Hours",
-      "offset": 43
-    },
-    {
-      "val": "VisionLink Load and Cycle Project Monitoring",
-      "offset": 70
+      "offset": 24
     }
   ],
-  "location": "SubscripitionsNew.set_Subscription_details_as(String,String,String,String\u003e)"
+  "location": "SubscripitionsNew.selectServices(String)"
 });
 formatter.result({
-  "duration": 1212515,
-  "error_message": "cucumber.runtime.CucumberException: Don\u0027t know how to convert \"VisionLink Load and Cycle Project Monitoring\" into java.util.Map.\nTry writing your own converter:\n\n@cucumber.deps.com.thoughtworks.xstream.annotations.XStreamConverter(MapConverter.class)\npublic class Map {}\n\r\n\tat cucumber.runtime.ParameterInfo.convert(ParameterInfo.java:150)\r\n\tat cucumber.runtime.StepDefinitionMatch.transformedArgs(StepDefinitionMatch.java:68)\r\n\tat cucumber.runtime.StepDefinitionMatch.runStep(StepDefinitionMatch.java:37)\r\n\tat cucumber.runtime.Runtime.runStep(Runtime.java:300)\r\n\tat cucumber.runtime.model.StepContainer.runStep(StepContainer.java:44)\r\n\tat cucumber.runtime.model.StepContainer.runSteps(StepContainer.java:39)\r\n\tat cucumber.runtime.model.CucumberScenario.run(CucumberScenario.java:44)\r\n\tat cucumber.runtime.model.CucumberScenarioOutline.run(CucumberScenarioOutline.java:46)\r\n\tat cucumber.runtime.model.CucumberFeature.run(CucumberFeature.java:165)\r\n\tat cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:63)\r\n\tat cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)\r\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\r\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\r\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n\tat java.lang.reflect.Method.invoke(Method.java:498)\r\n\tat org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)\r\n\tat org.testng.internal.Invoker.invokeMethod(Invoker.java:661)\r\n\tat org.testng.internal.Invoker.invokeTestMethod(Invoker.java:869)\r\n\tat org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1193)\r\n\tat org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:126)\r\n\tat org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)\r\n\tat org.testng.TestRunner.privateRun(TestRunner.java:744)\r\n\tat org.testng.TestRunner.run(TestRunner.java:602)\r\n\tat org.testng.SuiteRunner.runTest(SuiteRunner.java:380)\r\n\tat org.testng.SuiteRunner.runSequentially(SuiteRunner.java:375)\r\n\tat org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)\r\n\tat org.testng.SuiteRunner.run(SuiteRunner.java:289)\r\n\tat org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)\r\n\tat org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)\r\n\tat org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)\r\n\tat org.testng.TestNG.runSuitesLocally(TestNG.java:1226)\r\n\tat org.testng.TestNG.runSuites(TestNG.java:1144)\r\n\tat org.testng.TestNG.run(TestNG.java:1115)\r\n\tat org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:295)\r\n\tat org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:84)\r\n\tat org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:90)\r\n\tat org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203)\r\n\tat org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155)\r\n\tat org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)\r\n",
+  "duration": 10872147364,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "Cat Basic - 4 Hours,Cat Basic - Hourly,Cat Essentials - 4 Hours",
+      "offset": 49
+    },
+    {
+      "val": "",
+      "offset": 115
+    },
+    {
+      "val": "",
+      "offset": 118
+    }
+  ],
+  "location": "SubscripitionsNew.verifySubscriptionDrpDwn(String,String,String)"
+});
+formatter.result({
+  "duration": 10369604576,
+  "error_message": "java.lang.NullPointerException\r\n\tat dsp.automation.runners.TestRunnerUI.embedScreenshot(TestRunnerUI.java:67)\r\n\tat stepDefenition.SubscripitionsNew.verifySubscriptionDrpDwn(SubscripitionsNew.java:93)\r\n\tat ✽.Then verify whether the subscription dropdown values \"Cat Basic - 4 Hours,Cat Basic - Hourly,Cat Essentials - 4 Hours\",\"\",\"\"  are populated according to the selected service(DeviceTypes_Applications_Subscriptions/PLE631_subscriptions.feature:13)\r\n",
   "status": "failed"
-});
-formatter.match({
-  "location": "SubscripitionsNew.submit_subscription_details()"
-});
-formatter.result({
-  "status": "skipped"
-});
-formatter.match({
-  "arguments": [
-    {
-      "val": "AUT10002",
-      "offset": 25
-    }
-  ],
-  "location": "UI_Subscription.search_Asset_details_as_in_My_Worklist_Page(String)"
-});
-formatter.result({
-  "status": "skipped"
-});
-formatter.match({
-  "arguments": [
-    {
-      "val": "VISION LINK",
-      "offset": 48
-    },
-    {
-      "val": "Cat Essentials - 4 Hours",
-      "offset": 62
-    },
-    {
-      "val": "VisionLink Load and Cycle Project Monitoring",
-      "offset": 89
-    }
-  ],
-  "location": "SubscripitionsNew.verify_Subscription_details_should_be_displayed_with_in_My_Worklist_page(String,String,String)"
-});
-formatter.result({
-  "status": "skipped"
 });
 });

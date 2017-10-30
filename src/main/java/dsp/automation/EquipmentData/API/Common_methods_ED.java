@@ -89,7 +89,7 @@ JsonParser parser = new JsonParser();
 Object obj = parser.parse(new FileReader("EDRequestBody.txt"));
 System.out.println();
 input = new StringEntity(obj.toString(), "UTF-8");
-input.setContentType("application/json");
+input.setContentType("application/addUpdateEquipment-v1+json");
 request.addHeader("Accept", "application/json");
 //System.out.println("Request Body:" +input);
 request.setEntity(input);

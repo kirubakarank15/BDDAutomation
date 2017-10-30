@@ -413,6 +413,7 @@ public class TestFunctionsFactory {
 		}
 
 		driver.manage().deleteAllCookies();
+	
 		objDriver.driver.manage().window().maximize();
 
 		driver.get(url);

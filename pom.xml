@@ -27,7 +27,7 @@
 							<configuration>
 						<suiteXmlFiles>
                         <suiteXmlFile>${xml1}</suiteXmlFile>
-                        <suiteXmlFile>${xml2}</suiteXmlFile>
+       
 					</suiteXmlFiles>
                     
 					</configuration>
