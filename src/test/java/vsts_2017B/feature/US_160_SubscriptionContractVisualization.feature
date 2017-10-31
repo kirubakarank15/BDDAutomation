@@ -15,51 +15,59 @@ Feature: Subscription Contract Visualization - Applications and Dealer Codes Con
   @CatProfile @US_160 @TC_268 @Positive
   Scenario Outline: To Verify the visibility of Subscription Contract Visualization feature for different services for CAT Login
     When Set in UI "<DealerCode>"
-    And enter or modify Subscription details as "<Services>,<Cat Level Subscription>,<Dealer Level Subscription>,<Customer Level Subscription>,<Additional Services>"
+    And Set Subscription details as "<Services>,<Cat Level Subscription>,<Dealer Level Subscription>,<Customer Level Subscription>,<Additional Services>"
     Then Verify Subscription Contract Visualization feature should be visible to only "<Services>"
 
     Examples: 
-      | DealerCode | Device Type | Services         | Cat             | Dealer          | Customer                    | Additional Services |
-      | E250       | PLE641      | VisionLink       |                 |                 | Cat Basic - 10 Minutes  | Onboard Analytics   |
-      | H160       | PLE641      | Product Link Web | Aide (EC4-14-T) | Aide (EC4-14-T) | Vitals (EC1-4)                                 |                     |
-      | N030       |             | My.Cat.Com       |                 |                 | Cat Daily                                      | Cat Daily           |
-      | M610       |             |                  |                 |                 |                                                |                     |
-      | B330       |             |                  |                 |                 |                                                |                     |
-
+      | DealerCode | Device Type  | Services         | Cat Level Subscription | Dealer Level Subscription | Customer Level Subscription | Additional Services |
+      | E250       | PL131        | VisionLink       |                        |                           | Cat Basic - 10 Minutes      | Onboard Analytics   |
+      | H160       | PL141        | Product Link Web | Aide (EC4-14-T)        | Aide (EC4-14-T)           | Vitals (EC1-4)              |                     |
+      | N030       | PL161        | My.Cat.Com       |                        |                           | Cat Daily                   | Cat Daily           |
+      | M610       | PL631        |                  |                        |                           |                             |                     |
+      | B330       | PL641        |                  |                        |                           |                             |                     |
+      |            | PL671        |                  |                        |                           |                             |                     |
+      |            | PLE601       |                  |                        |                           |                             |                     |
+      |            | PLE631       |                  |                        |                           |                             |                     |
+      |            | PLE641       |                  |                        |                           |                             |                     |
+      |            | PLE641+PL631 |                  |                        |                           |                             |                     |
+      |            | PL240        |                  |                        |                           |                             |                     |
+      |            | PL241        |                  |                        |                           |                             |                     |
+      |            | PL240B       |                  |                        |                           |                             |                     |
+#for N030,M610,B330 subscription prcing values are not displayed in dsp ui 
   @CatProfile @US_160 @TC_271 @Positive
   Scenario Outline: To Verify Subscription Contract Visualization feature is Configurable for other dealer codes for CAT Login
     When Set in UI "<DealerCode>"
-    And enter or modify Subscription details as "<Services>,<Cat Level Subscription>,<Dealer Level Subscription>,<Customer Level Subscription>,<Base Subscription>,<Additional Services>"
+    And Set Subscription details as "<Services>,<Cat Level Subscription>,<Dealer Level Subscription>,<Customer Level Subscription>,<Base Subscription>,<Additional Services>"
     Then Verify Subscription Contract Visualization feature is enabled for all other dealercodes whenever zuora starts supporting billing for those dealers
 
     Examples: 
-      | DealerCode | Device Type | Services         | Cat             | Dealer          | Customer       | Base Subscription      | Additional Services |
-      | TD00       | PLE641      | VisionLink       |                 |                 |                | Cat Basic - 10 Minutes | Onboard Analytics   |
-      | TD99       | PLE641      | Product Link Web | Aide (EC4-14-T) | Aide (EC4-14-T) | Vitals (EC1-4) |                        |                     |
-      | TD67       |             | My.Cat.Com       |                 |                 |                |                        | Cat Daily           |
+      | DealerCode | Device Type | Services         | Cat Level Subscription | Dealer Level Subscription | Customer Level Subscription | Base Subscription      | Additional Services |
+      | TD00       | PLE641      | VisionLink       |                        |                           |                             | Cat Basic - 10 Minutes | Onboard Analytics   |
+      | TD99       | PLE641      | Product Link Web | Aide (EC4-14-T)        | Aide (EC4-14-T)           | Vitals (EC1-4)              |                        |                     |
+      | TD67       |             | My.Cat.Com       |                        |                           |                             |                        | Cat Daily           |
 
   @DealerProfile @US_160 @TC_270 @Positive
   Scenario Outline: To Verify the visibility of Subscription Contract Visualization feature for Dealer Login
-    When enter or modify Subscription details as "<Services>,<Dealer>,<Customer>,<Base Subscription>,<Additional Services>"
+    When Set Subscription details as "<Services>,<Dealer Level Subscription>,<Customer Level Subscription>,<Additional Services>"
     Then Verify Subscription Contract Visualization feature should be visible to only "<Applications>"
 
     Examples: 
-      | Services         | Dealer          | Customer       | Base Subscription      | Additional Services |
-      | VisionLink       |                 |                | Cat Basic - 10 Minutes | Onboard Analytics   |
-      | Product Link Web | Aide (EC4-14-T) | Vitals (EC1-4) |                        |                     |
-      | My.Cat.Com       |                 |                |                        | Cat Daily           |
-      |                  |                 |                |                        |                     |
-      |                  |                 |                |                        |                     |
+      | Services         | Dealer Level Subscription | Customer Level Subscription | Additional Services |
+      | VisionLink       |                           | Cat Basic - 10 Minutes      | Onboard Analytics   |
+      | Product Link Web | Aide (EC4-14-T)           | Vitals (EC1-4)              |                     |
+      | My.Cat.Com       |                           | Cat Daily                   |                     |
+      |                  |                           |                             |                     |
+      |                  |                           |                             |                     |
 
   @DealerProfile @US_160 @TC_272 @Positive
   Scenario Outline: To Verify Subscription Contract Visualization feature is Configurable for other dealer codes in DSP for Dealer Login
-    When enter or modify Subscription details as "<Services>,<Dealer>,<Customer>,<Base Subscription>,<Additional Services>"
+    When Set Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>", "<Additional Services>"
     Then Verify Subscription Contract Visualization feature is enabled for all other dealercodes whenever zuora starts supporting billing for those dealers
 
     Examples: 
-      | Services         | Dealer          | Customer       | Base Subscription      | Additional Services |
-      | VisionLink       |                 |                | Cat Basic - 10 Minutes | Onboard Analytics   |
-      | Product Link Web | Aide (EC4-14-T) | Vitals (EC1-4) |                        |                     |
-      | My.Cat.Com       |                 |                |                        | Cat Daily           |
-      |                  |                 |                |                        |                     |
-      |                  |                 |                |                        |                     |
+      | Services         | Dealer Level Subscription | Customer Level Subscription | Additional Services |
+      | VisionLink       |                           | Cat Basic - 10 Minutes      | Onboard Analytics   |
+      | Product Link Web | Aide (EC4-14-T)           | Vitals (EC1-4)              |                     |
+      | My.Cat.Com       |                           | Cat Daily                   |                     |
+      |                  |                           |                             |                     |
+      |                  |                           |                             |                     |

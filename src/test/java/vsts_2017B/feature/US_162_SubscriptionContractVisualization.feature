@@ -1,5 +1,5 @@
 @US_162 @DSP @2017B @SubscriptionContractVisualization
-Feature: Subscription Contract Visualization -  Applicable Promotion Value
+Feature: Subscription Contract Visualization -  Applicable Promotion Value - #API is not ready still
   This feature is to Verify Subscription Contract Visualization for CAT/Dealer Profiles in DSP
 
   Scenario Outline: Navigate to My Worklist and Search for an asset
@@ -21,11 +21,11 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
 
     Examples: 
       | DealerCode | Device Type | S/N      | Services         | Cat Level Subscription | Dealer Level Subscription | Customer Level Subscription |
-      | E250       | PLE641      | AUT10011 |                  |                        |                           |                   |
-      | H160       | PLE641      | AUT10011 | Product Link Web | Aide (EC4-14-T)        | Aide (EC4-14-T)           | Aide(EC4-14-T)    |
-      | N030       |             |          |                  |                        |                           |                   |
-      | M610       |             |          |                  |                        |                           |                   |
-      | B330       |             |          |                  |                        |                           |                   |
+      | E250       | PLE641      | AUT10011 |                  |                        |                           |                             |
+      | H160       | PLE641      | AUT10011 | Product Link Web | Aide (EC4-14-T)        | Aide (EC4-14-T)           | Aide(EC4-14-T)              |
+      | N030       |             |          |                  |                        |                           |                             |
+      | M610       |             |          |                  |                        |                           |                             |
+      | B330       |             |          |                  |                        |                           |                             |
 
   @CatProfile @US_162 @TC_ @Positive
   Scenario Outline: To Verify Applicable PromotionName and DiscountAmount are displayed once subscription is selected at Dealer level(Inherited to cat) for PLWEB
@@ -51,12 +51,12 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
     Then Verify in UI ApplicablePromotionName,DiscountAmount are not displayed
 
     Examples: 
-      | DealerCode | Services        | Cat Level Subscription               |
-      | E250       | ProductLink Web | Aide(EC4-14)       |
-      | H160       | ProductLink Web | Advisor(EC24-54)   |
-      | N030       | ProductLink Web | Advisor(EC24-54-T) |
-      | M610       | ProductLink Web | Vitals(EC1-4)      |
-      | B330       |                 |                    |
+      | DealerCode | Services        | Cat Level Subscription |
+      | E250       | ProductLink Web | Aide(EC4-14)           |
+      | H160       | ProductLink Web | Advisor(EC24-54)       |
+      | N030       | ProductLink Web | Advisor(EC24-54-T)     |
+      | M610       | ProductLink Web | Vitals(EC1-4)          |
+      | B330       |                 |                        |
 
   @CatProfile @US_162 @TC_ @Positive
   Scenario Outline: To Verify Applicable PromotionName and DiscountAmount are displayed once subscription is selected for Visionlink in cat login
@@ -112,12 +112,12 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
     And Verify the values of PromotionName and Discountamount in Zuora API
 
     Examples: 
-      | DealerCode | Device Type | Services         | Cat Level Subscription           | Dealer Level Subscription        | Customer Level Subscription               | Additional Services |
-      | E250       | PLE641      | VisionLink       |               |               | Cat Basic - 10 Minutes | Onbaord Analytics   |
-      | H160       | PLE641      | Product Link Web | Aide (EC4-14) | Aide (EC4-14) | Aide(EC4-14)           |                     |
-      | N030       |             | My.Cat.Com       |               |               | Cat Daily              |                     |
-      | M610       |             |                  |               |               |                        |                     |
-      | B330       |             |                  |               |               |                        |                     |
+      | DealerCode | Device Type | Services         | Cat Level Subscription | Dealer Level Subscription | Customer Level Subscription | Additional Services |
+      | E250       | PLE641      | VisionLink       |                        |                           | Cat Basic - 10 Minutes      | Onbaord Analytics   |
+      | H160       | PLE641      | Product Link Web | Aide (EC4-14)          | Aide (EC4-14)             | Aide(EC4-14)                |                     |
+      | N030       |             | My.Cat.Com       |                        |                           | Cat Daily                   |                     |
+      | M610       |             |                  |                        |                           |                             |                     |
+      | B330       |             |                  |                        |                           |                             |                     |
 
   @CatProfile @US_162 @TC_ @Positive
   Scenario Outline: To verify PromotionName and DiscountAmount are not be displayed after cancelling the asset subscription in cat login
@@ -126,12 +126,12 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
     Then Verify in UI PromotionName and DiscountAmount should not be displayed after cancelling the asset subscription
 
     Examples: 
-      | DealerCode | Services         | Cat           | Dealer        | Customer               | Additional Services |
-      | E250       | VisionLink       |               |               | Cat Basic - 10 Minutes | Onbaord Analytics   |
-      | H160       | Product Link Web | Aide (EC4-14) | Aide (EC4-14) | Aide(EC4-14)           |                     |
-      | N030       | My.Cat.Com       |               |               | Cat Daily              |                     |
-      | M610       |                  |               |               |                        |                     |
-      | B330       |                  |               |               |                        |                     |
+      | DealerCode | Services         | Cat Level Subscription | Dealer Level Subscription | Customer Level Subscription | Additional Services |
+      | E250       | VisionLink       |                        |                           | Cat Basic - 10 Minutes      | Onbaord Analytics   |
+      | H160       | Product Link Web | Aide (EC4-14)          | Aide (EC4-14)             | Aide(EC4-14)                |                     |
+      | N030       | My.Cat.Com       |                        |                           | Cat Daily                   |                     |
+      | M610       |                  |                        |                           |                             |                     |
+      | B330       |                  |                        |                           |                             |                     |
 
   @CatProfile @US_162 @TC_506 @Positive
   Scenario: To Verify PromotionName and DiscountAmount are not displayed for already subscribed assets in CAT login
@@ -142,12 +142,12 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
   @CatProfile @US_162 @TC_509 @Negative
   Scenario Outline: To Verify PromotionName and DiscountAmount should not get updated after selecting Onboard Analytics Add on for PLWEB as Cat login
     When Set in UI "<DealerCode>"
-    And enter or modify Subscription details as "<Services>","<Customer Level Subscription>","<Dealer Level Subscription>","<Cat Level Subscription>","<Additional Services>"
+    And set Subscription details as "<Services>","<Customer Level Subscription>","<Dealer Level Subscription>","<Cat Level Subscription>","<Additional Services>"
     Then Verify in UI PromotionName and Discount should not updated after selecting Onboard Analytics
 
     Examples: 
-      | DealerCode | Services        | Customer Level Subscription     | Dealer Level Subscription      | Cat Level Subscription          | Additional Services |
-      | E250       | ProductLink Web | Aide(EC4-14) | Aide(EC4-14) | Aide(EC4-14) | Onboard Analytics   |
+      | DealerCode | Services        | Customer Level Subscription | Dealer Level Subscription | Cat Level Subscription | Additional Services |
+      | E250       | ProductLink Web | Aide(EC4-14)                | Aide(EC4-14)              | Aide(EC4-14)           | Onboard Analytics   |
 
   #when only onboard analytics is selected already subscribed asset - added
   @CatProfile @US_162 @TC_ @Negative
@@ -180,7 +180,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
 
   @DealerProfile @US_162 @TC_ @Postitive
   Scenario Outline: To Verify Applicable PromotionName and DiscountAmount are displayed once subscription is selected at Customer level(Inherited to Dealer) for PLWEB
-    When enter or modify Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>"
+    When set Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>"
     Then Verify in UI ApplicablePromotionName,DiscountAmount are displayed for the selected Subscription
     And Verify the values of ApplicablePromotionName,DiscountAmount for the selected Subscription are retrieved from Zuora Promotion App correctly
 
@@ -194,36 +194,36 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
 
   @DealerProfile @US_162 @TC_ @Positive
   Scenario Outline: To Verify Applicable PromotionName and DiscountAmount are displayed once subscription is selected at Dealer level for PLWEB
-    When enter or modify Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>"
+    When set Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>"
     Then Verify in UI ApplicablePromotionName,DiscountAmount are displayed for the selected Subscription
     And Verify the values of ApplicablePromotionName,DiscountAmount for the selected Subscription are retrieved from Zuora Promotion App correctly
 
     Examples: 
-      | Services         | Dealer Level Subscription          | Customer Level Subscription |
-      |                  |                 |          |
-      | Product Link Web | Aide (EC4-14-T) | None     |
-      |                  |                 |          |
-      |                  |                 |          |
-      |                  |                 |          |
+      | Services         | Dealer Level Subscription | Customer Level Subscription |
+      |                  |                           |                             |
+      | Product Link Web | Aide (EC4-14-T)           | None                        |
+      |                  |                           |                             |
+      |                  |                           |                             |
+      |                  |                           |                             |
 
   @DealerProfile @US_162 @TC_ @Positive
   Scenario Outline: To Verify Applicable PromotionName and DiscountAmount are displayed once subscription is selected for Visionlink in Dealer login
-    When enter or modify Subscription details as "<Services>","<Customer Level Subscriptipn>","<Additional Services>"
+    When set Subscription details as "<Services>","<Customer Level Subscriptipn>","<Additional Services>"
     Then Verify in UI ApplicablePromotionName,DiscountAmount are displayed for the selected Subscription
     And Verify the values of ApplicablePromotionName,DiscountAmount for the selected Subscription are retrieved from Zuora Promotion App correctly
 
     Examples: 
-      | DealerCode | Services   | Customer Level Subscription      | Additional Services                          |
-      | E250       | VisionLink | Cat Basic - 10 Minutes | VisionLink Load and Cycle Project Monitoring |
-      | H160       |            |                        |                                              |
-      | N030       |            |                        |                                              |
-      | M610       |            |                        |                                              |
-      | B330       |            |                        |                                              |
+      | DealerCode | Services   | Customer Level Subscription | Additional Services                          |
+      | E250       | VisionLink | Cat Basic - 10 Minutes      | VisionLink Load and Cycle Project Monitoring |
+      | H160       |            |                             |                                              |
+      | N030       |            |                             |                                              |
+      | M610       |            |                             |                                              |
+      | B330       |            |                             |                                              |
 
   @DealerProfile @US_162 @TC_ @Positive
   Scenario Outline: To Verify Applicable PromotionName and DiscountAmount are displayed once subscription is selected for My.Cat.Com Application in Cat login
     When Set in UI "<DealerCode>"
-    And enter or modify Subscription details as "<Services>","<Customer Level Subscription>"
+    And set Subscription details as "<Services>","<Customer Level Subscription>"
     Then Verify in UI ApplicablePromotionName,DiscountAmount are displayed for the selected Subscription
     And Verify the values of ApplicablePromotionName,DiscountAmount for the selected Subscription are retrieved from Zuora Promotion App correctly
 
@@ -238,7 +238,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
   @DealerProfile @US_162 @TC_ @Postitive
   Scenario Outline: To Verify PromotionName and DiscountAmount are displayed after changing existing subscription for an asset in Dealer profile
     When Set in UI "<DealerCode>"
-    And enter or modify Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    And set Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
     Then Verify in UI ApplicablePromotionName,DiscountAmount are displayed for the selected Subscription
 
     Examples: 
@@ -249,33 +249,33 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value
 
   @DealerProfile @US_162 @TC_ @Positive
   Scenario Outline: To verify PromotionName and DiscountAmount values are changing concurrently based on change in subscription in Dealer Login
-    When enter or modify Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Services>"
+    When set Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
     Then Verify in UI PromotionName and Discountamount values should be changed concurrently based on selected subscription values
     And Verify the values of PromotionName and Discountamount in Zuora API
 
     Examples: 
-      | DealerCode | Services         | Dealer Level Subscription        | Customer Level Subscription               | Additional Subscription |
-      | E250       | VisionLink       |               | Cat Basic - 10 Minutes | Onbaord Analytics       |
-      | H160       | Product Link Web | Aide (EC4-14) | Aide(EC4-14)           |                         |
-      | N030       | My.Cat.Com       |               | Cat Daily              |                         |
-      | M610       |                  |               |                        |                         |
-      | B330       |                  |               |                        |                         |
+      | DealerCode | Services         | Dealer Level Subscription | Customer Level Subscription | Additional Subscription |
+      | E250       | VisionLink       |                           | Cat Basic - 10 Minutes      | Onbaord Analytics       |
+      | H160       | Product Link Web | Aide (EC4-14)             | Aide(EC4-14)                |                         |
+      | N030       | My.Cat.Com       |                           | Cat Daily                   |                         |
+      | M610       |                  |                           |                             |                         |
+      | B330       |                  |                           |                             |                         |
 
   @DealerProfile @US_162 @TC_ @Positive
   Scenario Outline: To verify PromotionName and DiscountAmount are not be displayed after cancelling the asset subscription in Dealer login
     When Set in UI "<DealerCode>"
-    And enter or modify Subscription details as "<Services>,Cat =<Cat>,Dealer =<Dealer>,Customer =<Customer>,Base Subscription =<Base Subscription>,Additional Services  =<Additional Services>"
+    And set Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
     Then Verify in UI PromotionName and DiscountAmount should not be displayed after cancelling the asset subscription
 
     Examples: 
-      | DealerCode | Services         | Dealer        | Customer     | Base Subscription      | Additional Subscription |
-      | E250       | VisionLink       |               |              | Cat Basic - 10 Minutes | Onbaord Analytics       |
-      | H160       | Product Link Web | Aide (EC4-14) | Aide(EC4-14) |                        |                         |
-      | N030       | My.Cat.Com       |               |              | Cat Daily              |                         |
-      | M610       |                  |               |              |                        |                         |
-      | B330       |                  |               |              |                        |                         |
+      | DealerCode | Services         | Dealer Level Subscription | Customer Level Subscription | Additional Subscription |
+      | E250       | VisionLink       |                           | Cat Basic - 10 Minutes      | Onbaord Analytics       |
+      | H160       | Product Link Web | Aide (EC4-14)             | Aide(EC4-14)                |                         |
+      | N030       | My.Cat.Com       |                           | Cat Daily                   |                         |
+      | M610       |                  |                           |                             |                         |
+      | B330       |                  |                           |                             |                         |
 
   @DealerProfile @US_162 @TC_ @Positive
   Scenario: To Verify PromotionName and DiscountAmount are not displayed for already subscribed assets in Dealer profile
-    When search Asset details as "SerialNumber =<SerialNumber>" in My Worklist Page
+    When search Asset details as "<SerialNumber>" in My Worklist Page
     Then Verify in UI PromtionName and DiscountAmount are not displayed for already subscribed assets
