@@ -20,3 +20,4 @@ Feature: ED record for an asset
       | CAT              |                 | 2016A |              2015 | O         |               059956 | Testasset   |           | TD00       |        200 |
       | Z99              |                 | 2016A |              2015 | O         |               059956 | Testasset   |           | TD00       |        200 |
       | CAT              |                 | 2016A |              2015 | O         |               059956 | Testasset   |           | TD00       |        200 |
+

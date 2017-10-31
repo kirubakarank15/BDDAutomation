@@ -30,7 +30,7 @@ public class DBMapValues {
 		Statement st = dbConnection.checkConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 		String sql = (query);
-		Thread.sleep(15000);
+		//Thread.sleep(15000);
 		ResultSet rs = st.executeQuery(sql);
 		ResultSetMetaData rsmd = rs.getMetaData();
 		/*
