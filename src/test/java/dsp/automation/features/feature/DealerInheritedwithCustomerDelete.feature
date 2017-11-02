@@ -1,4 +1,4 @@
-@API
+@API1
 Feature: Update DealerInherited Subscriptions in two Levels with NonInherited Customer Level Subscription
   This feature is to Validate Deletion of DealerInherited subscriptions in two Levels with NonInherited Customer Level Subscription
 

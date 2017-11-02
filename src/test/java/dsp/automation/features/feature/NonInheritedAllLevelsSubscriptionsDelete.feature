@@ -1,4 +1,4 @@
-@API
+@API1
 Feature: Update NonInherited Subscriptions in all Levels
   This feature is to Validate update of NonInherited subscriptions in all Levels
 

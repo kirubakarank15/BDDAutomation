@@ -250,10 +250,6 @@ public class Common_methods {
 		return access_token;
 	}
 
-
-
-	
-
 	
 	public static void json() throws ClientProtocolException,
 			FileNotFoundException, NullPointerException, IOException,

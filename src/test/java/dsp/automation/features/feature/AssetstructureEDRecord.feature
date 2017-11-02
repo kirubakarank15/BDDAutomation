@@ -1,4 +1,4 @@
-@API  @TESTs
+@API1
 Feature: ED record for an asset
   This feature is to Create an Customer Record in ED for an asset and verifying API Response
 

@@ -49,10 +49,11 @@ public class CustInheritedSubscriptions
 		creatsub.setOrganization(organization);
 		creatsub.setOrganizationType(organizationType);
 		creatsub.setOrigin(origin);
+		creatsub.setSerialNumber(Common_methods.SerialNumber);
 		//creatsub.setSerialNumber(CommonMethods.AssetSno);
-		List<String> SerialNumbers = new ArrayList<String>();
+		/*List<String> SerialNumbers = new ArrayList<String>();
 		SerialNumbers = Common_methods.SerialNumbers;
-		creatsub.setSerialNumber(SerialNumbers.get(0));
+		creatsub.setSerialNumber(SerialNumbers.get(0));*/
 		/*for (int i =0;i<=SerialNumbers.size();i++){
 			creatsub.setSerialNumber(SerialNumbers.get(i));
 		}*/

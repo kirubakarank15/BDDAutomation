@@ -1,4 +1,4 @@
-@API
+@API1
 Feature: Creating Dealer Inherited Subscription in two Levels with NonInherited Customer Level Subscription
   This feature is to Validate creation of Dealer Inherited subscription in two Levels with Different Customer level subscription
 
