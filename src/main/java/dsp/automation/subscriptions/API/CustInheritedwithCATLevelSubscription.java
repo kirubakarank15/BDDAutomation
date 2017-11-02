@@ -30,6 +30,12 @@ public class CustInheritedwithCATLevelSubscription
 public static String CustInheritedwithCATLevelSubscriptionCustLevel(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId)
 		throws FileNotFoundException, IOException, JSONException, ParseException 
 {
+	try {
+		Thread.sleep(180000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 
 	CreateSubscription creatsub = new CreateSubscription();
 	

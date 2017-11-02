@@ -100,7 +100,8 @@ public class CustInheritedSubscriptions
 		creatsub.setOrigin(origin);
 		creatsub.setParentId(custParentId);
 		creatsub.setTypeId(typeId);
-		creatsub.setSerialNumber(Common_methods.SerialNumber);
+		System.out.println("Serial_Number:"+Common_methods.SerialNumber);
+		creatsub.setSerialNumber(Common_methods.SerialNumbers.get(0));
 				
 		Gson gson = new Gson();
 		String Dealerlevel = gson.toJson(creatsub);

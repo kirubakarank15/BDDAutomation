@@ -38,7 +38,7 @@ public class DealerInheritedScubscriptions
 	    CreateDealerSub.setBillingtUserAccountId(billingtUserAccountId);
 	    CreateDealerSub.setEndTime(CommonMethods.getCurrenttime());
 	    CreateDealerSub.setStartTime(CommonMethods.getCurrenttime());
-	    CreateDealerSub.setSerialNumber(Common_methods.SerialNumber);
+	    CreateDealerSub.setSerialNumber(Common_methods.SerialNumbers.get(0));
         
 	    Gson gson = new Gson();
 		String DealertLevel = gson.toJson(CreateDealerSub);

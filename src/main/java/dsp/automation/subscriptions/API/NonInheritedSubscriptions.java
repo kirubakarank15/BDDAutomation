@@ -17,7 +17,7 @@ import dsp.automation.utilities.APIReponse;
 public class NonInheritedSubscriptions 
 {
 
-
+ 
 	public static String NonInheritedcustId= null;
 	public static String NonInheritedDealerId = null;
 	public static String NonInheritedCATId = null;
