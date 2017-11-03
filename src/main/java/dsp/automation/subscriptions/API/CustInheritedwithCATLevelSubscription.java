@@ -45,10 +45,11 @@ public static String CustInheritedwithCATLevelSubscriptionCustLevel(String paren
 	creatsub.setOrganization(organization);
 	creatsub.setOrganizationType(organizationType);
 	creatsub.setOrigin(origin);
+	creatsub.setSerialNumber(Common_methods.SerialNumber);
 	//creatsub.setSerialNumber(CommonMethods.AssetSno);
-	List<String> SerialNumbers = new ArrayList<String>();
+	/*List<String> SerialNumbers = new ArrayList<String>();
 	SerialNumbers = Common_methods.SerialNumbers;
-	creatsub.setSerialNumber(SerialNumbers.get(0));
+	creatsub.setSerialNumber(SerialNumbers.get(0));*/
 	/*for (int i =0;i<=SerialNumbers.size();i++){
 		creatsub.setSerialNumber(SerialNumbers.get(i));
 	}*/
@@ -136,10 +137,11 @@ public static String CustInheritedwithCATLevelSubscriptionCATLevel(String parent
 	creatsub.setEndTime(CommonMethods.getCurrenttime());
 	creatsub.setStartTime(CommonMethods.getCurrenttime());
 	creatsub.setParentId(parentId);
+	creatsub.setSerialNumber(Common_methods.SerialNumber);
 	//createcatSub.setSerialNumber(CommonMethods.AssetSno);
-	List<String> SerialNumbers = new ArrayList<String>();
+	/*List<String> SerialNumbers = new ArrayList<String>();
 	SerialNumbers = Common_methods.SerialNumbers;
-	creatsub.setSerialNumber(SerialNumbers.get(0));
+	creatsub.setSerialNumber(SerialNumbers.get(0));*/
 	/*for (int i =0;i<=SerialNumbers.size();i++){
 		createcatSub.setSerialNumber(SerialNumbers.get(i));
 	}*/

@@ -29,7 +29,10 @@ public class EquipmentData_API {
 	public void execute_the_API() throws Throwable {
 		 HttpPost request = reusemethods.addingHeaderstourl();
 		 HttpResponse httpResponse =  reusemethods.apiExecution(request);
+		 System.out.println("ED Response:" +httpResponse);
 		 StatusCode = httpResponse.getStatusLine().getStatusCode();
+		 System.out.println("ED Status:" +StatusCode);
+		 Thread.sleep(120000);
 		 
 	}
 

@@ -1,4 +1,4 @@
-@API1
+@API
 Feature: Update Customer Inherited Subscriptions with NonInherited CAT LevelSubscription
   This feature is to Validate Deletion of Customer Inherited subscriptions with NonInherited CAT LevelSubscription
 

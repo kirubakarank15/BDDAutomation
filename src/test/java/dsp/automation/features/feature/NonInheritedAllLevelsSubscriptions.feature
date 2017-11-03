@@ -1,4 +1,4 @@
-@API1
+@API
 Feature: Creating NonInherited Subscriptions in all Levels
   This feature is to Validate creation of NonInherited subscriptions in all Levels
 

@@ -1,4 +1,4 @@
-@API1
+@API
 Feature: Creating Dealer Inherited Subscription in two Levels with NonInherited Customer Level Subscription
   This feature is to Validate creation of Dealer Inherited subscription in two Levels with Different Customer level subscription
 
@@ -7,8 +7,8 @@ Feature: Creating Dealer Inherited Subscription in two Levels with NonInherited 
     Then Set DealerInheritedwithNonInheritedSubscription for Customer Level with serialNumber,"<parentId>","<make>","<siteId>","<typeId>", "<level>", "<origin>", "<organization>","<organizationType>", "<associatedOrganization>" , "<associatedOrganizationType>" ,"<dcn>" ,"<billingtUserAccountId>",startTime,endTime for DealerInheritedwithNonInheritedSubscription
 
     Examples: 
-      | parentId | make | siteId | typeId | level  | origin | organization | organizationType | associatedOrganization | associatedOrganizationType | dcn    | billingtUserAccountId |
-      | null     | CAT  | null   |    527 | Dealer | Owned  | TD00         | Dealer           | CAT                    | CAT                        | 059956 | null                  |
+      | parentId | make | siteId | typeId | level    | origin | organization | organizationType | associatedOrganization | associatedOrganizationType | dcn    | billingtUserAccountId |
+      | null     | CAT  | null   |    527 | CUSTOMER | Owned  |   2969473160 | Customer         | TD00                   | Dealer                     | 059956 | null                  |
 
   @Sanity @Regression @Positive
   Scenario Outline: : Validate Subscriptions are set for the Dealer Level for DealerInheritedwithNonInheritedSubscription
