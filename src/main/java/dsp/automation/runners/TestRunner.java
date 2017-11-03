@@ -28,7 +28,7 @@ import dsp.automation.utilities.FileHandling;
 import dsp.automation.utilities.TestFunctionsFactory;
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src\\test\\java\\dsp\\automation\\features", glue = "stepDefenition", tags = {
-"@API" }, plugin = { "com.cucumber.listener.ExtentCucumberFormatter:" })
+"@Application_Sync_Sanity,@PL131,@PL141,@PL161@PL240,@PL241,@PL542,@PL631,@PL641,@PL671" }, plugin = { "com.cucumber.listener.ExtentCucumberFormatter:" })
 
 public class  TestRunner extends AbstractTestNGCucumberTests {
 	public static String RUNTIME_ENV;
@@ -45,9 +45,11 @@ public class  TestRunner extends AbstractTestNGCucumberTests {
 
 		DisplayOrder NEWEST_FIRST = null;
 		NetworkMode ONLINE = null;
+		
 		ExtentCucumberFormatter.initiateExtentCucumberFormatter
 		(new File("target\\site\\cucumber-pretty\\DSP_Automation_API"+timeStamp+".html"),
 		false, NEWEST_FIRST, ONLINE, new Locale("en-US"));
+ExtentCucumberFormatter.loadConfig(new File("Resources\\extents-config.xml"));
 
 	}
  

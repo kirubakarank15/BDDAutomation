@@ -287,7 +287,7 @@ public class Common_methods {
 		while (iter.hasNext()) {
 			keyArr[count] = (String) iter.next();
 
-			valArr[count] = menu.getString(keyArr[count]);
+			valArr[count] = menu.getString(keyArr[count]); 
 			count += 1;
 
 		}

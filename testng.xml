@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Automation">
-  <test verbose="2" name="Automation">
-  <parameter name="Environment" value="INT_DSP" />
-    <classes>
-<!--       <class name="dsp.automation.App"/> -->
-      <class name="dsp.automation.runners.TestRunner"/>
-<!--       <class name="dsp.automation.utilities.DriverSupplier"/>
-      <class name="dsp.automation.utilities.TestFunctionsFactory"/>
-      <class name="dsp.automation.pom.Login"/> -->
-    </classes>
-  </test> <!-- Default test -->
+<suite name="Custom suite" verbose="1" thread-count="1" parallel="tests"
+	configfailurepolicy="continue">
+
+
+	<!-- Default test -->
+	<!-- <suite guice-stage="DEVELOPMENT" name="Automation"> -->
+	<test verbose="2" name="Automation">
+		<parameter name="Environment" value="INT_DSP" />
+		<classes>
+			<!-- <class name="dsp.automation.App"/> -->
+	<class name="dsp.automation.runners.TestRunner" />
+		
+			<!-- <class name="dsp.automation.utilities.DriverSupplier"/> <class name="dsp.automation.utilities.TestFunctionsFactory"/> 
+				<class name="dsp.automation.pom.Login"/> -->
+		</classes>
+	</test>
+	<!-- Default test -->
 </suite> <!-- Default suite -->

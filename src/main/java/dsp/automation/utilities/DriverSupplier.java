@@ -33,7 +33,7 @@ public class DriverSupplier {
         options.addArguments("--start-maximized"); 
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--disable-popup-blocking");
-//options.addArguments("--headless");
+options.addArguments("--headless");
         options.addArguments("disable-infobars"); 
         //options.setBinary("Resources\\Drivers\\chromedriver.exe");
         //options.addArguments("--incognito");
