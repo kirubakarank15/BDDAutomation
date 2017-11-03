@@ -1,9 +1,7 @@
 package dsp.automation.AssetStructures.API;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,7 +30,6 @@ import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import com.cucumber.listener.ExtentCucumberFormatter;
 import com.google.gson.Gson;
 import com.google.gson.JsonParser;
 
@@ -59,12 +56,6 @@ public class Common_methods {
 	{
       properties.load(new FileInputStream("Resources\\application.properties"));
       SerialNumber = ReusableMethodsAPI.valueIncrementor(DBMapValues.dbValue("Serial_Number", properties.getProperty("db_asset")));
-      while(SerialNumber.equals(properties.get("Existing_Serial_Number"))){
-     	 Thread.sleep(1000);
-     	 SerialNumber = ReusableMethodsAPI.valueIncrementor(DBMapValues.dbValue("Serial_Number", properties.getProperty("db_asset")));
-      }
-       properties.setProperty("Existing_Serial_Number", SerialNumber);
-
       Radio_1_SerialNumber = ReusableMethodsAPI.valueIncrementor(DBMapValues.dbValue("radio_1_serial_number", properties.getProperty("db_radio_1_serial_number")));
      Radio_2_SerialNumber = ReusableMethodsAPI.valueIncrementor(DBMapValues.dbValue("radio_2_serial_number", properties.getProperty("db_radio_2_serial_number")));
       Device_id = ReusableMethodsAPI.valueIncrementor(DBMapValues.dbValue("device_id", properties.getProperty("db_deviceid")));
@@ -130,10 +121,6 @@ public class Common_methods {
 		String jsonInString = new Gson().toJson(samp, SampleModel.class);
 		
          System.out.println("Request Body:" + new JSONObject(jsonInString));
-         File file = new File("Resources\\application.properties");
-			FileOutputStream fileOut = new FileOutputStream(file);
-			properties.store(fileOut, "File Has been written");
-			fileOut.close();
 		try {
 			PrintWriter writer = new PrintWriter("AssetStructurejson.txt","UTF-8");
 			writer.println(jsonInString);
@@ -262,10 +249,6 @@ public class Common_methods {
 		System.out.println("OAuth Token:" + "\n" + access_token);
 		return access_token;
 	}
-
-
-
-	
 
 	
 	public static void json() throws ClientProtocolException,

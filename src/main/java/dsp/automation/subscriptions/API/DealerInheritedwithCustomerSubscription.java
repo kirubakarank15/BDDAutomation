@@ -38,10 +38,11 @@ public class DealerInheritedwithCustomerSubscription
 		creatsub.setOrganization(organization);
 		creatsub.setOrganizationType(organizationType);
 		creatsub.setOrigin(origin);
-		//creatsub.setSerialNumber(CommonMethods.AssetSno);
+		creatsub.setSerialNumber(Common_methods.SerialNumber);
+		/*//creatsub.setSerialNumber(CommonMethods.AssetSno);
 		List<String> SerialNumbers = new ArrayList<String>();
 		SerialNumbers = Common_methods.SerialNumbers;
-		creatsub.setSerialNumber(SerialNumbers.get(0));
+		creatsub.setSerialNumber(SerialNumbers.get(0));*/
 		/*for (int i =0;i<=SerialNumbers.size();i++){
 			creatsub.setSerialNumber(SerialNumbers.get(i));
 		}*/
@@ -87,9 +88,10 @@ public class DealerInheritedwithCustomerSubscription
 		creatsub.setBillingtUserAccountId(billingtUserAccountId);
 		creatsub.setEndTime(CommonMethods.getCurrenttime());
 		creatsub.setStartTime(CommonMethods.getCurrenttime());
-	    List<String> SerialNumbers = new ArrayList<String>();
+		creatsub.setSerialNumber(Common_methods.SerialNumber);
+	    /*List<String> SerialNumbers = new ArrayList<String>();
 		SerialNumbers = Common_methods.SerialNumbers;
-		creatsub.setSerialNumber(SerialNumbers.get(0));
+		creatsub.setSerialNumber(SerialNumbers.get(0));*/
 		/*for (int i =0;i<=SerialNumbers.size();i++){
 			CreateDealerSub.setSerialNumber(SerialNumbers.get(i));
 		}*/

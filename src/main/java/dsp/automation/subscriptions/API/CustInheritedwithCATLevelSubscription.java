@@ -30,12 +30,6 @@ public class CustInheritedwithCATLevelSubscription
 public static String CustInheritedwithCATLevelSubscriptionCustLevel(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId)
 		throws FileNotFoundException, IOException, JSONException, ParseException 
 {
-	try {
-		Thread.sleep(180000);
-	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
 
 	CreateSubscription creatsub = new CreateSubscription();
 	
@@ -51,10 +45,11 @@ public static String CustInheritedwithCATLevelSubscriptionCustLevel(String paren
 	creatsub.setOrganization(organization);
 	creatsub.setOrganizationType(organizationType);
 	creatsub.setOrigin(origin);
+	creatsub.setSerialNumber(Common_methods.SerialNumber);
 	//creatsub.setSerialNumber(CommonMethods.AssetSno);
-	List<String> SerialNumbers = new ArrayList<String>();
+	/*List<String> SerialNumbers = new ArrayList<String>();
 	SerialNumbers = Common_methods.SerialNumbers;
-	creatsub.setSerialNumber(SerialNumbers.get(0));
+	creatsub.setSerialNumber(SerialNumbers.get(0));*/
 	/*for (int i =0;i<=SerialNumbers.size();i++){
 		creatsub.setSerialNumber(SerialNumbers.get(i));
 	}*/
@@ -142,10 +137,11 @@ public static String CustInheritedwithCATLevelSubscriptionCATLevel(String parent
 	creatsub.setEndTime(CommonMethods.getCurrenttime());
 	creatsub.setStartTime(CommonMethods.getCurrenttime());
 	creatsub.setParentId(parentId);
+	creatsub.setSerialNumber(Common_methods.SerialNumber);
 	//createcatSub.setSerialNumber(CommonMethods.AssetSno);
-	List<String> SerialNumbers = new ArrayList<String>();
+	/*List<String> SerialNumbers = new ArrayList<String>();
 	SerialNumbers = Common_methods.SerialNumbers;
-	creatsub.setSerialNumber(SerialNumbers.get(0));
+	creatsub.setSerialNumber(SerialNumbers.get(0));*/
 	/*for (int i =0;i<=SerialNumbers.size();i++){
 		createcatSub.setSerialNumber(SerialNumbers.get(i));
 	}*/

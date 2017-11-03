@@ -378,7 +378,7 @@ public class Asset_subscriptions_API
 	
 	
 	@Then("^Retrieve the Values of Subscription_id in AssetSubscription and Table for CATLevelSubscription$")
-	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscription_and_Table_for_CATLevelSubscription() throws FileNotFoundException, IOException, SQLException 
+	public void retrieve_the_Values_of_Subscription_id_in_AssetSubscription_and_Table_for_CATLevelSubscription() throws FileNotFoundException, IOException, SQLException, InterruptedException 
 	{
 		String SubAssetID = Asset_structure_API.Asset_id;
 		System.out.println("SubscriptionAssetid :" +SubAssetID);
@@ -388,6 +388,7 @@ public class Asset_subscriptions_API
 		//DSPSqlconnection dbcheck = new DSPSqlconnection();
 		//CommonInstance.getassetDetails(SubscritpionTableQuery);
 		CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
+		Thread.sleep(60000);
 		
 	}
 

@@ -17,7 +17,7 @@ import dsp.automation.utilities.APIReponse;
 public class NonInheritedSubscriptions 
 {
 
- 
+
 	public static String NonInheritedcustId= null;
 	public static String NonInheritedDealerId = null;
 	public static String NonInheritedCATId = null;
@@ -47,9 +47,10 @@ public static String NoninheritedCustLevelSubscription(String parentId, String m
 	creatsub.setOrganizationType(organizationType);
 	creatsub.setOrigin(origin);
 	//creatsub.setSerialNumber(CommonMethods.AssetSno);
-	List<String> SerialNumbers = new ArrayList<String>();
+	creatsub.setSerialNumber(Common_methods.SerialNumber);
+	/*List<String> SerialNumbers = new ArrayList<String>();
 	SerialNumbers = Common_methods.SerialNumbers;
-	creatsub.setSerialNumber(SerialNumbers.get(0));
+	creatsub.setSerialNumber(SerialNumbers.get(0));*/
 	/*for (int i =0;i<=SerialNumbers.size();i++){
 		creatsub.setSerialNumber(SerialNumbers.get(i));
 	}*/

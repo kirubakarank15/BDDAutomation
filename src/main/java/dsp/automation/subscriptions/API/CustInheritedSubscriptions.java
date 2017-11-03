@@ -49,10 +49,11 @@ public class CustInheritedSubscriptions
 		creatsub.setOrganization(organization);
 		creatsub.setOrganizationType(organizationType);
 		creatsub.setOrigin(origin);
+		creatsub.setSerialNumber(Common_methods.SerialNumber);
 		//creatsub.setSerialNumber(CommonMethods.AssetSno);
-		List<String> SerialNumbers = new ArrayList<String>();
+		/*List<String> SerialNumbers = new ArrayList<String>();
 		SerialNumbers = Common_methods.SerialNumbers;
-		creatsub.setSerialNumber(SerialNumbers.get(0));
+		creatsub.setSerialNumber(SerialNumbers.get(0));*/
 		/*for (int i =0;i<=SerialNumbers.size();i++){
 			creatsub.setSerialNumber(SerialNumbers.get(i));
 		}*/
@@ -100,8 +101,7 @@ public class CustInheritedSubscriptions
 		creatsub.setOrigin(origin);
 		creatsub.setParentId(custParentId);
 		creatsub.setTypeId(typeId);
-		System.out.println("Serial_Number:"+Common_methods.SerialNumber);
-		creatsub.setSerialNumber(Common_methods.SerialNumbers.get(0));
+		creatsub.setSerialNumber(Common_methods.SerialNumber);
 				
 		Gson gson = new Gson();
 		String Dealerlevel = gson.toJson(creatsub);

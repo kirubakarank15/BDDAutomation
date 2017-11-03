@@ -7,13 +7,14 @@ Feature: Scan and register Commercial type PL161
     Then Search Text Box text as "By Equipment S/N / Engine S/N / Device S/N /Radio S/N" should be displayed in MyWorklist Page
     And Tool tip text as "Enter minimum of 3 characters should be displayed in MyWorklist Page
     And Search Button should be Enabled in MyWorklist Page
+   
 
   @FactoryUserProfile @Positive @US_54 @TC_
-  Scenario Outline: Scan valid DeviceSerialNumber for PL161 with CAT Make in Chrome and IE
+  Scenario Outline: Scan valid AssetSerialNumber for PL161 with CAT Make in Chrome and IE
     When Navigate to "My worklist"
-    And Scan valid "<DeviceSerialnumber>" for "<CommercialType>" in MyWorklist Page
+    And Scan valid "<AssetSerialnumber>" for "<CommercialType>" in MyWorklist Page
     And click on Search button in MyWorklist Page
-    Then Device Information should be displayed for the Scanned Asset in MyWorklist Page
+    Then AssetSerialnumber with X should be displayed for the Scanned Asset in MyWorklist Page
 
     Examples: 
       | CommercialType | DeviceSerialnumber |

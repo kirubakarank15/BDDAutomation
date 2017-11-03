@@ -41,9 +41,10 @@ public class DealerInheritedSubscriptions
 		creatsub.setBillingtUserAccountId(billingtUserAccountId);
 		creatsub.setEndTime(CommonMethods.getCurrenttime());
 		creatsub.setStartTime(CommonMethods.getCurrenttime());
-	    List<String> SerialNumbers = new ArrayList<String>();
+		creatsub.setSerialNumber(Common_methods.SerialNumber);
+	    /*List<String> SerialNumbers = new ArrayList<String>();
 		SerialNumbers = Common_methods.SerialNumbers;
-		creatsub.setSerialNumber(SerialNumbers.get(0));
+		creatsub.setSerialNumber(SerialNumbers.get(0));*/
 		/*for (int i =0;i<=SerialNumbers.size();i++){
 			CreateDealerSub.setSerialNumber(SerialNumbers.get(i));
 		}*/

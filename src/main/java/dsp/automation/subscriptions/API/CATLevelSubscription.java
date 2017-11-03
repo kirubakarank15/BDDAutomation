@@ -41,10 +41,13 @@ public class CATLevelSubscription
 		creatsub.setDcn(dcn);
 		creatsub.setEndTime(CommonMethods.getCurrenttime());
 		creatsub.setStartTime(CommonMethods.getCurrenttime());
+		creatsub.setSerialNumber(Common_methods.SerialNumber);
 		//createcatSub.setSerialNumber(CommonMethods.AssetSno);
-		List<String> SerialNumbers = new ArrayList<String>();
+		//Commenting to check for single device
+		/*List<String> SerialNumbers = new ArrayList<String>();
 		SerialNumbers = Common_methods.SerialNumbers;
-		creatsub.setSerialNumber(SerialNumbers.get(0));
+		creatsub.setSerialNumber(SerialNumbers.get(0));*/
+		
 		/*for (int i =0;i<=SerialNumbers.size();i++){
 			createcatSub.setSerialNumber(SerialNumbers.get(i));
 		}*/
