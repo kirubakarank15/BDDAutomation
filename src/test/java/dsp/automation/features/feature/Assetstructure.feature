@@ -1,4 +1,4 @@
-@API
+@API1
 Feature: Asset Onboarding through CCDS
   This feature is to Validate Assetstructure API response and Verify Onboarded asset values in DB
 
@@ -11,15 +11,15 @@ Feature: Asset Onboarding through CCDS
     Examples: 
       | CommercialType | HttpStatus |
       | PLE641         |        201 |
-   #   | PLE631         |        201 |
-   #   | PLE641+PL631   |        201 |
-   #   | PLE601         |        201 |
-   #   | PL641          |        201 |
-   #   | PL631          |        201 |
-     # | PL131          |        201 |
-   #   | PL141          |        201 |
-    #  | PL161          |        201 |
-   #   | PL671          |        201 |
+      | PLE631         |        201 |
+      | PLE641+PL631   |        201 |
+      | PLE601         |        201 |
+      | PL641          |        201 |
+      | PL631          |        201 |
+      | PL131          |        201 |
+      | PL141          |        201 |
+      | PL161          |        201 |
+      | PL671          |        201 |
 
   @Sanity @Regression @Positive
   Scenario: Retrieve AssetStructureVerbose from AssetStructureMessage Table

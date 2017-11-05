@@ -1,10 +1,12 @@
 package dsp.automation.subscriptions.API;
 
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,15 +21,24 @@ import dsp.automation.utilities.APIReponse;
 
 public class CATLevelSubscription 
 {
+	
+	
 	public static String CATId = null;
 	public static String CATlevel = null;
 	public static String CATresponse = null;
+	public static String SerialNumber = null;
 	
+		
+		
 	public static String CATLevelSubscription(String parentId,String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, IOException, JSONException
 	{
 		//CreateCatSubscription createcatSub = new CreateCatSubscription();
 		CreateSubscription creatsub = new CreateSubscription();
-		
+		Properties properties = new Properties();
+		properties.load(new FileInputStream("Resources\\application.properties"));
+		SerialNumber = properties.getProperty("Asset.SerialNumber");
+	  
+		creatsub.setSerialNumber(SerialNumber);
 		creatsub.setMake(make);
 		creatsub.setSiteId(siteId);
 		creatsub.setTypeId(typeId);
@@ -41,10 +52,11 @@ public class CATLevelSubscription
 		creatsub.setDcn(dcn);
 		creatsub.setEndTime(CommonMethods.getCurrenttime());
 		creatsub.setStartTime(CommonMethods.getCurrenttime());
-		creatsub.setSerialNumber(Common_methods.SerialNumber);
-		//createcatSub.setSerialNumber(CommonMethods.AssetSno);
-		//Commenting to check for single device
-		/*List<String> SerialNumbers = new ArrayList<String>();
+		creatsub.setParentId(parentId);
+		
+		/*createcatSub.setSerialNumber(CommonMethods.AssetSno);
+		Commenting to check for single device
+		List<String> SerialNumbers = new ArrayList<String>();
 		SerialNumbers = Common_methods.SerialNumbers;
 		creatsub.setSerialNumber(SerialNumbers.get(0));*/
 		
@@ -52,23 +64,23 @@ public class CATLevelSubscription
 			createcatSub.setSerialNumber(SerialNumbers.get(i));
 		}*/
 		
-		creatsub.setParentId(parentId);
+		
 		
 		Gson gson = new Gson();
 		String catlevel = gson.toJson(creatsub);
-		System.out.println("Cat Level:" + catlevel);
+		System.out.println("CatLevel:" + catlevel);
 		String requestBody  = catlevel;
 		String postAPIContentType = "application/subscriptions-v1+json";
 		String postAPIAcceptType = "application/subscriptions-v1+json";
 
 		APIReponse APIObj = CommonMethods_Subscriptions.apiexecutuion(requestBody, postAPIContentType, postAPIAcceptType,"POST");
 		CATresponse = APIObj.getResponse();
-		System.out.println("catresponse :" + CATresponse);
+		System.out.println("CATLevelSubscription :" + CATresponse);
 		JSONObject jsonobj = new JSONObject(CATresponse);
 		CATId = jsonobj.getString("id");
 		CATlevel  = jsonobj.getString("level");
 		//System.out.println("CUST LEVEL :" + r2);
-		System.out.println("ID:" + "\n" + CATId);
+		System.out.println("ID:" + "\t" + CATId);
 				
 		return CATresponse;
 		
