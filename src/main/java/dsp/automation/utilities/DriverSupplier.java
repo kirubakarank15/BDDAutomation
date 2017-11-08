@@ -76,7 +76,21 @@ options.addArguments("--headless");
 	/*krishk10
 	 * @return
 	 */
+	public WebDriver remotedriver(){
+		DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+			capabilities.setCapability(CapabilityType.BROWSER_NAME, "IE");
+		capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+		RemoteWebDriver driver = new RemoteWebDriver(capabilities);
+		
+		return driver;
+		
+	}
+
+	/*krishk10
+	 * @return
+	 */
 	public WebDriver htmlUnit(){
+		
 		  WebDriver driver = new HtmlUnitDriver();
 		((HtmlUnitDriver) driver).setJavascriptEnabled(true);
 		
