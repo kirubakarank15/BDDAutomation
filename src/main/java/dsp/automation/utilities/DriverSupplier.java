@@ -41,7 +41,13 @@ options.addArguments("--headless");
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         capabilities.setCapability("chrome.binary", "");
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-		driver = new ChromeDriver(options);
+		//driver = new ChromeDriver(options);
+		//return driver;
+		DesiredCapabilities capabilities1 = DesiredCapabilities.internetExplorer();
+			capabilities1.setCapability(CapabilityType.BROWSER_NAME, "IE");
+		capabilities1.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+		RemoteWebDriver driver = new RemoteWebDriver(capabilities1);
+		
 		return driver;
  
 	}
