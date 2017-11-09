@@ -16,7 +16,7 @@ Feature: Subscription Contract Visualization -  Payment Preview Popup - Newly On
   @CatProfile @US_165 @TC_563 @Positive
   Scenario Outline: To Verify Payment Preview popup is displayed after clicking on "Review & Submit" button in CAT login - #failed for VL and My.cat.com
     When Set in UI "<DealerCode>"
-    And set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    And set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Services>"
     And click "Review & Submit" button or link
     Then Verify in UI Payment Preview Popup is displayed
 
@@ -29,7 +29,7 @@ Feature: Subscription Contract Visualization -  Payment Preview Popup - Newly On
   @CatProfile @US_165 @TC_566 @Positive
   Scenario Outline: To Verify the Payment Preview popup fields for newly subscribed asset in Cat login #UI issues, bug is raised
     When Set in UI "<DealerCode>"
-    And set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    And set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Services>"
     And click "Review & Submit" button or link
     Then Verify in UI the Payment Preview popup and its fields EquipmentId, EquipmentSerialNumber, Asset Make/Model, DeviceType, DeviceInformation,CustomerUCID,CustomerDCN,Subscriptioninformation,AdditionalServices,MonthlyRatePlan,PromotionDetails,MonthlyPaymentdetails,OneTimeTerminationfeeDetails are displayed in Payment Preview popup
     Then Verify in UI Submit button,Cancel button are displayed in Payment preview popup
@@ -45,7 +45,7 @@ Feature: Subscription Contract Visualization -  Payment Preview Popup - Newly On
   @CatProfile @US_165 @TC_596 @Positive
   Scenario Outline: To Validate the Payment Preview popup and its fields in CAT profile for newly subscribed asset in Cat login #UI issues, bug is raised
     When Set in UI "<DealerCode>"
-    And set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    And set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Services>"
     And click "Review & Submit" button or link
     Then Verify in UI "Equipment ID:TestAsset","Equipment Serial Number:CAT12345","Asset Make/Model: CAT/7777F", "DeviceType:PLE641"
     And Verify in UI "Device Information= "3682033CR/03737384YD" (Device S/N/Radio S/N)
@@ -87,7 +87,7 @@ Feature: Subscription Contract Visualization -  Payment Preview Popup - Newly On
   @CatProfile @US_165 @TC_570 @Positive
   Scenario Outline: To Verify the Subscription information after clicking on CANCEL button in Payment Preview Popup in CAT login
     When Set in UI "<DealerCode>"
-    And set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    And set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Services>"
     And click "Review & Submit" button or link
     And Click "Cancel" button in Payment Preview popup
     Then Verify the UI should be redirected to worklist page and the subscription should not become active for the asset
@@ -103,7 +103,7 @@ Feature: Subscription Contract Visualization -  Payment Preview Popup - Newly On
 
   @CATProfile @US_165 @TC_626 @Negative
   Scenario Outline: To Verify the updated Base and Add on Subscriptions are showing in Payment Preview popup in Cat login
-    When set Subscription details as "<Services>","<Cat Level Subcription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    When set Subscription details as "<Services>","<Cat Level Subcription>","<Dealer>","<Customer>","<Additional Services>"
     And click "Review & Submit" button or link
     Then Verify in UI Updated values of Base and Add on Subscriptions are showing in payment preview popup
 
@@ -116,7 +116,7 @@ Feature: Subscription Contract Visualization -  Payment Preview Popup - Newly On
   #for none check the review and submit button - added
   @CATProfile @US_165 @TC_576 @Negative
   Scenario Outline: To Verify CAT level billing popup is displayed after clicking on Review & Submit for different subscription combinations
-    When enter or modify Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>"
+    When enter or modify Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>"
     And click "Review & Submit" button or link
     Then Verify in UI Cat Billing popup should be displayed
 
@@ -130,7 +130,7 @@ Feature: Subscription Contract Visualization -  Payment Preview Popup - Newly On
 
   @CatProfile @US_165 @TC_ @Positive
   Scenario Outline: To vefiry Review & Submit button is disabled when Subscriptions are none in cat login
-    When enter or modify Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>"
+    When enter or modify Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>"
     Then Vefiry in UI Review & Submit button is disabled
 
     Examples: 
@@ -139,7 +139,7 @@ Feature: Subscription Contract Visualization -  Payment Preview Popup - Newly On
 
   @DealerProfile @US_165 @TC_565 @Positive
   Scenario Outline: To Verify Payment Preview popup is displayed after clicking on "Review & Submit" button in Dealer login
-    When enter or modify Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    When enter or modify Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Services>"
     And click "Review & Submit" button or link
     Then Verify in UI Payment Preview Popup is displayed
 
@@ -151,7 +151,7 @@ Feature: Subscription Contract Visualization -  Payment Preview Popup - Newly On
 
   @DealerProfile @US_165 @TC_567 @Positive
   Scenario Outline: To Verify the Payment Preview popup fields for newly subscribed asset in Dealer login
-    When enter or modify Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    When enter or modify Subscription details as "<Services>","<Dealer>","<Customer>","<Additional Services>"
     And click "Review & Submit" button or link
     Then Verify in UI the Payment Preview popup and its fields EquipmentId, EquipmentSerialNumber, Asset Make/Model, DeviceType, DeviceInformation,CustomerUCID,CustomerDCN,Subscriptioninformation,AdditionalServices,MonthlyRatePlan,PromotionDetails,MonthlyPaymentdetails,OneTimeTerminationfeeDetails are displayed in Payment Preview popup
     Then Verify in UI Submitbutton,Cancelbutton are displayed in Payment preview popup

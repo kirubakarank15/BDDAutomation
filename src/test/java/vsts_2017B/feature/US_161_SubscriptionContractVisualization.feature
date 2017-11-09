@@ -16,7 +16,7 @@ Feature: Subscription Contract Visualization - Subscription Pricing Value
   @CatProfile @US_161 @TC_310 @Postitive
   Scenario Outline: To Verify Subscription Widget and its fields in DSP as CAT Login - #passed
     When Set in UI "<DealerCode>"
-    And Set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    And Set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Services>"
     Then Verify in UI "SubscriptionPricingValue", "PromotionName","DiscountAmount", "ContractPeriodDropdown" and "AutoRenewCheckbox" options are displayed for all Subscriptions for supported "<Applications>"
 
     Examples: 
@@ -30,7 +30,7 @@ Feature: Subscription Contract Visualization - Subscription Pricing Value
   @CatProfile @US_161 @TC_313 @Postitive
   Scenario Outline: To Verify Subscription pricing values for assets in DSP as CAT Login - #failed for dualmode asset,Bug#902
     When Set in UI "<DealerCode>"
-    And Set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    And Set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Services>"
     Then Verify in UI SubscriptionPricingValues for all Base and Add-on subscriptions are displayed for supported Applications
     And Verify the Subscription pricing values are matching with Zuora product catalog
 
@@ -60,7 +60,7 @@ Feature: Subscription Contract Visualization - Subscription Pricing Value
   @CatProfile @US_161 @TC_317 @Postitive
   Scenario Outline: To verify Subscription pricing values for PLWEB application when inherited from Customer level in Cat login - #passed
     When Set in UI "<DealerCode>"
-    And enter or modify Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>" inherited from customer level
+    And enter or modify Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>" inherited from customer level
     Then Verify in UI Subscription Pricing Values are displayed for all subscriptions at Dealer level only for PLWEB application alone
 
     Examples: 
@@ -74,7 +74,7 @@ Feature: Subscription Contract Visualization - Subscription Pricing Value
   @CatProfile @US_161 @TC_ @Positive
   Scenario Outline: To verify Subscription pricing values for PLWEB application when inherited from Dealer level in Cat login - #passed
     When Set in UI "<DealerCode>"
-    And Set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>" inherited from Dealer level
+    And Set Subscription details as "<Services>","<Cat>","<Dealer>" inherited from Dealer level
     Then Verify in UI Subscription Pricing Values are displayed for all subscriptions at Dealer level only for PLWEB application alone
 
     Examples: 
@@ -117,7 +117,7 @@ Feature: Subscription Contract Visualization - Subscription Pricing Value
   @CatProfile @US_161 @TC_452 @Negative
   Scenario Outline: To Verify Subscription pricing values are not displayed when only cat level subscription is selected  - #passed
     When Set in UI "<DealerCode>"
-    And set Subscription details as "<Services>,<Cat Level Subscription>"
+    And set Subscription details as "<Services>,<Cat>"
     Then Verify in UI Subscription Pricing Values are not displayed at Cat level
 
     Examples: 
@@ -131,7 +131,7 @@ Feature: Subscription Contract Visualization - Subscription Pricing Value
   @CatProfile @US_161 @TC_455 @Negative
   Scenario Outline: To Verify Subscription pricing values are not displayed for Onboard analytics Add on Subscription for PLWEB as Cat login - #passed
     When Set in UI "<DealerCode>"
-    And Set Subscription details as "<Services>,<Customer Level Subscription>,<Dealer Level Subscription>,<Cat Level Subscription>,<Additional Services>"
+    And Set Subscription details as "<Services>,<Customer Level Subscription>,<Dealer Level Subscription>,<Cat>,<Additional Services>"
     Then Verify in UI Subscription Pricing Values are not displayed at Onboard Analytics
 
     Examples: 
@@ -159,7 +159,7 @@ Feature: Subscription Contract Visualization - Subscription Pricing Value
   #for dealer login Vl onboard analytics is not applicable
   @DealerProfile @US_161 @TC_ @Postitive
   Scenario Outline: To Verify Subscription Widget and its fields in DSP as Dealer Login
-    When set Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    When set Subscription details as "<Services>","<Dealer>","<Customer>","<Additional Services>"
     Then Verify in UI "SubscriptionPricingValue", "PromotionName","DiscountAmount", "ContractPeriodDropdown" and "AutoRenewCheckbox" options are displayed for all Subscriptions for supported "<Applications>"
 
     Examples: 
@@ -172,7 +172,7 @@ Feature: Subscription Contract Visualization - Subscription Pricing Value
 
   @DealerProfile @US_161 @TC_ @Postitive
   Scenario Outline: To Verify Subscription pricing values for assets in DSP as Dealer Login
-    When set Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    When set Subscription details as "<Services>","<Dealer>","<Customer>","<Additional Services>"
     Then Verify in UI SubscriptionPricingValues for all Base and Add-on subscriptions are displayed for supported Applications
     And Verify the Subscription pricing values are matching with Zuora product catalog
 
@@ -186,7 +186,7 @@ Feature: Subscription Contract Visualization - Subscription Pricing Value
 
   @DealerProfile @US_161 @TC_ @Postitive
   Scenario Outline: To Verify Subscription pricing values for already subscribed assets as Dealer Login
-    When set Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    When set Subscription details as "<Services>","<Dealer>","<Customer>","<Additional Services>"
     Then Verify in UI SubscriptionPricingValues for already subscribed subscription are not displayed for supported "<Applications>"
     And Verify in UI SubscriptionPricingValues for the remanining subscriptions are displayed for supported "<Applications>"
 
@@ -200,7 +200,7 @@ Feature: Subscription Contract Visualization - Subscription Pricing Value
 
   @DealerProfile @US_161 @TC_ @Postitive
   Scenario Outline: To verify Subscription pricing values for PLWEB application when inherited from Customer level in Dealer login
-    When set Subscription details as "<Services>","<Customer Level Subscription>" inherited from customer level
+    When set Subscription details as "<Services>","<Customer>" inherited from customer level
     Then Verify in UI Subscription Pricing Values are displayed for all subscriptions at Dealer level only for PLWEB application alone
 
     Examples: 
@@ -213,7 +213,7 @@ Feature: Subscription Contract Visualization - Subscription Pricing Value
 
   @DealerProfile @US_161 @TC_319 @Positive
   Scenario Outline: To verify Subscription pricing values for VisionLink application as Dealer login
-    When set Subscription details as "<Services>","<Customer Level Subscription>","<Additional Services>"
+    When set Subscription details as "<Services>","<Customer>","<Additional Services>"
     Then Verify in UI Subscription Pricing values are displayed for all subscriptions at Customer level dropdown for VisionLink application alone
 
     Examples: 
@@ -227,7 +227,7 @@ Feature: Subscription Contract Visualization - Subscription Pricing Value
   @DealerProfile @US_161 @TC_321 @Postitive
   Scenario Outline: To verify Subscription pricing values for My.Cat.Com application as Dealer login
     When Set in UI "DealerCode=<DealerCode>"
-    And enter or modify Subscription details as "<Services>","<Customer Level Subscription>"
+    And enter or modify Subscription details as "<Services>","<Customer>"
     Then Verify in UI Subscription Pricing values are displayed for all subscriptions at Customer level dropdown for My.Cat.Com application alone
 
     Examples: 

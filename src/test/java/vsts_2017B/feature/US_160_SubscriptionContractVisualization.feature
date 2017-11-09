@@ -15,7 +15,7 @@ Feature: Subscription Contract Visualization - Applications and Dealer Codes Con
   @CatProfile @US_160 @TC_268 @Positive
   Scenario Outline: To Verify the visibility of Subscription Contract Visualization feature for different services for CAT Login
     When Set in UI "<DealerCode>"
-    And Set Subscription details as "<Services>,<Cat Level Subscription>,<Dealer Level Subscription>,<Customer Level Subscription>,<Additional Services>"
+    And Set Subscription details as "<Services>,<Cat>,<Dealer Level Subscription>,<Customer Level Subscription>,<Additional Services>"
     Then Verify Subscription Contract Visualization feature should be visible to only "<Services>"
 
     Examples: 
@@ -37,7 +37,7 @@ Feature: Subscription Contract Visualization - Applications and Dealer Codes Con
   @CatProfile @US_160 @TC_271 @Positive
   Scenario Outline: To Verify Subscription Contract Visualization feature is Configurable for other dealer codes for CAT Login
     When Set in UI "<DealerCode>"
-    And Set Subscription details as "<Services>,<Cat Level Subscription>,<Dealer Level Subscription>,<Customer Level Subscription>,<Base Subscription>,<Additional Services>"
+    And Set Subscription details as "<Services>,<Cat>,<Dealer Level Subscription>,<Customer Level Subscription>,<Base Subscription>,<Additional Services>"
     Then Verify Subscription Contract Visualization feature is enabled for all other dealercodes whenever zuora starts supporting billing for those dealers
 
     Examples: 
@@ -61,7 +61,7 @@ Feature: Subscription Contract Visualization - Applications and Dealer Codes Con
 
   @DealerProfile @US_160 @TC_272 @Positive
   Scenario Outline: To Verify Subscription Contract Visualization feature is Configurable for other dealer codes in DSP for Dealer Login
-    When Set Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>", "<Additional Services>"
+    When Set Subscription details as "<Services>","<Dealer>","<Customer>", "<Additional Services>"
     Then Verify Subscription Contract Visualization feature is enabled for all other dealercodes whenever zuora starts supporting billing for those dealers
 
     Examples: 

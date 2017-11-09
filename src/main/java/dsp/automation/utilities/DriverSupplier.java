@@ -17,7 +17,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
  * 
  */
 public class DriverSupplier {  
-	public  RemoteWebDriver driver;
+	public  WebDriver driver;
  
 	/*krishk10
 	 * @return
@@ -28,12 +28,12 @@ public class DriverSupplier {
 				"Resources\\chromedriver.exe");
         //String userProfile= "C:\\Users\\krishk10.AP.000\\AppData\\Roaming\\Microsoft\\Internet Explorer\\UserData";
         ChromeOptions options = new ChromeOptions();
-      
+
         //options.addArguments("user-data-dir="+userProfile);
         options.addArguments("--start-maximized"); 
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--disable-popup-blocking");
-options.addArguments("--headless");
+//options.addArguments("--headless");
         options.addArguments("disable-infobars"); 
         //options.setBinary("Resources\\Drivers\\chromedriver.exe");
         //options.addArguments("--incognito");
@@ -41,6 +41,7 @@ options.addArguments("--headless");
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         capabilities.setCapability("chrome.binary", "");
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+        RemoteWebDriver obj=new RemoteWebDriver(capabilities);
 		driver = new ChromeDriver(options);
 		return driver;
  

@@ -10,7 +10,7 @@ Feature: PL631 verification
   Scenario Outline: To check whether subscriptions are populated properly in Customer,cat and Dealer subscription dropdown for the device Type PL631.
     When search Asset details as "<S/N>" in My Worklist Page
     And select the services as "<Services>" from subscriptions page
-    Then verify whether the subscription dropdown values "<Customer Level Subscription>","<Dealer Level Subscription>","<Cat Level Subscription>"  are populated according to the selected service
+    Then verify whether the subscription dropdown values "<Customer>","<Dealer>","<Cat>"  are populated according to the selected service
 
     Examples: 
       | Device Type | S/N      | Services          | Customer Level Subscription                                     | Dealer Level Subscription   | Cat Level Subscription      |
@@ -22,7 +22,7 @@ Feature: PL631 verification
   Scenario Outline: To verify the addon servvices for the device type PL631
     When search Asset details as "<S/N>" in My Worklist Page
     And select the services as "<Services>" from subscriptions page
-    And select the subscriptions as "<Customer Level Subscription>","<Dealer Level Subscription>","<Cat Level Subscription>"
+    And select the subscriptions as "<Customer>","<Dealer>","<Cat>"
     Then verify whether the Add-On services are displayed as "<Additional Services>"
 
     Examples: 

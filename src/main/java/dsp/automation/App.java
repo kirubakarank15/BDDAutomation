@@ -2,39 +2,39 @@ package dsp.automation;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.ResourceBundle;
 import java.util.Set;
-import java.util.TreeMap;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.testng.annotations.Parameters;
 
-import dsp.automation.AssetStructures.API.Common_methods;
-import dsp.automation.utilities.EcncryptorDecryptor;
-import dsp.automation.utilities.FileHandling;
-import dsp.automation.utilities.TestFunctionsFactory;
+import dsp.automation.pom.MyWorklist;
 
 /**
  * Hello world!
  *
  */
 public class App {
+	private final static Logger LOGGER = Logger.getLogger(App.class.getName());
 	@Parameters("environment")
-	public static String getParameter(String enviro) {
+	public  String getParameter() throws SecurityException, IOException {
 
+		FileHandler fh=new FileHandler(System.getProperty("user.dir") + "/logs/AlertsAndContacts.txt" , true);
+	
+		  
+		LOGGER.addHandler(fh);
+			SimpleFormatter formatter = new SimpleFormatter();
+	        fh.setFormatter(formatter);
+	   
 		//System.out.println(FileHandling.getProperty(enviro));
 		return null;
 
@@ -163,7 +163,10 @@ public class App {
 		 */
 
 		App obj = new App();
-		obj.excelReadWrite();
+		LOGGER.info("dfdf");
+		obj.getParameter();
+		LOGGER.info("dfdf");
+		obj.getParameter();
 		// List<String> obj1=new ArrayList<>(Arrays.asList("sds","dsds"));
 		// List<String> obj2=new ArrayList<>(Arrays.asList("sdsdd","dsds"));
 

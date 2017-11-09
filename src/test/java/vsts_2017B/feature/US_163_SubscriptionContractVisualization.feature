@@ -17,7 +17,7 @@ Feature: Subscription Contract Visualization - Contract Period and Automatic Ren
   @CatProfile @US_163 @TC_527 @Postitive
   Scenario Outline: To Verify the UI position and values of ContractPeriod and AutoRenew Option in CAT login #failed bug id 883
     When Set in UI "<DealerCode>"
-    And set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    And set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Services>"
     Then Verify in UI ContractPerioddropdown, AutoRenewcheckbox is below the Promotion details
     And Verify in UI ContractPeriod dropdown contains the "<Values>"
     And Verify in UI ContractPeriod dropdown value should be No Contract by default
@@ -33,7 +33,7 @@ Feature: Subscription Contract Visualization - Contract Period and Automatic Ren
   @CatProfile @US_163 @TC_530 @Positive
   Scenario Outline: To Verify the AutoRenew option is not enabled when No Contract period is selected in CAT Login
     When Set in UI "<DealerCode>"
-    And set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    And set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Services>"
     Then Verify in UI AutoRenew option is not enabled when No Contract is selected
 
     Examples: 
@@ -47,7 +47,7 @@ Feature: Subscription Contract Visualization - Contract Period and Automatic Ren
   @CatProfile @US_163 @TC_532 @Positive
   Scenario Outline: To Verify the AutoRenew option is enabled when Contract Period is 1,2,3 years in CAT login
     When Set in UI "<DealerCode>"
-    And set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    And set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Services>"
     Then Verify in UI AutoRenew option is enabled by default for 1,2,3 years contract period
 
     Examples: 
@@ -61,7 +61,7 @@ Feature: Subscription Contract Visualization - Contract Period and Automatic Ren
   @CatProfile @US_163 @TC_534 @Positive
   Scenario Outline: To Verify the AutoRenew functionality when the checkbox is unchecked in CAT login #blocked
     When Set in UI "<DealerCode>"
-    And set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    And set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Services>"
     And Uncheck the Autorenew checkbox after selecting Contract Period as "<value>"
     And click "Review&Submit" button or link
     Then Verify in Payment Preview Popup AutoRenew option is Opted Out
@@ -77,7 +77,7 @@ Feature: Subscription Contract Visualization - Contract Period and Automatic Ren
   @CatProfile @US_163 @TC_614 @Negative
   Scenario Outline: To Vefiry Contract Period and Auto renew option are not displayed when only CAT level subscription is selected
     When Set in UI "<DealerCode>"
-    And set Subscription details as "<Services>","<Cat Level Subscription>"
+    And set Subscription details as "<Services>","<Cat>"
     Then Verify in UI ContractPeriod and AutoRenew options are not displayed
 
     Examples: 
@@ -87,7 +87,7 @@ Feature: Subscription Contract Visualization - Contract Period and Automatic Ren
   @CatProfile @US_163 @TC_ @Neagtive
   Scenario Outline: To Verify Contract Period and Auto Renew option are not displayed when Onboard Analytics Add on for PLWEB is selected
     When Set in UI "<DealerCode>"
-    And set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    And set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Services>"
     Then Verify in UI ContractPeriod and AutoRenew options are not displayed
 
     Examples: 
@@ -101,7 +101,7 @@ Feature: Subscription Contract Visualization - Contract Period and Automatic Ren
   @CatProfile @US_163 @TC_ @Negative
   Scenario Outline: To Verify Contract Period and Autorenew options are not displayed for unsupported dealercodes
     When Set in UI "<DealerCode>"
-    And set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    And set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Services>"
     Then Verify in UI Contract period and Autorenew options should not be visible for unsupported dealercodes
 
     Examples: 
@@ -112,7 +112,7 @@ Feature: Subscription Contract Visualization - Contract Period and Automatic Ren
 
   @DealerProfile @US_163 @TC_ @Postitive
   Scenario Outline: To Verify the UI position and values of ContractPeriod and AutoRenew Option in Dealer login
-    When set Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    When set Subscription details as "<Services>","<Dealer>","<Customer>","<Additional Services>"
     Then Verify in UI ContractPerioddropdown, AutoRenewcheckbox is below the Promotion details
     And Verify in UI ContractPeriod dropdown contains the "<Values>"
     And Verify in UI ContractPeriod dropdown value should be No Contract by default
@@ -127,7 +127,7 @@ Feature: Subscription Contract Visualization - Contract Period and Automatic Ren
 
   @DealerProfile @US_163 @TC_ @Positive
   Scenario Outline: To Verify the AutoRenew option is not enabled when No Contract period is selected in Dealer Login
-    When set Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    When set Subscription details as "<Services>","<Dealer>","<Customer>","<Additional Services>"
     Then Verify in UI AutoRenew option is not enabled when No Contract is selected
 
     Examples: 
@@ -140,7 +140,7 @@ Feature: Subscription Contract Visualization - Contract Period and Automatic Ren
 
   @DealerProfile @US_163 @TC_ @Positive
   Scenario Outline: To Verify the AutoRenew option is enabled when Contract Period is 1,2,3 years in Dealer login
-    When set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    When set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Services>"
     Then Verify in UI AutoRenew option is enabled by default for 1,2,3 years contract period
 
     Examples: 
@@ -153,7 +153,7 @@ Feature: Subscription Contract Visualization - Contract Period and Automatic Ren
 
   @DealerProfile @US_163 @TC_ @Positive
   Scenario Outline: To Verify the AutoRenew functionality when the checkbox is unchecked in Dealer login
-    When set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    When set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Services>"
     And Uncheck the Autorenew checkbox after selecting Contract Period as "<value>"
     And click "Review&Submit" button or link
     Then Verify in Payment Preview Popup AutoRenew option is Opted Out
@@ -168,7 +168,7 @@ Feature: Subscription Contract Visualization - Contract Period and Automatic Ren
 
   @DealerProfile @US_163 @TC_ @Negative
   Scenario Outline: To Verify Contract Period and Autorenew options are not displayed for unsupported dealercodes
-    When set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Service>"
+    When set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Service>"
     Then Verify in UI Contract period and Autorenew options should not be visible for unsupported dealercodes
 
     Examples: 

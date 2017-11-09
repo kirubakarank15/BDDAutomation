@@ -80,6 +80,10 @@ public class MyWorklist {
 		
 		if(nullCheck.size()!=0){
 			TestFunctionsFactory.javaScriptClick(linkback);
+			List<WebElement> obj=TestFunctionsFactory.driver.findElements(By.xpath("//button[contains(text(),'Cancel')]"));
+			if(obj.size()!=0){
+				TestFunctionsFactory.webClick(TestFunctionsFactory.driver.findElement(By.xpath("	")));
+			}
 			TestFunctionsFactory.waitForPageLoaded();
 		}
 				switch (fieldName.toUpperCase().trim().replaceAll(" ", "")) {

@@ -1,4 +1,4 @@
-package dsp.automation.AssetStructures.API;
+wt package dsp.automation.AssetStructures.API;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -211,7 +211,7 @@ public class Common_methods {
 		HttpResponse httpResponse = null;
 		URI uri = null;
 		StringEntity input = null;
-
+		
 		byte[] encodedAuth = org.apache.commons.codec.binary.Base64
 				.encodeBase64((ldapUserName + ":" + decrypPwd).getBytes());
 		String authorization = "Basic " + new String(encodedAuth);

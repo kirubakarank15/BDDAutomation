@@ -78,19 +78,25 @@ public class SubscripitionsNew {
 		try {
 
 			if (!customer.equals("")) {
+				if(!customer.equals(null)){
 				obj.customerAndBaseSubscriptionDrpDownSyncCheck(customer);
+				}
 			}
 
 			if (!dealer.equals("")) {
+				if(!dealer.equals(null)){
+				System.out.println("PRINT"+dealer);
 				obj.dealerDrpDownSyncCheck(dealer);
+				}
 			}
 			if (!cat.equals("")) {
-				obj.catDrpDownSyncCheck(cat);
+				if(!cat.equals(null)){
+				obj.catDrpDownSyncCheck(cat);}
 			}
 
 		} catch (Exception e) {
 			if (CustomisedException.getErrorMessage() != "") {
-		new TestRunnerUI().embedScreenshot();
+	
 				TestFunctionsFactory.takeSnapShot("Subscriptions DropDown");
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
@@ -107,14 +113,20 @@ public class SubscripitionsNew {
 		try {
 
 			if (!customer.equals("")) {
+				if(!customer.equals(null)){
 				obj.enterSubscriptionValues("customer", customer);
+				}
 			}
 			if (!dealer.equals("")) {
+				if(!dealer.equals(null)){
 				obj.enterSubscriptionValues("dealer", dealer);
+				}
 			}
 
 			if (!cat.equals("")) {
+				if(!cat.equals(null)){
 				obj.enterSubscriptionValues("cat", cat);
+				}
 			}
 
 		}

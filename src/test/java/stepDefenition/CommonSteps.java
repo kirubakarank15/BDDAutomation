@@ -33,7 +33,6 @@ import gherkin.formatter.model.Result;
  */
 public class CommonSteps {
 
-	public Scenario scenario;
 
 	@When("Login into DSP Portal$")
 

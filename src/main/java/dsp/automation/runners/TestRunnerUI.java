@@ -5,11 +5,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import org.junit.After;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
+import org.testng.annotations.BeforeTest;
 
 import com.cucumber.listener.ExtentCucumberFormatter;
 import com.relevantcodes.extentreports.DisplayOrder;
@@ -24,36 +27,34 @@ import dsp.automation.utilities.TestFunctionsFactory;
 
 @RunWith(Cucumber.class)
 
-@CucumberOptions(features = "src\\test\\java\\dsp\\automation\\features", glue = "stepDefenition", tags = {
-		"@Application_Sync_Sanity" }, plugin = { "com.cucumber.listener.ExtentCucumberFormatter:" })
+@CucumberOptions(features = "src\\test\\java\\MADA", glue = "stepDefenition", tags = {
+		"@PL131" }, plugin = { "com.cucumber.listener.ExtentCucumberFormatter:" })
 
 public class  TestRunnerUI extends AbstractTestNGCucumberTests {
-	public static String RUNTIME_ENV;
+	//public static String RUNTIME_ENV;
 	public Scenario myScenario;
 
 	@Parameters("Environment")
 	@BeforeTest
 	public void before(String environment) throws Exception {
+		
+		/*
 		Date dNow = new Date();
 		SimpleDateFormat ft = new SimpleDateFormat("Eyyyy.MM.dd'_'hh:mm:ssa");
 		String timeStamp = ft.format(dNow).replaceAll(":", "_");
 
-		RUNTIME_ENV = environment;
-		TestRunner.RUNTIME_ENV = RUNTIME_ENV;
+	
+		TestRunner.RUNTIME_ENV = environment;
 		DisplayOrder NEWEST_FIRST = null;
 		NetworkMode ONLINE = null;
 		ExtentCucumberFormatter.initiateExtentCucumberFormatter
 		(new File("target\\site\\cucumber-pretty\\DSP_Automation"+timeStamp+".html"),
 		false, NEWEST_FIRST, ONLINE, new Locale("en-US"));
 
-	}
+	*/}
  
-	@Before
-	public void before(Scenario s) {
-		myScenario = s;
-System.out.println(s.getName());
 
-	}
+
 
 
 	 public  void embedScreenshot() {

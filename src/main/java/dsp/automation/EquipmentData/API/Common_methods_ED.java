@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -29,7 +31,9 @@ import dsp.automation.AssetStructures.API.Common_methods;
 public class Common_methods_ED 
 { 
 	public String assetSno;
-	static List<String> SerialNumbers  = Common_methods.SerialNumbers;
+	 //static List<String> SerialNumbers  = Common_methods.SerialNumbers;
+	String [] arr={"UIT00124"};
+	 List<String> SerialNumbers  = new ArrayList<>(Arrays.asList(arr)) ;
 	static int counter=0;
 public String AssetTemplate(String manufacturerCode, String productWorkCode, String Model, String ManufacturingYear, String OnwerType, String DealerCustomerNumber, String EquipmentID, String VinNumber, String DealerCode)
 {

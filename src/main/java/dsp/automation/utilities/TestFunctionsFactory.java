@@ -43,7 +43,7 @@ import com.google.common.primitives.Bytes;
  */
 public class TestFunctionsFactory {
 
-	public static WebDriver driver;
+	public static WebDriver  driver;
 	CustomisedException obj;
 
 	/*
@@ -334,7 +334,7 @@ public class TestFunctionsFactory {
 		try {
 
 			Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(waitTime, TimeUnit.SECONDS)
-					.pollingEvery(2, TimeUnit.SECONDS).ignoring(NullPointerException.class);
+					.pollingEvery(1, TimeUnit.SECONDS).ignoring(NullPointerException.class);
 
 			wait.until(ExpectedConditions.visibilityOf(element));
 		} catch (Exception e) {
@@ -417,7 +417,7 @@ public class TestFunctionsFactory {
 		objDriver.driver.manage().window().maximize();
 
 		driver.get(url);
-		objDriver.driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		objDriver.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 	}
 
@@ -452,8 +452,22 @@ public class TestFunctionsFactory {
 			File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
 
 			// Copy file at destination
+			
 
-			FileUtils.copyFile(SrcFile, screenshotPath.toFile());
+
+		        //Call getScreenshotAs method to create image file
+
+		    
+
+		            //Move image file to new destination
+
+		                File DestFile=new File(screenshotPath.toString());
+
+		                //Copy file at destination
+
+		                FileUtils.copyFile(SrcFile, DestFile);
+
+			//FileUtils.copyFile(SrcFile, screenshotPath.toFile());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -279,14 +279,17 @@ public class SubscriptionsUpdated {
 			switch (drpDwnName.toLowerCase().trim().replaceAll(" ", "")) {
 
 			case "services":
-			case "services:":
+			case "services:": 
 				TestFunctionsFactory.selectFromDropDown(drpDwnServices, testData);
 				break;
 			case "basesubscripition":
 			case "customer":
 			case "customer:":
 				TestFunctionsFactory.selectFromDropDown(drpDwnCustomer, testData);
-
+				List<WebElement> obj=TestFunctionsFactory.driver.findElements(By.xpath("//button[contains(text(),'OK')]"));
+if(obj.size()!=0){
+	TestFunctionsFactory.webClick(btnOK);
+}
 				break;
 			case "cat":
 			case "cat:":

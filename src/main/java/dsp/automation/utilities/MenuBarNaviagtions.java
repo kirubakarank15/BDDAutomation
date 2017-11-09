@@ -1,11 +1,13 @@
 package dsp.automation.utilities;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
 
 import dsp.automation.pom.Login;
 
@@ -30,9 +32,10 @@ public class MenuBarNaviagtions {
 	public void menuNavigation(String menu) throws CustomisedException {
 		fieldValue = menu;
 		try {
+			
 			LOGGER.info("Navigating to Menubar "+ menu);
 	
-			String[] menuSplit = menu.split("->");
+			String[] menuSplit = menu.split("->"); 
 		
 			for (String menuBar : menuSplit) {
 	
@@ -49,12 +52,28 @@ public class MenuBarNaviagtions {
 						TestFunctionsFactory.mouseHover(element);
 						TestFunctionsFactory.webClick(element);
 						LOGGER.info(element.getText()+" got clicked");
+						
+						List<WebElement> obj=TestFunctionsFactory.driver.findElements(By.xpath("//button[contains(text(),'Cancel')]"));
+						if(obj.size()!=0){
+							LOGGER.info("Handled Warning Pop Up for not saving with Cancel");
+							TestFunctionsFactory.waitForPageLoaded();
+							TestFunctionsFactory.javaScriptClick(TestFunctionsFactory.driver.findElement(By.xpath("//button[contains(text(),'Cancel')]")));
+						}
+						
+						List<WebElement> OkObj=TestFunctionsFactory.driver.findElements(By.xpath("//button[contains(text(),'OK')]"));
+						if(OkObj.size()!=0){
+							LOGGER.info("Handled Warning Pop Up for not saving with OK");
+							TestFunctionsFactory.webClick(TestFunctionsFactory.driver.findElement(By.xpath("//button[contains(text(),'OK')]")));
+						}
+
+						
 					}
 
 				}
 			}
 
 		} catch (Exception e) {
+			
 			CustomisedException obj = new CustomisedException(
 					"Navigation to the " + fieldValue + "is having the following exception", e.getMessage().toString());
 			throw obj;

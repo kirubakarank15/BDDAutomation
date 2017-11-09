@@ -15,7 +15,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value - #AP
   @CatProfile @US_162 @TC_495 @Postitive
   Scenario Outline: To Verify Applicable PromotionName and DiscountAmount are displayed once subscription is selected at Customer level(Inherited to Dealer and Cat) for PLWEB
     When Set in UI "<DealerCode>"
-    And Set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>"
+    And Set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>"
     Then Verify in UI ApplicablePromotionName,DiscountAmount are displayed for the selected Subscription
     And Verify the values of ApplicablePromotionName,DiscountAmount for the selected Subscription are retrieved from Zuora Promotion App correctly
 
@@ -30,7 +30,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value - #AP
   @CatProfile @US_162 @TC_ @Positive
   Scenario Outline: To Verify Applicable PromotionName and DiscountAmount are displayed once subscription is selected at Dealer level(Inherited to cat) for PLWEB
     When Set in UI "<DealerCode>"
-    And Set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>"
+    And Set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>"
     Then Verify in UI ApplicablePromotionName,DiscountAmount are displayed for the selected Subscription
     And Verify the values of ApplicablePromotionName,DiscountAmount for the selected Subscription are retrieved from Zuora Promotion App correctly
     And Verify the values of PromotionName and Discount from Zuora API
@@ -47,7 +47,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value - #AP
   @CatProfile @US_162 @TC_508 @Negative
   Scenario Outline: To Verify PromotionName and DiscountName are not displayed when only CAT level is selected for PLWEB
     When Set in UI "<DealerCode>"
-    And Set Subscription details as "<Services>","<Cat Level Subscription>"
+    And Set Subscription details as "<Services>","<Cat>"
     Then Verify in UI ApplicablePromotionName,DiscountAmount are not displayed
 
     Examples: 
@@ -92,7 +92,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value - #AP
   @CatProfile @US_162 @TC_504 @Postitive
   Scenario Outline: To Verify PromotionName and DiscountAmount are displayed after changing existing subscription for an asset in CAT profile
     When Set in UI "<DealerCode>"
-    And Set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    And Set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Services>"
     Then Verify in UI ApplicablePromotionName,DiscountAmount are displayed for the selected Subscription
 
     Examples: 
@@ -107,7 +107,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value - #AP
   #change the subscription concurrently and check the promo value - added
   Scenario Outline: To verify PromotionName and DiscountAmount values are changing concurrently based on change in subscription
     When Set in UI "<DealerCode>"
-    And Set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    And Set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Services>"
     Then Verify in UI PromotionName and Discountamount values should be changed concurrently based on selected subscription values
     And Verify the values of PromotionName and Discountamount in Zuora API
 
@@ -122,7 +122,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value - #AP
   @CatProfile @US_162 @TC_ @Positive
   Scenario Outline: To verify PromotionName and DiscountAmount are not be displayed after cancelling the asset subscription in cat login
     When Set in UI "DealerCode=<DealerCode>"
-    And Set Subscription details as "<Services>","<Cat Level Subscription>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    And Set Subscription details as "<Services>","<Cat>","<Dealer>","<Customer>","<Additional Services>"
     Then Verify in UI PromotionName and DiscountAmount should not be displayed after cancelling the asset subscription
 
     Examples: 
@@ -142,7 +142,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value - #AP
   @CatProfile @US_162 @TC_509 @Negative
   Scenario Outline: To Verify PromotionName and DiscountAmount should not get updated after selecting Onboard Analytics Add on for PLWEB as Cat login
     When Set in UI "<DealerCode>"
-    And set Subscription details as "<Services>","<Customer Level Subscription>","<Dealer Level Subscription>","<Cat Level Subscription>","<Additional Services>"
+    And set Subscription details as "<Services>","<Customer>","<Dealer>","<Cat>","<Additional Services>"
     Then Verify in UI PromotionName and Discount should not updated after selecting Onboard Analytics
 
     Examples: 
@@ -180,7 +180,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value - #AP
 
   @DealerProfile @US_162 @TC_ @Postitive
   Scenario Outline: To Verify Applicable PromotionName and DiscountAmount are displayed once subscription is selected at Customer level(Inherited to Dealer) for PLWEB
-    When set Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>"
+    When set Subscription details as "<Services>","<Dealer>","<Customer>"
     Then Verify in UI ApplicablePromotionName,DiscountAmount are displayed for the selected Subscription
     And Verify the values of ApplicablePromotionName,DiscountAmount for the selected Subscription are retrieved from Zuora Promotion App correctly
 
@@ -194,7 +194,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value - #AP
 
   @DealerProfile @US_162 @TC_ @Positive
   Scenario Outline: To Verify Applicable PromotionName and DiscountAmount are displayed once subscription is selected at Dealer level for PLWEB
-    When set Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>"
+    When set Subscription details as "<Services>","<Dealer>","<Customer>"
     Then Verify in UI ApplicablePromotionName,DiscountAmount are displayed for the selected Subscription
     And Verify the values of ApplicablePromotionName,DiscountAmount for the selected Subscription are retrieved from Zuora Promotion App correctly
 
@@ -223,7 +223,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value - #AP
   @DealerProfile @US_162 @TC_ @Positive
   Scenario Outline: To Verify Applicable PromotionName and DiscountAmount are displayed once subscription is selected for My.Cat.Com Application in Cat login
     When Set in UI "<DealerCode>"
-    And set Subscription details as "<Services>","<Customer Level Subscription>"
+    And set Subscription details as "<Services>","<Customer>"
     Then Verify in UI ApplicablePromotionName,DiscountAmount are displayed for the selected Subscription
     And Verify the values of ApplicablePromotionName,DiscountAmount for the selected Subscription are retrieved from Zuora Promotion App correctly
 
@@ -238,7 +238,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value - #AP
   @DealerProfile @US_162 @TC_ @Postitive
   Scenario Outline: To Verify PromotionName and DiscountAmount are displayed after changing existing subscription for an asset in Dealer profile
     When Set in UI "<DealerCode>"
-    And set Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    And set Subscription details as "<Services>","<Dealer>","<Customer>","<Additional Services>"
     Then Verify in UI ApplicablePromotionName,DiscountAmount are displayed for the selected Subscription
 
     Examples: 
@@ -249,7 +249,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value - #AP
 
   @DealerProfile @US_162 @TC_ @Positive
   Scenario Outline: To verify PromotionName and DiscountAmount values are changing concurrently based on change in subscription in Dealer Login
-    When set Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    When set Subscription details as "<Services>","<Dealer>","<Customer>","<Additional Services>"
     Then Verify in UI PromotionName and Discountamount values should be changed concurrently based on selected subscription values
     And Verify the values of PromotionName and Discountamount in Zuora API
 
@@ -264,7 +264,7 @@ Feature: Subscription Contract Visualization -  Applicable Promotion Value - #AP
   @DealerProfile @US_162 @TC_ @Positive
   Scenario Outline: To verify PromotionName and DiscountAmount are not be displayed after cancelling the asset subscription in Dealer login
     When Set in UI "<DealerCode>"
-    And set Subscription details as "<Services>","<Dealer Level Subscription>","<Customer Level Subscription>","<Additional Services>"
+    And set Subscription details as "<Services>","<Dealer>","<Customer>","<Additional Services>"
     Then Verify in UI PromotionName and DiscountAmount should not be displayed after cancelling the asset subscription
 
     Examples: 
