@@ -1,4 +1,4 @@
-wt package dsp.automation.AssetStructures.API;
+package dsp.automation.AssetStructures.API;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,16 +7,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
-import java.util.TreeMap;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -33,10 +27,9 @@ import org.json.simple.parser.ParseException;
 import com.google.gson.Gson;
 import com.google.gson.JsonParser;
 
-import dsp.automation.utilities.DBconnection_API;
+import dsp.automation.utilities.DBMapValues;
 import dsp.automation.utilities.ExcelReadWrite_API;
 import dsp.automation.utilities.ReusableMethodsAPI;
-import dsp.automation.utilities.*;
 
 public class Common_methods {
 	// Following function will create instance all the dependent classes.
@@ -263,7 +256,7 @@ public class Common_methods {
 				.getEntity()));
 		JSONObject menu = jObject.getJSONObject("Serialnumber");
 
-		Iterator iter = menu.keys();
+		Iterator<String> iter = menu.keys();
 		String[] keyArr = new String[150];
 		String[] valArr = new String[150];
 		int count = 0;
