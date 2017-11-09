@@ -41,7 +41,12 @@ public class DriverSupplier {
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         capabilities.setCapability("chrome.binary", "");
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-        RemoteWebDriver obj=new RemoteWebDriver(capabilities);
+		//return driver;
+		DesiredCapabilities capabilities1 = DesiredCapabilities.internetExplorer();
+			capabilities1.setCapability(CapabilityType.BROWSER_NAME, "IE");
+		capabilities1.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+		RemoteWebDriver driver = new RemoteWebDriver(capabilities1);
+		
 		driver = new ChromeDriver(options);
 		return driver;
  
@@ -77,7 +82,21 @@ public class DriverSupplier {
 	/*krishk10
 	 * @return
 	 */
+	public WebDriver remotedriver(){
+		DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+			capabilities.setCapability(CapabilityType.BROWSER_NAME, "IE");
+		capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+		RemoteWebDriver driver = new RemoteWebDriver(capabilities);
+		
+		return driver;
+		
+	}
+
+	/*krishk10
+	 * @return
+	 */
 	public WebDriver htmlUnit(){
+		
 		  WebDriver driver = new HtmlUnitDriver();
 		((HtmlUnitDriver) driver).setJavascriptEnabled(true);
 		

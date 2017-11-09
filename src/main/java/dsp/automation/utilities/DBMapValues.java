@@ -30,7 +30,7 @@ public class DBMapValues {
 		Statement st = dbConnection.checkConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 		String sql = (query);
-		Thread.sleep(10000);
+		//Thread.sleep(5000);
 		ResultSet rs = st.executeQuery(sql);
 		ResultSetMetaData rsmd = rs.getMetaData();
 		/*
@@ -80,7 +80,7 @@ public class DBMapValues {
 
 		TreeMap<String, List<String>> map = getMapValues(Query);
 		//System.out.println("Printing"+map);
-		Thread.sleep(10000);
+		//Thread.sleep(10000);
 		value = map.get(columName.toUpperCase()).get(0);
 		
 		if(value==null)

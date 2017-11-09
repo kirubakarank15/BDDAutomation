@@ -1,10 +1,12 @@
 package dsp.automation.subscriptions.API;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,13 +32,18 @@ public class CustInheritedSubscriptions
 		public static String Custlevel = null;
 		public static String Deallevel =null;
 		public static String CATlevel = null;
+		public static String SerialNumber = null;
 	
 	public static String CustInheritedCustLevelSubscription(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId)
 			throws FileNotFoundException, IOException, JSONException, ParseException 
 	{
 
 		CreateSubscription creatsub = new CreateSubscription();
-		
+		Properties properties = new Properties();
+		properties.load(new FileInputStream("Resources\\application.properties"));
+		SerialNumber = properties.getProperty("Asset.SerialNumber");
+	  
+		creatsub.setSerialNumber(SerialNumber);
 		creatsub.setParentId(parentId);
 		creatsub.setBillingtUserAccountId(billingtUserAccountId);
 		creatsub.setAssociatedOrganization(associatedOrganization);
@@ -49,7 +56,9 @@ public class CustInheritedSubscriptions
 		creatsub.setOrganization(organization);
 		creatsub.setOrganizationType(organizationType);
 		creatsub.setOrigin(origin);
-		creatsub.setSerialNumber(Common_methods.SerialNumber);
+		creatsub.setSiteId(siteId);
+		creatsub.setTypeId(typeId);
+		//creatsub.setSerialNumber(Common_methods.SerialNumber);
 		//creatsub.setSerialNumber(CommonMethods.AssetSno);
 		/*List<String> SerialNumbers = new ArrayList<String>();
 		SerialNumbers = Common_methods.SerialNumbers;
@@ -58,8 +67,7 @@ public class CustInheritedSubscriptions
 			creatsub.setSerialNumber(SerialNumbers.get(i));
 		}*/
 		//creatsub.setSerialNumber(Common_methods.SerialNumber);
-		creatsub.setSiteId(siteId);
-		creatsub.setTypeId(typeId);
+		
 
 		Gson gson = new Gson();
 		String CustLevel = gson.toJson(creatsub);
@@ -71,7 +79,7 @@ public class CustInheritedSubscriptions
 		APIReponse APIObj = CommonMethods_Subscriptions.apiexecutuion(requestBody, postAPIContentType, postAPIAcceptType,"POST");
 		
 		custresponse = APIObj.getResponse();
-		System.out.println("custresponse :" + custresponse);
+		System.out.println("CustLevelResponse :" + custresponse);
 		JSONObject jsonobj = new JSONObject(custresponse);
 		custParentId = jsonobj.getString("id");
 		Custlevel  = jsonobj.getString("level");
@@ -86,7 +94,11 @@ public class CustInheritedSubscriptions
 		
 		//CreateDealerSubscription createDealerSub = new CreateDealerSubscription();
 		CreateSubscription creatsub = new CreateSubscription();
+		Properties properties = new Properties();
+		properties.load(new FileInputStream("Resources\\application.properties"));
+		SerialNumber = properties.getProperty("Asset.SerialNumber");
 		
+		creatsub.setSerialNumber(SerialNumber);
 		creatsub.setMake(make);
 		creatsub.setSiteId(siteId);
 		creatsub.setAssociatedOrganization(associatedOrganization);
@@ -101,11 +113,14 @@ public class CustInheritedSubscriptions
 		creatsub.setOrigin(origin);
 		creatsub.setParentId(custParentId);
 		creatsub.setTypeId(typeId);
-		creatsub.setSerialNumber(Common_methods.SerialNumber);
-				
+		//creatsub.setSerialNumber(Common_methods.SerialNumber);
+		/*List<String> SerialNumbers = new ArrayList<String>();
+		SerialNumbers = Common_methods.SerialNumbers;
+		creatsub.setSerialNumber(SerialNumbers.get(0));	*/	
+		
 		Gson gson = new Gson();
 		String Dealerlevel = gson.toJson(creatsub);
-		System.out.println("Dealer Level:" + Dealerlevel);
+		System.out.println("DealerLevelResponse:" + Dealerlevel);
 		String requestBody  = Dealerlevel;
 		String postAPIContentType = "application/subscriptions-v1+json";
 		String postAPIAcceptType = "application/subscriptions-v1+json";
@@ -127,7 +142,11 @@ public class CustInheritedSubscriptions
 	    
 			//CreateCatSubscription createcatSub = new CreateCatSubscription();
 			CreateSubscription creatsub = new CreateSubscription();
+			Properties properties = new Properties();
+			properties.load(new FileInputStream("Resources\\application.properties"));
+			SerialNumber = properties.getProperty("Asset.SerialNumber");
 			
+			creatsub.setSerialNumber(SerialNumber);
 			creatsub.setAssociatedOrganization(associatedOrganization);
 			creatsub.setAssociatedOrganizationType(associatedOrganizationType);
 			creatsub.setBillingtUserAccountId(billingtUserAccountId);
@@ -136,17 +155,20 @@ public class CustInheritedSubscriptions
 			creatsub.setStartTime(CommonMethods.getCurrenttime());
 			creatsub.setLevel(level);
 			creatsub.setMake(make);
-			creatsub.setSerialNumber(Common_methods.SerialNumber);
+			//creatsub.setSerialNumber(Common_methods.SerialNumber);
 			creatsub.setOrganization(associatedOrganizationType);
 			creatsub.setOrganizationType(associatedOrganizationType);
 			creatsub.setOrigin(origin);
 			creatsub.setSiteId(siteId);
 			creatsub.setTypeId(typeId);
 			creatsub.setParentId(custParentId);
+			/*List<String> SerialNumbers = new ArrayList<String>();
+			SerialNumbers = Common_methods.SerialNumbers;
+			creatsub.setSerialNumber(SerialNumbers.get(0));*/
 					
 			Gson gson = new Gson();
 			String catlevel = gson.toJson(creatsub);
-			System.out.println("Cat Level:" + catlevel);
+			System.out.println("CatLevelResponse:" + catlevel);
 			String requestBody  = catlevel;
 			String postAPIContentType = "application/subscriptions-v1+json";
 			String postAPIAcceptType = "application/subscriptions-v1+json";
@@ -158,7 +180,7 @@ public class CustInheritedSubscriptions
 			CATId = jsonobj.getString("id");
 			CATlevel  = jsonobj.getString("level");
 			//System.out.println("CUST LEVEL :" + r2);
-			System.out.println("ID:" + "\n" + CATId);
+			System.out.println("ID:" + "\t" + CATId);
 					
 			return CATresponse;
 		}

@@ -32,9 +32,7 @@ public class EquipmentData_API {
 		 System.out.println("ED Response:" +httpResponse);
 		 StatusCode = httpResponse.getStatusLine().getStatusCode();
 		 System.out.println("ED Status:" +StatusCode);
-		 Thread.sleep(120000);
-		 
-	}
+    	}
 
 	@Then("^Validate Successful API Response and \"([^\"]*)\" of the EquipmentData Request API$")
 	public void validate_Successful_API_Response_and_of_the_EquipmentData_Request_API(int APIResponsecode) throws Throwable {
