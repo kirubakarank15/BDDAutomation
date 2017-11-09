@@ -41,7 +41,13 @@ options.addArguments("--headless");
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         capabilities.setCapability("chrome.binary", "");
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-		driver = new ChromeDriver(options);
+		//driver = new ChromeDriver(options);
+		//return driver;
+		DesiredCapabilities capabilities1 = DesiredCapabilities.internetExplorer();
+			capabilities1.setCapability(CapabilityType.BROWSER_NAME, "IE");
+		capabilities1.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+		RemoteWebDriver driver = new RemoteWebDriver(capabilities1);
+		
 		return driver;
  
 	}
@@ -76,7 +82,21 @@ options.addArguments("--headless");
 	/*krishk10
 	 * @return
 	 */
+	public WebDriver remotedriver(){
+		DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+			capabilities.setCapability(CapabilityType.BROWSER_NAME, "IE");
+		capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+		RemoteWebDriver driver = new RemoteWebDriver(capabilities);
+		
+		return driver;
+		
+	}
+
+	/*krishk10
+	 * @return
+	 */
 	public WebDriver htmlUnit(){
+		
 		  WebDriver driver = new HtmlUnitDriver();
 		((HtmlUnitDriver) driver).setJavascriptEnabled(true);
 		
