@@ -31,9 +31,7 @@ import dsp.automation.AssetStructures.API.Common_methods;
 public class Common_methods_ED 
 { 
 	public String assetSno;
-	 //static List<String> SerialNumbers  = Common_methods.SerialNumbers;
-	String [] arr={"UIT00124"};
-	 List<String> SerialNumbers  = new ArrayList<>(Arrays.asList(arr)) ;
+	 static List<String> SerialNumbers  = Common_methods.SerialNumbers;
 	static int counter=0;
 public String AssetTemplate(String manufacturerCode, String productWorkCode, String Model, String ManufacturingYear, String OnwerType, String DealerCustomerNumber, String EquipmentID, String VinNumber, String DealerCode)
 {
