@@ -23,7 +23,7 @@ import cucumber.api.junit.Cucumber;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 import dsp.automation.utilities.TestFunctionsFactory;
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src\\test\\java/dsp\\automation\\features\\MADA", glue = "stepDefenition", tags = {
+@CucumberOptions(features = "src\\test\\java/dsp\\automation\\features", glue = "stepDefenition", tags = {
 "@API" }, plugin = { "com.cucumber.listener.ExtentCucumberFormatter:" })
 
 public class  TestRunner extends AbstractTestNGCucumberTests {
