@@ -23,7 +23,9 @@ public class DBMapValues {
 	 * @throws InterruptedException
 	 */
 	public static TreeMap<String, List<String>> getMapValues(String query)
-			throws SQLException, InterruptedException {
+			throws  CustomisedException {
+		TreeMap<String, List<String>> dbValues=null;
+		try{
 		// String sNumber=(String) htable.get("serialNumber");
 		// String makeNum=(String) htable.get("make");
 		DBconnection_API dbConnection = new DBconnection_API();
@@ -39,7 +41,7 @@ public class DBMapValues {
 		 */
 		int columnsNumber = rsmd.getColumnCount();
 		List<String> columnNameList = new ArrayList<>();
-		TreeMap<String, List<String>> dbValues = new TreeMap<>();
+		dbValues = new TreeMap<>();
 
 		for (int columnName = 1; columnName <= columnsNumber; columnName++) {
 			columnNameList.add(rsmd.getColumnLabel(columnName));
@@ -65,7 +67,10 @@ public class DBMapValues {
 			}
 			// System.out.println(colValues);
 		}
-		System.out.println(dbValues);
+		System.out.println(dbValues);}
+		catch(Exception e){
+			throw new CustomisedException("Getting value from db is facing an issue", e.getMessage().toString());
+		}
 		return dbValues;
 	}
 	
@@ -76,7 +81,7 @@ public class DBMapValues {
 	 * @throws SQLException
 	 * @throws InterruptedException
 	 */
-	public static String dbValue(String columName, String Query) throws SQLException, InterruptedException {
+	public static String dbValue(String columName, String Query) throws CustomisedException {
 
 		TreeMap<String, List<String>> map = getMapValues(Query);
 		//System.out.println("Printing"+map);

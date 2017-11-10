@@ -1,7 +1,9 @@
 package dsp.automation.AssetStructures.API;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -37,39 +40,56 @@ public class Common_methods {
 	public static String SerialNumber = null;
 	public static String Radio_1_SerialNumber = null;
 	public static String Radio_2_SerialNumber = null;
-	public static String Device_id  = null;
+	public static String Device_id = null;
 	public static String Device_component = null;
-	 
+
 	public static List<String> SerialNumbers = new ArrayList<String>();
 	static Properties properties = new Properties();
+	static Properties properties1 = new Properties();
 	ExcelReadWrite_API ExcelReadWrite = new ExcelReadWrite_API();
 	StringEntity input = null;
-	
-	public void AssetTemplate(String commercialType) throws Exception 
-	{
-      properties.load(new FileInputStream("Resources\\application.properties"));
-      SerialNumber = ReusableMethodsAPI.valueIncrementor(DBMapValues.dbValue("Serial_Number", properties.getProperty("db_asset")));
-      Radio_1_SerialNumber = ReusableMethodsAPI.valueIncrementor(DBMapValues.dbValue("radio_1_serial_number", properties.getProperty("db_radio_1_serial_number")));
-     Radio_2_SerialNumber = ReusableMethodsAPI.valueIncrementor(DBMapValues.dbValue("radio_2_serial_number", properties.getProperty("db_radio_2_serial_number")));
-      Device_id = ReusableMethodsAPI.valueIncrementor(DBMapValues.dbValue("device_id", properties.getProperty("db_deviceid")));
-      Device_component = ReusableMethodsAPI.valueIncrementor(DBMapValues.dbValue("engine_serial_no", properties.getProperty("db_devicecomponent")));
-		//HashMap<String, String> attributes = ExcelReadWrite.excelReadWrite();
+	private final static Logger LOGGER = Logger.getLogger(Common_methods.class.getName());
+
+	public void AssetTemplate(String commercialType) throws Exception {
+		File fileObj1 = new File("Resources\\application.properties");
+		File fileObj2 = new File("Resources\\config.properties");
+		properties.load(new FileInputStream(fileObj1));
+		properties1.load(new FileInputStream(fileObj2));
+		SerialNumber = ReusableMethodsAPI
+				.valueIncrementor(DBMapValues.dbValue("Serial_Number", properties.getProperty("db_asset")));
+		while (properties1.getProperty("Asset.SerialNumber").equalsIgnoreCase(SerialNumber)) {
+			Thread.sleep(1000);
+			SerialNumber = ReusableMethodsAPI
+					.valueIncrementor(DBMapValues.dbValue("Serial_Number", properties.getProperty("db_asset")));
+			LOGGER.info("DB is not updated with latest Serial NO");
+		}
+		LOGGER.info("DB is updated with latest Serial NO");
+		properties1.setProperty("Asset.SerialNumber", SerialNumber);
+
+		Radio_1_SerialNumber = ReusableMethodsAPI.valueIncrementor(
+				DBMapValues.dbValue("radio_1_serial_number", properties.getProperty("db_radio_1_serial_number")));
+		Radio_2_SerialNumber = ReusableMethodsAPI.valueIncrementor(
+				DBMapValues.dbValue("radio_2_serial_number", properties.getProperty("db_radio_2_serial_number")));
+		Device_id = ReusableMethodsAPI
+				.valueIncrementor(DBMapValues.dbValue("device_id", properties.getProperty("db_deviceid")));
+		Device_component = ReusableMethodsAPI.valueIncrementor(
+				DBMapValues.dbValue("engine_serial_no", properties.getProperty("db_devicecomponent")));
+		// HashMap<String, String> attributes = ExcelReadWrite.excelReadWrite();
 		SampleModel samp = new SampleModel();
 		String make = properties.getProperty("Asset.make");
 		samp.setMake(make);
 		SerialNumbers.add(SerialNumber);
-		System.out.println("List of SerialNumbers:" +SerialNumbers);
+		System.out.println("List of SerialNumbers:" + SerialNumbers);
 		samp.setSerialNumber(SerialNumber);
 
 		AttachedDevices attachedDevices = new AttachedDevices();
-	
+
 		String Type = properties.getProperty("Asset.type");
 		if (commercialType != null) {
 			attachedDevices.setCommercialType(commercialType);
-			
+
 			List<AttachedRadios> attachedRadioslst = new ArrayList<AttachedRadios>();
-			if (commercialType.contains("+")) 
-			{
+			if (commercialType.contains("+")) {
 				AttachedRadios attachedRadios_1 = new AttachedRadios();
 				AttachedRadios attachedRadios_2 = new AttachedRadios();
 				attachedRadios_1.setSerialNumber(Radio_1_SerialNumber);
@@ -79,51 +99,54 @@ public class Common_methods {
 				attachedRadioslst.add(attachedRadios_2);
 				attachedDevices.setAttachedRadios(attachedRadioslst);
 			}
-			
-			 else 
-			{
+
+			else {
 				AttachedRadios attachedRadios = new AttachedRadios();
 				attachedRadios.setSerialNumber(Radio_1_SerialNumber);
-				//attachedRadios.setSerialNumber(attributes.get("RadioNumber").split(",")[0]);
+				// attachedRadios.setSerialNumber(attributes.get("RadioNumber").split(",")[0]);
 				attachedRadioslst.add(attachedRadios);
 				attachedDevices.setAttachedRadios(attachedRadioslst);
-				}
-		
-		attachedDevices.setType(Type);
-		attachedDevices.setDeviceId(Device_id);
+			}
 
-		AttachedEcms attachedEcms = new AttachedEcms();
-		attachedEcms.setSerialNumber(SerialNumber);
+			attachedDevices.setType(Type);
+			attachedDevices.setDeviceId(Device_id);
 
-		Components devicecomponents = new Components();
-		devicecomponents.setSerialNumber(Device_component);
-		String compMake = properties.getProperty("Asset.make");
-		devicecomponents.setMake(compMake);
+			AttachedEcms attachedEcms = new AttachedEcms();
+			attachedEcms.setSerialNumber(SerialNumber);
 
-		List<AttachedDevices> attachedDevicesList = new ArrayList<AttachedDevices>();
-		List<AttachedEcms> attachedEcmsList = new ArrayList<AttachedEcms>();
-		List<Components> attachedcomponentList = new ArrayList<Components>();
-		attachedEcmsList.add(attachedEcms);
-		attachedDevices.setAttachedEcms(attachedEcmsList);
-		attachedcomponentList.add(devicecomponents);
-		attachedDevicesList.add(attachedDevices);
+			Components devicecomponents = new Components();
+			devicecomponents.setSerialNumber(Device_component);
+			String compMake = properties.getProperty("Asset.make");
+			devicecomponents.setMake(compMake);
 
-		samp.setAttachedDevices(attachedDevicesList);
-		samp.setComponents(attachedcomponentList);
+			List<AttachedDevices> attachedDevicesList = new ArrayList<AttachedDevices>();
+			List<AttachedEcms> attachedEcmsList = new ArrayList<AttachedEcms>();
+			List<Components> attachedcomponentList = new ArrayList<Components>();
+			attachedEcmsList.add(attachedEcms);
+			attachedDevices.setAttachedEcms(attachedEcmsList);
+			attachedcomponentList.add(devicecomponents);
+			attachedDevicesList.add(attachedDevices);
 
-		String jsonInString = new Gson().toJson(samp, SampleModel.class);
-		
-         System.out.println("Request Body:" + new JSONObject(jsonInString));
-		try {
-			PrintWriter writer = new PrintWriter("AssetStructurejson.txt","UTF-8");
-			writer.println(jsonInString);
-			writer.close();
-		} catch (IOException e) {
+			samp.setAttachedDevices(attachedDevicesList);
+			samp.setComponents(attachedcomponentList);
 
-		}
+			String jsonInString = new Gson().toJson(samp, SampleModel.class);
+
+			System.out.println("Request Body:" + new JSONObject(jsonInString));
+
+			FileOutputStream fr = new FileOutputStream(fileObj2);
+			properties1.store(fr, "File has been updated at :" + System.currentTimeMillis());
+			fr.close();
+			try {
+				PrintWriter writer = new PrintWriter("AssetStructurejson.txt", "UTF-8");
+				writer.println(jsonInString);
+				writer.close();
+			} catch (IOException e) {
+
+			}
 		}
 		// return jsonInString;
-		
+
 	}
 
 	// Following function will build a URL
@@ -145,8 +168,8 @@ public class Common_methods {
 	}
 
 	// Following function will add required headers and fetch OAuth
-	public HttpPost addingheaderstourl() throws FileNotFoundException,
-			NullPointerException, IOException, JSONException {
+	public HttpPost addingheaderstourl()
+			throws FileNotFoundException, NullPointerException, IOException, JSONException {
 		StringEntity input = null;
 
 		Common_methods reusemethods = new Common_methods();
@@ -156,7 +179,7 @@ public class Common_methods {
 		String Oauthkey = "Bearer " + FetchOath;
 		HttpPost request = new HttpPost(uri);
 		request.addHeader("Authorization", Oauthkey);
-		request.addHeader("Ocp-Apim-Subscription-Key","ec53923cc0e5447bb0110812925f9ce2");
+		request.addHeader("Ocp-Apim-Subscription-Key", "ec53923cc0e5447bb0110812925f9ce2");
 		// String jsonInString = reusemethods.AssetTemplate(commercialType);
 		JsonParser parser = new JsonParser();
 
@@ -173,22 +196,21 @@ public class Common_methods {
 
 	// Following function will execute the api
 	public HttpResponse apiexecutuion(HttpPost request)
-			throws FileNotFoundException, NullPointerException, IOException,
-			JSONException {
+			throws FileNotFoundException, NullPointerException, IOException, JSONException {
 		// Common_methods reusemethods = new Common_methods();
 		DefaultHttpClient client = new DefaultHttpClient();
 		HttpResponse httpResponse = client.execute(request);
 		String response = EntityUtils.toString(httpResponse.getEntity());
 		String message = httpResponse.getStatusLine().getReasonPhrase();
 		Integer statusCode = httpResponse.getStatusLine().getStatusCode();
-		System.out.println("Response of the API :" + "\t" + response + "\t"
-				+ "status:" + "\t" + statusCode + "\t" + "Status:" + message);
+		System.out.println("Response of the API :" + "\t" + response + "\t" + "status:" + "\t" + statusCode + "\t"
+				+ "Status:" + message);
 		return httpResponse;
 	}
 
 	// Following function will generate OAuth
-	public String GetOAuth() throws FileNotFoundException, IOException,
-			NullPointerException, JSONException, org.json.JSONException {
+	public String GetOAuth()
+			throws FileNotFoundException, IOException, NullPointerException, JSONException, org.json.JSONException {
 
 		DefaultHttpClient client = new DefaultHttpClient();
 
@@ -199,19 +221,19 @@ public class Common_methods {
 		String UserName = properties.getProperty("UserName");
 		String Password = properties.getProperty("Password");
 		String ucidSearchURL = properties.getProperty("SearchURL");
-		//System.out.println("ucidurl:" + ucidSearchURL);
+		// System.out.println("ucidurl:" + ucidSearchURL);
 
 		HttpResponse httpResponse = null;
 		URI uri = null;
 		StringEntity input = null;
-		
+
 		byte[] encodedAuth = org.apache.commons.codec.binary.Base64
 				.encodeBase64((ldapUserName + ":" + decrypPwd).getBytes());
 		String authorization = "Basic " + new String(encodedAuth);
-		//System.out.println("Authorization:" + authorization);
+		// System.out.println("Authorization:" + authorization);
 		URIBuilder builder = new URIBuilder();
 		builder = builder.setScheme("https").setHost(ucidSearchURL);
-		//System.out.println("builder:" + builder);
+		// System.out.println("builder:" + builder);
 		try {
 			uri = builder.build();
 		} catch (URISyntaxException e1) {
@@ -223,13 +245,13 @@ public class Common_methods {
 		String result = null;
 
 		try {
-			input = new StringEntity("grant_type=client_credentials&username="+UserName+"&password="+Password);
+			input = new StringEntity("grant_type=client_credentials&username=" + UserName + "&password=" + Password);
 			input.setContentType("application/x-www-form-urlencoded");
 			request.setEntity(input);
 			System.out.println("Request:" + request);
 			httpResponse = client.execute(request);
 			result = EntityUtils.toString(httpResponse.getEntity());
-			//System.out.println("Http Status :" + "\n" + httpResponse);
+			// System.out.println("Http Status :" + "\n" + httpResponse);
 			// System.out.println("OAuth Token:" +"\n" +result );
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
@@ -243,17 +265,13 @@ public class Common_methods {
 		return access_token;
 	}
 
-	
-	public static void json() throws ClientProtocolException,
-			FileNotFoundException, NullPointerException, IOException,
-			JSONException {
+	public static void json()
+			throws ClientProtocolException, FileNotFoundException, NullPointerException, IOException, JSONException {
 		DefaultHttpClient client = new DefaultHttpClient();
 		Common_methods reusemethods = new Common_methods();
-		HttpResponse httpResponse = client.execute(reusemethods
-				.addingheaderstourl());
+		HttpResponse httpResponse = client.execute(reusemethods.addingheaderstourl());
 		// String response = EntityUtils.toString(httpResponse.getEntity());
-		JSONObject jObject = new JSONObject(EntityUtils.toString(httpResponse
-				.getEntity()));
+		JSONObject jObject = new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
 		JSONObject menu = jObject.getJSONObject("Serialnumber");
 
 		Iterator<String> iter = menu.keys();
@@ -263,7 +281,7 @@ public class Common_methods {
 		while (iter.hasNext()) {
 			keyArr[count] = (String) iter.next();
 
-			valArr[count] = menu.getString(keyArr[count]); 
+			valArr[count] = menu.getString(keyArr[count]);
 			count += 1;
 
 		}
@@ -271,9 +289,7 @@ public class Common_methods {
 		System.out.println(valArr[count]);
 	}
 
-
-	public String getSerialNumber() throws FileNotFoundException, IOException,
-			ParseException {
+	public String getSerialNumber() throws FileNotFoundException, IOException, ParseException {
 		String Serialnumber = null;
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(new FileReader("AssetStructurejson.txt"));
@@ -287,51 +303,41 @@ public class Common_methods {
 		return Serialnumber;
 	}
 
-	
-	/*public static void main(String args[]){
-		
-		JSONObject jsonObject=new JSONObject();
-		
-		DummyJsonObj dummyJsonObj=new DummyJsonObj();
-		
-		JSONArray components=new JSONArray();
-		
-		List<ComponentClass> componentsList=new ArrayList<>();
-		
-		ComponentClass componentClass=new ComponentClass();
-		componentClass.setSerialNumber("a");
-		ComponentClass componentClass1=new ComponentClass();
-		componentClass1.setSerialNumber("b");
-		
-		componentsList.add(componentClass1);
-		componentsList.add(componentClass);
-		
-		JSONObject component1JsonObject=new JSONObject();
-		JSONObject component2JsonObject=new JSONObject();
-		
-		try {
-			component1JsonObject.put("serialNumber", "12");
-			component2JsonObject.put("serialNumber", "12");
-		} catch (JSONException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		components.put(component1JsonObject);
-		components.put(component2JsonObject);
-		
-		try {
-			jsonObject.put("components", components);
-			
-			dummyJsonObj.setComponents(componentsList);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		//System.out.print(jsonObject);
-		
-		
-		System.out.println(new Gson().toJson(dummyJsonObj,DummyJsonObj.class));
-	}*/
+	/*
+	 * public static void main(String args[]){
+	 * 
+	 * JSONObject jsonObject=new JSONObject();
+	 * 
+	 * DummyJsonObj dummyJsonObj=new DummyJsonObj();
+	 * 
+	 * JSONArray components=new JSONArray();
+	 * 
+	 * List<ComponentClass> componentsList=new ArrayList<>();
+	 * 
+	 * ComponentClass componentClass=new ComponentClass();
+	 * componentClass.setSerialNumber("a"); ComponentClass componentClass1=new
+	 * ComponentClass(); componentClass1.setSerialNumber("b");
+	 * 
+	 * componentsList.add(componentClass1); componentsList.add(componentClass);
+	 * 
+	 * JSONObject component1JsonObject=new JSONObject(); JSONObject
+	 * component2JsonObject=new JSONObject();
+	 * 
+	 * try { component1JsonObject.put("serialNumber", "12");
+	 * component2JsonObject.put("serialNumber", "12"); } catch (JSONException
+	 * e1) { // TODO Auto-generated catch block e1.printStackTrace(); }
+	 * 
+	 * components.put(component1JsonObject);
+	 * components.put(component2JsonObject);
+	 * 
+	 * try { jsonObject.put("components", components);
+	 * 
+	 * dummyJsonObj.setComponents(componentsList); } catch (JSONException e) {
+	 * // TODO Auto-generated catch block e.printStackTrace(); }
+	 * 
+	 * //System.out.print(jsonObject);
+	 * 
+	 * 
+	 * System.out.println(new Gson().toJson(dummyJsonObj,DummyJsonObj.class)); }
+	 */
 }

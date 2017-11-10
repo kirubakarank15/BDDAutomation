@@ -10,14 +10,13 @@ import java.util.Properties;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 
-import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import dsp.automation.AssetStructures.API.Common_methods;
+import dsp.automation.utilities.DBMapValues;
 import junit.framework.Assert;
-import dsp.automation.utilities.*;
 
 public class Asset_structure_API {
 	Common_methods reusemethods = new Common_methods(); 
@@ -29,7 +28,7 @@ public class Asset_structure_API {
 	@Given("^Construct OAuth key and Random generated Attributes for PostAssetStructure Template$")
 	public void construct_OAuth_() throws Throwable {
 		
-		System.out.println("Execution starts from here");
+		System.out.println("Execution starts from here"); 
 	   }
 
 	@When("^Construct Post AssetStructure request API with \"([^\"]*)\"$")
@@ -40,7 +39,7 @@ public class Asset_structure_API {
 		AssetSerialNumbers=Common_methods.SerialNumbers;
 		System.out.println("AssetSerialNumber:" +AssetSerialNumbers);
 		
-	}
+	} 
 
 	@Then("^Validate Successful API Response and \"([^\"]*)\" of the Post AssetStructure request API$")
 	public int validate_Successful_API_Response_and_of_the_Post_AssetStructure_request_API(int APIResponsecode) throws Throwable {
@@ -67,7 +66,7 @@ public class Asset_structure_API {
 		//AssetSno=reusemethods.SerialNumber;
 		String query = properties.getProperty("db.assetstructuremessage").replace("DUMMYXYZ",iterateSerialNo);
 		System.out.println("AssetStructure query:" +query);
-		Thread.sleep(60000);
+		//Thread.sleep(60000);
 		
 		if(DBMapValues.dbValue("STATUS", query).equalsIgnoreCase("SKIPPED")){
 			Assert.fail("Status of Assetstructure Message is SKIPPED");	

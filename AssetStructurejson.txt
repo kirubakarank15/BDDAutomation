@@ -1,1 +1,1 @@
-{"make":"CAT","serialNumber":"RRR10107","attachedDevices":[{"commercialType":"PLE641","type":"A5:N2","deviceId":"RRR10107VIRT","attachedEcms":[{"serialNumber":"RRR10107TR"}],"attachedRadios":[{"serialNumber":"RRR10107CR"}]}],"components":[{"serialNumber":"RRR10107Comp","make":"CAT"}]}
+{"make":"CAT","serialNumber":"CFV00226","attachedDevices":[{"commercialType":"PLG641","type":"A5:N2","deviceId":"CFV00218VIRT","attachedEcms":[{"serialNumber":"CFV00226"}],"attachedRadios":[{"serialNumber":"CFV00218CR"}]}],"components":[{"serialNumber":"CFV00218COMP","make":"CAT"}]}

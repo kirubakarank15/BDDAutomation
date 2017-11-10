@@ -6,29 +6,22 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.json.JSONException;
 import org.json.simple.parser.ParseException;
 
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import dsp.automation.subscriptions.API.CATLevelSubscription;
 import dsp.automation.subscriptions.API.CommonMethods;
 import dsp.automation.subscriptions.API.CustInheritedSubscriptions;
 import dsp.automation.subscriptions.API.CustInheritedwithCATLevelSubscription;
 import dsp.automation.subscriptions.API.CustInheritedwithCATLevelSubscriptionDelete;
+import dsp.automation.subscriptions.API.DealerInheritedSubscriptions;
+import dsp.automation.subscriptions.API.DealerInheritedwithCustomerSubscription;
+import dsp.automation.subscriptions.API.DealerInheritedwithCustomerSubscriptionDelete;
 import dsp.automation.subscriptions.API.DeleteCATSubscriptions;
 import dsp.automation.subscriptions.API.DeleteCustInheritedSubscriptions;
 import dsp.automation.subscriptions.API.DeleteDealerInheritedSubscriptions;
 import dsp.automation.subscriptions.API.DeleteNonInheritedSubscriptions;
 import dsp.automation.subscriptions.API.NonInheritedSubscriptions;
-import dsp.automation.subscriptions.API.DealerInheritedSubscriptions;
-import dsp.automation.subscriptions.API.DealerInheritedwithCustomerSubscription;
-import dsp.automation.subscriptions.API.DealerInheritedwithCustomerSubscriptionDelete;
-import dsp.automation.utilities.DBconnection_API;
-import dsp.automation.utilities.DSPAutomationException;
-import dsp.automation.utilities.DSPAutomationExceptionMessage;
 import junit.framework.Assert;
 
 public class Asset_subscriptions_API 
@@ -181,42 +174,42 @@ public class Asset_subscriptions_API
 	
 	@SuppressWarnings("deprecation")
 	@Then("^Set CustInheritedSubscription for Customer Level with serialNumber,startTime,endTime, \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\" and retrive the ParentID$")
-	public void set_CustInheritedSubscription_for_Customer_Level_with_serialNumber_startTime_endTime_and_retrive_the_ParentID(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException, ParseException
+	public void set_CustInheritedSubscription_for_Customer_Level_with_serialNumber_startTime_endTime_and_retrive_the_ParentID(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, Exception, ParseException
 	{
 		System.out.println("*************************************  CREATING CUSTOMER INHERITED SUBSCRIPTIONS******************************************");
 		//CustInheritSub.CustInheritedCustLevelSubscription(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 		try{
 			CustInheritedSubscriptions.CustInheritedCustLevelSubscription(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 		}
-		catch(DSPAutomationException e){
-			 Assert.fail("Exception in CustInheritedCustLevel Subscription:" +e.getExcpetionMessage());
+		catch(Exception e){
+			 Assert.fail("Exception in CustInheritedCustLevel Subscription:" +e.getMessage().toString());
 		}
 	   
 	}
 
 	@SuppressWarnings("deprecation")
 	@Then("^Set CustInheritedSubscription for Dealer Level with serialNumber,parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\",startTime,endTime$")
-	public void set_CustInheritedSubscription_for_Dealer_Level_with_serialNumber_parentId_startTime_endTime(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+	public void set_CustInheritedSubscription_for_Dealer_Level_with_serialNumber_parentId_startTime_endTime(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, Exception
 	{
 		//CustInheritSub.CustInheritedDealerLevelSubscription(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 		try{
 			CustInheritedSubscriptions.CustInheritedDealerLevelSubscription(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 		}
-		catch(DSPAutomationException e){
-			 Assert.fail("Exception in CustInheritedDealerLevel Subscription:" +e.getExcpetionMessage());
+		catch(Exception e){
+			 Assert.fail("Exception in CustInheritedDealerLevel Subscription:" +e.getMessage().toString());
 		}
 	}
 
 	@SuppressWarnings("deprecation")
 	@Then("^Set CustInheritedSubscription for CAT Level with serialNumber,parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\",startTime,endTime$")
-	public void set_CustInheritedSubscription_for_CAT_Level_with_serialNumber_parentId_startTime_endTime(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+	public void set_CustInheritedSubscription_for_CAT_Level_with_serialNumber_parentId_startTime_endTime(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, Exception
 	{
 		//CustInheritSub.CustInheritedCATLevelSubscription(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 		try{
 		CustInheritedSubscriptions.CustInheritedCATLevelSubscription(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 		}
-		catch(DSPAutomationException e){
-			 Assert.fail("Exception in CustInheritedCATLevel Subscription:" +e.getExcpetionMessage());
+		catch(Exception e){
+			 Assert.fail("Exception in CustInheritedCATLevel Subscription:" +e.getMessage().toString());
 		}
 	}
 
@@ -239,14 +232,14 @@ public class Asset_subscriptions_API
 					CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
 				} catch (SQLException e) {
 					Assert.fail("Invalid Query"+e.getMessage());
-					/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-							DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+					/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+							ExceptionMessage.SQLEXCEPTION.getCode());*/
 				}
 			
 			} catch (IOException e) {
 				Assert.fail("Exception in file handling"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-						DSPAutomationExceptionMessage.IOException.getCode());*/
+				/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+						ExceptionMessage.IOException.getCode());*/
 			}
 			
 	
@@ -271,14 +264,14 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 			} catch (IOException e) {
 				Assert.fail("Exception in file handling"+e.getMessage());
 			/*e.printStackTrace();
-			throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 		
@@ -294,38 +287,38 @@ public class Asset_subscriptions_API
 	
 	@SuppressWarnings("deprecation")
 	@Then("^Delete CustInheritedSubscription for CAT Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
-	public void delete_CustInheritedSubscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws IOException, DSPAutomationException
+	public void delete_CustInheritedSubscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws IOException, Exception
 	{
 		System.out.println("************************************* DELETING CUST INHERITED SUBSCRIPTIONS******************************************");
 		try{
 			DeleteCustInheritedSubscriptions.DelCustInheritedsubscriptions(cancelReason,level);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in deletion CustInheritedCATLevel Subscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in deletion CustInheritedCATLevel Subscription:" +e.getMessage().toString());
 		}
 		
 	}
 
 	@SuppressWarnings("deprecation")
 	@Then("^Delete CustInheritedSubscription for Dealer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
-	public void delete_CustInheritedSubscription_for_Dealer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws IOException, DSPAutomationException
+	public void delete_CustInheritedSubscription_for_Dealer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws IOException, Exception
 	{
 		
 		try{
 			DeleteCustInheritedSubscriptions.DelCustInheritedsubscriptions(cancelReason,level);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in CustInheritedDealerLevel Subscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in CustInheritedDealerLevel Subscription:" +e.getMessage().toString());
 		}
 	}
 
 	@SuppressWarnings("deprecation")
 	@Then("^Delete CustInheritedSubscription for Customer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
-	public void delete_CustInheritedSubscription_for_Customer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level)  throws IOException, DSPAutomationException
+	public void delete_CustInheritedSubscription_for_Customer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level)  throws IOException, Exception
 	{
 		try{
 			DeleteCustInheritedSubscriptions.DelCustInheritedsubscriptions(cancelReason,level);
 		}
-		catch(DSPAutomationException e){
-			 Assert.fail("Exception in CustInheritedcustLevel Subscription:" +e.getExcpetionMessage());
+		catch(Exception e){
+			 Assert.fail("Exception in CustInheritedcustLevel Subscription:" +e.getMessage().toString());
 		}
 	}
 
@@ -348,14 +341,14 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 	
@@ -380,14 +373,14 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 	
@@ -395,25 +388,25 @@ public class Asset_subscriptions_API
 
 	@SuppressWarnings("deprecation")
 	@Then("^Set DealerInheritedSubscription for Dealer Level with serialNumber,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\",startTime,endTime for DealerInheritedSubscriptions$")
-	public void set_DealerInheritedSubscription_for_Dealer_Level_with_serialNumber_startTime_endTime_for_DealerInheritedSubscriptions(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+	public void set_DealerInheritedSubscription_for_Dealer_Level_with_serialNumber_startTime_endTime_for_DealerInheritedSubscriptions(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, Exception
 	{
 		System.out.println("************************************* CREATING DEALER LEVEL SUBSCRIPTIONS******************************************");
 		//DealerInheritSub.DealerInheritedDealerLevelSubscription(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 		try{
 			DealerInheritedSubscriptions.DealerInheritedDealerLevelSubscription(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in DealerInheritedDealerLevel Subscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in DealerInheritedDealerLevel Subscription:" +e.getMessage().toString());
 		}
 	}
 
 	@Then("^Set DealerInheritedSubscription for CAT Level with serialNumber,parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\",startTime,endTime for DealerInheritedSubscriptions$")
-	public void set_DealerInheritedSubscription_for_CAT_Level_with_serialNumber_parentId_startTime_endTime_for_DealerInheritedSubscriptions(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+	public void set_DealerInheritedSubscription_for_CAT_Level_with_serialNumber_parentId_startTime_endTime_for_DealerInheritedSubscriptions(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, Exception
 	{
 	  //DealerInheritSub.DealerInheritedCATLevelSubscription(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 		try{
 			DealerInheritedSubscriptions.DealerInheritedCATLevelSubscription(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in DealerInheritedCATLevel Subscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in DealerInheritedCATLevel Subscription:" +e.getMessage().toString());
 		}
 	}
 
@@ -438,14 +431,14 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 	}
@@ -471,14 +464,14 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 	}
@@ -486,24 +479,24 @@ public class Asset_subscriptions_API
 
 	@SuppressWarnings("deprecation")
 	@Then("^Delete DealerInheritedSubscription for CAT Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg for DealerInherited Subscription$")
-	public void delete_DealerInheritedSubscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg_for_DealerInherited_Subscription(String cancelReason, String level) throws IOException, DSPAutomationException
+	public void delete_DealerInheritedSubscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg_for_DealerInherited_Subscription(String cancelReason, String level) throws IOException, Exception
 	{
 		System.out.println("************************************* DELETING DEALER INHERITED SUBSCRIPTIONS******************************************");
 		try{
 			DeleteDealerInheritedSubscriptions.DelDealerInheritedsubscriptions(cancelReason, level);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in DeletingDealerInheritedDealerLevel Subscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in DeletingDealerInheritedDealerLevel Subscription:" +e.getMessage().toString());
 		}
 	}
 
 	@SuppressWarnings("deprecation")
 	@Then("^Delete DealerInheritedSubscription for Dealer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg for DealerInherited Subscription$")
-	public void delete_DealerInheritedSubscription_for_Dealer_Level_with_endTime_and_Validate_the_SuccessMsg_for_DealerInherited_Subscription(String cancelReason, String level) throws IOException, DSPAutomationException
+	public void delete_DealerInheritedSubscription_for_Dealer_Level_with_endTime_and_Validate_the_SuccessMsg_for_DealerInherited_Subscription(String cancelReason, String level) throws IOException, Exception
 	{
 		try{
 			DeleteDealerInheritedSubscriptions.DelDealerInheritedsubscriptions(cancelReason, level);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in DeletingDealerInheritedCATLevel Subscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in DeletingDealerInheritedCATLevel Subscription:" +e.getMessage().toString());
 		}
 
 	}
@@ -528,14 +521,14 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 	}
@@ -560,14 +553,14 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 			    
@@ -576,15 +569,15 @@ public class Asset_subscriptions_API
 	
 	@SuppressWarnings("deprecation")
 	@Then("^Set CATLevelSubscription for CATLevel with serialNumber,startTime,endTime, \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\" and retrive the ParentID$")
-	public void set_CATLevelSubscription_for_CATLevel_with_serialNumber_startTime_endTime_and_retrive_the_ParentID(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+	public void set_CATLevelSubscription_for_CATLevel_with_serialNumber_startTime_endTime_and_retrive_the_ParentID(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, Exception
 	{
 		
 		    System.out.println("************************************* CREATING CAT LEVEL SUBSCRIPTIONS******************************************");
 	  try{
 		//CATLevelSub.CATLevelSubscription(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 		CATLevelSubscription.CATLevelSubscription(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in CATLevel Subscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in CATLevel Subscription:" +e.getMessage().toString());
 		}
 			
 		 
@@ -610,14 +603,14 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 				
 	}
@@ -642,14 +635,14 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 		
@@ -657,13 +650,13 @@ public class Asset_subscriptions_API
 		
 	@SuppressWarnings("deprecation")
 	@Then("^Delete CATLevelSubscription for CAT Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
-	public void delete_CATLevelSubscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level)  throws IOException, DSPAutomationException
+	public void delete_CATLevelSubscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level)  throws IOException, Exception
 	{
 		System.out.println("************************************* DELETING CATLEVEL SUBSCRIPTIONS******************************************");
 		try{
 			DeleteCATSubscriptions.DelCATLevelsubscriptions(cancelReason, level);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in DeletingCATLevel Subscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in DeletingCATLevel Subscription:" +e.getMessage().toString());
 		}
 	}
 
@@ -686,13 +679,13 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 	}
@@ -716,52 +709,52 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 	}
 
 	@SuppressWarnings("deprecation")
 	@Then("^Set NonInheritedsubscription for Customer Level with serialNumber,startTime,endTime, \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" for CustomerLevel$")
-	public void set_NonInheritedsubscription_for_Customer_Level_with_serialNumber_startTime_endTime_for_CustomerLevel(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+	public void set_NonInheritedsubscription_for_Customer_Level_with_serialNumber_startTime_endTime_for_CustomerLevel(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, Exception
 	{	
 	    System.out.println("************************************* CREATING NONINHERITEDALLLEVEL SUBSCRIPTIONS******************************************");
 		try{
 			//NonInheritedSub.NoninheritedCustLevelSubscription(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 			NonInheritedSubscriptions.NoninheritedCustLevelSubscription(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId); 
-			}catch(DSPAutomationException e){
-				 Assert.fail("Exception in NonInheritedCustLevel Subscription:" +e.getExcpetionMessage());
+			}catch(Exception e){
+				 Assert.fail("Exception in NonInheritedCustLevel Subscription:" +e.getMessage().toString());
 			}
 	}
 
 	@SuppressWarnings("deprecation")
 	@Then("^Set NonInheritedsubscription Dealer Level with serialNumber,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",startTime,endTime for Dealerlevel$")
-	public void set_NonInheritedsubscription_Dealer_Level_with_serialNumber_startTime_endTime_for_Dealerlevel(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+	public void set_NonInheritedsubscription_Dealer_Level_with_serialNumber_startTime_endTime_for_Dealerlevel(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, Exception
 	{
 		try{
 	   //NonInheritedSub.NonInheritedDealerLevelSubscription(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 		NonInheritedSubscriptions.NonInheritedDealerLevelSubscription(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in NonInheritedDealerLevel Subscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in NonInheritedDealerLevel Subscription:" +e.getMessage().toString());
 		}
 	}
 
 	@SuppressWarnings("deprecation")
 	@Then("^Set NonInheritedsubscription CATLevel with serialNumber,startTime,endTime,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\" for CATLevel$")
-	public void set_NonInheritedsubscription_CATLevel_with_serialNumber_startTime_endTime_for_CATLevel(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+	public void set_NonInheritedsubscription_CATLevel_with_serialNumber_startTime_endTime_for_CATLevel(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, Exception
 	{
 		try{
 		//NonInheritedSub.NonInheritedCATLevelSusbcription(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 		NonInheritedSubscriptions.NonInheritedCATLevelSusbcription(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in NonInheritedCATLevel Subscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in NonInheritedCATLevel Subscription:" +e.getMessage().toString());
 		}
 	}
 
@@ -785,14 +778,14 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 	}
@@ -817,48 +810,48 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 	}
 
 	@SuppressWarnings("deprecation")
 	@Then("^Delete NonInheritedSubscription for CAT Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
-	public void delete_NonInheritedSubscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws IOException, DSPAutomationException
+	public void delete_NonInheritedSubscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws IOException, Exception
 	{
 		System.out.println("************************************* DELETING NONINHERITED SUBSCRIPTIONS******************************************");
 		try{
 			DeleteNonInheritedSubscriptions.DelNonInheritedsubscriptions(cancelReason, level);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in DeletingNonInheritedCATLevel Subscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in DeletingNonInheritedCATLevel Subscription:" +e.getMessage().toString());
 		}
 	}
 
 	@SuppressWarnings("deprecation")
 	@Then("^Delete NonInheritedSubscription for Dealer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
-	public void delete_NonInheritedSubscription_for_Dealer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level)  throws IOException, DSPAutomationException
+	public void delete_NonInheritedSubscription_for_Dealer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level)  throws IOException, Exception
 	{
 		try{
 			DeleteNonInheritedSubscriptions.DelNonInheritedsubscriptions(cancelReason, level);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in DeletingNonInheritedDealerLevel Subscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in DeletingNonInheritedDealerLevel Subscription:" +e.getMessage().toString());
 		}
 	}
 
 	@SuppressWarnings("deprecation")
 	@Then("^Delete NonInheritedSubscription Customer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
-	public void delete_NonInheritedSubscription_Customer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level)  throws IOException, DSPAutomationException
+	public void delete_NonInheritedSubscription_Customer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level)  throws IOException, Exception
 	{
 		try{
 			DeleteNonInheritedSubscriptions.DelNonInheritedsubscriptions(cancelReason, level);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in DeletingNonInheritedCustLevel Subscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in DeletingNonInheritedCustLevel Subscription:" +e.getMessage().toString());
 		}
 	}
 
@@ -881,13 +874,13 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 	}
@@ -911,51 +904,51 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 	}	
 	
 	@SuppressWarnings("deprecation")
 	@Then("^Set DealerInheritedwithNonInheritedSubscription for Customer Level with serialNumber,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\",startTime,endTime for DealerInheritedwithNonInheritedSubscription$")
-	public void set_DealerInheritedwithNonInheritedSubscription_for_Customer_Level_with_serialNumber_startTime_endTime_for_DealerInheritedwithNonInheritedSubscription(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException  
+	public void set_DealerInheritedwithNonInheritedSubscription_for_Customer_Level_with_serialNumber_startTime_endTime_for_DealerInheritedwithNonInheritedSubscription(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, Exception  
 	{
 		System.out.println("************************************* CREATING DEALERINHERITEDWITHNONINHERITEDCUST SUBSCRIPTIONS******************************************");
 		try{
 		//DealerInheritedwithCust.DealerInheritedwithCustomerSubscriptionCustomerLevel(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 	    DealerInheritedwithCustomerSubscription.DealerInheritedwithCustomerSubscriptionCustomerLevel(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in DealerInheritedwithCustLevel Subscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in DealerInheritedwithCustLevel Subscription:" +e.getMessage().toString());
 		}
 		}
 
 	@SuppressWarnings("deprecation")
 	@Then("^Set DealerInheritedwithNonInheritedSubscription for Dealer Level with serialNumber,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\",startTime,endTime for DealerInheritedwithNonInheritedSubscription$")
-	public void set_DealerInheritedwithNonInheritedSubscription_for_Dealer_Level_with_serialNumber_startTime_endTime_for_DealerInheritedwithNonInheritedSubscription(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+	public void set_DealerInheritedwithNonInheritedSubscription_for_Dealer_Level_with_serialNumber_startTime_endTime_for_DealerInheritedwithNonInheritedSubscription(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, Exception
 	{
 		try{
 		//DealerInheritedwithCust.DealerInheritedwithCustomerSubscriptionDealerLevel(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 		DealerInheritedwithCustomerSubscription.DealerInheritedwithCustomerSubscriptionDealerLevel(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in DealerInheritedwithDealerLevel Subscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in DealerInheritedwithDealerLevel Subscription:" +e.getMessage().toString());
 		}
 	}
 
 	@SuppressWarnings("deprecation")
 	@Then("^Set DealerInheritedwithNonInheritedSubscription for CAT Level with serialNumber,parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\",startTime,endTime for DealerInheritedwithNonInheritedSubscription$")
-	public void set_DealerInheritedwithNonInheritedSubscription_for_CAT_Level_with_serialNumber_parentId_startTime_endTime_for_DealerInheritedwithNonInheritedSubscription(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId)  throws IOException, DSPAutomationException
+	public void set_DealerInheritedwithNonInheritedSubscription_for_CAT_Level_with_serialNumber_parentId_startTime_endTime_for_DealerInheritedwithNonInheritedSubscription(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId)  throws IOException, Exception
 	{
 		try{
 		//DealerInheritedwithCust.DealerInheritedwithCustomerSubscriptionCATLevel(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 		DealerInheritedwithCustomerSubscription.DealerInheritedwithCustomerSubscriptionCATLevel(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in DealerInheritedwithCATLevel Subscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in DealerInheritedwithCATLevel Subscription:" +e.getMessage().toString());
 		}
 	}
 
@@ -979,13 +972,13 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 	}
@@ -1010,48 +1003,48 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 	
 	}
 	
 	@SuppressWarnings("deprecation")
 	@Then("^Delete DealerInheritedwithCustSubscription for CAT Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
-	public void delete_DealerInheritedwithCustSubscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws IOException, DSPAutomationException
+	public void delete_DealerInheritedwithCustSubscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws IOException, Exception
 	{
 		System.out.println("************************************* DELETING DEALERINHERITEDWITHNONINHERITEDCUST SUBSCRIPTIONS******************************************");
 		try{
 		DealerInheritedwithCustomerSubscriptionDelete.DelDealerInheritedwithCustomerSubscriptions(cancelReason, level);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in DeletingDealerInheritedwithCATLevel Subscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in DeletingDealerInheritedwithCATLevel Subscription:" +e.getMessage().toString());
 		}
 		}
 
 	@SuppressWarnings("deprecation")
 	@Then("^Delete DealerInheritedwithCustSubscription for Dealer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
-	public void delete_DealerInheritedwithCustSubscription_for_Dealer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws IOException, DSPAutomationException
+	public void delete_DealerInheritedwithCustSubscription_for_Dealer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws IOException, Exception
 	{
 		try{
 		DealerInheritedwithCustomerSubscriptionDelete.DelDealerInheritedwithCustomerSubscriptions(cancelReason, level);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in DeletingDealerInheritedwithDealerLevel Subscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in DeletingDealerInheritedwithDealerLevel Subscription:" +e.getMessage().toString());
 		}
 	}
 
 	@SuppressWarnings("deprecation")
 	@Then("^Delete DealerInheritedwithCustSubscription for Customer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
-	public void delete_DealerInheritedwithCustSubscription_for_Customer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws IOException, DSPAutomationException
+	public void delete_DealerInheritedwithCustSubscription_for_Customer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws IOException, Exception
 	{
 		try {
 		DealerInheritedwithCustomerSubscriptionDelete.DelDealerInheritedwithCustomerSubscriptions(cancelReason, level);
-	     }catch(DSPAutomationException e){
-		 Assert.fail("Exception in DeletingDealerInheritedwithCUSTLevel Subscription:" +e.getExcpetionMessage());
+	     }catch(Exception e){
+		 Assert.fail("Exception in DeletingDealerInheritedwithCUSTLevel Subscription:" +e.getMessage().toString());
 	   }
 	}
 
@@ -1074,14 +1067,14 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 	}
@@ -1105,51 +1098,51 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 	}
 	@SuppressWarnings("deprecation")
 	@Then("^Set CustInheritedwithCATLevelSubscription for Customer Level with serialNumber,startTime,endTime, \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\" and retrive the ParentID$")
-	public void set_CustInheritedwithCATLevelSubscription_for_Customer_Level_with_serialNumber_startTime_endTime_and_retrive_the_ParentID(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException, ParseException
+	public void set_CustInheritedwithCATLevelSubscription_for_Customer_Level_with_serialNumber_startTime_endTime_and_retrive_the_ParentID(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, Exception, ParseException
 	{
 		System.out.println("************************************* CREATING CUSTINHERITEDWITHNONINHERITEDCATLEVEL SUBSCRIPTIONS******************************************");
 		try{
 		//CustInheritedwithCAT.CustInheritedwithCATLevelSubscriptionCustLevel(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 		CustInheritedwithCATLevelSubscription.CustInheritedwithCATLevelSubscriptionCustLevel(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
-		  }catch(DSPAutomationException e){
-				 Assert.fail("Exception in CUSTInheritedwithCATLevelCustSubscription:" +e.getExcpetionMessage());
+		  }catch(Exception e){
+				 Assert.fail("Exception in CUSTInheritedwithCATLevelCustSubscription:" +e.getMessage().toString());
 			   }
 		}
 
 	@SuppressWarnings("deprecation")
 	@Then("^Set CustInheritedwithCATLevelSubscription for Dealer Level with serialNumber,parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\",startTime,endTime$")
-	public void set_CustInheritedwithCATLevelSubscription_for_Dealer_Level_with_serialNumber_parentId_startTime_endTime(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+	public void set_CustInheritedwithCATLevelSubscription_for_Dealer_Level_with_serialNumber_parentId_startTime_endTime(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, Exception
 	{
 	 try{
 		//CustInheritedwithCAT.CustInheritedwithCATLevelSubscriptionDealerLevel(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 		CustInheritedwithCATLevelSubscription.CustInheritedwithCATLevelSubscriptionDealerLevel(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
-	}catch(DSPAutomationException e){
-		 Assert.fail("Exception in CUSTInheritedwithCATLevelDealerSubscription:" +e.getExcpetionMessage());
+	}catch(Exception e){
+		 Assert.fail("Exception in CUSTInheritedwithCATLevelDealerSubscription:" +e.getMessage().toString());
 	   }
 	}
 
 	@SuppressWarnings("deprecation")
 	@Then("^Set CustInheritedwithCATLevelSubscription for CATLevel with serialNumber,startTime,endTime, \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\"$")
-	public void set_CustInheritedwithCATLevelSubscription_for_CATLevel_with_serialNumber_startTime_endTime(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+	public void set_CustInheritedwithCATLevelSubscription_for_CATLevel_with_serialNumber_startTime_endTime(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, Exception
 	{
 		try{
 		//CustInheritedwithCAT.CustInheritedwithCATLevelSubscriptionCATLevel(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 		CustInheritedwithCATLevelSubscription.CustInheritedwithCATLevelSubscriptionCATLevel(parentId, make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
-	}catch(DSPAutomationException e){
-		 Assert.fail("Exception in CUSTInheritedwithCATLevelCATSubscription:" +e.getExcpetionMessage());
+	}catch(Exception e){
+		 Assert.fail("Exception in CUSTInheritedwithCATLevelCATSubscription:" +e.getMessage().toString());
 	   }
 	}
 
@@ -1172,14 +1165,14 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 	}
@@ -1203,49 +1196,49 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 	
 	}
 	
 	@SuppressWarnings("deprecation")
 	@Then("^Delete CustInheritedwithCATLevelSubscription for CAT Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
-	public void delete_CustInheritedwithCATLevelSubscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level)  throws IOException, DSPAutomationException
+	public void delete_CustInheritedwithCATLevelSubscription_for_CAT_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level)  throws IOException, Exception
 	{
 		System.out.println("************************************* DELETING CUSTINHERITEDWITHNONINHERITEDCATLEVEL SUBSCRIPTIONS******************************************");
 		try{
 		CustInheritedwithCATLevelSubscriptionDelete.DelCustInheritedwithCATLevelSubscription(cancelReason, level);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in DeletingCUSTInheritedwithCATLevelCATSubscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in DeletingCUSTInheritedwithCATLevelCATSubscription:" +e.getMessage().toString());
 		   }
 	}
 
 	@SuppressWarnings("deprecation")
 	@Then("^Delete CustInheritedwithCATLevelSubscription for Dealer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
-	public void delete_CustInheritedwithCATLevelSubscription_for_Dealer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws IOException, DSPAutomationException
+	public void delete_CustInheritedwithCATLevelSubscription_for_Dealer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws IOException, Exception
 	{
 		try{
 		CustInheritedwithCATLevelSubscriptionDelete.DelCustInheritedwithCATLevelSubscription(cancelReason, level);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in DeletingCUSTInheritedwithCATLevelDealerSubscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in DeletingCUSTInheritedwithCATLevelDealerSubscription:" +e.getMessage().toString());
 		   }
 	}
 
 	@SuppressWarnings("deprecation")
 	@Then("^Delete CustInheritedwithCATLevelSubscription for Customer Level with \"([^\"]*)\",\"([^\"]*)\" endTime and Validate the SuccessMsg$")
-	public void delete_CustInheritedwithCATLevelSubscription_for_Customer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws IOException, DSPAutomationException 
+	public void delete_CustInheritedwithCATLevelSubscription_for_Customer_Level_with_endTime_and_Validate_the_SuccessMsg(String cancelReason, String level) throws IOException, Exception 
 	{
 		try{
 		CustInheritedwithCATLevelSubscriptionDelete.DelCustInheritedwithCATLevelSubscription(cancelReason, level);
-		}catch(DSPAutomationException e){
-			 Assert.fail("Exception in DeletingCUSTInheritedwithCATLevelCustSubscription:" +e.getExcpetionMessage());
+		}catch(Exception e){
+			 Assert.fail("Exception in DeletingCUSTInheritedwithCATLevelCustSubscription:" +e.getMessage().toString());
 		   }
 	}
 
@@ -1268,14 +1261,14 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", SubscritpionTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 	}
@@ -1299,14 +1292,14 @@ public class Asset_subscriptions_API
 				CommonInstance.SkippedQuery("ASSET_ID", HistoryTableQuery);
 			} catch (SQLException e) {
 				Assert.fail("Invalid Query"+e.getMessage());
-				/*throw new DSPAutomationException(DSPAutomationExceptionMessage.SQLEXCEPTION.getDescription(),
-						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
+				/*throw new Exception(ExceptionMessage.SQLEXCEPTION.getDescription(),
+						ExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		
 		} catch (IOException e) {
 			Assert.fail("Exception in file handling"+e.getMessage());
-			/*throw new DSPAutomationException(DSPAutomationExceptionMessage.IOException.getDescription(),
-					DSPAutomationExceptionMessage.IOException.getCode());*/
+			/*throw new Exception(ExceptionMessage.IOException.getDescription(),
+					ExceptionMessage.IOException.getCode());*/
 		}
 		
 	}
