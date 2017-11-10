@@ -2,7 +2,7 @@
 Feature: ED record for an asset
   This feature is to Create an Customer Record in ED for an asset and verifying API Response
 
-  @Sanity @Regression @Positive
+@Sanity @Regression @Positive
   Scenario Outline: Creating an Customer record in ED for an asset
     Given Construct EquipmentData Request API with SerialNumber and "<ManufacturerCode>", "<ProductWorkCode>", "<Model>", "<ManufacturingYear>", "<OnwerType>", "<DealerCustomerNumber>", "<EquipmentID>", "<VinNumber>", "<DealerCode>"
     And Execute the API
