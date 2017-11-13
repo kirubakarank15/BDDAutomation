@@ -33,6 +33,10 @@ Feature: Update Customer Inherited Subscriptions with NonInherited CAT LevelSubs
       | End of Term  | Customer |
 
   @Sanity @Regression @Positive
-  Scenario: Validate Subscriptions are set for the all Levels in Database
-    Then Retrieve the Values of Subscription_id in AssetSubscription and Table for CancelledCustInheritedwithCATLevelSubscription
-    And Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for CancelledCustInheritedwithCATLevelSubscription
+  Scenario Outline: Validate Subscriptions are set for the all Levels in Database
+    Then Retrieve the Values of Subscription_id "<AssetId>" in AssetSubscription and Table for CancelledCustInheritedwithCATLevelSubscription
+    And Retrieve the Values of Subscription_id "<AssetId>" in AssetSubscriptionHistory Table for CancelledCustInheritedwithCATLevelSubscription
+
+    Examples: 
+      | AssetId |
+      |   50885 |

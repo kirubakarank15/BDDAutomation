@@ -16,6 +16,7 @@ import ReusableUtils.CommonMethods_Subscriptions;*/
 
 import dsp.automation.AssetStructures.API.*;
 import dsp.automation.utilities.APIReponse;
+import dsp.automation.utilities.DSPAutomationException;
 
 
 public class DeleteCustInheritedSubscriptions 
@@ -23,7 +24,7 @@ public class DeleteCustInheritedSubscriptions
 
 	public static String level = null;
 	public static String id =null;
-	public static String DelCustInheritedsubscriptions(String cancelReason,String level) throws FileNotFoundException, NullPointerException, IOException, JSONException
+	public static String DelCustInheritedsubscriptions(String cancelReason,String level) throws IOException,DSPAutomationException
 	{
 		
 		DeleteSubscription DelSub = new DeleteSubscription();

@@ -33,6 +33,10 @@ Feature: Update NonInherited Subscriptions in all Levels
       | End of Term  | Customer |
 
   @Sanity @Regression @Positive
-  Scenario: Validate Subscriptions are set for the all Levels in Database
-    Then Retrieve the Values of Subscription_id in AssetSubscription and Table for CancelledNonInheritedSubscription
-    And Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for CancelledNonInheritedSubscription
+  Scenario Outline: Validate Subscriptions are set for the all Levels in Database
+    Then Retrieve the Values of Subscription_id "<AssetId>" in AssetSubscription and Table for CancelledNonInheritedSubscription
+    And Retrieve the Values of Subscription_id "<AssetId>" in AssetSubscriptionHistory Table for CancelledNonInheritedSubscription
+
+     Examples: 
+      | AssetId |
+      |   50885 |

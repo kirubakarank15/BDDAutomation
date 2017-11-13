@@ -33,6 +33,10 @@ Feature: Update Customer Inherited Subscriptions in all Levels
       | End of Term  | Customer |
 
   @Sanity @Regression @Positive
-  Scenario: Validate Subscriptions are set for the all Levels in Database
-    Then Retrieve the Values of Subscription_id in AssetSubscription and Table for CancelledCustInheritedSubscription
-    And Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for CancelledCustInheritedSubscription
+  Scenario Outline: Validate Subscriptions are set for the all Levels in Database
+    Then Retrieve the Values of Subscription_id "<AssetId>" in AssetSubscription and Table for CancelledCustInheritedSubscription
+    And Retrieve the Values of Subscription_id "<AssetId>" in AssetSubscriptionHistory Table for CancelledCustInheritedSubscription
+
+      Examples: 
+      | AssetId |
+      |   50885 |

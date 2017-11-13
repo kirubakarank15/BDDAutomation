@@ -8,6 +8,7 @@ import org.json.JSONException;
 import com.google.gson.Gson;
 
 import dsp.automation.utilities.APIReponse;
+import dsp.automation.utilities.DSPAutomationException;
 
 public class DealerInheritedwithCustomerSubscriptionDelete
 {
@@ -16,7 +17,7 @@ public class DealerInheritedwithCustomerSubscriptionDelete
 	public static String id =null;
 	
 	
-	public static String DelDealerInheritedwithCustomerSubscriptions(String cancelReason,String level) throws FileNotFoundException, NullPointerException, IOException, JSONException
+	public static String DelDealerInheritedwithCustomerSubscriptions(String cancelReason,String level) throws IOException,DSPAutomationException
 	{
 		DeleteSubscription DelSub = new DeleteSubscription();
 		DelSub.setCancelReason(cancelReason);

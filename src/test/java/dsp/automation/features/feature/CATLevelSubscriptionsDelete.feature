@@ -11,6 +11,11 @@ Feature: Update CATLevel Subscriptions for the Onboarded Asset
       | End of Term  | CAT   |
 
   @Sanity @Regression @Positive
-  Scenario: Validate Subscriptions cancelled for CAT Level in Database
-    Then Retrieve the Values of Subscription_id in AssetSubscription and Table for CancelledCATLevelSubscription
-    And Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for CancelledCATLevelSubscription
+  Scenario Outline: Validate Subscriptions cancelled for CAT Level in Database
+    Then Retrieve the Values of Subscription_id "<AssetId>" in AssetSubscription and Table for CancelledCATLevelSubscription
+    And Retrieve the Values of Subscription_id "<AssetId>" in AssetSubscriptionHistory Table for CancelledCATLevelSubscription
+
+    
+    Examples: 
+      | AssetId |
+      |   50885 |

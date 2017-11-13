@@ -13,13 +13,14 @@ import ReusableUtils.CommonMethods_DeleteSubscriptions;*/
 
 import dsp.automation.AssetStructures.API.*;
 import dsp.automation.utilities.APIReponse;
+import dsp.automation.utilities.DSPAutomationException;
 
 public class DeleteDealerInheritedSubscriptions
 {
 	public static String level = null;
 	public static String id =null;
 	
-	public static String DelDealerInheritedsubscriptions(String cancelReason,String level) throws FileNotFoundException, NullPointerException, IOException, JSONException
+	public static String DelDealerInheritedsubscriptions(String cancelReason,String level) throws IOException,DSPAutomationException
 	{
 		DeleteSubscription DelSub = new DeleteSubscription();
 		DelSub.setCancelReason(cancelReason);

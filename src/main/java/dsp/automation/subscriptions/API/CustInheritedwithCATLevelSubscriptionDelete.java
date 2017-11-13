@@ -8,6 +8,8 @@ import org.json.JSONException;
 import com.google.gson.Gson;
 
 import dsp.automation.utilities.APIReponse;
+import dsp.automation.utilities.CustomisedException;
+import dsp.automation.utilities.DSPAutomationException;
 
 public class CustInheritedwithCATLevelSubscriptionDelete 
 {
@@ -15,7 +17,7 @@ public class CustInheritedwithCATLevelSubscriptionDelete
 	public static String level = null;
 	public static String id =null;
 	
-	public static String DelCustInheritedwithCATLevelSubscription(String cancelReason,String level) throws FileNotFoundException, NullPointerException, IOException, JSONException
+	public static String DelCustInheritedwithCATLevelSubscription(String cancelReason,String level) throws IOException, DSPAutomationException
 	{
 		
 		DeleteSubscription DelSub = new DeleteSubscription();

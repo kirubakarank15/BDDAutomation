@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 //import ReusableUtils.CommonMethods_Subscriptions;
 import dsp.automation.AssetStructures.API.Common_methods;
 import dsp.automation.utilities.APIReponse;
+import dsp.automation.utilities.DSPAutomationException;
 
 public class CATLevelSubscription 
 {
@@ -30,15 +31,16 @@ public class CATLevelSubscription
 	
 		
 		
-	public static String CATLevelSubscription(String parentId,String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, IOException, JSONException
+	public static String CATLevelSubscription(String parentId,String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
 	{
 		//CreateCatSubscription createcatSub = new CreateCatSubscription();
 		CreateSubscription creatsub = new CreateSubscription();
-		Properties properties = new Properties();
+		/*Properties properties = new Properties();
 		properties.load(new FileInputStream("Resources\\application.properties"));
 		SerialNumber = properties.getProperty("Asset.SerialNumber");
-	  
-		creatsub.setSerialNumber(SerialNumber);
+	  	creatsub.setSerialNumber(SerialNumber);*/
+		
+	  	creatsub.setSerialNumber(serialNumber);
 		creatsub.setMake(make);
 		creatsub.setSiteId(siteId);
 		creatsub.setTypeId(typeId);

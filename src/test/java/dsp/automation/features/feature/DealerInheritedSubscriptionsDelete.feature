@@ -26,6 +26,12 @@ Feature: Update DealerInherited Subscriptions in two Levels
       | End of Term  | Dealer |
 
   @Sanity @Regression @Positive
-  Scenario: Validate Subscriptions are set for the two Levels in Database
-    Then Retrieve the Values of Subscription_id in AssetSubscription and Table for CancelledDealerInheritedSubscription
-    And Retrieve the Values of Subscription_id in AssetSubscriptionHistory Table for CancelledDealerInheritedSubscription
+  Scenario Outline: Validate Subscriptions are set for the two Levels in Database
+    Then Retrieve the Values of Subscription_id "<AssetId>" in AssetSubscription and Table for CancelledDealerInheritedSubscription
+    And Retrieve the Values of Subscription_id  "<AssetId>"in AssetSubscriptionHistory Table for CancelledDealerInheritedSubscription
+
+    Examples: 
+      | AssetId |
+      |   50885 |
+      
+      

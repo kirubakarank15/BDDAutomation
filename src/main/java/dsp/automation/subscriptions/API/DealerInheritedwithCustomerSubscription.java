@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 
 import dsp.automation.AssetStructures.API.Common_methods;
 import dsp.automation.utilities.APIReponse;
+import dsp.automation.utilities.DSPAutomationException;
 
 public class DealerInheritedwithCustomerSubscription 
 {
@@ -24,15 +25,15 @@ public class DealerInheritedwithCustomerSubscription
 	public static String Custlevel = null;
 	public static String SerialNumber = null;
 	
-	public static String DealerInheritedwithCustomerSubscriptionCustomerLevel(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, JSONException, IOException
-	{
-		
+	public static String DealerInheritedwithCustomerSubscriptionCustomerLevel(String parentId, String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException,DSPAutomationException
+	{	
 		CreateSubscription creatsub = new CreateSubscription();
-		Properties properties = new Properties();
+		/*Properties properties = new Properties();
 		properties.load(new FileInputStream("Resources\\application.properties"));
 		SerialNumber = properties.getProperty("Asset.SerialNumber");
-	  
-		creatsub.setSerialNumber(SerialNumber);
+	  	creatsub.setSerialNumber(SerialNumber);*/
+	  	
+		creatsub.setSerialNumber(serialNumber);
 		creatsub.setParentId(parentId);
 		creatsub.setBillingtUserAccountId(billingtUserAccountId);
 		creatsub.setAssociatedOrganization(associatedOrganization);
@@ -77,15 +78,16 @@ public class DealerInheritedwithCustomerSubscription
 			
 	}
 	
-	public static String DealerInheritedwithCustomerSubscriptionDealerLevel(String parentId, String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId ) throws FileNotFoundException, NullPointerException, IOException, JSONException
+	public static String DealerInheritedwithCustomerSubscriptionDealerLevel(String parentId, String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId ) throws IOException,DSPAutomationException
 	{
 		//CreateDealerSubscription CreateDealerSub = new CreateDealerSubscription();
 		CreateSubscription creatsub = new CreateSubscription();
-		Properties properties = new Properties();
+		/*Properties properties = new Properties();
 		properties.load(new FileInputStream("Resources\\application.properties"));
 		SerialNumber = properties.getProperty("Asset.SerialNumber");
-	  
-		creatsub.setSerialNumber(SerialNumber);
+		creatsub.setSerialNumber(SerialNumber);*/
+		
+		creatsub.setSerialNumber(serialNumber);
 		creatsub.setParentId(parentId);
 		creatsub.setMake(make);
 		creatsub.setSiteId(siteId);
@@ -128,16 +130,17 @@ public class DealerInheritedwithCustomerSubscription
 
 	}
 	
-	public static String DealerInheritedwithCustomerSubscriptionCATLevel(String make, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws FileNotFoundException, NullPointerException, IOException, JSONException
+	public static String DealerInheritedwithCustomerSubscriptionCATLevel(String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException,DSPAutomationException
 	{
 	
 		//CreateCatSubscription CreateCATSub  = new CreateCatSubscription();
 		CreateSubscription creatsub = new CreateSubscription();
-		Properties properties = new Properties();
+		/*Properties properties = new Properties();
 		properties.load(new FileInputStream("Resources\\application.properties"));
 		SerialNumber = properties.getProperty("Asset.SerialNumber");
-	  
-		creatsub.setSerialNumber(SerialNumber);
+	  	creatsub.setSerialNumber(SerialNumber);*/
+		
+		creatsub.setSerialNumber(serialNumber);
 		creatsub.setMake(make);
 		creatsub.setSiteId(siteId);
 		creatsub.setTypeId(typeId);
