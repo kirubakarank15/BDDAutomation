@@ -26,6 +26,7 @@ Feature: Creating Customer Inherited Subscriptions in all Levels
       | make | serialNumber | siteId | typeId | level | origin    | organization | organizationType | associatedOrganization | associatedOrganizationType | dcn    | billingtUserAccountId |
       | CAT  | CFV00150     | null   |    527 | CAT   | Inherited | CAT          | CAT              | CAT                    | CAT                        | 059956 | null                  |
 
+
   @Sanity @Regression @Positive
   Scenario Outline: Validate Subscriptions are set for the all Levels in Database
     Then Retrieve the Values of Subscription_id "<AssetId>" in AssetSubscription and Table for CustInheritedSubscription

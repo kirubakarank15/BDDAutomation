@@ -15,7 +15,7 @@ public class DeleteNonInheritedSubscriptions
 	public static String level = null;
 	public static String id =null;
 	
-	public static String DelNonInheritedsubscriptions(String cancelReason,String level) throws IOException,DSPAutomationException
+	public static void DelNonInheritedsubscriptions(String cancelReason,String level) throws IOException,DSPAutomationException
 	{
 		
 		DeleteSubscription DelSub = new DeleteSubscription();
@@ -62,14 +62,13 @@ public class DeleteNonInheritedSubscriptions
       APIReponse APIObj = CommonMethods_DeleteSubscriptions.apiexecutuion(requestBody, postAPIContentType, postAPIAcceptType,"POST",id);
 		
 		String Delresponse = APIObj.getResponse();
-		System.out.println("Delete Response :" + Delresponse);
+		//System.out.println("Delete Response :" + Delresponse);
 		/*JSONObject jsonobj = new JSONObject(custresponse);
 		custParentId = jsonobj.getString("id");
 		//System.out.println("CUST LEVEL :" + r2);
 		System.out.println("ID:" + "\t" + custParentId);
 		return custParentId;*/
-		return null;
+		//return null;
 	}
-	
 	
 }

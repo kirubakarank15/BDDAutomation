@@ -18,6 +18,8 @@ import ReusableUtils.CommonMethods;
 import ReusableUtils.CommonMethods_Subscriptions;*/
 import dsp.automation.AssetStructures.API.*;
 import dsp.automation.utilities.APIReponse;
+import dsp.automation.utilities.CustomisedException;
+import dsp.automation.utilities.DBMapValues;
 import dsp.automation.utilities.DSPAutomationException;
 
 public class DealerInheritedSubscriptions 
@@ -26,7 +28,7 @@ public class DealerInheritedSubscriptions
 	public static String CATId = null;
 	public static String SerialNumber = null;
 	
-	public static String DealerInheritedDealerLevelSubscription(String parentId, String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId ) throws IOException,DSPAutomationException
+	public static void DealerInheritedDealerLevelSubscription(String parentId, String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId ) throws IOException,DSPAutomationException
 	{
 		//CreateDealerSubscription CreateDealerSub = new CreateDealerSubscription();
 		CreateSubscription creatsub = new CreateSubscription();
@@ -62,23 +64,23 @@ public class DealerInheritedSubscriptions
         
 	    Gson gson = new Gson();
 		String DealerLevel = gson.toJson(creatsub);
-		System.out.println("DealerLevel:" + DealerLevel);
+		//System.out.println("DealerLevel:" + DealerLevel);
 		String requestBody  = DealerLevel;
 		String postAPIContentType = "application/subscriptions-v1+json";
 		String postAPIAcceptType = "application/subscriptions-v1+json";
 		
 		APIReponse APIObj = CommonMethods_Subscriptions.apiexecutuion(requestBody, postAPIContentType, postAPIAcceptType,"POST");
 		String Dealerresponse = APIObj.getResponse();
-		System.out.println("DealerResponse :" + Dealerresponse);
+		//System.out.println("DealerResponse :" + Dealerresponse);
 		JSONObject jsonobj = new JSONObject(Dealerresponse);
 		DealerParentId = jsonobj.getString("id");
 		System.out.println("DealerID:" + "\t" + DealerParentId);
 				
-		return DealerParentId;
+		//return DealerParentId;
 
 	}
 	
-	public static String DealerInheritedCATLevelSubscription(String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException,DSPAutomationException
+	public static void DealerInheritedCATLevelSubscription(String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException,DSPAutomationException, CustomisedException
 	{
 	
 		//CreateCatSubscription CreateCATSub  = new CreateCatSubscription();
@@ -103,7 +105,8 @@ public class DealerInheritedSubscriptions
 		creatsub.setEndTime(CommonMethods.getCurrenttime());
 		creatsub.setStartTime(CommonMethods.getCurrenttime());
 		//creatsub.setSerialNumber(Common_methods.SerialNumber);
-		creatsub.setParentId(DealerParentId);
+		creatsub.setParentId(DBMapValues.dbValue("GUI_ID", "Select GUI_ID from [dsp].[AssetSubscription] where asset_id in (select asset_id from [dsp].[Asset] where serial_number = '"+serialNumber+"') and User_type_id=2"));
+		//creatsub.setParentId(DealerParentId);
 		/*List<String> SerialNumbers = new ArrayList<String>();
 		SerialNumbers = Common_methods.SerialNumbers;
 		creatsub.setSerialNumber(SerialNumbers.get(0));*/
@@ -117,12 +120,12 @@ public class DealerInheritedSubscriptions
 		
 		APIReponse APIObj = CommonMethods_Subscriptions.apiexecutuion(requestBody, postAPIContentType, postAPIAcceptType,"POST");
 		String CATresponse = APIObj.getResponse();
-		System.out.println("Dealerresponse :" + CATresponse);
+		//System.out.println("Dealerresponse :" + CATresponse);
 		JSONObject jsonobj = new JSONObject(CATresponse);
 		CATId = jsonobj.getString("id");
 		System.out.println("CATID:" + "\t" + CATId);
 				
-		return CATId;
+		//return CATId;
 
 	}
 

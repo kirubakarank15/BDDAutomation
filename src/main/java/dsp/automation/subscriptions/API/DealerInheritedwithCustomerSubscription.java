@@ -14,6 +14,8 @@ import com.google.gson.Gson;
 
 import dsp.automation.AssetStructures.API.Common_methods;
 import dsp.automation.utilities.APIReponse;
+import dsp.automation.utilities.CustomisedException;
+import dsp.automation.utilities.DBMapValues;
 import dsp.automation.utilities.DSPAutomationException;
 
 public class DealerInheritedwithCustomerSubscription 
@@ -25,7 +27,7 @@ public class DealerInheritedwithCustomerSubscription
 	public static String Custlevel = null;
 	public static String SerialNumber = null;
 	
-	public static String DealerInheritedwithCustomerSubscriptionCustomerLevel(String parentId, String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException,DSPAutomationException
+	public static void DealerInheritedwithCustomerSubscriptionCustomerLevel(String parentId, String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException,DSPAutomationException
 	{	
 		CreateSubscription creatsub = new CreateSubscription();
 		/*Properties properties = new Properties();
@@ -68,17 +70,17 @@ public class DealerInheritedwithCustomerSubscription
 		
 		APIReponse APIObj = CommonMethods_Subscriptions.apiexecutuion(requestBody, postAPIContentType, postAPIAcceptType,"POST");
 		custresponse = APIObj.getResponse();
-		System.out.println("CustResponse :" + custresponse);
+		//System.out.println("CustResponse :" + custresponse);
 		JSONObject jsonobj = new JSONObject(custresponse);
 		NonInheritedcustId = jsonobj.getString("id");
 		Custlevel  = jsonobj.getString("level");
 		//System.out.println("CUST LEVEL :" + r2);
 		System.out.println("ID:" + "\t" + NonInheritedcustId);
-		return NonInheritedcustId;
+		//return NonInheritedcustId;
 			
 	}
 	
-	public static String DealerInheritedwithCustomerSubscriptionDealerLevel(String parentId, String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId ) throws IOException,DSPAutomationException
+	public static void DealerInheritedwithCustomerSubscriptionDealerLevel(String parentId, String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId ) throws IOException,DSPAutomationException
 	{
 		//CreateDealerSubscription CreateDealerSub = new CreateDealerSubscription();
 		CreateSubscription creatsub = new CreateSubscription();
@@ -113,24 +115,24 @@ public class DealerInheritedwithCustomerSubscription
 	   // CreateDealerSub.setSerialNumber(Common_methods.SerialNumber);
         
 	    Gson gson = new Gson();
-		String DealertLevel = gson.toJson(creatsub);
-		System.out.println("DealerLevel:" + DealertLevel);
-		String requestBody  = DealertLevel;
+		String DealerLevel = gson.toJson(creatsub);
+		System.out.println("DealerLevel:" + DealerLevel);
+		String requestBody  = DealerLevel;
 		String postAPIContentType = "application/subscriptions-v1+json";
 		String postAPIAcceptType = "application/subscriptions-v1+json";
 		
 		APIReponse APIObj = CommonMethods_Subscriptions.apiexecutuion(requestBody, postAPIContentType, postAPIAcceptType,"POST");
 		String Dealerresponse = APIObj.getResponse();
-		System.out.println("DealerResponse :" + Dealerresponse);
+		//System.out.println("DealerResponse :" + Dealerresponse);
 		JSONObject jsonobj = new JSONObject(Dealerresponse);
 		DealerParentId = jsonobj.getString("id");
 		System.out.println("DealerID:" + "\t" + DealerParentId);
 				
-		return DealerParentId;
+		//return DealerParentId;
 
 	}
 	
-	public static String DealerInheritedwithCustomerSubscriptionCATLevel(String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException,DSPAutomationException
+	public static void DealerInheritedwithCustomerSubscriptionCATLevel(String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException,DSPAutomationException, CustomisedException
 	{
 	
 		//CreateCatSubscription CreateCATSub  = new CreateCatSubscription();
@@ -154,7 +156,8 @@ public class DealerInheritedwithCustomerSubscription
 		creatsub.setBillingtUserAccountId(billingtUserAccountId);
 		creatsub.setEndTime(CommonMethods.getCurrenttime());
 		creatsub.setStartTime(CommonMethods.getCurrenttime());
-		creatsub.setParentId(DealerParentId);
+		//creatsub.setParentId(DealerParentId);
+		creatsub.setParentId(DBMapValues.dbValue("GUI_ID", "Select GUI_ID from [dsp].[AssetSubscription] where asset_id in (select asset_id from [dsp].[Asset] where serial_number = '"+serialNumber+"') and User_type_id=2"));
 		//creatsub.setSerialNumber(Common_methods.SerialNumber);
 		/*List<String> SerialNumbers = new ArrayList<String>();
 		SerialNumbers = Common_methods.SerialNumbers;
@@ -169,14 +172,12 @@ public class DealerInheritedwithCustomerSubscription
 		
 		APIReponse APIObj = CommonMethods_Subscriptions.apiexecutuion(requestBody, postAPIContentType, postAPIAcceptType,"POST");
 		String CATresponse = APIObj.getResponse();
-		System.out.println("Dealerresponse :" + CATresponse);
+		//System.out.println("CATresponse :" + CATresponse);
 		JSONObject jsonobj = new JSONObject(CATresponse);
 		CATId = jsonobj.getString("id");
 		System.out.println("CATID:" + "\t" + CATId);
 				
-		return CATId;
+		//return CATId;
 
 	}
-
-	
 }
