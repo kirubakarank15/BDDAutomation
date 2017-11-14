@@ -1,35 +1,29 @@
 package stepDefenition;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.json.JSONException;
 import org.json.simple.parser.ParseException;
+import org.testng.Assert;
 
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import dsp.automation.subscriptions.API.CATLevelSubscription;
 import dsp.automation.subscriptions.API.CommonMethods;
 import dsp.automation.subscriptions.API.CustInheritedSubscriptions;
 import dsp.automation.subscriptions.API.CustInheritedwithCATLevelSubscription;
 import dsp.automation.subscriptions.API.CustInheritedwithCATLevelSubscriptionDelete;
+import dsp.automation.subscriptions.API.DealerInheritedSubscriptions;
+import dsp.automation.subscriptions.API.DealerInheritedwithCustomerSubscription;
+import dsp.automation.subscriptions.API.DealerInheritedwithCustomerSubscriptionDelete;
 import dsp.automation.subscriptions.API.DeleteCATSubscriptions;
 import dsp.automation.subscriptions.API.DeleteCustInheritedSubscriptions;
 import dsp.automation.subscriptions.API.DeleteDealerInheritedSubscriptions;
 import dsp.automation.subscriptions.API.DeleteNonInheritedSubscriptions;
 import dsp.automation.subscriptions.API.NonInheritedSubscriptions;
-import dsp.automation.subscriptions.API.DealerInheritedSubscriptions;
-import dsp.automation.subscriptions.API.DealerInheritedwithCustomerSubscription;
-import dsp.automation.subscriptions.API.DealerInheritedwithCustomerSubscriptionDelete;
-import dsp.automation.utilities.DBconnection_API;
 import dsp.automation.utilities.DSPAutomationException;
-import dsp.automation.utilities.DSPAutomationExceptionMessage;
-import junit.framework.Assert;
+
 
 public class Asset_subscriptions_API 
 {
