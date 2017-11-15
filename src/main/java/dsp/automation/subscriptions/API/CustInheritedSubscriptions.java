@@ -19,6 +19,8 @@ import com.google.gson.Gson;
 //import ReusableUtils.CommonMethods_Subscriptions;
 import dsp.automation.AssetStructures.API.*;
 import dsp.automation.utilities.APIReponse;
+import dsp.automation.utilities.CustomisedException;
+import dsp.automation.utilities.DBMapValues;
 import dsp.automation.utilities.DSPAutomationException;
 
 public class CustInheritedSubscriptions 
@@ -35,7 +37,7 @@ public class CustInheritedSubscriptions
 		public static String CATlevel = null;
 		public static String SerialNumber = null;
 	
-	public static String CustInheritedCustLevelSubscription(String parentId, String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+	public static void CustInheritedCustLevelSubscription(String parentId, String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
 	{
 
 		CreateSubscription creatsub = new CreateSubscription();
@@ -72,7 +74,7 @@ public class CustInheritedSubscriptions
 
 		Gson gson = new Gson();
 		String CustLevel = gson.toJson(creatsub);
-		System.out.println("Cust Level:" + CustLevel);
+		System.out.println("CustLevel:" + CustLevel);
 		String requestBody  = CustLevel;
 		String postAPIContentType = "application/subscriptions-v1+json";
 		String postAPIAcceptType = "application/subscriptions-v1+json";
@@ -80,17 +82,17 @@ public class CustInheritedSubscriptions
 		APIReponse APIObj = CommonMethods_Subscriptions.apiexecutuion(requestBody, postAPIContentType, postAPIAcceptType,"POST");
 		
 		custresponse = APIObj.getResponse();
-		System.out.println("CustLevelResponse :" + custresponse);
+		//System.out.println("CustLevelResponse :" + custresponse);
 		JSONObject jsonobj = new JSONObject(custresponse);
 		custParentId = jsonobj.getString("id");
 		Custlevel  = jsonobj.getString("level");
 		//System.out.println("CUST LEVEL :" + r2);
 		System.out.println("ID:" + "\t" + custParentId);
-		return custParentId;
+		//return null;
 
 	}
 	
-	public static String CustInheritedDealerLevelSubscription(String make,String serialNumber,String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+	public static void CustInheritedDealerLevelSubscription(String make,String serialNumber,String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException, CustomisedException
 	{
 		
 		//CreateDealerSubscription createDealerSub = new CreateDealerSubscription();
@@ -113,7 +115,7 @@ public class CustInheritedSubscriptions
 		creatsub.setOrganization(organization);
 		creatsub.setOrganizationType(organizationType);
 		creatsub.setOrigin(origin);
-		creatsub.setParentId(custParentId);
+		creatsub.setParentId(DBMapValues.dbValue("GUI_ID", "Select GUI_ID from [dsp].[AssetSubscription] where asset_id in (select asset_id from [dsp].[Asset] where serial_number = '"+serialNumber+"') and User_type_id=3"));
 		creatsub.setTypeId(typeId);
 		//creatsub.setSerialNumber(Common_methods.SerialNumber);
 		/*List<String> SerialNumbers = new ArrayList<String>();
@@ -122,24 +124,24 @@ public class CustInheritedSubscriptions
 		
 		Gson gson = new Gson();
 		String Dealerlevel = gson.toJson(creatsub);
-		System.out.println("DealerLevelResponse:" + Dealerlevel);
+		System.out.println("DealerLevel:" + Dealerlevel);
 		String requestBody  = Dealerlevel;
 		String postAPIContentType = "application/subscriptions-v1+json";
 		String postAPIAcceptType = "application/subscriptions-v1+json";
 
 		APIReponse APIObj = CommonMethods_Subscriptions.apiexecutuion(requestBody, postAPIContentType, postAPIAcceptType,"POST");
 		Dealerresponse = APIObj.getResponse();
-		System.out.println("Dealerresponse :" + Dealerresponse);
+		//System.out.println("Dealerresponse :" + Dealerresponse);
 		JSONObject jsonobj = new JSONObject(Dealerresponse);
 		DealerId = jsonobj.getString("id");
 		Deallevel  = jsonobj.getString("level");
 		//System.out.println("CUST LEVEL :" + r2);
 		System.out.println("DealerID:" + "\t" + DealerId);
 				
-		return Dealerresponse;
+		//return Dealerresponse;
 		
 	}		
-		public static String CustInheritedCATLevelSubscription(String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+		public static void CustInheritedCATLevelSubscription(String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException, CustomisedException
 		{
 	    
 			//CreateCatSubscription createcatSub = new CreateCatSubscription();
@@ -164,28 +166,29 @@ public class CustInheritedSubscriptions
 			creatsub.setOrigin(origin);
 			creatsub.setSiteId(siteId);
 			creatsub.setTypeId(typeId);
-			creatsub.setParentId(custParentId);
+			creatsub.setParentId(DBMapValues.dbValue("GUI_ID", "Select GUI_ID from [dsp].[AssetSubscription] where asset_id in (select asset_id from [dsp].[Asset] where serial_number = '"+serialNumber+"') and User_type_id=3"));
+			
+			//creatsub.setParentId(custParentId);
 			/*List<String> SerialNumbers = new ArrayList<String>();
 			SerialNumbers = Common_methods.SerialNumbers;
 			creatsub.setSerialNumber(SerialNumbers.get(0));*/
 					
 			Gson gson = new Gson();
 			String catlevel = gson.toJson(creatsub);
-			System.out.println("CatLevelResponse:" + catlevel);
+			System.out.println("CatLevel:" + catlevel);
 			String requestBody  = catlevel;
 			String postAPIContentType = "application/subscriptions-v1+json";
 			String postAPIAcceptType = "application/subscriptions-v1+json";
 
 			APIReponse APIObj = CommonMethods_Subscriptions.apiexecutuion(requestBody, postAPIContentType, postAPIAcceptType,"POST");
 			CATresponse = APIObj.getResponse();
-			System.out.println("catresponse :" + CATresponse);
+			//System.out.println("catresponse :" + CATresponse);
 			JSONObject jsonobj = new JSONObject(CATresponse);
 			CATId = jsonobj.getString("id");
 			CATlevel  = jsonobj.getString("level");
 			//System.out.println("CUST LEVEL :" + r2);s
 			System.out.println("ID:" + "\t" + CATId);
 					
-			return CATresponse;
+			//return CATresponse;
 		}
-		
 }

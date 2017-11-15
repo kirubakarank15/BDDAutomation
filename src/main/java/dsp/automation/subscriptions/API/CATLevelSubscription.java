@@ -31,7 +31,7 @@ public class CATLevelSubscription
 	
 		
 		
-	public static String CATLevelSubscription(String parentId,String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+	public static void CATLevelSubscription(String parentId,String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
 	{
 		//CreateCatSubscription createcatSub = new CreateCatSubscription();
 		CreateSubscription creatsub = new CreateSubscription();
@@ -77,15 +77,14 @@ public class CATLevelSubscription
 
 		APIReponse APIObj = CommonMethods_Subscriptions.apiexecutuion(requestBody, postAPIContentType, postAPIAcceptType,"POST");
 		CATresponse = APIObj.getResponse();
-		System.out.println("CATLevelSubscription :" + CATresponse);
+		//System.out.println("CATLevelSubscription :" + CATresponse);
 		JSONObject jsonobj = new JSONObject(CATresponse);
 		CATId = jsonobj.getString("id");
 		CATlevel  = jsonobj.getString("level");
 		//System.out.println("CUST LEVEL :" + r2);
 		System.out.println("ID:" + "\t" + CATId);
 				
-		return CATresponse;
-		
-		
+		//return CATresponse;
+				
 	}
 }

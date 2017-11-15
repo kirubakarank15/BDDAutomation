@@ -22,6 +22,7 @@ import dsp.automation.subscriptions.API.DeleteCustInheritedSubscriptions;
 import dsp.automation.subscriptions.API.DeleteDealerInheritedSubscriptions;
 import dsp.automation.subscriptions.API.DeleteNonInheritedSubscriptions;
 import dsp.automation.subscriptions.API.NonInheritedSubscriptions;
+import dsp.automation.utilities.CustomisedException;
 import dsp.automation.utilities.DSPAutomationException;
 
 
@@ -192,7 +193,7 @@ public class Asset_subscriptions_API
 	@SuppressWarnings("deprecation")
 	//@Then("^Set CustInheritedSubscription for Dealer Level with serialNumber,parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\",startTime,endTime$")
 	@Then("^Set CustInheritedSubscription for Dealer Level with parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\",startTime,endTime$")
-	public void set_CustInheritedSubscription_for_Dealer_Level_with_parentId_startTime_endTime(String make,String serialNumber,String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+	public void set_CustInheritedSubscription_for_Dealer_Level_with_parentId_startTime_endTime(String make,String serialNumber,String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException, CustomisedException
 	{
 		//CustInheritSub.CustInheritedDealerLevelSubscription(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 		try{
@@ -206,7 +207,7 @@ public class Asset_subscriptions_API
 	@SuppressWarnings("deprecation")
 	//@Then("^Set CustInheritedSubscription for CAT Level with serialNumber,parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\",startTime,endTime$")
 	@Then("^Set CustInheritedSubscription for CAT Level with parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\",startTime,endTime$")
-	public void set_CustInheritedSubscription_for_CAT_Level_with_parentId_startTime_endTime(String make,String serialNumber,String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+	public void set_CustInheritedSubscription_for_CAT_Level_with_parentId_startTime_endTime(String make,String serialNumber,String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException, CustomisedException
 	{
 		//CustInheritSub.CustInheritedCATLevelSubscription(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 		try{
@@ -386,7 +387,7 @@ public class Asset_subscriptions_API
 
 	//@Then("^Set DealerInheritedSubscription for CAT Level with serialNumber,parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\",startTime,endTime for DealerInheritedSubscriptions$")
 	@Then("^Set DealerInheritedSubscription for CAT Level with parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\",startTime,endTime for DealerInheritedSubscriptions$")
-	public void set_DealerInheritedSubscription_for_CAT_Level_with_parentId_startTime_endTime_for_DealerInheritedSubscriptions(String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+	public void set_DealerInheritedSubscription_for_CAT_Level_with_parentId_startTime_endTime_for_DealerInheritedSubscriptions(String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException, CustomisedException
 	{
 	  //DealerInheritSub.DealerInheritedCATLevelSubscription(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
 		try{
@@ -499,7 +500,6 @@ public class Asset_subscriptions_API
 						DSPAutomationExceptionMessage.SQLEXCEPTION.getCode());*/
 			}
 		
-			
 	}
 
 	@SuppressWarnings("deprecation")
@@ -879,7 +879,7 @@ public class Asset_subscriptions_API
 	@SuppressWarnings("deprecation")
 	//@Then("^Set DealerInheritedwithNonInheritedSubscription for CAT Level with serialNumber,parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\",startTime,endTime for DealerInheritedwithNonInheritedSubscription$")
 	@Then("^Set DealerInheritedwithNonInheritedSubscription for CAT Level with parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\",\"([^\"]*)\",startTime,endTime for DealerInheritedwithNonInheritedSubscription$")
-	public void set_DealerInheritedwithNonInheritedSubscription_for_CAT_Level_with_parentId_startTime_endTime_for_DealerInheritedwithNonInheritedSubscription(String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId)  throws IOException, DSPAutomationException
+	public void set_DealerInheritedwithNonInheritedSubscription_for_CAT_Level_with_parentId_startTime_endTime_for_DealerInheritedwithNonInheritedSubscription(String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId)  throws IOException, DSPAutomationException, CustomisedException
 	{
 		try{
 		//DealerInheritedwithCust.DealerInheritedwithCustomerSubscriptionCATLevel(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);
@@ -1047,7 +1047,7 @@ public class Asset_subscriptions_API
 	@SuppressWarnings("deprecation")
 	//@Then("^Set CustInheritedwithCATLevelSubscription for Dealer Level with serialNumber,parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\",startTime,endTime$")
 	@Then("^Set CustInheritedwithCATLevelSubscription for Dealer Level with parentId,\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\" , \"([^\"]*)\" ,\"([^\"]*)\" ,\"([^\"]*)\",startTime,endTime$")
-	public void set_CustInheritedwithCATLevelSubscription_for_Dealer_Level_with_parentId_startTime_endTime(String make,String serialNumber,String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+	public void set_CustInheritedwithCATLevelSubscription_for_Dealer_Level_with_parentId_startTime_endTime(String make,String serialNumber,String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException, CustomisedException
 	{
 	 try{
 		//CustInheritedwithCAT.CustInheritedwithCATLevelSubscriptionDealerLevel(make, siteId, typeId, level, origin, organization, organizationType, associatedOrganization, associatedOrganizationType, dcn, billingtUserAccountId);

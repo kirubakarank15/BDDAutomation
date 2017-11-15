@@ -33,7 +33,7 @@ public class NonInheritedSubscriptions
 	public static String SerialNumber = null;
 	
 		
-public static String NoninheritedCustLevelSubscription(String parentId, String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException,DSPAutomationException
+public static void NoninheritedCustLevelSubscription(String parentId, String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException,DSPAutomationException
 {
 	
 	CreateSubscription creatsub = new CreateSubscription();
@@ -78,18 +78,18 @@ public static String NoninheritedCustLevelSubscription(String parentId, String m
 	
 	APIReponse APIObj = CommonMethods_Subscriptions.apiexecutuion(requestBody, postAPIContentType, postAPIAcceptType,"POST");
 	custresponse = APIObj.getResponse();
-	System.out.println("NonInheritedCustResponse :" + custresponse);
+	//System.out.println("NonInheritedCustResponse :" + custresponse);
 	JSONObject jsonobj = new JSONObject(custresponse);
 	NonInheritedcustId = jsonobj.getString("id");
 	Custlevel  = jsonobj.getString("level");
 	//System.out.println("CUST LEVEL :" + r2);
 	System.out.println("ID:" + "\t" + NonInheritedcustId);
-	return NonInheritedcustId;
+	//return NonInheritedcustId;
 		
 }
 
 
-public static String NonInheritedDealerLevelSubscription(String parentId, String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException,DSPAutomationException
+public static void NonInheritedDealerLevelSubscription(String parentId, String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException,DSPAutomationException
 {
 
 	//CreateDealerSubscription createDealerSub = new CreateDealerSubscription();
@@ -128,18 +128,18 @@ public static String NonInheritedDealerLevelSubscription(String parentId, String
 
 	APIReponse APIObj = CommonMethods_Subscriptions.apiexecutuion(requestBody, postAPIContentType, postAPIAcceptType,"POST");
 	Dealerresponse = APIObj.getResponse();
-	System.out.println("NonInheritedDealerResponse :" + Dealerresponse);
+	//System.out.println("NonInheritedDealerResponse :" + Dealerresponse);
 	JSONObject jsonobj = new JSONObject(Dealerresponse);
 	NonInheritedDealerId = jsonobj.getString("id");
 	Deallevel  = jsonobj.getString("level");
 	//System.out.println("CUST LEVEL :" + r2);
 	System.out.println("DealerID:" + "\t" + NonInheritedDealerId);
 			
-	return Dealerresponse;
+	//return Dealerresponse;
 
 }
 
-public static String NonInheritedCATLevelSusbcription(String parentId,String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException,DSPAutomationException
+public static void NonInheritedCATLevelSusbcription(String parentId,String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException,DSPAutomationException
 {
 	//CreateCatSubscription createcatSub = new CreateCatSubscription();
 	CreateSubscription creatsub = new CreateSubscription();
@@ -177,15 +177,15 @@ public static String NonInheritedCATLevelSusbcription(String parentId,String mak
 
 	APIReponse APIObj = CommonMethods_Subscriptions.apiexecutuion(requestBody, postAPIContentType, postAPIAcceptType,"POST");
 	CATresponse = APIObj.getResponse();
-	System.out.println("NonInheritedCatResponse :" + CATresponse);
+	//System.out.println("NonInheritedCatResponse :" + CATresponse);
 	JSONObject jsonobj = new JSONObject(CATresponse);
 	NonInheritedCATId = jsonobj.getString("id");
 	CATlevel  = jsonobj.getString("level");
 	//System.out.println("CUST LEVEL :" + r2);
 	System.out.println("ID:" + "\t" + NonInheritedCATId);
 			
-	return CATresponse;
+	//return CATresponse;
 	
-}
+ }
 
 }
