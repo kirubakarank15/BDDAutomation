@@ -1,6 +1,6 @@
 Feature: To check the subscription catlog is displayed correctly for PL141
 @PL141
-  @catlogin
+  @catlogin2
   Scenario: Naviagation and searching the asset details
     When Navigate to "My worklist"
     Then The page "Myworklist" should be displayed

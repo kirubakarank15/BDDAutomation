@@ -42,10 +42,10 @@ public class DriverSupplier {
         capabilities.setCapability("chrome.binary", "");
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 		//return driver;
-		DesiredCapabilities capabilities1 = DesiredCapabilities.internetExplorer();
+	/*	DesiredCapabilities capabilities1 = DesiredCapabilities.internetExplorer();
 			capabilities1.setCapability(CapabilityType.BROWSER_NAME, "IE");
 		capabilities1.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-		RemoteWebDriver driver = new RemoteWebDriver(capabilities1);
+		RemoteWebDriver driver = new RemoteWebDriver(capabilities1);*/
 		
 		driver = new ChromeDriver(options);
 		return driver;

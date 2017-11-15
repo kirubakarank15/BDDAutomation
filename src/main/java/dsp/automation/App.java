@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
@@ -15,6 +16,11 @@ import java.util.logging.SimpleFormatter;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.Parameters;
 
 import dsp.automation.pom.MyWorklist;
@@ -148,7 +154,36 @@ public class App {
 
 	public static void main(String[] args) throws Exception
 
-	{ /*
+	{
+		System.setProperty("webdriver.chrome.driver",
+				"Resources\\chromedriver.exe");
+        //String userProfile= "C:\\Users\\krishk10.AP.000\\AppData\\Roaming\\Microsoft\\Internet Explorer\\UserData";
+        ChromeOptions options = new ChromeOptions();
+
+        //options.addArguments("user-data-dir="+userProfile);
+        options.addArguments("--start-maximized"); 
+/*        options.addArguments("--ignore-certificate-errors");
+        options.addArguments("--disable-popup-blocking");
+//options.addArguments("--headless");
+       // options.addArguments("disable-infobars"); 
+        //options.setBinary("Resources\\Drivers\\chromedriver.exe");
+        //options.addArguments("--incognito");
+       // options.addArguments("--disable-extensions");
+        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+        capabilities.setCapability("chrome.binary", "");
+        capabilities.setCapability(ChromeOptions.CAPABILITY, options);*/
+		//return driver;
+	/*	DesiredCapabilities capabilities1 = DesiredCapabilities.internetExplorer();
+			capabilities1.setCapability(CapabilityType.BROWSER_NAME, "IE");
+		capabilities1.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+		RemoteWebDriver driver = new RemoteWebDriver(capabilities1);*/
+		
+    	  WebDriver driver = new ChromeDriver(options);
+    	  //driver.get("https://www.pamperedchef.com/shop-landing-page");
+    		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    		driver.findElement(By.id("searchText")).sendKeys("stove");
+    		driver.findElement(By.className("icon-search")).click();
+		/*
 		 * Date dNow = new Date(); SimpleDateFormat ft = new
 		 * SimpleDateFormat("Eyyyy.MM.dd'_'hh:mm:ssa"); String timeStamp =
 		 * ft.format(dNow).replaceAll(":", "_");
@@ -162,11 +197,7 @@ public class App {
 		 * System.out.println(screenshotPath.toString());
 		 */
 
-		App obj = new App();
-		LOGGER.info("dfdf");
-		obj.getParameter();
-		LOGGER.info("dfdf");
-		obj.getParameter();
+		
 		// List<String> obj1=new ArrayList<>(Arrays.asList("sds","dsds"));
 		// List<String> obj2=new ArrayList<>(Arrays.asList("sdsdd","dsds"));
 
