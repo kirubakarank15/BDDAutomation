@@ -74,7 +74,7 @@ public class CustInheritedSubscriptions
 
 		Gson gson = new Gson();
 		String CustLevel = gson.toJson(creatsub);
-		System.out.println("Cust Level:" + CustLevel);
+		System.out.println("CustLevel:" + CustLevel);
 		String requestBody  = CustLevel;
 		String postAPIContentType = "application/subscriptions-v1+json";
 		String postAPIAcceptType = "application/subscriptions-v1+json";
@@ -124,7 +124,7 @@ public class CustInheritedSubscriptions
 		
 		Gson gson = new Gson();
 		String Dealerlevel = gson.toJson(creatsub);
-		System.out.println("DealerLevelResponse:" + Dealerlevel);
+		System.out.println("DealerLevel:" + Dealerlevel);
 		String requestBody  = Dealerlevel;
 		String postAPIContentType = "application/subscriptions-v1+json";
 		String postAPIAcceptType = "application/subscriptions-v1+json";
@@ -175,7 +175,7 @@ public class CustInheritedSubscriptions
 					
 			Gson gson = new Gson();
 			String catlevel = gson.toJson(creatsub);
-			System.out.println("CatLevelResponse:" + catlevel);
+			System.out.println("CatLevel:" + catlevel);
 			String requestBody  = catlevel;
 			String postAPIContentType = "application/subscriptions-v1+json";
 			String postAPIAcceptType = "application/subscriptions-v1+json";
@@ -191,5 +191,4 @@ public class CustInheritedSubscriptions
 					
 			//return CATresponse;
 		}
-	
 }

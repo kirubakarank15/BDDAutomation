@@ -1,6 +1,6 @@
 @API
-Feature: Creating NonInherited Subscriptions in all Levels
-  This feature is to Validate creation of NonInherited subscriptions in all Levels
+Feature: Creation and Updation of NonInherited Subscriptions in all Levels
+  This feature is to Validate Creation and Updation of NonInherited subscriptions in all Levels
 
   @Sanity @Regression @Positive
   Scenario Outline: Validate Subscription set for the Customer Level for NonInheritedsubscription
@@ -30,6 +30,45 @@ Feature: Creating NonInherited Subscriptions in all Levels
   Scenario Outline: Validate Subscriptions are set for the all Levels in Database
     Then Retrieve the Values of Subscription_id "<AssetId>" in AssetSubscription and Table for NonInheritedSubscription
     And Retrieve the Values of Subscription_id "<AssetId>" in AssetSubscriptionHistory Table for NonInheritedSubscription
+
+    Examples: 
+      | AssetId |
+      |   50885 |
+
+  #@Sanity @Regression @Negative
+  #Scenario Outline: NonInherited Subscription without deleting the ChildLevel Subscription
+  #  Then Delete tNonInheritedSubscription for Customer Level with "<cancelReason>","<level>" endTime without deleting the ChildLevel Subscription and Validate the ErrorMsg
+  # Examples:
+  #   | cancelReason | level      |
+  #   | End of Term  | Customer   |
+  @Sanity @Regression @Positive
+  Scenario Outline: Delete NonInherited Subscription by deleting the CAT-ChildLevel Subscription
+    Then Delete NonInheritedSubscription for CAT Level with "<cancelReason>","<level>" endTime and Validate the SuccessMsg
+
+    Examples: 
+      | cancelReason | level |
+      | End of Term  | CAT   |
+
+  @Sanity @Regression @Positive
+  Scenario Outline: Delete NonInherited Subscription by deleting the Dealer-ChildLevel Subscription
+    Then Delete NonInheritedSubscription for Dealer Level with "<cancelReason>","<level>" endTime and Validate the SuccessMsg
+
+    Examples: 
+      | cancelReason | level  |
+      | End of Term  | Dealer |
+
+  @Sanity @Regression @Positive
+  Scenario Outline: Delete NonInherited Subscription by deleting the Customer-Level Subscription
+    Then Delete NonInheritedSubscription Customer Level with "<cancelReason>","<level>" endTime and Validate the SuccessMsg
+
+    Examples: 
+      | cancelReason | level    |
+      | End of Term  | Customer |
+
+  @Sanity @Regression @Positive
+  Scenario Outline: Validate Subscriptions are set for the all Levels in Database
+    Then Retrieve the Values of Subscription_id "<AssetId>" in AssetSubscription and Table for CancelledNonInheritedSubscription
+    And Retrieve the Values of Subscription_id "<AssetId>" in AssetSubscriptionHistory Table for CancelledNonInheritedSubscription
 
     Examples: 
       | AssetId |

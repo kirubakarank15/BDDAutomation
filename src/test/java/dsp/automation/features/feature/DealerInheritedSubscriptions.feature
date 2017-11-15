@@ -1,6 +1,6 @@
 @API
-Feature: Creating Dealer Inherited Subscription in two Levels with no Customer Level Subscription
-  This feature is to Validate creation of Dealer Inherited subscription in two Levels
+Feature: Creation and Updation of Dealer Inherited Subscription in two Levels with no Customer Level Subscription
+  This feature is to Validate Creation and Updation of Dealer Inherited subscription in two Levels
 
   @Sanity @Regression @Positive
   Scenario Outline: Validate Subscriptions are set for the Dealer Level for DealerInheritedSubscription
@@ -22,6 +22,37 @@ Feature: Creating Dealer Inherited Subscription in two Levels with no Customer L
   Scenario Outline: Validate Subscriptions are set for the all Levels in Database for DealerInheritedSubscription
     Then Retrieve the Values of Subscription_id "<AssetId>" in AssetSubscription and Table for DealerInheritedSubscription
     And Retrieve the Values of Subscription_id "<AssetId>" in AssetSubscriptionHistory Table for DealerInheritedSubscription
+
+    Examples: 
+      | AssetId |
+      |   50885 |
+
+  #@Sanity @Regression @Negative
+  #Scenario Outline: Delete DealerInherited Subscription without deleting the ChildLevel Subscription
+  #  Then Delete the Subscription for Dealer Level with "<cancelReason>","<level>" endTime without deleting the ChildLevel Subscription and Validate the ErrorMsg
+  # Examples:
+  #  | cancelReason | level |
+  #  | End of Term  | Dealer   |
+  @Sanity @Regression @Positive
+  Scenario Outline: Delete DealerInherited Subscription by deleting the CAT-ChildLevel Subscription
+    Then Delete DealerInheritedSubscription for CAT Level with "<cancelReason>","<level>" endTime and Validate the SuccessMsg for DealerInherited Subscription
+
+    Examples: 
+      | cancelReason | level |
+      | End of Term  | CAT   |
+
+  @Sanity @Regression @Positive
+  Scenario Outline: Delete DealerInherited Subscription by deleting the Dealer-ChildLevel Subscription
+    Then Delete DealerInheritedSubscription for Dealer Level with "<cancelReason>","<level>" endTime and Validate the SuccessMsg for DealerInherited Subscription
+
+    Examples: 
+      | cancelReason | level  |
+      | End of Term  | Dealer |
+
+  @Sanity @Regression @Positive
+  Scenario Outline: Validate Subscriptions are set for the two Levels in Database
+    Then Retrieve the Values of Subscription_id "<AssetId>" in AssetSubscription and Table for CancelledDealerInheritedSubscription
+    And Retrieve the Values of Subscription_id  "<AssetId>"in AssetSubscriptionHistory Table for CancelledDealerInheritedSubscription
 
     Examples: 
       | AssetId |

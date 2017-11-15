@@ -64,7 +64,7 @@ public class DealerInheritedSubscriptions
         
 	    Gson gson = new Gson();
 		String DealerLevel = gson.toJson(creatsub);
-		//System.out.println("DealerLevel:" + DealerLevel);
+		System.out.println("DealerLevel:" + DealerLevel);
 		String requestBody  = DealerLevel;
 		String postAPIContentType = "application/subscriptions-v1+json";
 		String postAPIAcceptType = "application/subscriptions-v1+json";

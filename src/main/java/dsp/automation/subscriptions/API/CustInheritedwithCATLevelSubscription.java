@@ -73,7 +73,7 @@ public static void CustInheritedwithCATLevelSubscriptionCustLevel(String parentI
 
 	Gson gson = new Gson();
 	String CustLevel = gson.toJson(creatsub);
-	System.out.println("CustLevelResponse:" + CustLevel);
+	System.out.println("CustLevel:" + CustLevel);
 	String requestBody  = CustLevel;
 	String postAPIContentType = "application/subscriptions-v1+json";
 	String postAPIAcceptType = "application/subscriptions-v1+json";
