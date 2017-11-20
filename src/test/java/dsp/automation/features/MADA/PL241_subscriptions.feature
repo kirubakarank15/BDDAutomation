@@ -20,7 +20,7 @@ Feature: To check the subscription catlog is displayed correctly for PL241
       | PL241       | UIT00122 | EQUIPMENT TRACKER | Cat Daily                                                                                     |                         |                         |
 
   @catlogin @PL241
-  Scenario Outline: Additional Services
+  Scenario Outline: To chek whether the Add-Ons are displayed properly for PL241 subscriptions
     #When search Asset details as "<S/N>" in My Worklist Page
     And select the services as "<Services>" from subscriptions page
     And select the subscriptions as "<Customer>","<Dealer>","<Cat>"

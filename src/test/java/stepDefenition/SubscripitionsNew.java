@@ -61,7 +61,7 @@ public class SubscripitionsNew {
 		}
 
 		catch (Exception e) {
-
+			System.out.println("in select on");
 			if (CustomisedException.getErrorMessage() != "") {
 				TestFunctionsFactory.takeSnapShot("Subscriptions-Services DropDown");
 				TestFunctionsFactory.closeBrowser();
@@ -172,7 +172,7 @@ public class SubscripitionsNew {
 
 			obj.addOnValuesCheck(addOnServices);
 		} catch (Exception e) {
-
+System.out.println("in add on"+e.getMessage().toString());
 			if (CustomisedException.getErrorMessage() != "") {
 				TestFunctionsFactory.takeSnapShot("Add-Onservices");
 				TestFunctionsFactory.closeBrowser();

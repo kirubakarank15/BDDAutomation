@@ -43,7 +43,7 @@ import com.google.common.primitives.Bytes;
  */
 public class TestFunctionsFactory {
 
-	public static WebDriver  driver;
+	public static WebDriver driver;
 	CustomisedException obj;
 
 	/*
@@ -56,6 +56,18 @@ public class TestFunctionsFactory {
 	 * @throws CustomisedException
 	 */
 	public static void webEditText(WebElement element, String text) throws CustomisedException {
+		try {
+			element.clear();
+			element.sendKeys(text);
+		} catch (Exception e) {
+			e.printStackTrace();
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			throw obj;
+		}
+
+	}
+	
+	public  void webEditText1(WebElement element, String text) throws CustomisedException {
 		try {
 			element.clear();
 			element.sendKeys(text);
@@ -238,7 +250,7 @@ public class TestFunctionsFactory {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			// e.printStackTrace();
 			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
 			throw obj;
 		}
@@ -413,7 +425,7 @@ public class TestFunctionsFactory {
 		}
 
 		driver.manage().deleteAllCookies();
-	
+
 		objDriver.driver.manage().window().maximize();
 
 		driver.get(url);
@@ -436,8 +448,7 @@ public class TestFunctionsFactory {
 
 			String screenshotsDir = "test-output//ScreenShots//";
 
-			String filename = pageName + "_" + timeStamp + ".jpg";
-			path = screenshotsDir + filename;
+			String filename = pageName + "_" + timeStamp + ".png";
 			Path screenshotPath = Paths.get(screenshotsDir, filename);
 			// File SrcFile =
 			// ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -452,22 +463,8 @@ public class TestFunctionsFactory {
 			File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
 
 			// Copy file at destination
-			
 
-
-		        //Call getScreenshotAs method to create image file
-
-		    
-
-		            //Move image file to new destination
-
-		                File DestFile=new File(screenshotPath.toString());
-
-		                //Copy file at destination
-
-		                FileUtils.copyFile(SrcFile, DestFile);
-
-			//FileUtils.copyFile(SrcFile, screenshotPath.toFile());
+			FileUtils.copyFile(SrcFile, screenshotPath.toFile());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

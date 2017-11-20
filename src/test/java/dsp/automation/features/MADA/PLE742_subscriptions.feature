@@ -6,7 +6,7 @@ Feature: To check the subscription catlog is displayed correctly for PLE742
     Then The page "Myworklist" should be displayed
     When search Asset details as "UIT00131" in My Worklist Page
 
-  @catlogin @PLE742
+  @catlogin
   Scenario Outline: To check whether subscriptions are populated properly in Customer,cat and Dealer subscription dropdown for the device Type PLE742 when logged in as CAT.
     #When search Asset details as "<S/N>" in My Worklist Page
     And select the services as "<Services>" from subscriptions page
@@ -17,19 +17,20 @@ Feature: To check the subscription catlog is displayed correctly for PLE742
       | PLE742      | UIT00131 | VISION LINK       | Cat Basic - Hourly,Cat Basic - 10 Minutes,Cat Essentials - Hourly,Cat Essentials - 10 Minutes |        |     |
       | PLE742      | UIT00131 | MY.CAT.COM        | Cat Daily                                                                                     |        |     |
       | PLE742      | UIT00131 | EQUIPMENT TRACKER | Cat Daily                                                                                     |        |     |
- @catlogin @PLE742
-  Scenario Outline: To
+
+  @catlogin @PLE742
+  Scenario Outline: To chek whether the Add-Ons are displayed properly for PLE742 subscriptions
     #When search Asset details as "<S/N>" in My Worklist Page
     And select the services as "<Services>" from subscriptions page
     And select the subscriptions as "<Customer>","<Dealer>","<Cat>"
     Then verify whether the Add-On services are displayed as "<Additional Services>"
 
     Examples: 
-      | Device Type | S/N      | Services    | Customer                    | Dealer | Cat | Additional Services |
-      | PLE742      | UIT00131 | VISION LINK | Cat Basic - Hourly          |        |     | Advanced Productivity,Onboard Analytics                                              |                     |
-      | PLE742      | UIT00131 | VISION LINK | Cat Basic - 10 Minutes      |        |     | Advanced Productivity,Onboard Analytics                                              |                     |
-      | PLE742      | UIT00131 | VISION LINK | Cat Essentials - Hourly     |        |     | Advanced Productivity,VisionLink Load and Cycle Project Monitoring,Onboard Analytics |                     |
-      | PLE742      | UIT00131 | VISION LINK | Cat Essentials - 10 Minutes |        |     | Advanced Productivity,VisionLink Load and Cycle Project Monitoring,Onboard Analytics |                     |
+      | Device Type | S/N      | Services    | Customer                    | Dealer | Cat | Additional Services                                            |
+      | PLE742      | UIT00131 | VISION LINK | Cat Basic - Hourly          |        |     | Onboard Analytics                                              |
+      | PLE742      | UIT00131 | VISION LINK | Cat Basic - 10 Minutes      |        |     | Onboard Analytics                                              |
+      | PLE742      | UIT00131 | VISION LINK | Cat Essentials - Hourly     |        |     | VisionLink Load and Cycle Project Monitoring,Onboard Analytics |
+      | PLE742      | UIT00131 | VISION LINK | Cat Essentials - 10 Minutes |        |     | VisionLink Load and Cycle Project Monitoring,Onboard Analytics |
 
   @dealerlogin
   Scenario Outline: To check whether subscriptions are populated properly in Customer,cat and Dealer subscription dropdown for the device Type PLE742 when logged in as Dealer.

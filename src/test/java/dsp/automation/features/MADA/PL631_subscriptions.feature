@@ -19,7 +19,7 @@ Feature: To check the subscription catlog is displayed correctly for PL631
       | PL631       | UIT00124 | MY.CAT.COM        | Cat Daily                                    |                             |                             |
       | PL631       | UIT00124 | EQUIPMENT TRACKER | Cat Daily                                    |                             |                             |
  @catlogin @PL631
-  Scenario Outline: To verify the addon servvices for the device type PL631
+  Scenario Outline: To chek whether the Add-Ons are displayed properly for PL631 subscriptions
     #When search Asset details as "<S/N>" in My Worklist Page
     And select the services as "<Services>" from subscriptions page
     And select the subscriptions as "<Customer>","<Dealer>","<Cat>"
