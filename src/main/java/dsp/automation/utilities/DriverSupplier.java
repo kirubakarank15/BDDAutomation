@@ -17,7 +17,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
  * 
  */
 public class DriverSupplier {  
-	public  WebDriver driver;
+	public  RemoteWebDriver driver;
  
 	/*krishk10
 	 * @return
