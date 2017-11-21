@@ -40,8 +40,6 @@ Feature: To validate the navigation across the DSP portal as a deployment smoke/
     When Navigate to "Administration->Administrator configuration"
     Then The page "Administrator configuration" should be displayed
 
-
-
   @Navigation_DealerProfileChange
   Scenario: changing Dealer Profile
     When change dealer code to "TD6"

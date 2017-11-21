@@ -41,7 +41,7 @@ public class  TestRunnerUIRegCatalogSync extends AbstractTestNGCucumberTests {
 		SimpleDateFormat ft = new SimpleDateFormat("Eyyyy.MM.dd'_'hh:mm:ssa");
 		String timeStamp = ft.format(dNow).replaceAll(":", "_");
 
-		RUNTIME_ENV = environment;
+		TestRunner.RUNTIME_ENV  = environment;
 
 		DisplayOrder NEWEST_FIRST = null;
 		NetworkMode ONLINE = null;

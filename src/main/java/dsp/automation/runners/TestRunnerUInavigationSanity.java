@@ -28,7 +28,7 @@ import dsp.automation.utilities.FileHandling;
 import dsp.automation.utilities.TestFunctionsFactory;
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src\\test\\java\\dsp\\automation\\features", glue = "stepDefenition", tags = {
-"@Sanity_Navigation" }, plugin = { "com.cucumber.listener.ExtentCucumberFormatter:" })
+" @Sanity_Navigation" }, plugin = { "com.cucumber.listener.ExtentCucumberFormatter:" })
 
 public class  TestRunnerUInavigationSanity extends AbstractTestNGCucumberTests {
 	public static String RUNTIME_ENV;
@@ -41,7 +41,7 @@ public class  TestRunnerUInavigationSanity extends AbstractTestNGCucumberTests {
 		SimpleDateFormat ft = new SimpleDateFormat("Eyyyy.MM.dd'_'hh:mm:ssa");
 		String timeStamp = ft.format(dNow).replaceAll(":", "_");
 
-		RUNTIME_ENV = environment;
+		TestRunner.RUNTIME_ENV = environment;
 
 		DisplayOrder NEWEST_FIRST = null;
 		NetworkMode ONLINE = null;
