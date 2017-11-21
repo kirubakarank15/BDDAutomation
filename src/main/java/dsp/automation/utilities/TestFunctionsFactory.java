@@ -19,6 +19,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -108,7 +109,28 @@ public class TestFunctionsFactory {
 	public static void mouseHover(WebElement element) throws CustomisedException {
 		try {
 			Actions obj = new Actions(driver);
-			obj.moveToElement(element).moveByOffset(element.getLocation().x, element.getLocation().y).build().perform();
+			//obj.moveToElement(element).moveByOffset(element.getLocation().x, element.getLocation().y).build().perform();
+			obj.moveToElement(element).build().perform();
+		} catch (Exception e) {
+			e.printStackTrace();
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			throw obj;
+		}
+
+	}
+
+	// Mouse Hover
+	/*
+	 * krishk10
+	 * 
+	 * @param element
+	 * 
+	 * @throws CustomisedException
+	 */
+	public static void clickHold(WebElement element) throws CustomisedException {
+		try {
+			Actions obj = new Actions(driver);
+			obj.clickAndHold(element);
 		} catch (Exception e) {
 			e.printStackTrace();
 			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
@@ -325,6 +347,29 @@ public class TestFunctionsFactory {
 			if (wait.until(ExpectedConditions.visibilityOf(element)) == null) {
 
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+
+			throw obj;
+		}
+	}
+	/*
+	 * krishk10
+	 * 
+	 * @param waitTime
+	 * 
+	 * @param element
+	 * 
+	 * @throws CustomisedException
+	 */
+	public static void webWaitStaleCheck(int waitTime, WebElement element) throws CustomisedException {
+		try {
+
+			Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(waitTime, TimeUnit.SECONDS)
+					.pollingEvery(2, TimeUnit.SECONDS).ignoring(StaleElementReferenceException.class);
+
+			wait.until(ExpectedConditions.visibilityOf(element));
 		} catch (Exception e) {
 			e.printStackTrace();
 			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());

@@ -229,7 +229,7 @@ public class SubscriptionsUpdated {
 			String[] inputData = data.split(",");
 			List<String> actualList = new ArrayList<>();
 			
-			LOGGER.info("Expected Values are :"+actualList);
+			
 			List<WebElement> chkBoxOptions = chkBoxAdditonalServices;
 			List<String> notFoundAddons = new ArrayList<>();
 			if (chkBoxOptions.size() == 0) {
@@ -240,7 +240,7 @@ public class SubscriptionsUpdated {
 				actualList.add(chkBox.getAttribute("innerText").toString().trim().replaceAll(" ", "").toUpperCase());
 
 			}
-
+			LOGGER.info("Expected Values are :"+actualList);
 			for (String inputAddOn : inputData) {
 				LOGGER.info("CHecking Add-On");
 			
@@ -252,13 +252,13 @@ public class SubscriptionsUpdated {
 
 				}
 			}
-			if (notFoundAddons.isEmpty()) {
+			if (notFoundAddons.size()>0) {
 				throw new CustomisedException("Following values are not displayed in Add-On :",
 						notFoundAddons.toString());
 			}
 
 		} catch (Exception e) {
-			System.out.println("MEssage"+e.getMessage().toString());
+		
 			if (!CustomisedException.getFieldValue().equals(null)) {
 				throw new CustomisedException(
 						"cat Subscription DropDown is facing problem with" + CustomisedException.getFieldValue(),
