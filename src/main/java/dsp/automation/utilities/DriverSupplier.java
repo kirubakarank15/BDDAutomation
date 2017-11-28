@@ -17,7 +17,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
  * 
  */
 public class DriverSupplier {  
-	public  WebDriver driver;
+	public  RemoteWebDriver driver;
  
 	/*krishk10
 	 * @return
@@ -37,15 +37,15 @@ public class DriverSupplier {
         options.addArguments("disable-infobars"); 
         //options.setBinary("Resources\\Drivers\\chromedriver.exe");
         //options.addArguments("--incognito");
-       // options.addArguments("--disable-extensions");
+     options.addArguments("--disable-extensions");
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         capabilities.setCapability("chrome.binary", "");
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 		//return driver;
-		DesiredCapabilities capabilities1 = DesiredCapabilities.internetExplorer();
+	/*	DesiredCapabilities capabilities1 = DesiredCapabilities.internetExplorer();
 			capabilities1.setCapability(CapabilityType.BROWSER_NAME, "IE");
 		capabilities1.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-		RemoteWebDriver driver = new RemoteWebDriver(capabilities1);
+		RemoteWebDriver driver = new RemoteWebDriver(capabilities1);*/
 		
 		driver = new ChromeDriver(options);
 		return driver;

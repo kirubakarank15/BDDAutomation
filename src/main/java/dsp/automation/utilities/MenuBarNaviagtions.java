@@ -31,7 +31,7 @@ public class MenuBarNaviagtions {
 	 */
 	public void menuNavigation(String menu) throws CustomisedException {
 		fieldValue = menu;
-		try {
+		try {		TestFunctionsFactory.waitForPageLoaded();
 			
 			LOGGER.info("Navigating to Menubar "+ menu);
 	
@@ -41,21 +41,22 @@ public class MenuBarNaviagtions {
 	
 
 				java.util.List<WebElement> links = TestFunctionsFactory.driver.findElements(By.xpath("//li//a"));
-				TestFunctionsFactory.webWait(60, links.get(0));
+		
 				for (WebElement element : links) {
 			
 					if (element.getText().replaceAll(" ", "").trim().toUpperCase()
 							.startsWith(menuBar.replaceAll(" ", "").trim().toUpperCase())) {
 					
-
-						TestFunctionsFactory.webWait(30, element);
+					
+						//TestFunctionsFactory.webWaitStaleCheck(20, element);
 						TestFunctionsFactory.mouseHover(element);
+				
 						TestFunctionsFactory.webClick(element);
-						LOGGER.info(element.getText()+" got clicked");
 						
+						if(menuBar.replaceAll(" ", "").trim().toUpperCase().equals("MYWORKLIST")){
 						List<WebElement> obj=TestFunctionsFactory.driver.findElements(By.xpath("//button[contains(text(),'Cancel')]"));
 						if(obj.size()!=0){
-							LOGGER.info("Handled Warning Pop Up for not saving with Cancel");
+							LOGGER.info("Handled Warning Pop Up for not saving with Cancel"+obj);
 							TestFunctionsFactory.waitForPageLoaded();
 							TestFunctionsFactory.javaScriptClick(TestFunctionsFactory.driver.findElement(By.xpath("//button[contains(text(),'Cancel')]")));
 						}
@@ -65,7 +66,7 @@ public class MenuBarNaviagtions {
 							LOGGER.info("Handled Warning Pop Up for not saving with OK");
 							TestFunctionsFactory.webClick(TestFunctionsFactory.driver.findElement(By.xpath("//button[contains(text(),'OK')]")));
 						}
-
+						}
 						
 					}
 
@@ -89,7 +90,7 @@ public class MenuBarNaviagtions {
 		fieldValue = dealerCode;
 		try {
 			// TestFunctionsFactory.webWait(60, dealerCodeIcon);
-
+			TestFunctionsFactory.waitForPageLoaded();
 			TestFunctionsFactory.mouseHoverAndClick(dealerCodeIcon);
 
 			TestFunctionsFactory.webWait(15, txtDealerCode);

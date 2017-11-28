@@ -45,12 +45,10 @@ public class  TestRunner extends AbstractTestNGCucumberTests {
 
 		DisplayOrder NEWEST_FIRST = null;
 		NetworkMode ONLINE = null;
-		
 		ExtentCucumberFormatter.initiateExtentCucumberFormatter
 		(new File("target\\site\\cucumber-pretty\\DSP_Automation_API"+timeStamp+".html"),
 		false, NEWEST_FIRST, ONLINE, new Locale("en-US"));
-//ExtentCucumberFormatter.loadConfig(new File("Resources\\extents-config.xml"));
-
+		ExtentCucumberFormatter.loadConfig(new File("Resources\\extents-config.xml"));
 	}
  
 	@Before

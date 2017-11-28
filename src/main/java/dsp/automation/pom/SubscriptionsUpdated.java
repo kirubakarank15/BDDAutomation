@@ -7,9 +7,7 @@ import static org.testng.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
@@ -229,29 +227,38 @@ public class SubscriptionsUpdated {
 		fieldValue = "Customer Subscription DropDown";
 		try {
 			String[] inputData = data.split(",");
+			List<String> actualList = new ArrayList<>();
+			
+			
 			List<WebElement> chkBoxOptions = chkBoxAdditonalServices;
-			if(chkBoxOptions.size()==0){
-				throw new CustomisedException("The Add-On dropdown is not displayed :",
-						data);
+			List<String> notFoundAddons = new ArrayList<>();
+			if (chkBoxOptions.size() == 0) {
+				throw new CustomisedException("The Add-On dropdown is not displayed :", data);
+
 			}
-			int i = 0;
 			for (WebElement chkBox : chkBoxOptions) {
-				i++;
+				actualList.add(chkBox.getAttribute("innerText").toString().trim().replaceAll(" ", "").toUpperCase());
 
-				for (String inputAddOn : inputData) {
+			}
+			LOGGER.info("Expected Values are :"+actualList);
+			for (String inputAddOn : inputData) {
+				LOGGER.info("CHecking Add-On");
+			
+					if (!actualList.contains(
+							inputAddOn.trim().replaceAll(" ", "").toUpperCase())) {
+						LOGGER.info("1 or more Add- Ons are not available");
+						notFoundAddons.add(inputAddOn);
+					
 
-					if (chkBox.getAttribute("innerText").toString().trim().equalsIgnoreCase(inputAddOn.trim())) {
-						LOGGER.info("Text matched");
-					} else if (chkBoxOptions.size() > i) {
-						throw new CustomisedException("The following add-On is not available for this Serial No :",
-								inputAddOn);
-					}
-
-					break;
 				}
+			}
+			if (notFoundAddons.size()>0) {
+				throw new CustomisedException("Following values are not displayed in Add-On :",
+						notFoundAddons.toString());
 			}
 
 		} catch (Exception e) {
+		
 			if (!CustomisedException.getFieldValue().equals(null)) {
 				throw new CustomisedException(
 						"cat Subscription DropDown is facing problem with" + CustomisedException.getFieldValue(),
@@ -279,17 +286,18 @@ public class SubscriptionsUpdated {
 			switch (drpDwnName.toLowerCase().trim().replaceAll(" ", "")) {
 
 			case "services":
-			case "services:": 
+			case "services:":
 				TestFunctionsFactory.selectFromDropDown(drpDwnServices, testData);
 				break;
 			case "basesubscripition":
 			case "customer":
 			case "customer:":
 				TestFunctionsFactory.selectFromDropDown(drpDwnCustomer, testData);
-				List<WebElement> obj=TestFunctionsFactory.driver.findElements(By.xpath("//button[contains(text(),'OK')]"));
-if(obj.size()!=0){
-	TestFunctionsFactory.webClick(btnOK);
-}
+				List<WebElement> obj = TestFunctionsFactory.driver
+						.findElements(By.xpath("//button[contains(text(),'OK')]"));
+				if (obj.size() != 0) {
+					TestFunctionsFactory.webClick(btnOK);
+				}
 				break;
 			case "cat":
 			case "cat:":
@@ -475,10 +483,7 @@ if(obj.size()!=0){
 		fieldValue = drpDwnName;
 		try {
 
-			
-				TestFunctionsFactory.selectFromDropDown(drpDownCancelPopUp, testData);
-		
-			
+			TestFunctionsFactory.selectFromDropDown(drpDownCancelPopUp, testData);
 
 		} catch (Exception e) {
 			CustomisedException.setErrorMessage(e.getMessage().toString());

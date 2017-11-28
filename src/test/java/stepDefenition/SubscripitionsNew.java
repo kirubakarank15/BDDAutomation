@@ -9,7 +9,6 @@ import java.util.Map;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-
 import cucumber.api.PendingException;
 import cucumber.api.Scenario;
 import cucumber.api.java.en.Then;
@@ -25,6 +24,7 @@ import dsp.automation.utilities.TestFunctionsFactory;
  * 
  */
 public class SubscripitionsNew {
+	CommonSteps relogin = new CommonSteps();
 	SubscriptionsUpdated obj = PageFactory.initElements(TestFunctionsFactory.driver, SubscriptionsUpdated.class);
 
 	@When("^verify the services drop down is displayed with applicable \"([^\"]*)\" values for the device type \"([^\"]*)\"$")
@@ -38,10 +38,14 @@ public class SubscripitionsNew {
 
 			if (CustomisedException.getErrorMessage() != "") {
 				TestFunctionsFactory.takeSnapShot("ServicesDropDown");
+				TestFunctionsFactory.closeBrowser();
+				relogin.login();
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
 				e.printStackTrace();
 				TestFunctionsFactory.takeSnapShot("ServicesDropDown");
+				TestFunctionsFactory.closeBrowser();
+				relogin.login();
 				Assert.fail(e.getMessage().toString());
 			}
 		}
@@ -57,14 +61,18 @@ public class SubscripitionsNew {
 		}
 
 		catch (Exception e) {
-
+			System.out.println("in select on");
 			if (CustomisedException.getErrorMessage() != "") {
 				TestFunctionsFactory.takeSnapShot("Subscriptions-Services DropDown");
+				TestFunctionsFactory.closeBrowser();
+				relogin.login();
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
 
 				e.printStackTrace();
 				TestFunctionsFactory.takeSnapShot("Subscriptions-Services DropDown");
+				TestFunctionsFactory.closeBrowser();
+				relogin.login();
 				Assert.fail(e.getMessage().toString());
 			}
 		}
@@ -78,30 +86,35 @@ public class SubscripitionsNew {
 		try {
 
 			if (!customer.equals("")) {
-				if(!customer.equals(null)){
-				obj.customerAndBaseSubscriptionDrpDownSyncCheck(customer);
+				if (!customer.equals(null)) {
+					obj.customerAndBaseSubscriptionDrpDownSyncCheck(customer);
 				}
 			}
 
 			if (!dealer.equals("")) {
-				if(!dealer.equals(null)){
-				System.out.println("PRINT"+dealer);
-				obj.dealerDrpDownSyncCheck(dealer);
+				if (!dealer.equals(null)) {
+					System.out.println("PRINT" + dealer);
+					obj.dealerDrpDownSyncCheck(dealer);
 				}
 			}
 			if (!cat.equals("")) {
-				if(!cat.equals(null)){
-				obj.catDrpDownSyncCheck(cat);}
+				if (!cat.equals(null)) {
+					obj.catDrpDownSyncCheck(cat);
+				}
 			}
 
 		} catch (Exception e) {
 			if (CustomisedException.getErrorMessage() != "") {
-	
+
 				TestFunctionsFactory.takeSnapShot("Subscriptions DropDown");
+				TestFunctionsFactory.closeBrowser();
+				relogin.login();
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
 				e.printStackTrace();
 				TestFunctionsFactory.takeSnapShot("Subscriptions DropDown");
+				TestFunctionsFactory.closeBrowser();
+				relogin.login();
 				Assert.fail(e.getMessage().toString());
 			}
 		}
@@ -113,19 +126,19 @@ public class SubscripitionsNew {
 		try {
 
 			if (!customer.equals("")) {
-				if(!customer.equals(null)){
-				obj.enterSubscriptionValues("customer", customer);
+				if (!customer.equals(null)) {
+					obj.enterSubscriptionValues("customer", customer);
 				}
 			}
 			if (!dealer.equals("")) {
-				if(!dealer.equals(null)){
-				obj.enterSubscriptionValues("dealer", dealer);
+				if (!dealer.equals(null)) {
+					obj.enterSubscriptionValues("dealer", dealer);
 				}
 			}
 
 			if (!cat.equals("")) {
-				if(!cat.equals(null)){
-				obj.enterSubscriptionValues("cat", cat);
+				if (!cat.equals(null)) {
+					obj.enterSubscriptionValues("cat", cat);
 				}
 			}
 
@@ -136,11 +149,15 @@ public class SubscripitionsNew {
 			if (CustomisedException.getErrorMessage() != "") {
 
 				TestFunctionsFactory.takeSnapShot("Subscriptions-Services DropDown");
+				TestFunctionsFactory.closeBrowser();
+				relogin.login();
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
 
-				e.printStackTrace();
+				// e.printStackTrace();
 				TestFunctionsFactory.takeSnapShot("Subscriptions-Services DropDown");
+				TestFunctionsFactory.closeBrowser();
+				relogin.login();
 				Assert.fail(e.getMessage().toString());
 			}
 		}
@@ -152,15 +169,20 @@ public class SubscripitionsNew {
 		// Write code here that turns the phrase above into concrete actions
 		// throw new PendingException();
 		try {
-
+     
 			obj.addOnValuesCheck(addOnServices);
-		} catch (Exception e) {
 
+		} catch (Exception e) {
+System.out.println("in add on"+e.getMessage().toString());
 			if (CustomisedException.getErrorMessage() != "") {
 				TestFunctionsFactory.takeSnapShot("Add-Onservices");
+				TestFunctionsFactory.closeBrowser();
+				relogin.login();
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
-				e.printStackTrace();
+				// e.printStackTrace();
+				TestFunctionsFactory.closeBrowser();
+				relogin.login();
 				TestFunctionsFactory.takeSnapShot("Add-Onservices");
 				Assert.fail(e.getMessage().toString());
 			}
@@ -188,18 +210,23 @@ public class SubscripitionsNew {
 
 			if (CustomisedException.getErrorMessage() != "") {
 				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				TestFunctionsFactory.closeBrowser();
+				relogin.login();
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
-				e.printStackTrace();
+				// e.printStackTrace();
 				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				TestFunctionsFactory.closeBrowser();
+				relogin.login();
 				Assert.fail(e.getMessage().toString());
 			}
 		}
 
 	}
+
 	@When("^Set Subscription details as \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
-	public void set_Subscription_details_as(String service, String customer,String AdditionalServices,Map<String, String> tableData)
-			throws Throwable {
+	public void set_Subscription_details_as(String service, String customer, String AdditionalServices,
+			Map<String, String> tableData) throws Throwable {
 		try {
 			System.out.println(tableData);
 			if (!service.equals("")) {
@@ -211,11 +238,13 @@ public class SubscripitionsNew {
 			if (!AdditionalServices.equals("")) {
 				obj.enterSubscriptionValues("AdditionalServices", AdditionalServices);
 			}
-			
+
 		} catch (Exception e) {
 
 			if (CustomisedException.getErrorMessage() != "") {
 				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				TestFunctionsFactory.closeBrowser();
+				relogin.login();
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
 				e.printStackTrace();
@@ -225,10 +254,9 @@ public class SubscripitionsNew {
 		}
 
 	}
-	
+
 	@When("^Set Subscription details as \"([^\"]*)\",\"([^\"]*)\"$")
-	public void set_Subscription_details_as(String service, String customer)
-			throws Throwable {
+	public void set_Subscription_details_as(String service, String customer) throws Throwable {
 		try {
 			if (!service.equals("")) {
 				obj.enterSubscriptionValues("services", service);
@@ -236,16 +264,19 @@ public class SubscripitionsNew {
 			if (!customer.equals("")) {
 				obj.enterSubscriptionValues("customer", customer);
 			}
-		
-			
+
 		} catch (Exception e) {
 
 			if (CustomisedException.getErrorMessage() != "") {
 				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				TestFunctionsFactory.closeBrowser();
+				relogin.login();
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
 				e.printStackTrace();
 				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				TestFunctionsFactory.closeBrowser();
+				relogin.login();
 				Assert.fail(e.getMessage().toString());
 			}
 		}
@@ -260,8 +291,8 @@ public class SubscripitionsNew {
 	}
 
 	@Then("^Verify Subscription details are displayed with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" in My Worklist page$")
-	public void verify_Subscription_details_should_be_displayed_with_in_My_Worklist_page(String service, String customer,String AdditionalServices)
-			throws Throwable {
+	public void verify_Subscription_details_should_be_displayed_with_in_My_Worklist_page(String service,
+			String customer, String AdditionalServices) throws Throwable {
 		try {
 			if (!service.equals("")) {
 				obj.verifySubscriptionValues("services", service);
@@ -272,21 +303,28 @@ public class SubscripitionsNew {
 			if (!AdditionalServices.equals("")) {
 				obj.verifySubscriptionValues("AdditionalServices", AdditionalServices);
 			}
-			
+
 		} catch (Exception e) {
 
 			if (CustomisedException.getErrorMessage() != "") {
 				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				TestFunctionsFactory.closeBrowser();
+				TestFunctionsFactory.closeBrowser();
+				relogin.login();
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
-				e.printStackTrace();
+				// e.printStackTrace();
 				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				TestFunctionsFactory.closeBrowser();
+				relogin.login();
 				Assert.fail(e.getMessage().toString());
 			}
-		}}
+		}
+	}
+
 	@Then("^Verify Subscription details are displayed with \"([^\"]*)\",\"([^\"]*)\" in My Worklist page$")
-	public void verify_Subscription_details_should_be_displayed_with_in_My_Worklist_page(String service, String customer)
-			throws Throwable {
+	public void verify_Subscription_details_should_be_displayed_with_in_My_Worklist_page(String service,
+			String customer) throws Throwable {
 		try {
 			if (!service.equals("")) {
 				obj.verifySubscriptionValues("services", service);
@@ -295,22 +333,26 @@ public class SubscripitionsNew {
 				obj.verifySubscriptionValues("customer", customer);
 			}
 
-			
 		} catch (Exception e) {
 
 			if (CustomisedException.getErrorMessage() != "") {
 				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				TestFunctionsFactory.closeBrowser();
+				relogin.login();
 				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
 			} else {
-				e.printStackTrace();
+				// e.printStackTrace();
 				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				TestFunctionsFactory.closeBrowser();
+				relogin.login();
 				Assert.fail(e.getMessage().toString());
 			}
-		}}
+		}
+	}
 
 	@Then("^Verify Subscription details are displayed with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" in My Worklist page$")
-	public void verify_Subscription_details_should_be_displayed_with_in_My_Worklist_page(String service, String customer,String dealer,String cat,String AdditionalServices)
-			throws Throwable {
+	public void verify_Subscription_details_should_be_displayed_with_in_My_Worklist_page(String service,
+			String customer, String dealer, String cat, String AdditionalServices) throws Throwable {
 		try {
 			if (!service.equals("")) {
 				obj.verifySubscriptionValues("services", service);
@@ -327,7 +369,7 @@ public class SubscripitionsNew {
 			if (!AdditionalServices.equals("")) {
 				obj.verifySubscriptionValues("AdditionalServices", AdditionalServices);
 			}
-			
+
 		} catch (Exception e) {
 
 			if (CustomisedException.getErrorMessage() != "") {
@@ -338,10 +380,12 @@ public class SubscripitionsNew {
 				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
 				Assert.fail(e.getMessage().toString());
 			}
-		}}
+		}
+	}
+
 	@When("^cancel subscription by selecting reason as \"([^\"]*)\"$")
 	public void cancel_subscription_by_selecting(String reason) throws Throwable {
-	obj.selectCancelReason("cancelreason", reason);
+		obj.selectCancelReason("cancelreason", reason);
 	}
 
 	@When("^select account name \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" from billing Pop Up$")

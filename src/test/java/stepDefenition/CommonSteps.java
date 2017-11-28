@@ -71,7 +71,7 @@ public class CommonSteps {
 					e1.printStackTrace(); 
 				}*/
 				e.printStackTrace();
-				TestFunctionsFactory.takeSnapShot("Login_page");
+				TestFunctionsFactory.takeSnapShot("Login_page"); 
 				Assert.fail(e.getMessage().toString());
 			}
 		}
