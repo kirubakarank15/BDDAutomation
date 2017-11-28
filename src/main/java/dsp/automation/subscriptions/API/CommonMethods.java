@@ -37,6 +37,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.simple.parser.ParseException;
+import org.testng.Assert;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParser;
@@ -53,8 +54,10 @@ import com.google.gson.JsonParser;
 import dsp.automation.AssetStructures.API.*;
 import dsp.automation.subscriptions.API.*;
 import dsp.automation.utilities.APIReponse;
+import dsp.automation.utilities.CustomisedException;
 import dsp.automation.utilities.DBconnection_API;
 import dsp.automation.utilities.ExcelReadWrite_API;
+
 
 public class CommonMethods {
 	/**
@@ -588,11 +591,26 @@ public class CommonMethods {
 		return dbValues;
 	}
 	
-	public String SkippedQuery(String columName,String Query) throws SQLException
+	public String SkippedQuery(String columName,String Query) throws SQLException, CustomisedException
 	{
-
+      
 		TreeMap<String, List<String>> map=this.getassetDetails(Query);
-		String value=map.get(columName).get(0);
+	
+			String value=map.get(columName).get(0);
+			try{
+				if (map.isEmpty())
+				{
+					throw new CustomisedException(
+							"Query wih SkippedQuery function is facing with" + CustomisedException.getFieldValue(),
+							CustomisedException.getErrorMessage());
+				}
+			}
+			catch(Exception e)
+			{
+			  Assert.fail(CustomisedException.getErrorMessage());
+			}
+	  
+		
 		return value;
 	}
 

@@ -143,8 +143,8 @@ public class CommonMethods_Subscriptions
 			return access_token;
 		}
 		
-		public static APIReponse apiexecutuion(String requestBody,String contentType,String acceptType,String requestType)
-				throws FileNotFoundException, NullPointerException, IOException, JSONException {
+		public static APIReponse apiexecutuion(String requestBody,String contentType,String acceptType,String requestType) throws FileNotFoundException, NullPointerException, JSONException, IOException
+				 {
 
 			StringEntity input = null;
 			CommonMethods_Subscriptions reusemethods = new CommonMethods_Subscriptions();
@@ -172,7 +172,6 @@ public class CommonMethods_Subscriptions
 			request.addHeader("Authorization", Oauthkey);
 			request.addHeader("Ocp-Apim-Subscription-Key", "ec53923cc0e5447bb0110812925f9ce2");
 			request.addHeader("cwsId" , "ramaia1");
-					
 			request.addHeader("accept", acceptType);
 			System.out.println("request body " + input);
 			
@@ -182,6 +181,7 @@ public class CommonMethods_Subscriptions
 			String response = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
 
 			Integer statusCode = httpResponse.getStatusLine().getStatusCode();
+		
 			if (statusCode == 200 || statusCode == 202 || statusCode == 201) {
 				apiReponse.setResponse(response);
 			} else {
@@ -189,11 +189,8 @@ public class CommonMethods_Subscriptions
 				apiReponse.setFailureReason(response);
 			}
 			apiReponse.setStatusCode(statusCode);
-			System.out.println("Response of the API :" + "\n" + response + "\n" + "status:" + statusCode);
+			System.out.println("Response of the API :" + "\t" + response + "\n" + "status:" + "\t" + statusCode);
 			return apiReponse;
 		}
-		
-		
-	
 
 }
