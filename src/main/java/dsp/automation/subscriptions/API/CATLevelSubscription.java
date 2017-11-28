@@ -31,7 +31,7 @@ public class CATLevelSubscription
 	
 		
 		
-	public static void CATLevelSubscription(String parentId,String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException
+	public static void CATLevelSubscription(String parentId,String make,String serialNumber, String siteId, String typeId, String level, String origin, String organization, String organizationType, String associatedOrganization, String associatedOrganizationType, String dcn, String billingtUserAccountId) throws IOException, DSPAutomationException, NullPointerException, JSONException
 	{
 		//CreateCatSubscription createcatSub = new CreateCatSubscription();
 		CreateSubscription creatsub = new CreateSubscription();
