@@ -1,12 +1,12 @@
 Feature: To check the subscription catlog is displayed correctly for PLE640
 
-  @catlogin @PLE640
+  @catlogin @PLE640 @catlogSync_Part4
   Scenario: Naviagation and searching the asset details
     When Navigate to "My worklist"
     Then The page "Myworklist" should be displayed
     When search Asset details as "UIT00128" in My Worklist Page
 
-  @catlogin @PLE640
+  @catlogin @PLE640 @catlogSync_Part4
   Scenario Outline: To check whether subscriptions are populated properly in Customer,cat and Dealer subscription dropdown for the device Type PLE640 when logged in as CAT.
     #When search Asset details as "<S/N>" in My Worklist Page
     And select the services as "<Services>" from subscriptions page
@@ -17,7 +17,7 @@ Feature: To check the subscription catlog is displayed correctly for PLE640
       | PLE640      | UIT00128 | PRODUCT LINK WEB  | Vitals (EC1-4),Aide (EC4-14),Aide (EC4-14-T),Advisor (EC24-54),Advisor (EC24-104),Advisor (EC24-204),Advisor (EC24-54-T) | Vitals (EC1-4),Aide (EC4-14),Aide (EC4-14-T),Advisor (EC24-54),Advisor (EC24-104),Advisor (EC24-204),Advisor (EC24-54-T) | Vitals (EC1-4),Aide (EC4-14),Aide (EC4-14-T),Advisor (EC24-54),Advisor (EC24-104),Advisor (EC24-204),Advisor (EC24-54-T),ECA Batch Data Service (E C24 ECA) |
       | PLE640      | UIT00128 | MY.CAT.COM        | Cat Daily                                                                                                                |                                                                                                                          |                                                                                                                                                             |
       | PLE640      | UIT00128 | EQUIPMENT TRACKER | Cat Daily                                                                                                                |                                                                                                                          |                                                                                                                                                             |
- @catlogin @PLE640
+ @catlogin @PLE640 @catlogSync_Part4
   Scenario Outline: To chek whether the Add-Ons are displayed properly for PLE640 subscriptions
     #When search Asset details as "<S/N>" in My Worklist Page
     And select the services as "<Services>" from subscriptions page

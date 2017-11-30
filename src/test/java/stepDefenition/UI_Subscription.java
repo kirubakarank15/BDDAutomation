@@ -23,10 +23,11 @@ import dsp.automation.utilities.TestFunctionsFactory;
  * 
  */
 public class UI_Subscription {
+	public static String serialNumber=null;
 	@When("^search Asset details as \"([^\"]*)\" in My Worklist Page$")
 	public void search_Asset_details_as_in_My_Worklist_Page(String data) {
 		try {
-		
+			serialNumber=data;
 			MyWorklist obj = PageFactory.initElements(TestFunctionsFactory.driver, MyWorklist.class);
 			obj.searchAssetDetails("S/N",data);
 			obj.actions("Submit");
@@ -45,7 +46,31 @@ public class UI_Subscription {
 		}
 
 	}
+	@When("^search Asset details as \"([^\"]*)\" with make code \"([^\"]*)\" in My Worklist Page$")
+	public void search_Asset_details_as_in_My_Worklist_PageWith_makecode(String serialNo,String makeCode) {
+		try {
+			serialNumber=serialNo;
+			MyWorklist obj = PageFactory.initElements(TestFunctionsFactory.driver, MyWorklist.class);
+			obj.searchAssetDetails("S/N",serialNo);
+			obj.actions("Submit");
+			obj.searchAssetDetails("makeCode",makeCode);
+			
+		}
 
+		catch (Exception e) {
+
+			if (CustomisedException.getErrorMessage() != null) {
+				TestFunctionsFactory.takeSnapShot("Search_Asset_Details_Page");
+				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			} else {
+				e.printStackTrace();
+				TestFunctionsFactory.takeSnapShot("Search_Asset_Details_Page");
+				Assert.fail(e.getMessage().toString());
+			}
+		}
+
+	}
+	
 	@Then("^Verify Subscription details should be displayed with \"([^\"]*)\" in My Worklist page$")
 	public void asset_details_should_be_displayed_as_in_My_Worklist_page(String testData) throws Throwable {
 

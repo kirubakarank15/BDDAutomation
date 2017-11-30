@@ -1,12 +1,12 @@
 Feature: To check the subscription catlog is displayed correctly for PLE742
 
-  @catlogin @PLE742
+  @catlogin @PLE742 @catlogSync_Part4
   Scenario: Naviagation and searching the asset details
     When Navigate to "My worklist"
     Then The page "Myworklist" should be displayed
     When search Asset details as "UIT00131" in My Worklist Page
 
-  @catlogin
+  @catlogin @catlogSync_Part4
   Scenario Outline: To check whether subscriptions are populated properly in Customer,cat and Dealer subscription dropdown for the device Type PLE742 when logged in as CAT.
     #When search Asset details as "<S/N>" in My Worklist Page
     And select the services as "<Services>" from subscriptions page
@@ -18,7 +18,7 @@ Feature: To check the subscription catlog is displayed correctly for PLE742
       | PLE742      | UIT00131 | MY.CAT.COM        | Cat Daily                                                                                     |        |     |
       | PLE742      | UIT00131 | EQUIPMENT TRACKER | Cat Daily                                                                                     |        |     |
 
-  @catlogin @PLE742
+  @catlogin @PLE742 @catlogSync_Part4
   Scenario Outline: To chek whether the Add-Ons are displayed properly for PLE742 subscriptions
     #When search Asset details as "<S/N>" in My Worklist Page
     And select the services as "<Services>" from subscriptions page

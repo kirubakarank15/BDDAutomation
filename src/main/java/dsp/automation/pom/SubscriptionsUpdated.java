@@ -111,7 +111,7 @@ public class SubscriptionsUpdated {
 			TestFunctionsFactory.verifyDropDown(drpDwnServices, expectedOptionList);
 
 		} catch (Exception e) {
-			if (!CustomisedException.getFieldValue().equals(null)) {
+			if (CustomisedException.getFieldValue()!=null) {
 				throw new CustomisedException(
 						"Services DropDown is facing problem with" + CustomisedException.getFieldValue(),
 						CustomisedException.getErrorMessage());
@@ -142,7 +142,7 @@ public class SubscriptionsUpdated {
 			TestFunctionsFactory.verifyDropDown(drpDwnCustomer, expectedOptionList);
 
 		} catch (Exception e) {
-			if (!CustomisedException.getFieldValue().equals(null)) {
+			if (CustomisedException.getFieldValue()!=null) {
 				throw new CustomisedException(
 						"Customer Subscription DropDown is facing problem with" + CustomisedException.getFieldValue(),
 						CustomisedException.getErrorMessage());
@@ -172,7 +172,7 @@ public class SubscriptionsUpdated {
 			TestFunctionsFactory.verifyDropDown(drpDwnDealer, expectedOptionList);
 
 		} catch (Exception e) {
-			if (!CustomisedException.getFieldValue().equals(null)) {
+			if (CustomisedException.getFieldValue()!=null) {
 				throw new CustomisedException(
 						"Dealer Subscription DropDown is facing problem with" + CustomisedException.getFieldValue(),
 						CustomisedException.getErrorMessage());
@@ -202,7 +202,7 @@ public class SubscriptionsUpdated {
 			TestFunctionsFactory.verifyDropDown(drpDwnCat, expectedOptionList);
 
 		} catch (Exception e) {
-			if (!CustomisedException.getFieldValue().equals(null)) {
+			if (CustomisedException.getFieldValue()!=null) {
 				throw new CustomisedException(
 						"cat Subscription DropDown is facing problem with" + CustomisedException.getFieldValue(),
 						CustomisedException.getErrorMessage());
@@ -259,7 +259,7 @@ public class SubscriptionsUpdated {
 
 		} catch (Exception e) {
 		
-			if (!CustomisedException.getFieldValue().equals(null)) {
+			if (CustomisedException.getFieldValue()!=null) {
 				throw new CustomisedException(
 						"cat Subscription DropDown is facing problem with" + CustomisedException.getFieldValue(),
 						CustomisedException.getErrorMessage());
@@ -279,7 +279,7 @@ public class SubscriptionsUpdated {
 	 * @throws CustomisedException
 	 */
 	public void enterSubscriptionValues(String drpDwnName, String testData) throws CustomisedException {
-
+		//System.out.println("testData"+testData);
 		fieldValue = drpDwnName;
 		try {
 
@@ -287,7 +287,9 @@ public class SubscriptionsUpdated {
 
 			case "services":
 			case "services:":
+				//System.out.println("testDatabEFORE"+testData);
 				TestFunctionsFactory.selectFromDropDown(drpDwnServices, testData);
+				//System.out.println("testDataaFTER"+testData);
 				break;
 			case "basesubscripition":
 			case "customer":
@@ -337,7 +339,7 @@ public class SubscriptionsUpdated {
 
 		} catch (Exception e) {
 			CustomisedException.setErrorMessage(e.getMessage().toString());
-			if (!CustomisedException.getFieldValue().equals(null)) {
+			if (CustomisedException.getFieldValue()!=null) {
 				throw new CustomisedException(
 						"Subscription page is facing problem with " + CustomisedException.getFieldValue(),
 						CustomisedException.getErrorMessage());
@@ -414,7 +416,7 @@ public class SubscriptionsUpdated {
 			}
 		} catch (Exception e) {
 			CustomisedException.setErrorMessage(e.getMessage().toString());
-			if (!CustomisedException.getFieldValue().equals(null)) {
+			if (CustomisedException.getFieldValue()!=null) {
 				throw new CustomisedException(
 						"Subscription page is facing problem with " + CustomisedException.getFieldValue(),
 						CustomisedException.getErrorMessage());
@@ -457,7 +459,7 @@ public class SubscriptionsUpdated {
 
 		} catch (Exception e) {
 			CustomisedException.setErrorMessage(e.getMessage().toString());
-			if (!CustomisedException.getFieldValue().equals(null)) {
+			if (CustomisedException.getFieldValue()!=null) {
 				throw new CustomisedException(
 						"Billing Pop Up is facing problem with " + CustomisedException.getFieldValue(),
 						CustomisedException.getErrorMessage());
@@ -487,7 +489,7 @@ public class SubscriptionsUpdated {
 
 		} catch (Exception e) {
 			CustomisedException.setErrorMessage(e.getMessage().toString());
-			if (!CustomisedException.getFieldValue().equals(null)) {
+			if (CustomisedException.getFieldValue()!=null) {
 				throw new CustomisedException(
 						"Cancel Reason Pop Up is facing problem with " + CustomisedException.getFieldValue(),
 						CustomisedException.getErrorMessage());
@@ -551,7 +553,7 @@ public class SubscriptionsUpdated {
 			}
 
 		} catch (Exception e) {
-			if (!CustomisedException.getFieldValue().equals(null)) {
+			if (CustomisedException.getFieldValue()!=null) {
 				throw new CustomisedException(
 						"Clciking on " + action + " button is facing problem :" + CustomisedException.getFieldValue(),
 						CustomisedException.getErrorMessage());
@@ -579,7 +581,7 @@ public class SubscriptionsUpdated {
 					(FileHandling.getProperty("SUBSCRIPTION_NO_CUSTOMER_WARN")).trim().toLowerCase());
 
 		} catch (Exception e) {
-			if (!CustomisedException.getFieldValue().equals(null)) {
+			if (CustomisedException.getFieldValue()!=null) {
 				throw new CustomisedException(
 						"Subscriptions page is facing problem with" + CustomisedException.getFieldValue(),
 						CustomisedException.getErrorMessage());
@@ -611,7 +613,7 @@ public class SubscriptionsUpdated {
 			 * ).toLowerCase());
 			 */
 		} catch (Exception e) {
-			if (!CustomisedException.getFieldValue().equals(null)) {
+			if (CustomisedException.getFieldValue()!=null) {
 				throw new CustomisedException(
 						"Subscriptions page is facing problem with" + CustomisedException.getFieldValue(),
 						CustomisedException.getErrorMessage());

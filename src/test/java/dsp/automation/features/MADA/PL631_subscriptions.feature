@@ -1,12 +1,12 @@
 Feature: To check the subscription catlog is displayed correctly for PL631
 
-  @catlogin @PL631  
+  @catlogin @PL631  @catlogSync_Part3
   Scenario: Naviagation and searching the asset details
     When Navigate to "My worklist"
     Then The page "Myworklist" should be displayed
     When search Asset details as "UIT00124" in My Worklist Page
 
-  @catlogin @PL63
+  @catlogin @PL63 @catlogSync_Part3
   Scenario Outline: To check whether subscriptions are populated properly in Customer,cat and Dealer subscription dropdown for the device Type PL631 when logged in as CAT.
     #When search Asset details as "<S/N>" in My Worklist Page
     And select the services as "<Services>" from subscriptions page
@@ -18,7 +18,7 @@ Feature: To check the subscription catlog is displayed correctly for PL631
       | PL631       | UIT00124 | VISION LINK       | Cat Basic - 4 Hours,Cat Essentials - 4 Hours |                             |                             |
       | PL631       | UIT00124 | MY.CAT.COM        | Cat Daily                                    |                             |                             |
       | PL631       | UIT00124 | EQUIPMENT TRACKER | Cat Daily                                    |                             |                             |
- @catlogin @PL6311
+ @catlogin @PL6311 @catlogSync_Part3
   Scenario Outline: To chek whether the Add-Ons are displayed properly for PL631 subscriptions
     #When search Asset details as "<S/N>" in My Worklist Page
     And select the services as "<Services>" from subscriptions page

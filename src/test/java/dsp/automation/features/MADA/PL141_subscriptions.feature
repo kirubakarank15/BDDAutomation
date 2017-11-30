@@ -1,12 +1,12 @@
 Feature: To check the subscription catlog is displayed correctly for PL141
 @PL141
-  @catlogin
+  @catlogin @catlogSync_Part1
   Scenario: Naviagation and searching the asset details
     When Navigate to "My worklist"
     Then The page "Myworklist" should be displayed
     When search Asset details as "UIT00118" in My Worklist Page
 
-  @catlogin @PL141
+  @catlogin @PL141 @catlogSync_Part1
   Scenario Outline: To check whether subscriptions are populated properly in Customer,cat and Dealer subscription dropdown for the device Type PL141 when logged in as CAT.
     #When search Asset details as "<S/N>" in My Worklist Page
     And select the services as "<Services>" from subscriptions page

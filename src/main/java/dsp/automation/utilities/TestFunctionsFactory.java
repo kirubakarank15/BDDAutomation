@@ -67,8 +67,8 @@ public class TestFunctionsFactory {
 		}
 
 	}
-	
-	public  void webEditText1(WebElement element, String text) throws CustomisedException {
+
+	public void webEditText1(WebElement element, String text) throws CustomisedException {
 		try {
 			element.clear();
 			element.sendKeys(text);
@@ -109,7 +109,8 @@ public class TestFunctionsFactory {
 	public static void mouseHover(WebElement element) throws CustomisedException {
 		try {
 			Actions obj = new Actions(driver);
-			//obj.moveToElement(element).moveByOffset(element.getLocation().x, element.getLocation().y).build().perform();
+			// obj.moveToElement(element).moveByOffset(element.getLocation().x,
+			// element.getLocation().y).build().perform();
 			obj.moveToElement(element).build().perform();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -241,6 +242,47 @@ public class TestFunctionsFactory {
 	 * 
 	 * @param element
 	 * 
+	 * @param option
+	 * 
+	 * @throws CustomisedException
+	 */
+	public static void selectFromTypeAhead(List<WebElement> elements, String option) throws CustomisedException {
+		try {
+			TestFunctionsFactory.waitForPageLoaded();
+
+			int counter = 0;
+			List<WebElement> optionsList = elements;
+			int i = 0;
+			for (WebElement options : optionsList) {
+
+				System.out.println("Options" + options.getText());
+				if (options.getAttribute("innerText").trim().replace(" ", "").split("-")[0].equalsIgnoreCase(option.trim().replace(" ", "").split("-")[0])) {
+					// webWait(10, options);
+					
+					System.out.println("Option found" + options.getText());
+				TestFunctionsFactory.javaScriptClick(options);
+					// selectObj.selectByValue(options.getText());
+					
+					counter++;
+					break;
+				}
+				i++;
+			}
+			if (counter == 0) {
+				throw new CustomisedException(option, "is not available in the TypeAhead");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			CustomisedException obj = new CustomisedException(option, e.getMessage().toString());
+			throw obj;
+		}
+
+	}
+	/*
+	 * krishk10
+	 * 
+	 * @param element
+	 * 
 	 * @param expectedOptions
 	 * 
 	 * @throws CustomisedException
@@ -265,8 +307,11 @@ public class TestFunctionsFactory {
 
 			// now we have actual options and expected option as a string with
 			// UPPER case in two list
-			if ((!expectedTrimmedList.containsAll(actualTrimmedList))
-					|| expectedTrimmedList.size() != actualTrimmedList.size()) {
+			if (expectedTrimmedList.size() != actualTrimmedList.size()) {
+				throw new CustomisedException("Expected Values are: " + expectedTrimmedList,
+						"But Actual Values are : " + actualTrimmedList);
+			}
+			if ((!actualTrimmedList.containsAll(expectedTrimmedList))) {
 				throw new CustomisedException("Expected Values are: " + expectedTrimmedList,
 						"But Actual Values are : " + actualTrimmedList);
 			}
@@ -354,6 +399,7 @@ public class TestFunctionsFactory {
 			throw obj;
 		}
 	}
+
 	/*
 	 * krishk10
 	 * 
@@ -553,7 +599,7 @@ public class TestFunctionsFactory {
 	 * 
 	 */
 	public static void closeBrowser() {
-		TestFunctionsFactory.driver.quit();
+		TestFunctionsFactory.driver.close();
 
 	}
 }

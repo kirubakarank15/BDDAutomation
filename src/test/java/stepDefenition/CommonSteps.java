@@ -43,7 +43,7 @@ public class CommonSteps {
 					FileHandling.getProperty(TestRunner.RUNTIME_ENV));
 			Login obj = PageFactory.initElements(TestFunctionsFactory.driver, Login.class);
 
-			obj.isPageDisplayed();
+			obj.isPageDisplayed(); 
 
 			obj.enterDetails(FileHandling.getProperty("User_Name"),
 					FileHandling.getProperty("Password"));
