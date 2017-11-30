@@ -46,7 +46,7 @@ public class  TestRunnerUIRegCatalogSync extends AbstractTestNGCucumberTests {
 		DisplayOrder NEWEST_FIRST = null;
 		NetworkMode ONLINE = null;
 		ExtentCucumberFormatter.initiateExtentCucumberFormatter
-		(new File("target\\site\\cucumber-pretty\\DSP_Automation_API"+timeStamp+".html"),
+		(new File("target\\site\\cucumber-pretty\\DSP_Automation_CatalogSync"+timeStamp+".html"),
 		false, NEWEST_FIRST, ONLINE, new Locale("en-US"));
 		ExtentCucumberFormatter.loadConfig(new File("Resources\\extents-config.xml"));
 	}
