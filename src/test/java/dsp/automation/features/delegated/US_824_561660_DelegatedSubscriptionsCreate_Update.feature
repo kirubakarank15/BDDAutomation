@@ -1,4 +1,4 @@
-@API @2017B.2 @US_824 @US_561660 @DelegatedSubscription
+ @2017B.2 @US_824 @US_561660 @DelegatedSubscription
 Feature: Creation and Updation of All Levels of Subscription and Delegations for the OnboardedAsset
   This feature is to Validate Creation and Updation All Levels of Subscription and Delegations for the OnboardedAsset
 
