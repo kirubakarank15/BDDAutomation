@@ -7,7 +7,7 @@ Feature: Product ID Update in DSP UI
     Then The page "Myworklist" should be displayed
 
   @TC_1123 @Positive @Catprofile
-  Scenario Outline: To verify Product Id update when To product id with CAT make is already exists in DSP DB as cat profile
+  Scenario Outline: To verify Product Id update when To product id with CAT make is already exists in DSP DB as cat profile #passed
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
     And Enters "<To Product id>" with same make that is already exists in DSP DB with a device
@@ -21,7 +21,7 @@ Feature: Product ID Update in DSP UI
       | RFV00103     | RFV00103      |
 
   @TC_1127 @Positive @catprofile
-  Scenario Outline: To verify Product Id update when To product id with CAT make is already having active subscriptions/services in DSP DB as cat profile
+  Scenario Outline: To verify Product Id update when To product id with CAT make is already having active subscriptions/services in DSP DB as cat profile #passed
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
     And Enters "<To Product id>" with same make that is already having active subscriptions/services in subscription history table
@@ -34,7 +34,7 @@ Feature: Product ID Update in DSP UI
       | RFV00105     | RFV00105      |
       | RFV00108     | RFV00108      |
 
-  @TC_1280 @Positive @Catprofile 
+  @TC_1280 @Positive @Catprofile
   Scenario Outline: To verify Product Id update when To product id with NON CAT make is already exists in DSP DB as cat profile
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -94,7 +94,7 @@ Feature: Product ID Update in DSP UI
       | RFV00105     | RFV00105      |
       | RFV00108     | RFV00108      |
 
-@TC_1284 @Positive @Dealerprofile 
+@TC_1284 @Positive @Dealerprofile
   Scenario Outline: To verify Product Id update when To product id with NON CAT make is already exists in DSP DB as Dealer profile
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -126,7 +126,7 @@ Feature: Product ID Update in DSP UI
       | ZUK00108     | ZUK00108      |
       | ZUK00109     | ZUK00109      |
 
-@TC_ @Positive @Factoryuser
+@TC_ @Positive @Factoryuser 
   Scenario Outline: To verify Product Id update when To product id with CAT make is already exists in DSP DB as Factoryuser
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -140,7 +140,7 @@ Feature: Product ID Update in DSP UI
       | RFV00102     | RFV00102      |
       | RFV00103     | RFV00103      |
 
-  @TC_ @Positive @Factoryuser
+  @TC_ @Positive @Factoryuser 
   Scenario Outline: To verify Product Id update when To product id with CAT make is already having active subscriptions/services in DSP DB as Factoryuser
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -170,7 +170,7 @@ Feature: Product ID Update in DSP UI
       | ZUK00103     | ZUK00103      |
       | ZUK00104     | ZUK00104      |
 
-@TC_ @Positive @Factoryuser
+@TC_ @Positive @Factoryuser 
   Scenario Outline: To verify Product Id update when To product id with NON CAT make is already having active subscriptions/services in DSP DB as Factoryuser
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -186,7 +186,7 @@ Feature: Product ID Update in DSP UI
       | ZUK00108     | ZUK00108      |
       | ZUK00109     | ZUK00109      |
 
-@TC_ @Positive @FieldTechnician
+@TC_ @Positive @FieldTechnician 
   Scenario Outline: To verify Product Id update when To product id with CAT make is already exists in DSP DB as FieldTechnician
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -200,7 +200,7 @@ Feature: Product ID Update in DSP UI
       | RFV00102     | RFV00102      |
       | RFV00103     | RFV00103      |
 
-  @TC_ @Positive @FieldTechnician
+  @TC_ @Positive @FieldTechnician 
   Scenario Outline: To verify Product Id update when To product id with CAT make is already having active subscriptions/services in DSP DB as FieldTechnician
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -214,7 +214,7 @@ Feature: Product ID Update in DSP UI
       | RFV00105     | RFV00105      |
       | RFV00108     | RFV00108      |
 
-@TC_ @Positive @FieldTechnician 
+@TC_ @Positive @FieldTechnician
   Scenario Outline: To verify Product Id update when To product id with NON CAT make is already exists in DSP DB as FieldTechnician
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -246,7 +246,7 @@ Feature: Product ID Update in DSP UI
       | ZUK00108     | ZUK00108      |
       | ZUK00109     | ZUK00109      |
 
-@TC_ @Positive @MinestarUser
+@TC_ @Positive @MinestarUser 
   Scenario Outline: To verify Product Id update when To product id with CAT make is already exists in DSP DB as MinestarUser
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -256,11 +256,12 @@ Feature: Product ID Update in DSP UI
 
     Examples: 
       | SerialNumber | To Product id |
-      | RFV00101     | RFV00101      |
-      | RFV00102     | RFV00102      |
-      | RFV00103     | RFV00103      |
+      | RFV00201     | RFV00201      |
+      | RFV00202     | RFV00202      |
+      | RFV00203     | RFV00203      |
+      | RFV00204     | RFV00204      |
 
-  @TC_ @Positive @MinestarUser
+  @TC_ @Positive @MinestarUser 
   Scenario Outline: To verify Product Id update when To product id with CAT make is already having active subscriptions/services in DSP DB as MinestarUser
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -270,9 +271,9 @@ Feature: Product ID Update in DSP UI
 
     Examples: 
       | SerialNumber | To Product id |
-      | RFV00104     | RFV00104      |
-      | RFV00105     | RFV00105      |
-      | RFV00108     | RFV00108      |
+      | RFV00205     | RFV00205      |
+      | RFV00206     | RFV00206      |
+      | RFV00207     | RFV00207      |
 
 @TC_ @Positive @MinestarUser 
   Scenario Outline: To verify Product Id update when To product id with NON CAT make is already exists in DSP DB as MinestarUser
@@ -290,7 +291,7 @@ Feature: Product ID Update in DSP UI
       | ZUK00103     | ZUK00103      |
       | ZUK00104     | ZUK00104      |
 
-@TC_ @Positive @MinestarUser
+@TC_ @Positive @MinestarUser 
   Scenario Outline: To verify Product Id update when To product id with NON CAT make is already having active subscriptions/services in DSP DB as MinestarUser
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -306,7 +307,7 @@ Feature: Product ID Update in DSP UI
       | ZUK00108     | ZUK00108      |
       | ZUK00109     | ZUK00109      |
   
-  @TC_ @Positive @Customer
+  @TC_ @Positive @Customer 
   Scenario Outline: To verify Product Id update when To product id with CAT make is already exists in DSP DB as Customer profile
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon

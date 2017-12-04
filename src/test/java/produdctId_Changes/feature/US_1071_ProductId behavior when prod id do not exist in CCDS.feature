@@ -2,7 +2,7 @@
 Feature: Product ID Update in DSP UI
      This feature is to verify the behavior of product id update when 'To product id' does not exist in CCDS system
 
-  @TC_ @Positive @catprofile
+  @TC_ @Positive @catprofile 
   Scenario Outline: To verify Product Id update when To product id with CAT make is not exist in DSP DB, CCDS system and Trimble Store as cat profile
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -23,7 +23,7 @@ Feature: Product ID Update in DSP UI
       | RFV00114     | CSV00400      | CAT  |
       | RFV00115     | CSV00500      | CAT  |
 
-  @TC_ @Positive @catprofile
+  @TC_ @Positive @catprofile 
   Scenario Outline: To verify Product Id update when To product Id with Non Cat make is not exist in DSP DB, CCDS system and Trimble store as cat profile
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -42,7 +42,7 @@ Feature: Product ID Update in DSP UI
       | AAA00420     | QWE00124      | Z03  |
       | RFV00116     | QWE00125      | Z04  |
 
-  @TC_ @Positive @catprofile
+  @TC_ @Positive @catprofile 
   Scenario Outline: To Verify Product Id update when To product id with Cat make is not having any active subscriptions/services in DSP DB and not exist in CCDS system,Trimble store as cat profile
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -58,7 +58,7 @@ Feature: Product ID Update in DSP UI
       | RFV00109     | CSV00105      | CAT  |
       | RFV00110     | CSV00106      | CAT  |
 
-  @TC_ @Positive @catprofile
+  @TC_ @Positive @catprofile 
   Scenario Outline: To Verify Product Id update when To product id with Non Cat make is not having any active subscriptions/services in DSP DB and not exist in CCDS system,Tribmle store as cat profile
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -75,7 +75,7 @@ Feature: Product ID Update in DSP UI
       | RFV00113     | CSV00109      | Z02  |
       | RFV00114     | CSV00101      | Z03  |
 
-  @TC_ @Positive @catprofile
+  @TC_ @Positive @catprofile 
   Scenario Outline: To verify Product Id update when To product id with Cat make is not exist in DSP, CCDS system but exist in Trimble store as cat profile
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -87,11 +87,11 @@ Feature: Product ID Update in DSP UI
 
     Examples: 
       | SerialNumber | To product id | Make |
-      |              |               |      |
-      |              |               |      |
-      |              |               |      |
+      | RFV00150     | FAL00760      | CAT  |
+      | RFV00151     | FAL00760      | CAT  |
+      | RFV00152     | FAL00760      | CAT  |
 
-  @TC_ @Positive @Dealerprofile
+  @TC_ @Positive @Dealerprofile 
   Scenario Outline: To verify Product Id update when To product id with CAT make is not exist in DSP DB, CCDS system and Trimble Store as Dealer profile
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -109,7 +109,7 @@ Feature: Product ID Update in DSP UI
       | RFV00223     | CSV00223      | CAT  |
       | RFV00224     | CSV00224      | CAT  |
 
-  @TC_ @Positive @Dealerprofile
+  @TC_ @Positive @Dealerprofile 
   Scenario Outline: To verify Product Id update when To product Id with Non Cat make is not exist in DSP DB, CCDS system and Trimble store as Dealer profile
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -128,7 +128,7 @@ Feature: Product ID Update in DSP UI
       | RFV00229     | QWE00229      | Z03  |
       | RFV00230     | QWE00230      | Z04  |
 
-  @TC_ @Positive @Dealerprofile
+  @TC_ @Positive @Dealerprofile 
   Scenario Outline: To Verify Product Id update when To product id with Cat make is not having any active subscriptions/services in DSP DB and not exist in CCDS system,Trimble store as Dealer profile
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -145,7 +145,7 @@ Feature: Product ID Update in DSP UI
       | RFV00118     | CSV00118      | CAT  |
       | RFV00119     | CSV00119      | CAT  |
 
-  @TC_ @Positive @Dealerprofile
+  @TC_ @Positive @Dealerprofile 
   Scenario Outline: To Verify Product Id update when To product id with Non Cat make is not having any active subscriptions/services in DSP DB and not exist in CCDS system,Tribmle store as Dealer profile
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -163,7 +163,7 @@ Feature: Product ID Update in DSP UI
       | CFV00111     | CSV00111      | Z99  |
       | CFV00112     | CSV00112      | Z04  |
 
-  @TC_ @Positive @Dealerprofile
+  @TC_ @Positive @Dealerprofile 
   Scenario Outline: To verify Product Id update when To product id with Cat make is not exist in DSP, CCDS system but exist in Trimble store as Dealer profile
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -175,17 +175,17 @@ Feature: Product ID Update in DSP UI
 
     Examples: 
       | SerialNumber | To product id | Make |
-      |              |               |      |
-      |              |               |      |
-      |              |               |      |
+      | RFV00153     | FAL00760      | CAT  |
+      | RFV00154     | FAL00760      | CAT  |
+      | RFV00155     | FAL00760      | CAT  |
 
-  @TC_ @Positive @FactoryUser
+  @TC_ @Positive @FactoryUser 
   Scenario Outline: To verify Product Id update when To product id with CAT make is not exist in DSP DB, CCDS system and Trimble Store as Factoryuser
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
     And Enters '<To product id>'with "<Make>" combination that is not exists in DSP DB
     And Clicks on save button
-    Then Check if the response of Asset structure Get API is 404
+    #Then Check if the response of Asset structure Get API is 404
     And Check To product id is not exist in Trimble store
     And Verify in UI product id is changed successfully
 
@@ -197,7 +197,7 @@ Feature: Product ID Update in DSP UI
       | RFV00234     | CSV00234      | CAT  |
       | RFV00235     | CSV00235      | CAT  |
 
-  @TC_ @Positive @Factoryuser
+  @TC_ @Positive @Factoryuser 
   Scenario Outline: To verify Product Id update when To product Id with Non Cat make is not exist in DSP DB, CCDS system and Trimble store as Factoryuser
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -216,7 +216,7 @@ Feature: Product ID Update in DSP UI
       | RFV00240     | QWE00240      | Z03  |
       | RFV00241     | QWE00241      | Z04  |
 
-  @TC_ @Positive @factoryuser
+  @TC_ @Positive @factoryuser 
   Scenario Outline: To Verify Product Id update when To product id with Cat make is not having any active subscriptions/services in DSP DB and not exist in CCDS system,Trimble store factory user
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -233,7 +233,7 @@ Feature: Product ID Update in DSP UI
       | RFV00218     | CSV00218      | CAT  |
       | RFV00219     | CSV00219      | CAT  |
 
-  @TC_ @Positive @Factoryuser
+  @TC_ @Positive @Factoryuser 
   Scenario Outline: To Verify Product Id update when To product id with Non Cat make is not having any active subscriptions/services in DSP DB and not exist in CCDS system,Tribmle store as Factory user
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
@@ -251,8 +251,8 @@ Feature: Product ID Update in DSP UI
       | CFV00116     | CSV00116      | Z99  |
       | CFV00117     | CSV00117      | Z04  |
 
-  @TC_ @Positive @Dealerprofile
-  Scenario Outline: To verify Product Id update when To product id with Cat make is not exist in DSP, CCDS system but exist in Trimble store as Dealer profile
+  @TC_ @Positive @Factoryuser 
+  Scenario Outline: To verify Product Id update when To product id with Cat make is not exist in DSP, CCDS system but exist in Trimble store as Factory user profile
     When search Asset details as "<SerialNumber>" in My Worklist Page
     And User clicks on product id update icon
     And Enters '<To product id>'with "<Make>" that is not having any active subscriptions/services in DSP DB
@@ -261,12 +261,12 @@ Feature: Product ID Update in DSP UI
     And Check To product id is exist in Trimble store
     And Verify in UI This product ID is having active subscription. Please cancel the subscription in Trimble store.
 
-    Examples: 
+     Examples: 
       | SerialNumber | To product id | Make |
-      |              |               |      |
-      |              |               |      |
-      |              |               |      |
-
+      | RFV00156     | FAL00760      | CAT  |
+      | RFV00157     | FAL00760      | CAT  |
+      | RFV00158     | FAL00760      | CAT  |
+      
   @TC_ @Positive @Customer
   Scenario Outline: To verify Product Id update when To product id with CAT make is not exist in DSP DB, CCDS system and Trimble Store as Customer
     When search Asset details as "<SerialNumber>" in My Worklist Page
