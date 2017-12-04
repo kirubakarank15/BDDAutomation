@@ -249,7 +249,7 @@ public class SubscripitionsNew {
 
 	}
 
-	@And("^update the subscriptions for the Asset as \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
+	@And("^update the subscriptions for the Asset as \"([^\"]*)\",\"([^\"]*)\", \"([^\"]*)\"$")
 	@When("^Set Subscription details as \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
 	public void set_Subscription_details_as(String service, String customer, String AdditionalServices)
 			throws Throwable {
@@ -280,7 +280,7 @@ public class SubscripitionsNew {
 		}
 
 	}
-
+	@And("^update the subscriptions for the Asset as \"([^\"]*)\",\"([^\"]*)\"$")
 	@When("^Set Subscription details as \"([^\"]*)\",\"([^\"]*)\"$")
 	public void set_Subscription_details_as(String service, String customer) throws Throwable {
 		try {
@@ -376,7 +376,7 @@ public class SubscripitionsNew {
 		}
 	}
 
-	@Then("^Verify Subscription details are displayed with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" in My Worklist page$")
+	@Then("^Verify Subscription details are displayed with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" for Product Link Web in My Worklist page$")
 	public void verify_Subscription_details_should_be_displayed_with_in_My_Worklist_page(String service,
 			String customer, String dealer, String cat, String AdditionalServices) throws Throwable {
 		try {
@@ -404,6 +404,38 @@ public class SubscripitionsNew {
 			} else {
 				e.printStackTrace();
 				TestFunctionsFactory.takeSnapShot("Setting Subscriptions");
+				Assert.fail(e.getMessage().toString());
+			}
+		}
+	}
+	@Then("^Verify Subscription details are displayed with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" for Product Link Web in My Worklist page$")
+	public void verify_Subscription_details_sproductLiknWeb_withOut_AddOn(String service,
+			String customer, String dealer, String cat) throws Throwable {
+		try {
+			if (!service.equals("")) {
+				obj.verifySubscriptionValues("services", service);
+			}
+			if (!customer.equals("")) {
+				obj.verifySubscriptionValues("customer", customer);
+			}
+			if (!dealer.equals("")) {
+				obj.verifySubscriptionValues("dealer", dealer);
+			}
+			if (!cat.equals("")) {
+				obj.verifySubscriptionValues("cat", cat);
+			}
+			/*if (!AdditionalServices.equals("")) {
+				obj.verifySubscriptionValues("AdditionalServices", AdditionalServices);
+			}
+*/
+		} catch (Exception e) {
+
+			if (CustomisedException.getErrorMessage() != null) {
+				TestFunctionsFactory.takeSnapShot("Verifying Subscriptions");
+				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			} else {
+				e.printStackTrace();
+				TestFunctionsFactory.takeSnapShot("Verifying Subscriptions");
 				Assert.fail(e.getMessage().toString());
 			}
 		}
@@ -471,11 +503,67 @@ public class SubscripitionsNew {
 
 	}
 
-	@When("^select account name \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" from billing Pop Up$")
-	public void select_account_name_from_billing_Pop_Up(String arg1, String arg2, String arg3) throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		// System.out.println(arg1 + " " + arg2 + " " + arg3);
-		// throw new PendingException();
-	}
+	@When("^select account name \"([^\"]*)\" from billing Pop Up$")
+	public void selectBillingAccoutnName(String AccountName) throws Throwable {
+		try {
 
+			obj.selectBillingDetails("accountname",AccountName); 
+
+		} catch (Exception e) {
+
+			if (CustomisedException.getErrorMessage() != null) {
+				TestFunctionsFactory.takeSnapShot("Billing Pop Up");
+			//	TestFunctionsFactory.closeBrowser();
+				// relogin.login();
+				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			} else {
+				e.printStackTrace();
+				TestFunctionsFactory.takeSnapShot("Billing Pop Up");
+				Assert.fail(e.getMessage().toString());
+			}
+		}
+
+	}
+	@When("^select account Contact \"([^\"]*)\" from billing Pop Up$")
+	public void selectBillingAccoutnContact(String AccountContact) throws Throwable {
+		try {
+
+		obj.selectBillingDetails("accountcontact",AccountContact); 
+
+		} catch (Exception e) {
+
+			if (CustomisedException.getErrorMessage() != null) {
+				TestFunctionsFactory.takeSnapShot("Billing Pop Up");
+			//	TestFunctionsFactory.closeBrowser();
+				// relogin.login();
+				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			} else {
+				e.printStackTrace();
+				TestFunctionsFactory.takeSnapShot("Billing Pop Up");
+				Assert.fail(e.getMessage().toString());
+			}
+		}
+
+	}
+	@When("^select account Number \"([^\"]*)\" from billing Pop Up$")
+	public void selectBillingAccoutnNumber(String AccountNumber) throws Throwable {
+		try {
+
+			obj.selectBillingDetails("accountNumber",AccountNumber); 
+
+		} catch (Exception e) {
+
+			if (CustomisedException.getErrorMessage() != null) {
+				TestFunctionsFactory.takeSnapShot("Billing Pop Up");
+			//	TestFunctionsFactory.closeBrowser();
+				// relogin.login();
+				Assert.fail(CustomisedException.getFieldValue() + " :" + CustomisedException.getErrorMessage());
+			} else {
+				e.printStackTrace();
+				TestFunctionsFactory.takeSnapShot("Billing Pop Up");
+				Assert.fail(e.getMessage().toString());
+			}
+		}
+
+	}
 }

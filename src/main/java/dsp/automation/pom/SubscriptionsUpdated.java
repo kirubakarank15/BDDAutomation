@@ -35,6 +35,9 @@ public class SubscriptionsUpdated {
 
 	@FindBy(xpath = "//span//button")
 	private WebElement btnSubmit;
+	@FindBy(xpath = "//div[contains(text(),'New Subscription Applied Successfully.')]")
+
+	private WebElement successMessage;
 	@FindBy(xpath = "//div[contains(@class,'services')]//span[contains(text(),'Services:')]//parent::div//select")
 
 	private WebElement drpDwnServices;
@@ -443,7 +446,7 @@ public class SubscriptionsUpdated {
 		try {
 
 			switch (drpDwnName.toLowerCase().trim().replaceAll(" ", "")) {
-			case "accountnameordescription:":
+			case "accountname":
 			case "accountnameordescription":
 				TestFunctionsFactory.selectFromDropDown(drpDownAccountDesc, testData);
 				break;
@@ -525,7 +528,7 @@ public class SubscriptionsUpdated {
 				TestFunctionsFactory.waitForPageLoaded();
 				TestFunctionsFactory.javaScriptClick(btnSubmit);
 
-				TestFunctionsFactory.waitForPageLoaded();
+				TestFunctionsFactory.webWait(20, successMessage);
 				break;
 			case "<<Back":
 			case "BACK":

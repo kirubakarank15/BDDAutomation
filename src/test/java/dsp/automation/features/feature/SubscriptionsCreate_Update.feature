@@ -1,4 +1,4 @@
-@API
+
 Feature: Creation and Updation of All Inheritance Subscriptions for the OnboardedAsset
   This feature is to Validate Creation and Updation of All Inheritance Subscriptions for the OnboardedAsset
 

@@ -1,24 +1,24 @@
-@Regression @PL631_SetSubscriptions
+@Regression 
 Feature: 
 
   Background: 
     When Navigate to "My worklist"
     Then The page "Myworklist" should be displayed
-
+@PL631_SetSubscriptions
   Scenario Outline: To set different base subscriptions for PL631 device with VISIONLINK application
     When search Asset details as "<S/N>" in My Worklist Page
     And Set Subscription details as "<Services>","<Base Level>","<Additional Services>"
     And submit subscription details
     And search Asset details as "<S/N>" in My Worklist Page
-    Then Verify Subscription details are displayed with "<Services>","<Expected Base Level>","<Additional Services>","<Expected Additional Services>" in My Worklist page
+    Then Verify Subscription details are displayed with "<Services>","<Expected Base Level>","<Expected Additional Services>" in My Worklist page
 
     #Validate the Count of Add on
     Examples: 
       | S/N     | Services    | Base Level               | Additional Services                          | Expected Base Level      | Expected Additional Services                 |
-      | SERIAL1 | VISION LINK | Cat Basic - 4 Hours      |                                              | Cat Basic - 4 Hours      |                                              |
-      | SERIAL2 | VISION LINK | Cat Basic - Hourly       |                                              | Cat Basic - Hourly       |                                              |
-      | SERIAL3 | VISION LINK | Cat Essentials - 4 Hours | VisionLink Load and Cycle Project Monitoring | Cat Essentials - 4 Hours | VisionLink Load and Cycle Project Monitoring |
-      | SERIAL4 | VISION LINK | Cat Essentials - 4 Hours |                                              | Cat Essentials - 4 Hours |                                              |
+      | UIT00140 | VISION LINK | Cat Basic - 4 Hours      |                                              | Cat Basic - 4 Hours      |                                              |
+      #| SERIAL2 | VISION LINK | Cat Basic - Hourly       |                                              | Cat Basic - Hourly       |                                              |
+      #| SERIAL3 | VISION LINK | Cat Essentials - 4 Hours | VisionLink Load and Cycle Project Monitoring | Cat Essentials - 4 Hours | VisionLink Load and Cycle Project Monitoring |
+      #| SERIAL4 | VISION LINK | Cat Essentials - 4 Hours |                                              | Cat Essentials - 4 Hours |                                              |
 
   #cancelSubscription
   Scenario Outline: To cancel the subscriptions for PL631 device with VISIONLINK application
@@ -84,7 +84,7 @@ Feature:
     And Set Subscription details as "<Services>","<Customer Level>","<Dealer Level>","<Cat Level>"
     And submit subscription details
     And search Asset details as "<S/N>" in My Worklist Page
-    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>" in My Worklist page
+    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>" for Product Link Web in My Worklist page
 
     Examples: 
       | S/N     | Services         | Customer Level | Dealer Level | Cat Level | Expected Customer Level | Expected Dealer Level | Expected Cat Level |
@@ -109,7 +109,7 @@ Feature:
     And Set Subscription details as "<Services>","<Customer Level>","<Dealer Level>","<Cat Level>"
     And submit subscription details
     And search Asset details as "<S/N>" in My Worklist Page
-    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>" in My Worklist page
+    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>" for Product Link Web in My Worklist page
 
     Examples: 
       | S/N      | Services         | Customer Level | Dealer Level   | Cat Level | Expected Customer Level | Expected Dealer Level | Expected Cat Level |
@@ -122,7 +122,7 @@ Feature:
     When search Asset details as "<S/N>" in My Worklist Page
     And cancel subscription by selecting reason as "<Customer Level>","<Dealer Level>","<Cat Level>","<Cancel Reason>"
     And search Asset details as "<S/N>" in My Worklist Page
-    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>" in My Worklist page
+    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>" for Product Link Web in My Worklist page
 
     Examples: 
       | S/N      | Services         | Customer Level | Dealer Level | Expected Customer Level | Expected Dealer Level | Expected Cat Level | Cancel Reason          |
@@ -137,7 +137,7 @@ Feature:
     And select account name "<Account Name>" from billing Pop Up
     And submit subscription details
     And search Asset details as "<S/N>" in My Worklist Page
-    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>","<Additional Services>" in My Worklist page
+    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>","<Additional Services>" for Product Link Web in My Worklist page
 
     Examples: 
       | S/N      | Services         | Customer Level | Dealer Level   | Cat Level      | Additional Services | Account Name | Account Number | Account Contact | Expected Customer Level | Expected Dealer Level | Expected Cat Level |
@@ -150,7 +150,7 @@ Feature:
     When search Asset details as "<S/N>" in My Worklist Page
     And cancel subscription by selecting reason as "<Customer Level>","<Dealer Level>","<Cat Level>","<Cancel Reason>"
     And search Asset details as "<S/N>" in My Worklist Page
-    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>" in My Worklist page
+    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>" for Product Link Web in My Worklist page
 
     Examples: 
       | S/N      | Services         | Customer Level | CAT Level | Expected Customer Level | Expected Dealer Level | Expected Cat Level | Cancel Reason          |
@@ -175,7 +175,7 @@ Feature:
     And update the subscriptions for the Asset as "<Services>","<Customer Level>","<Dealer Level>","<Cat Level>"
     And submit subscription details
     And search Asset details as "<S/N>" in My Worklist Page
-    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>" in My Worklist page
+    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>" for Product Link Web in My Worklist page
 
     Examples: 
       | S/N     | Services         | Customer Level | Dealer Level | Cat Level | Expected Customer Level | Expected Dealer Level | Expected Cat Level |
@@ -212,7 +212,7 @@ Feature:
     And update the subscriptions for the Asset as "<Services>","<Customer Level>","<Dealer Level>","<Cat Level>"
     And submit subscription details
     And search Asset details as "<S/N>" in My Worklist Page
-    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>" in My Worklist page
+    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>" for Product Link Web in My Worklist page
 
     Examples: 
       | S/N      | Services         | Customer Level | Dealer Level   | Cat Level | Expected Customer Level | Expected Dealer Level | Expected Cat Level |
@@ -225,7 +225,7 @@ Feature:
     When search Asset details as "<S/N>" in My Worklist Page
     And cancel subscription by selecting reason as "<Customer Level>","<Dealer Level>","<Cat Level>","<Cancel Reason>"
     And search Asset details as "<S/N>" in My Worklist Page
-    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>" in My Worklist page
+    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>" for Product Link Web in My Worklist page
 
     Examples: 
       | S/N      | Services         | Customer Level | Dealer Level | Expected Customer Level | Expected Dealer Level | Expected Cat Level | Cancel Reason          |
@@ -253,7 +253,7 @@ Feature:
     And select account name "<Account Name>" from billing Pop Up
     And submit subscription details
     And search Asset details as "<S/N>" in My Worklist Page
-    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>","<Additional Services>" in My Worklist page
+    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>","<Additional Services>" for Product Link Web in My Worklist page
 
     Examples: 
       | S/N      | Services         | Customer Level | Dealer Level   | Cat Level      | Additional Services | Account Name | Account Number | Account Contact | Expected Customer Level | Expected Dealer Level | Expected Cat Level |
@@ -266,7 +266,7 @@ Feature:
     When search Asset details as "<S/N>" in My Worklist Page
     And cancel subscription by selecting reason as "<Customer Level>","<Dealer Level>","<Cat Level>","<Cancel Reason>"
     And search Asset details as "<S/N>" in My Worklist Page
-    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>" in My Worklist page
+    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>" for Product Link Web in My Worklist page
 
     Examples: 
       | S/N      | Services         | Customer Level | CAT Level | Expected Customer Level | Expected Dealer Level | Expected Cat Level | Cancel Reason          |
@@ -294,7 +294,7 @@ Feature:
     And select account name "<Account Name>" from billing Pop Up
     And submit subscription details
     And search Asset details as "<S/N>" in My Worklist Page
-    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>","<Additional Services>" in My Worklist page
+    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>","<Additional Services>" for Product Link Web in My Worklist page
 
     Examples: 
       | S/N      | Services         | Customer Level | Dealer Level   | Cat Level      | Additional Services | Account Name | Account Number | Account Contact | Expected Customer Level | Expected Dealer Level | Expected Cat Level |
@@ -307,7 +307,7 @@ Feature:
     When search Asset details as "<S/N>" in My Worklist Page
     And cancel subscription by selecting reason as "<Customer Level>","<Dealer Level>","<Cat Level>","<Cancel Reason>"
     And search Asset details as "<S/N>" in My Worklist Page
-    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>" in My Worklist page
+    Then Verify Subscription details are displayed with "<Services>","<Expected Customer Level>","<Expected Dealer Level>","<Expected Cat Level>" for Product Link Web in My Worklist page
 
     Examples: 
       | S/N      | Services         | Customer Level | CAT Level | Expected Customer Level | Expected Dealer Level | Expected Cat Level | Cancel Reason          |
@@ -334,10 +334,10 @@ Feature:
 
   #Update VL Subscriptions
   Scenario Outline: To set different base subscriptions for PL631 device with VISIONLINK application
-    When update the subscriptions for the Asset as "<Base Level>", "<Additional Services>" 
+    When update the subscriptions for the Asset as "<Services>","<Base Level>", "<Additional Services>" 
     And submit subscription details
     And search Asset details as "<S/N>" in My Worklist Page
-    Then Verify Subscription details are displayed with "<Services>","<Expected Base Level>","<Additional Services>","<Expected Additional Services>" in My Worklist page
+    Then Verify Subscription details are displayed with "<Services>","<Expected Base Level>","<Expected Additional Services>" in My Worklist page
 
     Examples: 
       | S/N     | Services    | Base Level               | Additional Services                          | Expected Base Level      | Expected Additional Services                 |
