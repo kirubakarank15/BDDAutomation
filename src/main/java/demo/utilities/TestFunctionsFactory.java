@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Timestamp;
+import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,6 +27,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -43,6 +45,10 @@ import com.google.common.primitives.Bytes;
 /**
  * @author Kirubakaran.K(kk) PropertyFinder-Demo Cucumber Automation
  * 
+ */
+/**
+ * @author HP
+ *
  */
 public class TestFunctionsFactory {
 
@@ -64,7 +70,7 @@ public class TestFunctionsFactory {
 			element.sendKeys(text);
 		} catch (Exception e) {
 			e.printStackTrace();
-			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage());
 			throw obj;
 		}
 
@@ -77,7 +83,7 @@ public class TestFunctionsFactory {
 			element.sendKeys(text);
 		} catch (Exception e) {
 			e.printStackTrace();
-			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage());
 			throw obj;
 		}
 
@@ -96,7 +102,7 @@ public class TestFunctionsFactory {
 			element.click();
 		} catch (Exception e) {
 			e.printStackTrace();
-			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage());
 			throw obj;
 		}
 
@@ -120,7 +126,7 @@ public class TestFunctionsFactory {
 			obj.moveToElement(element).click().build().perform();
 		} catch (Exception e) {
 			e.printStackTrace();
-			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage());
 			throw obj;
 		}
 
@@ -136,11 +142,12 @@ public class TestFunctionsFactory {
 	 */
 	public static void clickHold(WebElement element) throws CustomisedException {
 		try {
+			TestFunctionsFactory.elementHighlighter(element);
 			Actions obj = new Actions(driver);
 			obj.clickAndHold(element);
 		} catch (Exception e) {
 			e.printStackTrace();
-			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage());
 			throw obj;
 		}
 
@@ -165,7 +172,7 @@ public class TestFunctionsFactory {
 			System.out.println("Done");
 		} catch (Exception e) {
 			e.printStackTrace();
-			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage());
 			throw obj;
 		}
 
@@ -179,14 +186,14 @@ public class TestFunctionsFactory {
 	 * @throws CustomisedException
 	 */
 	public static void javaScriptClick(WebElement element) throws CustomisedException {
-		try {
+		try {	TestFunctionsFactory.elementHighlighter(element);
 			JavascriptExecutor executor = (JavascriptExecutor) driver;
 			executor.executeScript("arguments[0].click();", element);
-
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 
-			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage());
 			throw obj;
 		}
 
@@ -194,11 +201,13 @@ public class TestFunctionsFactory {
 
 	public static void doubleClick(WebElement element) throws CustomisedException {
 		try {
+			TestFunctionsFactory.elementHighlighter(element);
 			Actions obj = new Actions(driver);
 			obj.doubleClick(element).build().perform();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage());
 			throw obj;
 		}
 
@@ -238,24 +247,22 @@ public class TestFunctionsFactory {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage());
 			throw obj;
 		}
 
 	}
 
-	/*
-	 * kk
-	 * 
-	 * @param element
-	 * 
-	 * @param option
-	 * 
-	 * @throws CustomisedException
+	
+	/**
+	 *KK
+	 *06 Apr 2021
+	 *void
+	 *This method will select the value from type ahead by comparing each of the type ahead options text wit the given text
 	 */
 	public static void selectFromTypeAhead(List<WebElement> elements, String option) throws CustomisedException {
 		try {
-			TestFunctionsFactory.waitForPageLoaded();
+			//TestFunctionsFactory.waitForPageLoaded();
 
 			int counter = 0;
 			List<WebElement> optionsList = elements;
@@ -263,7 +270,7 @@ public class TestFunctionsFactory {
 			for (WebElement options : optionsList) {
 
 				System.out.println("Options" + options.getText());
-				if (options.getAttribute("innerText").trim().replace(" ", "").split("-")[0].equalsIgnoreCase(option.trim().replace(" ", "").split("-")[0])) {
+				if (options.getAttribute("innerText").trim().replace(" ", "").contains(option.trim().replace(" ", ""))) {
 					// webWait(10, options);
 					
 					System.out.println("Option found" + options.getText());
@@ -280,7 +287,73 @@ public class TestFunctionsFactory {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			CustomisedException obj = new CustomisedException(option, e.getMessage().toString());
+			CustomisedException obj = new CustomisedException(option, e.getMessage());
+			throw obj;
+		}
+
+	}
+	
+
+
+	/**
+	 *KK
+	 *06 Apr 2021
+	 *void
+	 *date given in dd-mm-yyyy format will be parsed to select the travel date in expedia site
+	 *considered future years, months,days
+	 */
+	public static void dateSelectorForExpediaSite(String dateGiven) throws CustomisedException {
+	
+		try {
+			  Date current=new Date(); 
+			  Date givenDate=new SimpleDateFormat("dd-MM-yyyy").parse(dateGiven); 
+			  String month= new DateFormatSymbols().getMonths()[givenDate.getMonth()];
+	
+			  if(givenDate.after(current)||givenDate.equals(current)) {
+				  
+				 String existingSelectionChecker="//div/h2[contains(text(),'"+month+" "+dateGiven.split("-")[2]+"')]";
+				  
+				 String dateSelectionElement="//div/h2[contains(text(),'"+month+" "+dateGiven.split("-")[2]+"')]//parent::div//button[contains(@data-day,'"+givenDate.getDate()+"')]";
+		 
+				 if(!TestFunctionsFactory.verifyElementdisplayed(TestFunctionsFactory.driver.findElement(By.xpath(existingSelectionChecker)))) {
+					 TestFunctionsFactory.mouseHoverAndClick(TestFunctionsFactory.driver.findElement(By.xpath(dateSelectionElement)));
+				 }
+				 else {
+					 while(!TestFunctionsFactory.verifyElementdisplayed(TestFunctionsFactory.driver.findElement(By.xpath(existingSelectionChecker)))) {
+						 TestFunctionsFactory.mouseHoverAndClick(TestFunctionsFactory.driver.findElement(By.xpath("//button[@data-stid=\\\"date-picker-paging\\\"][2]")));
+						 if(!TestFunctionsFactory.verifyElementdisplayed(TestFunctionsFactory.driver.findElement(By.xpath(existingSelectionChecker)))) {
+							 TestFunctionsFactory.mouseHoverAndClick(TestFunctionsFactory.driver.findElement(By.xpath(dateSelectionElement)));
+						 }
+					 }
+				 }
+				  
+			  }
+			  else if(givenDate.before(current)||givenDate.equals(current)) {
+				  
+				 String existingSelectionChecker="//div/h2[contains(text(),'"+month+" "+dateGiven.split("-")[2]+"')]";
+				  
+				 String dateSelectionElement="//div/h2[contains(text(),'"+month+" "+dateGiven.split("-")[2]+"')]//parent::div//button[contains(@data-day,'"+givenDate.getDate()+"')]";
+		 
+				 if(!TestFunctionsFactory.verifyElementdisplayed(TestFunctionsFactory.driver.findElement(By.xpath(existingSelectionChecker)))) {
+					 TestFunctionsFactory.mouseHoverAndClick(TestFunctionsFactory.driver.findElement(By.xpath(dateSelectionElement)));
+				 }
+				 else {
+					 while(!TestFunctionsFactory.verifyElementdisplayed(TestFunctionsFactory.driver.findElement(By.xpath(existingSelectionChecker)))) {
+						 TestFunctionsFactory.mouseHoverAndClick(TestFunctionsFactory.driver.findElement(By.xpath("//button[@data-stid=\\\"date-picker-paging\\\"][1]")));
+						 if(!TestFunctionsFactory.verifyElementdisplayed(TestFunctionsFactory.driver.findElement(By.xpath(existingSelectionChecker)))) {
+							 TestFunctionsFactory.mouseHoverAndClick(TestFunctionsFactory.driver.findElement(By.xpath(dateSelectionElement)));
+						 }
+					 }
+				 }
+				  
+			  }
+			  else {
+				  throw new Exception("The given date is lesser than today");
+			  }
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			CustomisedException obj = new CustomisedException(dateGiven, e.getMessage());
 			throw obj;
 		}
 
@@ -325,7 +398,7 @@ public class TestFunctionsFactory {
 
 		} catch (Exception e) {
 			// e.printStackTrace();
-			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage());
 			throw obj;
 		}
 
@@ -349,7 +422,7 @@ public class TestFunctionsFactory {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage());
 			throw obj;
 		}
 
@@ -362,16 +435,20 @@ public class TestFunctionsFactory {
 	 * 
 	 * @throws CustomisedException
 	 */
-	public static void verifyElementdisplayed(WebElement element) throws CustomisedException {
+	public static boolean verifyElementdisplayed(WebElement element) throws CustomisedException {
+		  boolean status=false;
 		try {
-
-			element.isDisplayed();
+       
+			if(element.isDisplayed()) {
+			}
+			TestFunctionsFactory.elementHighlighter(element);
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage());
 			throw obj;
 		}
+		return status;
 
 	}
 
@@ -401,7 +478,7 @@ public class TestFunctionsFactory {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage());
 
 			throw obj;
 		}
@@ -425,7 +502,7 @@ public class TestFunctionsFactory {
 			wait.until(ExpectedConditions.visibilityOf(element));
 		} catch (Exception e) {
 			e.printStackTrace();
-			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage());
 
 			throw obj;
 		}
@@ -449,7 +526,7 @@ public class TestFunctionsFactory {
 			wait.until(ExpectedConditions.visibilityOf(element));
 		} catch (Exception e) {
 			e.printStackTrace();
-			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage());
 
 			throw obj;
 		}
@@ -464,7 +541,7 @@ public class TestFunctionsFactory {
 	 * 
 	 * @throws CustomisedException
 	 */
-	public static void webWaitUntilClickable(int waitTime, WebElement element) throws CustomisedException {
+	public static void webWaitUntilClickable(int waitTime, WebElement element) throws Exception {
 		try {
 
 			Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(waitTime, TimeUnit.SECONDS)
@@ -473,7 +550,7 @@ public class TestFunctionsFactory {
 			wait.until(ExpectedConditions.elementToBeClickable(element));
 		} catch (Exception e) {
 			e.printStackTrace();
-			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage().toString());
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage());
 
 			throw obj;
 		}
@@ -551,8 +628,8 @@ public class TestFunctionsFactory {
 		driver.manage().deleteAllCookies();
 
 		objDriver.driver.manage().window().maximize();
-
-		driver.get(url);
+System.out.println("URL"+url);
+		driver.get(url.trim());
 		objDriver.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 	}
@@ -618,12 +695,37 @@ public class TestFunctionsFactory {
 			if (combo.length != 1) {
 				String key = combo[0];
 				String Value = combo[1];
-				map.put(key, Value);
+				map.put(key.replaceAll("\"", ""), Value.replaceAll("\"", ""));
 			}
 		}
 
 		return map;
 		// TODO Auto-generated method stub
+
+	}
+	
+	/**
+	 *KK
+	 *06 Apr 2021
+	 *boolean
+	 *selection option will be verified with the given input
+	 */
+	public static boolean verifySelectedValue(WebElement element, String option) throws CustomisedException {
+		boolean status=false;
+		try {
+			
+			TestFunctionsFactory.waitForPageLoaded();
+			Select selectObj = new Select(element);
+		if(selectObj.getFirstSelectedOption().getText().equalsIgnoreCase(option)) {
+			status=true;
+		}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			CustomisedException obj = new CustomisedException(element.toString(), e.getMessage());
+			throw obj;
+		}
+		return status;
 
 	}
 
@@ -635,12 +737,24 @@ public class TestFunctionsFactory {
 		TestFunctionsFactory.driver.close();
 
 	}
-	public static void elementHighlighter(WebElement element) {
-
+	/**
+	 *KK
+	 *06 Apr 2021
+	 *void
+	 *TestFunctionsFactory
+	 *Elements will be highlighted in red colour
+	 */
+	public static void elementHighlighter(WebElement element) throws CustomisedException {
+try {
 	    // draw a border around the found element
 	    if (driver instanceof JavascriptExecutor) {
 	        ((JavascriptExecutor)driver).executeScript("arguments[0].style.border='3px solid red'", element);
 	    }
-	   
+} catch (Exception e) {
+	e.printStackTrace();
+	CustomisedException obj = new CustomisedException(element.toString(), e.getMessage());
+
+	throw obj;
+}
 	}
 }

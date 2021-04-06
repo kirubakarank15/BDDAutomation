@@ -19,6 +19,7 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+		
 			<!-- Below plug-in is used to execute tests -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -27,67 +28,59 @@
 				<configuration>
 					<systemPropertyVariables>
 						<browserName>${browser}</browserName>
-							<environment>${environment}</environment>
+							<environment>${url}</environment>
 					</systemPropertyVariables>
-					<suiteXmlFiles>
-						<suiteXmlFile>testng.xml
-						</suiteXmlFile>
-
-					</suiteXmlFiles>
-
-				</configuration>
+						<includes>
+							<include>**/TestRunner.java</include>
+						</includes>
+					</configuration>
 
 			</plugin>
 
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-					<archive>
-						<manifest>
-							<mainClass>net.masterthought.cucumber.sandwich.CucumberReportMonitor</mainClass>
-						</manifest>
-					</archive>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>2.4</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar-no-fork</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.4</version>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+<plugin>
 
+  <groupId>net.masterthought</groupId>
+  <artifactId>maven-cucumber-reporting</artifactId>
+  <version>5.0.0</version>
+  <executions>
+    <execution>
+      <id>execution</id>
+      <phase>verify</phase>
+      <goals>
+        <goal>generate</goal>
+      </goals>
+      <configuration>
+        <projectName>Cucumber HTML Reports</projectName>
+        <outputDirectory>${project.build.directory}</outputDirectory>
+        <inputDirectory>${project.build.directory}</inputDirectory>
+        <jsonFiles>
+          <param>**/cucumber*.json</param>
+        </jsonFiles>
+      </configuration>
+    </execution>
+  </executions>
+</plugin>
 
+<!-- <plugin>
+  <groupId>net.masterthought</groupId>
+  <artifactId>maven-cucumber-reporting</artifactId>
+  <version>3.15.0</version>
+  <executions>
+    <execution>
+      <id>execution</id>
+      <phase>verify</phase>
+      <goals>
+        <goal>generate</goal>
+      </goals>
+      <configuration>
+        <projectname>TestProject</projectname>
+        <outputdirectory>${project.build.directory}/cucumber-html-reports/cucumber.html</outputdirectory>
+        <cucumberoutput>${project.build.directory}/target/cucumber.json</cucumberoutput>
+        <enableflashcharts/>
+      </configuration>
+    </execution>
+  </executions>
+</plugin> -->
 		</plugins>
 	</build>
 	<properties>
@@ -110,8 +103,8 @@
 		<!-- https://mvnrepository.com/artifact/io.cucumber/gherkin -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
-			<artifactId>gherkin</artifactId>
-			<version>4.1.3</version>
+			<artifactId>cucumber-java</artifactId>
+			<version>5.0.0</version>
 		</dependency>
 
 
@@ -121,13 +114,17 @@
 <dependency>
     <groupId>io.cucumber</groupId>
     <artifactId>cucumber-testng</artifactId>
-    <version>6.9.0</version>
+    <version>5.0.0</version>
 </dependency>
-		
+	<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-junit</artifactId>
+    <version>5.0.0</version>
+</dependency>	
 <dependency>
     <groupId>io.cucumber</groupId>
     <artifactId>cucumber-core</artifactId>
-    <version>6.9.0</version>
+    <version>5.0.0</version>
 </dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
@@ -140,12 +137,7 @@
 
 		<!-- https://mvnrepository.com/artifact/info.cukes/cucumber-junit -->
 		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
-<dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-junit</artifactId>
-    <version>6.9.0</version>
-    <scope>test</scope>
-</dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-csv -->
 <dependency>
@@ -161,28 +153,17 @@
 <dependency>
     <groupId>io.cucumber</groupId>
     <artifactId>cucumber-java</artifactId>
-    <version>6.9.0</version>
+    <version>5.0.0</version>
 </dependency>
 
 		<!-- https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting -->
 		<dependency>
 			<groupId>net.masterthought</groupId>
 			<artifactId>cucumber-reporting</artifactId>
-			<version>3.9.0</version>
+			<version>5.0.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/net.masterthought/cucumber-sandwich -->
-		<dependency>
-			<groupId>net.masterthought</groupId>
-			<artifactId>cucumber-sandwich</artifactId>
-			<version>3.9.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.beust</groupId>
-			<artifactId>jcommander</artifactId>
-			<version>1.58</version>
-		</dependency>
+		
 
 		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
 		<dependency>
@@ -198,47 +179,12 @@
 			<version>3.16</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-		</dependency>
+	
 		<!-- <dependency> <groupId>junit</groupId> <artifactId>junit</artifactId> 
 			<version>4.8.2</version> </dependency> -->
 
 		<!-- API DEPENDENCIES -->
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
-			<version>2.9.0</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl -->
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.13</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
-		<dependency>
-			<groupId>com.googlecode.json-simple</groupId>
-			<artifactId>json-simple</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
 
-		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.8.1</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.json/json -->
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20170516</version>
-		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>htmlunit-driver</artifactId>
@@ -246,43 +192,9 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.vimalselvam/cucumber-extentsreport -->
-		<dependency>
-			<groupId>com.vimalselvam</groupId>
-			<artifactId>cucumber-extentsreport</artifactId>
-			<version>1.1.0</version>
-		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/javax.activation/activation -->
-		<dependency>
-			<groupId>javax.activation</groupId>
-			<artifactId>activation</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
-		<!-- <dependency> <groupId>com.aventstack</groupId> <artifactId>extentreports</artifactId> 
-			<version>3.0.7</version> </dependency> <dependency> <groupId>com.vimalselvam</groupId> 
-			<artifactId>cucumber-extentsreport</artifactId> <version>3.0.1</version> 
-			</dependency> -->
-		<dependency>
-			<groupId>org.jsoup</groupId>
-			<artifactId>jsoup</artifactId>
-			<version>1.8.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.xerial</groupId>
-			<artifactId>sqlite-jdbc</artifactId>
-			<version>3.8.11.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.freemarker</groupId>
-			<artifactId>freemarker</artifactId>
-			<version>2.3.23</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mongodb</groupId>
-			<artifactId>mongodb-driver</artifactId>
-			<version>3.0.4</version>
-		</dependency>
+
+
 	</dependencies>
 
 </project>

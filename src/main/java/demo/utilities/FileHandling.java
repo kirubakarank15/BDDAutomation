@@ -12,7 +12,7 @@ import java.util.Properties;
  * 
  */
 public class FileHandling {
-	public static Properties objProperty= null;
+
 /*	public Properties readConfig() throws Exception {
 		try {
 			File fileObj = new File(
@@ -39,21 +39,20 @@ public class FileHandling {
  * @param key
  * @return
  */
-public static String getProperty(String key) throws CustomisedException {
+public static String getProperty(String key) throws Exception {
  	        String value = "";
 	           try {
-			         if (objProperty== null)
-					{	            
-			        	 objProperty = new Properties();
-			        		File fileObj = new File("Resources\\config.properties"); 
+	        	     Properties objProperty= new Properties();
+			        		File fileObj = new File("Resources/config.properties"); 
 			    			
 				InputStream inputStream = new FileInputStream(fileObj) ;             
 					objProperty.load(inputStream);	
-					 }
+					 
 			         System.out.println("protprty file is null"+(String) objProperty.get(key));  
 	                value = (String) objProperty.get(key);   
 
 	           } catch (Exception e) {
+	        	   e.printStackTrace();
 throw new CustomisedException("key", "facing issue while fetching");
 	             }
 	          return value;

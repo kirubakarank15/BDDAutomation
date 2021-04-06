@@ -1,4 +1,24 @@
 package Practice;
+
+import java.text.DateFormatSymbols;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.LinkedHashMap;
+
+import org.apache.poi.hssf.record.cf.DataBarFormatting;
+
+public class App{
+	
+	  public static void main(String args[]) throws ParseException {
+		  Date current=new Date(); 
+		  Date givenDate=new SimpleDateFormat("dd-MM-yyyy").parse("15-5-2021"); 
+		// String month= new DateFormatSymbols().getMonths()[givenDate.getMonth()-1];
+		
+	 System.out.println(givenDate.getYear());
+	  }
+	
+}
 /*package toolsQA.automation;
 
 import java.io.BufferedReader;
