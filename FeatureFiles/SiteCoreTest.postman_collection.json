@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "2d2da98d-b32c-419a-b829-14dedc9cdf70",
+		"name": "SiteCoreTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"const responseJson = pm.response.text();\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"var obj = JSON.parse(responseJson);\r",
+							"var eachlist =obj.list;\r",
+							"var tomorrowArray ;\r",
+							"var current_datetime = new Date();\r",
+							"current_datetime.setDate(current_datetime.getDate() + 1);\r",
+							"for (let i in eachlist) {\r",
+							"  \r",
+							"\r",
+							"   var jsonDates = new Date(eachlist[i].dt_txt);\r",
+							"if(test(jsonDates)==test(current_datetime)){\r",
+							"if(eachlist[i].main.temp_max>0){\r",
+							"    pm.expect.fail(\"test faild as the temperature \"+eachlist[i].main.temp_max+\" is greater than 10 degree\")\r",
+							"}\r",
+							"else{\r",
+							"     pm.test(\"test passed as the temperature \"+eachlist[i].main.temp_max+\" is lesser than 10 degree\") \r",
+							"}\r",
+							"}\r",
+							"\r",
+							"}\r",
+							"\r",
+							"function test(current_datetime){\r",
+							"     let formatted_date = current_datetime.getDate() + \"-\" + (current_datetime.getMonth() + 1) + \"-\" + current_datetime.getFullYear();\r",
+							"\r",
+							" return formatted_date;\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/forecast?q=New York&appid=e2c51c1e00c7b410c9e304e4d4e3b9e9&units=Metric",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"forecast"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "New York"
+						},
+						{
+							"key": "appid",
+							"value": "e2c51c1e00c7b410c9e304e4d4e3b9e9"
+						},
+						{
+							"key": "units",
+							"value": "Metric"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
